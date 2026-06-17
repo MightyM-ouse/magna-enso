@@ -1,0 +1,36 @@
+# .gitignore — Magna Enso
+# Scope per ChatGPTReview/git-initialization-decision-package/GITIGNORE_SCOPE_REVIEW.md (human-approved).
+# NOTE: trace/evidence/** is intentionally NOT ignored — Light Curves are real, version-controlled evidence.
+
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# --- Secrets / environment (defense-in-depth; none exist yet) ---
+.env
+.env.*
+*.key
+*.pem
+secrets/
+
+# --- Future runtime build artifacts (none exist in Sprint 1) ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+dist/
+build/
+*.log
+
+# --- Local-only review memory & scratch (defensive) ---
+# ChatGPTReview/ is a SIBLING of this repo and is naturally excluded when the repo
+# root is magna-enso/. These entries are belt-and-suspenders in case anything is ever
+# created or symlinked inside the repo by mistake.
+ChatGPTReview/
+**/ChatGPTReview/
+*scratch*/
+*hermes-audit*/

@@ -1,0 +1,63 @@
+# ROLE_REGISTRY.yaml — Galaxy Catalog (Magna Enso)
+# Role-to-worker mapping. Source of truth: ../planning/MAGNA_ENSO_WORKER_MODEL.md
+# v1: roles are ADVISORY / role-guided, NOT enforced isolation. Respect them regardless.
+# Human owner may reassign any role/worker at any time.
+
+meta:
+  enforcement: "advisory_v1"   # per-role permission enforcement is a later/Govern-stage capability
+  human_override: true
+
+roles:
+  architect_governance:
+    description: "Architecture, governance, evidence & role design"
+    preferred_worker: "claude"
+    modes: [discovery, review, mixed]
+    can_modify_code: false
+    must_not: ["author_feature_code", "self_approve_merges"]
+
+  builder:
+    description: "Implementation and code inspection"
+    preferred_worker: "codex"
+    modes: [execution, investigation]
+    can_modify_code: true            # scoped to files a task packet allows
+    must_not: ["self_approve_commits", "activate_capabilities", "edit_governance_design_unilaterally", "bypass_policy_gate"]
+
+  validator_safety:
+    description: "Validation, adversarial & safety review (Spectrometer)"
+    preferred_worker: "antigravity"
+    modes: [review]
+    can_modify_code: false
+    must_not: ["author_feature_code", "approve_own_validation"]
+
+  reasoning_challenger:
+    description: "Second opinion, red-team reasoning, abuse cases"
+    preferred_worker: "grok"
+    modes: [investigation, review]
+    can_modify_code: false
+    must_not: ["modify_repo_artifacts", "make_binding_decisions"]
+
+  external_planner:
+    description: "Off-repo planning, review, prompt refinement"
+    preferred_worker: "hermes_desktop_grok"
+    modes: [discovery, review]
+    can_modify_code: false
+    must_not: ["write_into_repo_directly"]
+
+  orchestration_continuity:
+    description: "Orchestration council, continuity & handoff coherence; maintains external review-memory"
+    preferred_worker: "chatgpt"
+    modes: [review, mixed]
+    can_modify_code: false
+    external_memory: "../../ChatGPTReview/AGENT_OUTPUT_REVIEW_SOURCE_DATA.md"
+    must_not: ["make_binding_governance_decisions", "modify_code"]
+
+  ui_e2e_tester:
+    description: "Drives running UI/runtime (LAN/local) for E2E & guardrail verification; produces UI evidence"
+    preferred_worker: "hermes_agent"   # CANDIDATE — subject to validation (EH-0005B, PROPOSED)
+    status: "candidate"
+    fallback_worker: "approved_e2e_driver"
+    modes: [review, execution]
+    can_modify_code: false
+    test_only: true
+    network_scope: "lan_local_only"
+    must_not: ["author_code", "self_approve", "bypass_policy_gate", "target_public_endpoints"]
