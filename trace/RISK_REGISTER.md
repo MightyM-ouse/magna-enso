@@ -30,3 +30,17 @@ No new risks introduced by the TRACE skeleton. **R-13 (overengineering)** is the
 the skeleton is intentionally lean (templates + status + governance only, no speculative structure).
 `CRITICAL` risks (R-05 public exposure, R-06 policy bypass) have **no surface yet** — there is no runtime,
 no network listener, and no capability path in this repo. They re-activate when runtime work begins (Sprint 4+).
+
+## Sprint 2 note
+
+Sprint 2 read-only audit is accepted. Hermes audited SHA:
+`33b1d144590a211100f42aa911fd7f91ba031507`.
+
+Risk posture after Sprint 2:
+
+- R-01 (Hermes reuse / coupling) remains **OPEN**. Hermes is conditionally suitable only and is not approved for direct adoption.
+- R-02 (License / dependency / ToS) remains **OPEN**. Top-level MIT was verified in the audit, but full transitive dependency/plugin review remains future work.
+- R-06 (Policy bypass) remains **OPEN**. The audit found Hermes lacks one complete policy chokepoint; Sprint 3 governance design is the next recommended preparation step.
+- EH-0005B remains **PROPOSED**.
+- Sprint 3 remains **NOT STARTED**.
+- Sprint 4 remains **NOT STARTED**.

@@ -8,29 +8,35 @@
 |---|---|
 | Project | Magna Enso (first operational form of Magna) |
 | Release target | `v1.0-enso` |
-| Current sprint | **Sprint 1 — TRACE Project Skeleton** |
-| Sprint status | **Accepted** (human-approved 2026-06-17) |
+| Current sprint | **Between Sprint 2 and Sprint 3** |
+| Sprint status | **Sprint 2 accepted; Sprint 3 not started** (human-approved 2026-06-17) |
 | Overall stage | Governance setup (no runtime code yet) |
 | Operating model | TRACE (AI Project Profile, regulated-leaning) |
 | Final authority | Human owner (Vinay) |
 | Git initialized | **Yes** — repo root `magna-enso/` (EH-0012, 2026-06-17) |
 | Branch | **main** |
-| Commit | **none yet** (no commit/push without explicit human approval) |
+| Commit | Last accepted commit: `e0a28d4a0d50e5107392ae6bacfbdec52080487e` |
 | `.gitignore` | present; `ChatGPTReview/` excluded (local-only) |
-| Last accepted | Sprint 1 — TRACE Project Skeleton (ENSO-F-0101 DONE), human-approved 2026-06-17 |
+| Last accepted | Sprint 2 — Hermes Read-Only Audit (ENSO-F-0201 DONE), human-approved 2026-06-17 |
 
-## What exists now (Sprint 1)
+## What exists now
 
 - TRACE operating instance under `trace/`: config, onboarding, this status file, context index,
   role registry, workflows, task-packet & evidence templates, decision log, feature tracker,
   risk register, validation checklist, and `evidence/`.
 - Entry point `AGENTS.md` + thin bridges (`CLAUDE.md`, `CODEX.md`, `ANTIGRAVITY.md`).
 - Repo `README.md`.
+- Sprint 2 closeout evidence: `trace/evidence/ENSO-0002_LIGHT_CURVE.md`.
+- Local-only Sprint 2 audit and validation reports under `../../ChatGPTReview/sprint-2-hermes-audit/`
+  and `../../ChatGPTReview/sprint-2-antigravity-validation/`.
 
 ## What does NOT exist yet (by design)
 
 - No runtime code (`src/`), no policy engine, no UI, no scheduler, no integrations.
-- No Hermes source (the Sprint 2 read-only audit is a separate, human-approved, future step).
+- No Hermes source in `magna-enso/`.
+- No Hermes direct adoption, activation, build, run, fork, or implementation approval.
+- Sprint 3 is **NOT STARTED**.
+- Sprint 4 is **NOT STARTED**.
 
 ## Sprint 1 acceptance
 
@@ -39,12 +45,22 @@
 - Antigravity recommended acceptance (review 9.2/10, implementation 9.6/10, no blocking issues);
   the human owner remains final authority (EH-0010).
 
+## Sprint 2 acceptance
+
+- **Sprint 2 accepted by the human owner on 2026-06-17.** Feature `ENSO-F-0201` is **DONE**.
+- Hermes audited SHA: `33b1d144590a211100f42aa911fd7f91ba031507`.
+- Evidence: `trace/evidence/ENSO-0002_LIGHT_CURVE.md` was created and **human-approved**.
+- Codex read-only audit and Antigravity validation are complete; local-only report packages remain outside Git under `../../ChatGPTReview/`.
+- Hermes is accepted as **conditionally suitable only** for future governed fork consideration.
+- Hermes is **not approved** for direct adoption, activation, build, run, fork, or implementation.
+- EH-0005B remains **PROPOSED**.
+
 ## Next steps
 
-1. **Git initialized** at `magna-enso/` on `main` with `.gitignore` in place (EH-0012). **Done.**
-   No commit/push yet — the initial commit happens only on **separate explicit human instruction**.
-2. **Sprint 2 — Hermes read-only audit:** **NOT STARTED.** Requires **separate explicit human approval**.
-   Performed in a separate scratch workspace; the Hermes clone never enters `magna-enso/`.
+1. **Sprint 3 approval preparation only:** prepare the Sprint 3 governance-design approval package when explicitly requested.
+2. **Sprint 3 — Capability taxonomy + policy schema:** **NOT STARTED** and not approved for execution.
+3. **Sprint 4 — Clean governed Hermes fork boot baseline:** **NOT STARTED** and not approved for execution.
+4. No commit/push without separate explicit human instruction.
 
 ## External review memory
 

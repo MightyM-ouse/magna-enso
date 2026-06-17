@@ -10,7 +10,7 @@
 | Feature ID | Release | Sprint | Feature | Status | Owner | Reviewer | Risk | Evidence |
 |---|---|---|---|---|---|---|---|---|
 | ENSO-F-0101 | v1.0-enso | 1 | TRACE skeleton + AGENTS.md entry point | DONE | Claude+Codex | Antigravity + Human | LOW | Light |
-| ENSO-F-0201 | v1.0-enso | 2 | Hermes read-only audit report | PLANNED | Codex | Grok + Human | MEDIUM | Full |
+| ENSO-F-0201 | v1.0-enso | 2 | Hermes read-only audit report | DONE | Codex | Antigravity + Human | MEDIUM | Full |
 | ENSO-F-0301 | v1.0-enso | 3 | Capability taxonomy + policy schema | PLANNED | Claude | Antigravity + Human | HIGH | Full |
 | ENSO-F-0401 | v1.0-enso | 4 | Clean governed Hermes fork boot baseline | PLANNED | Codex | Antigravity + Human | HIGH | Full |
 | ENSO-F-0501 | v1.0-enso | 5 | Default-deny capability gate | PLANNED | Codex | Antigravity + Human | HIGH | Full |
@@ -42,3 +42,20 @@
         acceptance (9.2/10 review, no blocking issues); human owner is final authority (EH-0010).
 - Evidence Required: Light Curve (Light) — delivered as `trace/evidence/ENSO-0001_LIGHT_CURVE.md` (human-approved).
 - Linked Decisions: EH-0006, EH-0007, EH-0011 · Linked Risks: R-13 (overengineering — keep skeleton lean).
+
+### ENSO-F-0201 — Hermes read-only audit report
+- Release: v1.0-enso · Sprint: 2 · Status: **DONE** (human-approved 2026-06-17)
+- Owner: Codex · Reviewer: Antigravity + Human owner · Risk: MEDIUM
+- Description: Read-only source audit of `nousresearch/hermes-agent` to determine whether Hermes is suitable as a future Sprint 4 clean governed fork baseline candidate. No implementation, fork, build, run, activation, dependency install, or Hermes source copy.
+- Audited Hermes SHA: `33b1d144590a211100f42aa911fd7f91ba031507`
+- Acceptance Criteria:
+  - [x] Codex read-only audit completed in approved scratch workspace.
+  - [x] Antigravity validation completed with no blocking issues.
+  - [x] Light Curve format correction completed.
+  - [x] Autonomy count correction completed.
+  - [x] Hermes assessed as **conditionally suitable only** for future governed fork consideration.
+  - [x] Hermes remains **not approved** for direct adoption, activation, build, run, fork, or implementation.
+  - [x] EH-0005B remains **PROPOSED**.
+  - [x] Sprint 3 and Sprint 4 remain **NOT STARTED**.
+- Evidence Required: Light Curve (Full audit closeout) — delivered as `trace/evidence/ENSO-0002_LIGHT_CURVE.md` (human-approved). Detailed audit and validation reports remain local-only under `../../ChatGPTReview/`.
+- Linked Decisions: EH-0005A, EH-0013 · Linked Risks: R-01, R-02, R-06.

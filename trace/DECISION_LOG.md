@@ -22,6 +22,7 @@
 | EH-0010 | 2026-06-17 | Human owner (Vinay) is final authority for all approvals, commits, releases, and risk acceptance. | ACCEPTED | Human owner |
 | EH-0011 | 2026-06-17 | Sprint 0 planning package (9 documents) frozen; Sprint 1 authorized. | ACCEPTED | Human owner |
 | EH-0012 | 2026-06-17 | Git repository root is `magna-enso/` (parent `Magna/` is **not** the Git root); `ChatGPTReview/` remains local-only and outside Git tracking; initial branch is `main`; no commit/push without explicit human approval; Sprint 2 remains separately gated. | ACCEPTED | Human owner |
+| EH-0013 | 2026-06-17 | Sprint 2 Hermes read-only audit accepted; Hermes SHA `33b1d144590a211100f42aa911fd7f91ba031507` is conditionally suitable only for future governed fork consideration, not direct adoption, activation, build, run, fork, or implementation. Sprint 3 and Sprint 4 remain not started. | ACCEPTED | Human owner |
 
 ### EH-0012 — Git initialization at magna-enso/ (expanded)
 - Date: 2026-06-17
@@ -42,6 +43,23 @@
 - Impact: `magna-enso/` is now version-controlled (branch `main`, no commits yet). Closes RG-03; RG-06 mitigated structurally + by `.gitignore`.
 - Links: `../../ChatGPTReview/git-initialization-decision-package/FINAL_RECOMMENDATION.md`, RG-03, RG-06.
 
+### EH-0013 — Sprint 2 Hermes read-only audit accepted
+- Date: 2026-06-17
+- Status: ACCEPTED
+- Decided By: Human owner (Vinay)
+- Decision:
+  - Sprint 2 — Hermes Read-Only Audit is accepted for human review closeout.
+  - Accepted Hermes audited SHA: `33b1d144590a211100f42aa911fd7f91ba031507`.
+  - Hermes is **conditionally suitable only** for future governed fork consideration.
+  - Hermes is **not approved** for direct adoption, activation, build, run, fork, or implementation.
+  - EH-0005B remains **PROPOSED**.
+  - Sprint 3 is **NOT STARTED**.
+  - Sprint 4 is **NOT STARTED**.
+- Reason: Codex completed the approved read-only audit, Antigravity validation completed with no blocking issues, and the two non-blocking report corrections were applied.
+- Alternatives Considered: Direct adoption, activation, build/run, fork, or implementation — rejected as out of scope and not approved.
+- Impact: ENSO-F-0201 is DONE. Next action is Sprint 3 approval preparation only, not Sprint 3 execution.
+- Links: `trace/evidence/ENSO-0002_LIGHT_CURVE.md`, `../../ChatGPTReview/sprint-2-hermes-audit/`, `../../ChatGPTReview/sprint-2-antigravity-validation/`, R-01, R-02, R-06.
+
 ## Notes
 
 - The expanded EH-0005A / EH-0005B entry cards (with reasons and alternatives) are in
@@ -54,4 +72,5 @@
 - Git initialization & branch model for `magna-enso/` — **RESOLVED** by EH-0012 (root `magna-enso/`,
   branch `main`, no commit/push yet).
 - Initial commit timing & `develop`/sprint branches — **open**, awaiting separate human instruction.
-- Sprint 2 (Hermes read-only audit) authorization — **open**, requires separate explicit approval.
+- Sprint 2 (Hermes read-only audit) — **RESOLVED** by EH-0013; accepted as conditionally suitable only.
+- Sprint 3 approval preparation — **open**, not execution.
