@@ -11,7 +11,7 @@
 |---|---|---|---|---|---|---|---|---|
 | ENSO-F-0101 | v1.0-enso | 1 | TRACE skeleton + AGENTS.md entry point | DONE | Claude+Codex | Antigravity + Human | LOW | Light |
 | ENSO-F-0201 | v1.0-enso | 2 | Hermes read-only audit report | DONE | Codex | Antigravity + Human | MEDIUM | Full |
-| ENSO-F-0301 | v1.0-enso | 3 | Capability taxonomy + policy schema | PLANNED | Claude | Antigravity + Human | HIGH | Full |
+| ENSO-F-0301 | v1.0-enso | 3 | Capability governance design (taxonomy + policy schema + models) | DONE | Claude | Antigravity + Human | HIGH | Full |
 | ENSO-F-0401 | v1.0-enso | 4 | Clean governed Hermes fork boot baseline | PLANNED | Codex | Antigravity + Human | HIGH | Full |
 | ENSO-F-0501 | v1.0-enso | 5 | Default-deny capability gate | PLANNED | Codex | Antigravity + Human | HIGH | Full |
 | ENSO-F-0502 | v1.0-enso | 5 | Approval-request flow + logging | PLANNED | Codex | Antigravity + Human | HIGH | Full |
@@ -59,3 +59,17 @@
   - [x] Sprint 3 and Sprint 4 remain **NOT STARTED**.
 - Evidence Required: Light Curve (Full audit closeout) — delivered as `trace/evidence/ENSO-0002_LIGHT_CURVE.md` (human-approved). Detailed audit and validation reports remain local-only under `../../ChatGPTReview/`.
 - Linked Decisions: EH-0005A, EH-0013 · Linked Risks: R-01, R-02, R-06.
+
+### ENSO-F-0301 — Capability governance design (taxonomy + policy schema + models)
+- Release: v1.0-enso · Sprint: 3 · Status: **DONE** (human-approved 2026-06-17, **design/report-only**)
+- Owner: Claude · Reviewer: Antigravity + Human owner · Risk: HIGH
+- Description: Design-only capability-governance model defining how Magna Enso will control Hermes-derived capabilities under default-deny, before any Sprint 4 fork. No implementation, no runtime code, no policy-engine code, no Hermes fork/build/run/modification.
+- Acceptance Criteria:
+  - [x] 17 design reports produced (taxonomy, policy schema, default-deny, disablement tiers, unified approval engine, chokepoint map, memory/skill draft-only, scheduler report-only, browser/web read-only, terminal/code approval-required, messaging/cloud disabled, plugin/MCP governance, delegation control, surface matrix, Sprint 4 readiness gates, Light Curve, final recommendation).
+  - [x] Antigravity validation completed (verdict ACCEPTED_FOR_HUMAN_REVIEW).
+  - [x] RC-01 through RC-05 corrections applied.
+  - [x] Human owner accepted Sprint 3 as **design/report-only** (2026-06-17); no implementation approved.
+  - [x] EH-0005B remains **PROPOSED**; Hermes Agent not activated.
+  - [x] Sprint 4 remains **blocked / NOT STARTED**; requires a separate approval package.
+- Evidence Required: Light Curve (Full) — delivered as `trace/evidence/ENSO-0003_LIGHT_CURVE.md` (human-approved). Design and validation reports remain local-only under `../../ChatGPTReview/sprint-3-capability-governance-design/` and `../../ChatGPTReview/sprint-3-antigravity-validation/`.
+- Linked Decisions: EH-0014 · Linked Risks: R-04, R-05, R-06, R-07, R-08, R-09, R-10.

@@ -23,6 +23,7 @@
 | EH-0011 | 2026-06-17 | Sprint 0 planning package (9 documents) frozen; Sprint 1 authorized. | ACCEPTED | Human owner |
 | EH-0012 | 2026-06-17 | Git repository root is `magna-enso/` (parent `Magna/` is **not** the Git root); `ChatGPTReview/` remains local-only and outside Git tracking; initial branch is `main`; no commit/push without explicit human approval; Sprint 2 remains separately gated. | ACCEPTED | Human owner |
 | EH-0013 | 2026-06-17 | Sprint 2 Hermes read-only audit accepted; Hermes SHA `33b1d144590a211100f42aa911fd7f91ba031507` is conditionally suitable only for future governed fork consideration, not direct adoption, activation, build, run, fork, or implementation. Sprint 3 and Sprint 4 remain not started. | ACCEPTED | Human owner |
+| EH-0014 | 2026-06-17 | Sprint 3 Capability Governance Design accepted as **design/report-only** (17 reports; Antigravity validated; RC-01…RC-05 applied). **No implementation, runtime, or policy-engine code approved; no Hermes fork/build/run/modification approved.** EH-0005B remains PROPOSED; Hermes Agent not activated. Sprint 4 remains **blocked** and requires a separate approval package. | ACCEPTED | Human owner |
 
 ### EH-0012 — Git initialization at magna-enso/ (expanded)
 - Date: 2026-06-17
@@ -60,6 +61,27 @@
 - Impact: ENSO-F-0201 is DONE. Next action is Sprint 3 approval preparation only, not Sprint 3 execution.
 - Links: `trace/evidence/ENSO-0002_LIGHT_CURVE.md`, `../../ChatGPTReview/sprint-2-hermes-audit/`, `../../ChatGPTReview/sprint-2-antigravity-validation/`, R-01, R-02, R-06.
 
+### EH-0014 — Sprint 3 Capability Governance Design accepted (design/report-only)
+- Date: 2026-06-17
+- Status: ACCEPTED
+- Decided By: Human owner (Vinay)
+- Decision:
+  - Sprint 3 — Capability Governance Design is accepted as **design/report-only** work.
+  - 17 design reports completed; Antigravity validation completed (verdict ACCEPTED_FOR_HUMAN_REVIEW);
+    corrections RC-01…RC-05 applied.
+  - **No implementation, no runtime code, no policy-engine code is approved.**
+  - **No Hermes fork, build, run, source modification, or direct adoption is approved.**
+  - EH-0005B remains **PROPOSED**; Hermes Agent is **not activated**.
+  - Sprint 4 remains **blocked / NOT STARTED** and requires a **separate approval package**.
+- Reason: Claude produced the governance design from the Sprint 2 audit; Antigravity validated it; the five
+  non-blocking corrections were applied. The design is accepted as the agreed plan — acceptance is a design
+  input, not an authorization to implement.
+- Alternatives Considered: Treat acceptance as authorizing Sprint 4 implementation — rejected; Sprint 4 is a
+  separate, explicitly-gated decision.
+- Impact: ENSO-F-0301 is DONE. Sprint 4 readiness gates require human acceptance (now given for the design) +
+  a separate Sprint 4 go-ahead before any fork work.
+- Links: `trace/evidence/ENSO-0003_LIGHT_CURVE.md`, `../../ChatGPTReview/sprint-3-capability-governance-design/`, `../../ChatGPTReview/sprint-3-antigravity-validation/`, R-04, R-05, R-06, R-07, R-08, R-09, R-10.
+
 ## Notes
 
 - The expanded EH-0005A / EH-0005B entry cards (with reasons and alternatives) are in
@@ -73,4 +95,6 @@
   branch `main`, no commit/push yet).
 - Initial commit timing & `develop`/sprint branches — **open**, awaiting separate human instruction.
 - Sprint 2 (Hermes read-only audit) — **RESOLVED** by EH-0013; accepted as conditionally suitable only.
-- Sprint 3 approval preparation — **open**, not execution.
+- Sprint 3 (Capability Governance Design) — **RESOLVED** by EH-0014; accepted as design/report-only.
+- Sprint 4 (clean governed Hermes fork baseline) — **open / blocked**; requires a separate approval package
+  and explicit human approval against the Sprint 4 readiness gates. Not authorized by EH-0014.

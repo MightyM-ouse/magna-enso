@@ -44,3 +44,21 @@ Risk posture after Sprint 2:
 - EH-0005B remains **PROPOSED**.
 - Sprint 3 remains **NOT STARTED**.
 - Sprint 4 remains **NOT STARTED**.
+
+## Sprint 3 note
+
+Sprint 3 — Capability Governance Design accepted as **design/report-only** (EH-0014, 2026-06-17). Antigravity
+validated; RC-01…RC-05 applied. No implementation, runtime, or policy-engine code approved.
+
+Risk posture after Sprint 3 (designs exist on paper; nothing enforced yet — enforcement is Sprint 4+):
+
+- R-06 (Policy bypass) remains **OPEN**, but now has an accepted mitigation **design**: default-deny model,
+  13-boundary policy chokepoint map, disablement tiers, and a bypass-resistance requirement. Enforcement is
+  pending the (separately-approved) Sprint 4 fork + Sprint 5 policy engine.
+- R-04 (Cloud creep), R-05 (Public exposure), R-07/R-08/R-09 (memory/skill), R-10 (scheduler drift) each have
+  an accepted **governance model** (disabled/draft-only/report-only) but **no enforcement yet** — they
+  re-activate as live risks when runtime work begins (Sprint 4+).
+- R-01 (Hermes reuse) and R-02 (License/deps) remain **OPEN**; full transitive dependency/plugin review is
+  still future work.
+- EH-0005B remains **PROPOSED**; Hermes Agent not activated.
+- Sprint 4 remains **NOT STARTED / blocked** — requires a separate approval package.
