@@ -12,7 +12,7 @@
 | ENSO-F-0101 | v1.0-enso | 1 | TRACE skeleton + AGENTS.md entry point | DONE | Claude+Codex | Antigravity + Human | LOW | Light |
 | ENSO-F-0201 | v1.0-enso | 2 | Hermes read-only audit report | DONE | Codex | Antigravity + Human | MEDIUM | Full |
 | ENSO-F-0301 | v1.0-enso | 3 | Capability governance design (taxonomy + policy schema + models) | DONE | Claude | Antigravity + Human | HIGH | Full |
-| ENSO-F-0401 | v1.0-enso | 4 | Clean governed Hermes fork boot baseline | PLANNED | Codex | Antigravity + Human | HIGH | Full |
+| ENSO-F-0401 | v1.0-enso | 4 | Clean governed Hermes baseline preparation | DONE | Codex | Antigravity + Human | HIGH | Full |
 | ENSO-F-0501 | v1.0-enso | 5 | Default-deny capability gate | PLANNED | Codex | Antigravity + Human | HIGH | Full |
 | ENSO-F-0502 | v1.0-enso | 5 | Approval-request flow + logging | PLANNED | Codex | Antigravity + Human | HIGH | Full |
 | ENSO-F-0601 | v1.0-enso | 6 | Magna Enso identity + version stamp | PLANNED | Codex | Human | LOW | Light |
@@ -73,3 +73,21 @@
   - [x] Sprint 4 remains **blocked / NOT STARTED**; requires a separate approval package.
 - Evidence Required: Light Curve (Full) — delivered as `trace/evidence/ENSO-0003_LIGHT_CURVE.md` (human-approved). Design and validation reports remain local-only under `../../ChatGPTReview/sprint-3-capability-governance-design/` and `../../ChatGPTReview/sprint-3-antigravity-validation/`.
 - Linked Decisions: EH-0014 · Linked Risks: R-04, R-05, R-06, R-07, R-08, R-09, R-10.
+
+### ENSO-F-0401 — Clean governed Hermes baseline preparation
+- Release: v1.0-enso · Sprint: 4 · Status: **DONE** (human-approved 2026-06-20; inert baseline only)
+- Owner: Codex · Reviewer: Antigravity + Human owner · Risk: HIGH
+- Description: Bounded, selective, inert Hermes-derived vendor baseline preparation from audited SHA `33b1d144590a211100f42aa911fd7f91ba031507`. No runtime activation, no Hermes run/build, no dependency install, no policy-engine implementation, no Sprint 5 work.
+- Acceptance Criteria:
+  - [x] Isolated branch used: `audit/sprint-4-governed-hermes-baseline`.
+  - [x] Pre-implementation report created local-only.
+  - [x] Static license/dependency review completed before import.
+  - [x] Inert vendor baseline created under `vendor/hermes/`.
+  - [x] Dangerous Hermes runtime surfaces excluded by non-import.
+  - [x] Local-only Sprint 4 reports created.
+  - [x] EH-0005B remains **PROPOSED**; Hermes Agent not activated.
+  - [x] Sprint 5 not started.
+  - [x] Antigravity validation completed with verdict **ACCEPTED_FOR_HUMAN_REVIEW**, 9.8/10, no blocking issues, and no required corrections.
+  - [x] Human owner accepted Sprint 4 on 2026-06-20.
+- Evidence Required: Light Curve (Full) — delivered as `trace/evidence/ENSO-0004_LIGHT_CURVE.md` (human-approved). Local reports remain under `../../ChatGPTReview/sprint-4-governed-hermes-baseline/` and `../../ChatGPTReview/sprint-4-antigravity-validation/`.
+- Linked Decisions: EH-0014, EH-0015 · Linked Risks: R-01, R-02, R-04, R-05, R-06, R-11, R-13.

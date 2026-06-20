@@ -62,3 +62,21 @@ Risk posture after Sprint 3 (designs exist on paper; nothing enforced yet — en
   still future work.
 - EH-0005B remains **PROPOSED**; Hermes Agent not activated.
 - Sprint 4 remains **NOT STARTED / blocked** — requires a separate approval package.
+
+## Sprint 4 note
+
+Sprint 4 baseline preparation is **ACCEPTED** (EH-0015, 2026-06-20). The baseline imports only inert upstream license/manifest
+references and Magna-owned retained-surface metadata under `vendor/hermes/`.
+
+Antigravity validation completed with verdict **ACCEPTED_FOR_HUMAN_REVIEW**, 9.8/10, no blocking issues,
+and no required corrections. Acceptance does not close enforcement risks.
+
+Risk posture after Sprint 4 acceptance:
+
+- R-01 (Hermes reuse / coupling) remains **OPEN**. The baseline is minimal and inert; no executable Hermes module source is imported.
+- R-02 (License / dependency / ToS) remains **OPEN**, but the Sprint 4 static pre-import gate found top-level MIT preserved and no runtime dependencies introduced by the inert baseline.
+- R-04/R-05 (cloud/public exposure) remain **OPEN**, with dangerous network surfaces excluded by non-import.
+- R-06 (policy bypass) remains **OPEN**. Sprint 4 is structurally safe only; no runtime enforcement exists.
+- R-11 (fork maintenance) remains **WATCH**. This is not a full fork; it is a selective vendor provenance baseline.
+- EH-0005B remains **PROPOSED**; Hermes Agent not activated.
+- Sprint 5 remains **NOT STARTED**.

@@ -1,0 +1,65 @@
+source:
+  repository: "https://github.com/nousresearch/hermes-agent"
+  audited_sha: "33b1d144590a211100f42aa911fd7f91ba031507"
+  import_mode: "selective_vendor_inert_metadata_only"
+  runtime_enforcement: "not_implemented"
+
+quarantine:
+  active_runtime: false
+  imported_by_app_code: false
+  exposed_by_cli_or_ui: false
+  executable: false
+  tool_registered: false
+  package_discovered: false
+  network_enabled: false
+
+retained_surfaces:
+  local_safe_status_read:
+    state: "active_safe"
+    imported_runtime_source: false
+    note: "Metadata-only state record; no Hermes runtime code imported."
+  local_sensitive_read:
+    state: "read_only"
+    imported_runtime_source: false
+    note: "Future gated local read model; no active file/session read implementation imported."
+  project_metadata_status:
+    state: "active_safe"
+    imported_runtime_source: false
+    note: "Non-sensitive status concept retained as metadata."
+  memory_write_model:
+    state: "draft_only"
+    imported_runtime_source: false
+    note: "Hermes memory runtime source excluded because candidate modules reference active write paths and external/provider contexts."
+  skill_write_model:
+    state: "draft_only"
+    imported_runtime_source: false
+    note: "Hermes skill runtime source excluded because candidate modules reference curator/background-review and registry activation paths."
+  scheduler_metadata:
+    state: "report_only"
+    imported_runtime_source: false
+    note: "Hermes cron runtime source excluded because candidate modules include direct-script/no_agent metadata and scheduler execution integration."
+  browser_snapshot_model:
+    state: "read_only_if_privacy_gated"
+    imported_runtime_source: false
+    note: "Browser runtime source excluded; active browser actions are disabled/excluded."
+  terminal_code_model:
+    state: "approval_required_disabled"
+    imported_runtime_source: false
+    note: "Terminal/code runtime source excluded; no execution path imported."
+
+excluded_surfaces:
+  - "background_review"
+  - "curator_execution"
+  - "direct_script_cron"
+  - "executable_scheduler"
+  - "messaging_gateways"
+  - "outbound_delivery"
+  - "cloud_provider_activation"
+  - "external_memory_sync"
+  - "plugin_mcp_dynamic_loading"
+  - "remote_execution_backends"
+  - "subagent_delegation"
+  - "browser_actions"
+  - "terminal_code_execution_activation"
+  - "api_listeners"
+  - "file_transfer_activation"

@@ -24,6 +24,7 @@
 | EH-0012 | 2026-06-17 | Git repository root is `magna-enso/` (parent `Magna/` is **not** the Git root); `ChatGPTReview/` remains local-only and outside Git tracking; initial branch is `main`; no commit/push without explicit human approval; Sprint 2 remains separately gated. | ACCEPTED | Human owner |
 | EH-0013 | 2026-06-17 | Sprint 2 Hermes read-only audit accepted; Hermes SHA `33b1d144590a211100f42aa911fd7f91ba031507` is conditionally suitable only for future governed fork consideration, not direct adoption, activation, build, run, fork, or implementation. Sprint 3 and Sprint 4 remain not started. | ACCEPTED | Human owner |
 | EH-0014 | 2026-06-17 | Sprint 3 Capability Governance Design accepted as **design/report-only** (17 reports; Antigravity validated; RC-01…RC-05 applied). **No implementation, runtime, or policy-engine code approved; no Hermes fork/build/run/modification approved.** EH-0005B remains PROPOSED; Hermes Agent not activated. Sprint 4 remains **blocked** and requires a separate approval package. | ACCEPTED | Human owner |
+| EH-0015 | 2026-06-20 | Sprint 4 Clean Governed Hermes Baseline Preparation accepted as an **inert, quarantined provenance baseline only** after Antigravity validation. No executable Hermes modules, runtime enforcement, policy engine, Hermes activation, or Sprint 5 authorization. EH-0005B remains PROPOSED; R-06 remains OPEN. | ACCEPTED | Human owner |
 
 ### EH-0012 — Git initialization at magna-enso/ (expanded)
 - Date: 2026-06-17
@@ -82,6 +83,24 @@
   a separate Sprint 4 go-ahead before any fork work.
 - Links: `trace/evidence/ENSO-0003_LIGHT_CURVE.md`, `../../ChatGPTReview/sprint-3-capability-governance-design/`, `../../ChatGPTReview/sprint-3-antigravity-validation/`, R-04, R-05, R-06, R-07, R-08, R-09, R-10.
 
+### EH-0015 — Sprint 4 inert governed Hermes baseline accepted
+- Date: 2026-06-20
+- Status: ACCEPTED
+- Decided By: Human owner (Vinay)
+- Decision:
+  - Sprint 4 — Clean Governed Hermes Baseline Preparation is accepted as an **inert, quarantined provenance baseline only**.
+  - Accepted Hermes source SHA remains `33b1d144590a211100f42aa911fd7f91ba031507`.
+  - Antigravity validation verdict is **ACCEPTED_FOR_HUMAN_REVIEW** with rating 9.8/10, no blocking issues, and no required corrections.
+  - `vendor/hermes/` contains only inert upstream license/manifest references and Magna-owned retained-surface metadata; no executable Hermes module source is present.
+  - This acceptance does **not** authorize runtime enforcement, policy-engine code, Hermes activation/run/build, additional source import, or Sprint 5 work.
+  - R-06 remains **OPEN** because runtime enforcement does not exist.
+  - EH-0005B remains **PROPOSED**; Hermes Agent remains not activated.
+  - Sprint 5 remains **NOT STARTED** and requires separate human approval.
+- Reason: The bounded Sprint 4 baseline passed provenance, SHA, quarantine, dangerous-surface exclusion, license/static review, retained-metadata, TRACE, and runtime-boundary validation with no blocking findings.
+- Alternatives Considered: Treating the inert baseline as runtime enforcement or authorizing Sprint 5 automatically — rejected as outside scope and unsafe.
+- Impact: ENSO-F-0401 is DONE. Commit remains pending separate explicit approval; no push or merge is authorized.
+- Links: `trace/evidence/ENSO-0004_LIGHT_CURVE.md`, `../../ChatGPTReview/sprint-4-governed-hermes-baseline/`, `../../ChatGPTReview/sprint-4-antigravity-validation/`, R-01, R-02, R-04, R-05, R-06, R-11.
+
 ## Notes
 
 - The expanded EH-0005A / EH-0005B entry cards (with reasons and alternatives) are in
@@ -96,5 +115,7 @@
 - Initial commit timing & `develop`/sprint branches — **open**, awaiting separate human instruction.
 - Sprint 2 (Hermes read-only audit) — **RESOLVED** by EH-0013; accepted as conditionally suitable only.
 - Sprint 3 (Capability Governance Design) — **RESOLVED** by EH-0014; accepted as design/report-only.
-- Sprint 4 (clean governed Hermes fork baseline) — **open / blocked**; requires a separate approval package
-  and explicit human approval against the Sprint 4 readiness gates. Not authorized by EH-0014.
+- Sprint 4 (clean governed Hermes baseline preparation) — **RESOLVED** by EH-0015; accepted as an inert,
+  quarantined provenance baseline only.
+- Sprint 5 (default-deny capability gate / policy engine) — **open / NOT STARTED**; requires separate explicit
+  human approval. Sprint 4 acceptance does not authorize Sprint 5.
