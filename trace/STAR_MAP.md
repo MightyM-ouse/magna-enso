@@ -14,8 +14,8 @@
 | Operating model | TRACE (AI Project Profile, regulated-leaning) |
 | Final authority | Human owner (Vinay) |
 | Git initialized | **Yes** — repo root `magna-enso/` (EH-0012, 2026-06-17) |
-| Branch | **audit/sprint-4-governed-hermes-baseline** |
-| Commit | Sprint 4 closeout commit pending; branch HEAD remains `966629a` |
+| Branch | **main** |
+| Accepted Sprint 4 baseline commit | `c7bb2b2` (`docs(trace): record Sprint 4 governed baseline acceptance`) |
 | `.gitignore` | present; `ChatGPTReview/` excluded (local-only) |
 | Last accepted | Sprint 4 — Clean Governed Hermes Baseline Preparation (ENSO-F-0401 DONE, inert baseline only), human-approved 2026-06-20 |
 
@@ -30,9 +30,12 @@
 - Sprint 3 closeout evidence: `trace/evidence/ENSO-0003_LIGHT_CURVE.md`.
 - Sprint 4 accepted evidence: `trace/evidence/ENSO-0004_LIGHT_CURVE.md`.
 - Inert Sprint 4 vendor baseline under `vendor/hermes/`.
+- Sprint 4 baseline and acceptance closeout integrated into `main` at accepted baseline commit `c7bb2b2`.
 - Local-only Sprint 2 audit and validation reports under `../../ChatGPTReview/sprint-2-hermes-audit/`
   and `../../ChatGPTReview/sprint-2-antigravity-validation/`.
   Sprint 4 local reports are under `../../ChatGPTReview/sprint-4-governed-hermes-baseline/`.
+- Sprint 5 approval package prepared local-only under `../../ChatGPTReview/sprint-5-approval-package/`;
+  it is **not yet human-approved** and does not start Sprint 5.
 
 ## What does NOT exist yet (by design)
 
@@ -42,6 +45,8 @@
 - Sprint 3 produced **design/reports only** — no implementation, no runtime code, no policy-engine code.
 - Sprint 4 baseline is **accepted / DONE** as an inert provenance baseline only. It is structurally safe only; runtime enforcement does not exist.
 - Sprint 5 is **NOT STARTED**.
+- Runtime enforcement is **NOT IMPLEMENTED**.
+- Hermes Agent remains inactive.
 
 ## Sprint 1 acceptance
 
@@ -78,6 +83,7 @@
 
 - **Sprint 4 accepted by the human owner on 2026-06-20.** Feature `ENSO-F-0401` is **DONE**.
 - Branch used: `audit/sprint-4-governed-hermes-baseline`.
+- Accepted Sprint 4 baseline commit `c7bb2b2` is integrated into `main`.
 - Source SHA used: `33b1d144590a211100f42aa911fd7f91ba031507`.
 - Baseline path: `vendor/hermes/`.
 - The vendor baseline is inert/quarantined: no executable Hermes modules, no active package manifests, no tool registration, no CLI/UI exposure, no runtime wiring.
@@ -88,9 +94,13 @@
 
 ## Next steps
 
-1. Commit the accepted Sprint 4 baseline and trace closeout only after separate explicit human commit approval.
-2. Do not start Sprint 5 or implement a policy engine without separate approval.
-3. No push or merge without separate explicit human instruction.
+1. **PRQ-1:** this controlled trace update corrects the stale Sprint 4 branch/commit status. It is a
+   trace-only prerequisite and does **not** authorize or start Sprint 5; its commit remains separately gated.
+2. Sprint 5 approval package is prepared local-only but **not yet human-approved**. Sprint 5 remains
+   **NOT STARTED**.
+3. R-06 remains **OPEN**; EH-0005B remains **PROPOSED**; runtime enforcement remains **NOT IMPLEMENTED**;
+   Hermes Agent remains inactive.
+4. No Sprint 5 implementation, commit, push, merge, or branch creation without separate explicit approval.
 
 ## External review memory
 
