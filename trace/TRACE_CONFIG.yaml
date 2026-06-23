@@ -1,75 +1,68 @@
-# TRACE_CONFIG.yaml — Magna Enso TRACE operating instance
-# Source of truth: ../planning/MAGNA_ENSO_PROJECT_CHARTER.md and TRACE_ADOPTION_PLAN_FOR_MAGNA_ENSO.md
-# Status: Sprint 1 skeleton. Governance gates below are policy intent; runtime enforcement arrives in later sprints.
-
 trace_version: "1.0"
 
 project:
   name: "magna-enso"
-  positioning: "Magna Enso — first operational form of Magna"
-  profile: "ai_project"            # AI Project Profile, regulated-leaning governance
+  positioning: "First operational stage of Magna"
+  profile: "ai_project_regulated_leaning"
   release_target: "v1.0-enso"
-  current_sprint: 1
-  current_sprint_name: "TRACE Project Skeleton"
+  repository: "MightyM-ouse/magna-enso"
+  canonical_source: "github"
 
 operating_model:
+  methodology: "TRACE"
   default_mode: "mixed"
   supported_modes: [discovery, investigation, execution, review, mixed]
+  protected_branch: "main"
+  task_branch_required: true
+  pull_request_required: true
+  squash_merge_only: true
+  worker_self_merge: false
 
 context:
   minimal_context: true
   require_context_route: true
   allow_full_repo_scan: false
+  verify_github_before_current_state_claims: true
 
 human_authority:
-  final_authority: "human_owner"   # Vinay
-  require_approval_before_commit: true
-  require_approval_before_push: true
-  require_approval_before_dependency_change: true
-  require_approval_before_capability_activation: true
-  require_approval_before_memory_write: true
-  require_approval_before_skill_activation: true
-  require_approval_before_network_exposure: true
+  final_authority: "product_owner"
+  approval_required_for:
+    - product_scope
+    - functional_acceptance
+    - risk_acceptance
+    - merge
+    - release
+    - capability_activation
+    - public_runtime_exposure
+  task_packet_may_authorize:
+    - scoped_file_modification
+    - commit_to_assigned_branch
+    - push_to_assigned_branch
 
 posture:
   local_first: true
   lan_first: true
-  public_exposure_default: false
+  public_source_repository: true
+  public_runtime_exposure_default: false
   cloud_execution_default: false
-  auto_commit: false
-  auto_push: false
   hidden_autonomous_execution: false
   silent_memory_mutation: false
   auto_skill_activation: false
 
 boundaries:
-  helix_repo: "untouched"                 # existing Magna / HELIX repo is never modified
-  hermes_source_in_repo: "forbidden"      # no Hermes source cloned/copied into this repo
-  future_stages: "releases_and_tags"      # Satori..Beyond are tags, not copied folders
+  helix: "read_only_doctrine_and_observability"
+  hermes_runtime: "inactive_pending_governed_capability_lab"
+  sprint_5_local_work: "untracked_unaccepted"
+  sgn_01: "blocked"
+  future_stages: "separate_repositories"
 
 artifacts:
-  onboarding: "trace/TRACE_ONBOARDING.md"
   status_file: "trace/STAR_MAP.md"
   context_index: "trace/CELESTIAL_INDEX.json"
   role_registry: "trace/ROLE_REGISTRY.yaml"
   workflows: "trace/WORKFLOWS.yaml"
-  task_packet_template: "trace/TASK_PACKET_TEMPLATE.md"
-  evidence_template: "trace/EVIDENCE_TEMPLATE.md"
-  decision_log: "trace/DECISION_LOG.md"
-  feature_tracker: "trace/FEATURE_TRACKER.md"
-  risk_register: "trace/RISK_REGISTER.md"
-  validation_checklist: "trace/VALIDATION_CHECKLIST.md"
+  task_dir: "trace/tasks/"
   evidence_dir: "trace/evidence/"
+  decision_log: "trace/DECISION_LOG.md"
+  governance_dir: "docs/governance/"
 
-# Astronomy naming (plain-name-first in public docs)
-naming:
-  observatory: "Capability Control UI (Sprint 13)"
-  star_map: "project status"
-  celestial_index: "context index"
-  constellation: "task packet"
-  light_curve: "evidence package"
-  event_horizon: "decision log"
-  galaxy_catalog: "role registry"
-  spectrometer: "validation checklist/engine"
-  orbital_paths: "workflow engine"
-  polaris: "capability policy / governance layer"
