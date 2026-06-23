@@ -1,41 +1,40 @@
-# VALIDATION_CHECKLIST.md — Spectrometer (Magna Enso)
+# TRACE Validation Checklist
 
-> The Spectrometer validates outputs before they are trusted. Governance checks are **mandatory gates**,
-> not advisory. Run the relevant section before concluding a task; record results in the Light Curve.
+## Every task
 
-## A. Universal governance gates (every task)
+- [ ] Applicable repository, branch, HEAD, issue, PR, and task packet verified.
+- [ ] Allowed scope respected; unrelated/user changes preserved.
+- [ ] No direct `main` push, force push, self-merge, or hidden scope expansion.
+- [ ] Claims distinguish planned, implemented, tested, verified, released, and production use.
+- [ ] Exact failures, skipped checks, and limitations recorded.
+- [ ] Light Curve and material decisions updated.
 
-- [ ] No auto-commit and no auto-push occurred.
-- [ ] No change was made to the existing Magna / HELIX repository.
-- [ ] No Hermes source was cloned or copied into this repository.
-- [ ] No public-facing surface was created or enabled (local-first / LAN-first preserved).
-- [ ] No cloud execution was enabled by default.
-- [ ] No silent memory mutation; no skill auto-activation.
-- [ ] Material/irreversible actions were paused for human approval.
-- [ ] A Light Curve was produced and the Star Map updated.
-- [ ] Material decisions were logged to the Event Horizon.
+## Public-source security
 
-## B. Context discipline (Route phase)
+- [ ] Gitleaks scanned changed content before push.
+- [ ] No secrets, `.env`, cookies, browser profiles, private keys, or personal data committed.
+- [ ] Dependency provenance and licenses reviewed where applicable.
+- [ ] Public GitHub visibility was not treated as authorization for public runtime exposure.
 
-- [ ] Only the relevant `CELESTIAL_INDEX.json` area(s) were loaded (no full-repo scan).
-- [ ] The task stayed within its Constellation's Allowed Scope.
+## Runtime and capability work
 
-## C. Documentation / skeleton tasks (Sprint 1 type)
+- [ ] Default-deny and one governed capability entry path demonstrated.
+- [ ] Audit confirmation occurs before consequential effect.
+- [ ] Negative tests demonstrate blocked bypass paths.
+- [ ] Partial-effect failures enter recovery; they are not reported as clean denial.
+- [ ] Memory, skills, scheduler, external tools, network, cloud, and messaging respect policy.
 
-- [ ] New/changed docs follow the TRACE Documentation Standard where applicable.
-- [ ] Artifacts are internally consistent and consistent with frozen decisions (EH-0001…EH-0011).
-- [ ] No runtime code, no integrations, no speculative structure introduced.
-- [ ] Cross-references and file paths resolve.
+## UI/browser work
 
-## D. Runtime / code tasks (Sprint 4+ — not applicable in Sprint 1)
+- [ ] Critical workflows automated in Chromium.
+- [ ] Desktop/tablet/mobile states captured.
+- [ ] Console, failed network requests, keyboard, accessibility, loading/error states checked.
+- [ ] Visual regression evidence produced when a baseline exists.
+- [ ] Product Owner asked only for product/functional or subjective UX acceptance.
 
-- [ ] Every capability call passes the policy gate; no bypass path (proven by negative tests).
-- [ ] Default-deny posture holds; approval-required capabilities block pending human approval.
-- [ ] Network binding is LAN-only and off by default; no public listener (binding test).
-- [ ] Secrets redacted in any captured execution; nothing leaves the machine.
-- [ ] Provenance recorded for any reused upstream code (source repo + commit SHA + license).
-- [ ] Build / unit / integration / smoke tests run; results are real (not estimated).
+## Evidence quality
 
-## Honest data contract
-Record **real** results (what was actually checked/observed). Mark any token/cost/effort figure as
-**approximate**. A blocked safety gate is expected behavior, not a failure.
+- [ ] Commands, versions, SHA, environment, results, and artifact links are reproducible.
+- [ ] Large/raw output is stored as an Actions artifact; curated evidence is committed.
+- [ ] Percentages include numerator, denominator, method, and limitations.
+
