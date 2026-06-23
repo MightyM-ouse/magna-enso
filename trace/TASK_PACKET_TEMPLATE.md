@@ -1,39 +1,42 @@
-# Constellation — Task Packet Template
+# TRACE Task Packet
 
-> A Constellation is a scoped, single-purpose work package. Copy this template per task.
-> Naming: `trace/tasks/ENSO-NNNN.md` (create `trace/tasks/` when the first real task is opened).
+Task ID:
+GitHub Issue:
+Mode:
+Goal:
+Product outcome:
 
-```md
-# Constellation — ENSO-NNNN
-Task ID: ENSO-NNNN
-Sprint: <n>
-Mode: <discovery | investigation | execution | review | mixed>
-Goal: <one clear sentence>
+Worker / role:
+Independent reviewer:
+Context routes:
+Base branch and SHA:
+Assigned branch/worktree:
 
-Worker (role): <e.g. Codex / builder>   # see trace/ROLE_REGISTRY.yaml
-Reviewer: <e.g. Antigravity + Human owner>
+Allowed files/globs:
+Forbidden files/globs:
+Dependencies allowed:
+Network/runtime permissions:
 
-Context Route: <area id from trace/CELESTIAL_INDEX.json>
-Allowed Scope: <explicit files/globs the task may touch>
-Forbidden Scope: <anything explicitly off-limits>
+Acceptance criteria:
+- [ ]
 
-Required Checks: <Spectrometer items from trace/VALIDATION_CHECKLIST.md>
-Evidence Expectation: Light Curve (<Light | Standard | Full>) + review-package if code changes
+Required checks:
+- [ ] Preflight recorded
+- [ ] Applicable tests/build/lint/security checks
+- [ ] Gitleaks before push
+- [ ] Browser QA when UI behavior changes
+- [ ] Traceability and evidence updated
 
-Linked Feature: ENSO-F-<id>          # trace/FEATURE_TRACKER.md
-Linked Risks: R-<id>, ...            # trace/RISK_REGISTER.md
-Linked Decisions: EH-<id>, ...       # trace/DECISION_LOG.md
+Evidence level: Light | Standard | Full
+Artifact policy:
+Linked requirements/features/risks/decisions:
 
-Human Approval Required: <yes/no — yes for any commit, push, or material/irreversible action>
+Authorization:
+- Modify allowed scope: yes | no
+- Commit assigned branch: yes | no
+- Push assigned branch: yes | no
+- Open/update draft PR: yes | no
+- Merge: no
 
-Mode History:
-  - mode: <...>
-    status: <pending | in_progress | completed>
-    output: <...>
-```
+Mode history:
 
-## Rules
-- One purpose per Constellation. Reference a context route — do not request full-repo scans.
-- Name the worker, mode, and evidence level up front.
-- Material/irreversible actions always set `Human Approval Required: yes`.
-- A task that switches modes keeps the **same Task ID** and appends to `Mode History`.
