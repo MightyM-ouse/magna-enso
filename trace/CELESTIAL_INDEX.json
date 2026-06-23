@@ -1,140 +1,60 @@
 {
-  "description": "Celestial Index — context routing for Magna Enso. Each area maps to the files/tests/docs a worker should load for that task. Workers load ONLY the relevant area (Route phase); full-repo scans are exceptional. In Sprint 1 most runtime areas are PLANNED (their files do not exist yet).",
-  "version": 1,
-  "sprint": 1,
+  "description": "TRACE context routing for Magna Enso",
+  "version": 2,
+  "canonical_repository": "MightyM-ouse/magna-enso",
   "areas": {
     "trace-governance": {
-      "description": "TRACE operating instance: config, onboarding, status, roles, workflows, templates, logs.",
       "status": "CURRENT",
       "source_files": [
         "AGENTS.md",
+        "docs/governance/",
         "trace/TRACE_CONFIG.yaml",
         "trace/TRACE_ONBOARDING.md",
         "trace/STAR_MAP.md",
         "trace/ROLE_REGISTRY.yaml",
         "trace/WORKFLOWS.yaml"
       ],
-      "docs": [
-        "../planning/MAGNA_ENSO_PROJECT_CHARTER.md",
-        "../planning/TRACE_ADOPTION_PLAN_FOR_MAGNA_ENSO.md",
-        "../trace/TRACE_STRATEGIC_BLUEPRINT_v1.0.md"
-      ],
       "default_mode": "discovery"
     },
     "evidence-and-decisions": {
-      "description": "Decision log, feature tracker, risk register, validation checklist, evidence packages.",
       "status": "CURRENT",
       "source_files": [
         "trace/DECISION_LOG.md",
         "trace/FEATURE_TRACKER.md",
         "trace/RISK_REGISTER.md",
         "trace/VALIDATION_CHECKLIST.md",
-        "trace/TASK_PACKET_TEMPLATE.md",
-        "trace/EVIDENCE_TEMPLATE.md",
+        "trace/tasks/",
         "trace/evidence/"
       ],
       "default_mode": "review"
     },
-    "hermes-audit": {
-      "description": "Sprint 2 read-only Hermes audit NOTES only (in docs/audit/). The Hermes clone itself lives in a separate scratch workspace, never in this repo.",
-      "status": "PLANNED",
-      "sprint": 2,
-      "source_files": [],
-      "planned_outputs": ["docs/audit/HERMES_READONLY_AUDIT.md"],
+    "hermes-provenance": {
+      "status": "CURRENT_INERT",
+      "source_files": ["vendor/hermes/"],
       "default_mode": "investigation"
     },
-    "capability-governance": {
-      "description": "Capability-policy design (Polaris): taxonomy, policy schema, default-deny, approval gates.",
-      "status": "PLANNED",
-      "sprint": 3,
-      "source_files": [],
-      "planned_outputs": ["docs/design/CAPABILITY_GOVERNANCE_DESIGN.md", "docs/adr/"],
+    "policy-engine": {
+      "status": "LOCAL_UNTRACKED_NOT_ACCEPTED",
+      "planned_files": ["policy/", "tests/policy/", "trace/evidence/ENSO-0005_LIGHT_CURVE.md"],
+      "default_mode": "review"
+    },
+    "architecture": {
+      "status": "MIGRATION_PENDING",
+      "planned_files": ["docs/architecture/", "docs/technical-specifications/"],
       "default_mode": "discovery"
     },
-    "runtime-baseline": {
-      "description": "Clean governed Hermes fork baseline runtime (provenance + SHA + license recorded).",
-      "status": "PLANNED",
-      "sprint": 4,
-      "source_files": [],
-      "planned_outputs": ["src/", "tests/", "LICENSE", "docs/PROVENANCE.md"],
-      "default_mode": "execution"
-    },
-    "policy-engine": {
-      "description": "Capability-policy engine: gating, approval-request flow, decision/evidence logging.",
-      "status": "PLANNED",
-      "sprint": 5,
-      "source_files": [],
-      "planned_outputs": ["policy/", "tests/policy/"],
-      "default_mode": "execution"
-    },
-    "identity-layer": {
-      "description": "Magna Enso identity/branding/version stamp.",
-      "status": "PLANNED",
-      "sprint": 6,
-      "source_files": [],
-      "planned_outputs": ["src/identity/"],
-      "default_mode": "execution"
-    },
-    "memory-skill-governance": {
-      "description": "Memory-write approval + change log; skill registry + activation gates.",
-      "status": "PLANNED",
-      "sprint": 8,
-      "source_files": [],
-      "planned_outputs": ["src/memory/", "src/skills/", "tests/memory/", "tests/skills/"],
-      "default_mode": "execution"
-    },
-    "scheduler": {
-      "description": "Report-only scheduler (proposes, never auto-executes).",
-      "status": "PLANNED",
-      "sprint": 9,
-      "source_files": [],
-      "planned_outputs": ["src/scheduler/", "tests/scheduler/"],
-      "default_mode": "execution"
-    },
-    "lan-mobile-control": {
-      "description": "LAN-bound mobile control surface (off by default, no public exposure).",
-      "status": "PLANNED",
-      "sprint": 10,
-      "source_files": [],
-      "planned_outputs": ["src/lan/", "tests/lan/"],
-      "default_mode": "execution"
-    },
-    "remote-instruction-package": {
-      "description": "Remote instruction package importer/validator (inert until human-approved).",
-      "status": "PLANNED",
-      "sprint": 11,
-      "source_files": [],
-      "planned_outputs": ["src/instruction_package/", "tests/instruction_package/"],
-      "default_mode": "execution"
-    },
-    "execution-capture": {
-      "description": "Local execution capture + secret redaction (local-only, no off-machine telemetry).",
-      "status": "PLANNED",
-      "sprint": 12,
-      "source_files": [],
-      "planned_outputs": ["src/capture/", "tests/capture/"],
-      "default_mode": "execution"
-    },
-    "capability-control-ui": {
-      "description": "Capability Control UI (the Observatory for Enso): approvals, schedules, evidence browser.",
-      "status": "PLANNED",
-      "sprint": 13,
-      "source_files": [],
-      "planned_outputs": ["ui/", "tests/ui/"],
-      "default_mode": "execution"
-    },
-    "review-packages": {
-      "description": "Review-package generator + evidence-completeness scoring.",
-      "status": "PLANNED",
-      "sprint": 14,
-      "source_files": [],
-      "planned_outputs": ["review-packages/"],
+    "browser-qa": {
+      "status": "POLICY_CURRENT_TOOLING_PENDING",
+      "source_files": ["docs/governance/AUTOMATED_BROWSER_QA.md"],
+      "planned_files": ["tests/e2e/", ".github/workflows/"],
       "default_mode": "review"
     }
   },
   "rules": {
     "allow_full_repo_scan": false,
     "escalate_context_only_when_justified": true,
-    "do_not_load_planned_areas": "Areas with status PLANNED have no files yet; do not fabricate them."
+    "verify_github_before_current_state_claims": true,
+    "do_not_treat_planned_files_as_delivered": true
   }
 }
+
