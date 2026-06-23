@@ -25,6 +25,10 @@
 | EH-0013 | 2026-06-17 | Sprint 2 Hermes read-only audit accepted; Hermes SHA `33b1d144590a211100f42aa911fd7f91ba031507` is conditionally suitable only for future governed fork consideration, not direct adoption, activation, build, run, fork, or implementation. Sprint 3 and Sprint 4 remain not started. | ACCEPTED | Human owner |
 | EH-0014 | 2026-06-17 | Sprint 3 Capability Governance Design accepted as **design/report-only** (17 reports; Antigravity validated; RC-01…RC-05 applied). **No implementation, runtime, or policy-engine code approved; no Hermes fork/build/run/modification approved.** EH-0005B remains PROPOSED; Hermes Agent not activated. Sprint 4 remains **blocked** and requires a separate approval package. | ACCEPTED | Human owner |
 | EH-0015 | 2026-06-20 | Sprint 4 Clean Governed Hermes Baseline Preparation accepted as an **inert, quarantined provenance baseline only** after Antigravity validation. No executable Hermes modules, runtime enforcement, policy engine, Hermes activation, or Sprint 5 authorization. EH-0005B remains PROPOSED; R-06 remains OPEN. | ACCEPTED | Human owner |
+| EH-0016 | 2026-06-24 | GitHub is the canonical collaboration source; approved task packets may authorize commit/push to isolated task branches, with PR-only integration to protected `main`. | ACCEPTED | Human owner |
+| EH-0017 | 2026-06-24 | Each Magna evolution stage uses a separate repository so any stage can be selected independently. Supersedes EH-0003. | ACCEPTED | Human owner |
+| EH-0018 | 2026-06-24 | The canonical stage spelling is **KENOSHA**. Earlier `Kensho` references are superseded. | ACCEPTED | Human owner |
+| EH-0019 | 2026-06-24 | The Enso source repository is public to enable repository rules on the current GitHub plan; runtime/network exposure remains local/LAN-only by default. | ACCEPTED | Human owner |
 
 ### EH-0012 — Git initialization at magna-enso/ (expanded)
 - Date: 2026-06-17
@@ -101,6 +105,32 @@
 - Impact: ENSO-F-0401 is DONE. Commit remains pending separate explicit approval; no push or merge is authorized.
 - Links: `trace/evidence/ENSO-0004_LIGHT_CURVE.md`, `../../ChatGPTReview/sprint-4-governed-hermes-baseline/`, `../../ChatGPTReview/sprint-4-antigravity-validation/`, R-01, R-02, R-04, R-05, R-06, R-11.
 
+### EH-0016 - GitHub canonical multi-agent workflow
+- Date: 2026-06-24
+- Status: ACCEPTED
+- Decided By: Human owner (Vinay)
+- Decision: GitHub issues, task packets, task branches, pull requests, repository evidence, and Actions artifacts form the operational collaboration record. Workers may commit and push only to an assigned branch when the task packet authorizes it. Protected `main`, no force push, no self-merge, independent review where required, and Product Owner merge authority remain mandatory.
+- Supersession: Replaces only the absolute no-commit/no-push portions of EH-0008 and EH-0012. Their human authority and safety intent remain accepted.
+
+### EH-0017 - Separate repository per evolution stage
+- Date: 2026-06-24
+- Status: ACCEPTED
+- Decided By: Human owner (Vinay)
+- Decision: Enso, Satori, KENOSHA, Bodhi, Prabhava, and later stages use separate repositories. Shared assets require explicit versioned contracts.
+- Supersession: EH-0003 is SUPERSEDED. Existing Enso history remains unchanged.
+
+### EH-0018 - KENOSHA spelling
+- Date: 2026-06-24
+- Status: ACCEPTED
+- Decided By: Human owner (Vinay)
+- Decision: `KENOSHA` is the canonical stage name. Historical evidence is not rewritten; active documents must use KENOSHA.
+
+### EH-0019 - Public source, private runtime boundary
+- Date: 2026-06-24
+- Status: ACCEPTED
+- Decided By: Human owner (Vinay)
+- Decision: The GitHub source repository is public. This does not authorize public listeners, tunnels, cloud execution, external messaging, or public runtime endpoints. Public-source security, secret scanning, provenance, and evidence-redaction controls are mandatory.
+
 ## Notes
 
 - The expanded EH-0005A / EH-0005B entry cards (with reasons and alternatives) are in
@@ -112,7 +142,7 @@
 
 - Git initialization & branch model for `magna-enso/` — **RESOLVED** by EH-0012 (root `magna-enso/`,
   branch `main`, no commit/push yet).
-- Initial commit timing & `develop`/sprint branches — **open**, awaiting separate human instruction.
+- GitHub branch model — **RESOLVED** by EH-0016; short-lived task branches and PR-only integration.
 - Sprint 2 (Hermes read-only audit) — **RESOLVED** by EH-0013; accepted as conditionally suitable only.
 - Sprint 3 (Capability Governance Design) — **RESOLVED** by EH-0014; accepted as design/report-only.
 - Sprint 4 (clean governed Hermes baseline preparation) — **RESOLVED** by EH-0015; accepted as an inert,
