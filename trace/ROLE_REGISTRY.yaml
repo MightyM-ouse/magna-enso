@@ -1,63 +1,43 @@
-# ROLE_REGISTRY.yaml — Galaxy Catalog (Magna Enso)
-# Role-to-worker mapping. Source of truth: ../planning/MAGNA_ENSO_WORKER_MODEL.md
-# v1: roles are ADVISORY / role-guided, NOT enforced isolation. Respect them regardless.
-# Human owner may reassign any role/worker at any time.
-
 meta:
-  enforcement: "advisory_v1"   # per-role permission enforcement is a later/Govern-stage capability
+  enforcement: "repository_rules_plus_task_scope"
   human_override: true
+  final_authority: "product_owner"
 
 roles:
-  architect_governance:
-    description: "Architecture, governance, evidence & role design"
-    preferred_worker: "claude"
+  product_owner:
+    worker: "vinay"
+    responsibilities: [scope, priority, functional_acceptance, risk_acceptance, merge, release]
+    must_not: [replace_technical_evidence_with_manual_assertion]
+
+  system_architect_sme:
+    worker: "chatgpt"
     modes: [discovery, review, mixed]
-    can_modify_code: false
-    must_not: ["author_feature_code", "self_approve_merges"]
+    can_modify: [governance_docs, architecture_docs, task_packets, review_artifacts]
+    must_not: [merge, self_accept, invent_state, make_binding_product_decisions]
+
+  architecture_specification:
+    worker: "claude"
+    modes: [discovery, review, mixed]
+    can_modify: [assigned_docs, assigned_configuration, explicitly_assigned_code]
+    must_not: [self_approve, merge, silently_change_scope]
 
   builder:
-    description: "Implementation and code inspection"
-    preferred_worker: "codex"
+    worker: "codex"
     modes: [execution, investigation]
-    can_modify_code: true            # scoped to files a task packet allows
-    must_not: ["self_approve_commits", "activate_capabilities", "edit_governance_design_unilaterally", "bypass_policy_gate"]
+    can_modify: [task_packet_allowed_scope]
+    must_not: [push_main, merge, self_accept, bypass_policy, activate_unapproved_capabilities]
 
-  validator_safety:
-    description: "Validation, adversarial & safety review (Spectrometer)"
-    preferred_worker: "antigravity"
-    modes: [review]
-    can_modify_code: false
-    must_not: ["author_feature_code", "approve_own_validation"]
+  independent_validator:
+    worker: "antigravity"
+    modes: [review, investigation]
+    can_modify: [validation_artifacts, explicitly_assigned_corrections]
+    must_not: [implement_feature_under_review, self_approve, merge, use_unverified_paths]
 
-  reasoning_challenger:
-    description: "Second opinion, red-team reasoning, abuse cases"
-    preferred_worker: "grok"
-    modes: [investigation, review]
-    can_modify_code: false
-    must_not: ["modify_repo_artifacts", "make_binding_decisions"]
+  governed_runtime_experiment:
+    worker: "hermes"
+    status: "inactive"
+    modes: [execution, review]
+    can_modify: []
+    activation_requires: [approved_task, isolated_runtime, policy_gate, audit_before_effect, independent_review]
+    must_not: [self_enable_tools, silent_memory_write, external_action, repository_write]
 
-  external_planner:
-    description: "Off-repo planning, review, prompt refinement"
-    preferred_worker: "hermes_desktop_grok"
-    modes: [discovery, review]
-    can_modify_code: false
-    must_not: ["write_into_repo_directly"]
-
-  orchestration_continuity:
-    description: "Orchestration council, continuity & handoff coherence; maintains external review-memory"
-    preferred_worker: "chatgpt"
-    modes: [review, mixed]
-    can_modify_code: false
-    external_memory: "../../ChatGPTReview/AGENT_OUTPUT_REVIEW_SOURCE_DATA.md"
-    must_not: ["make_binding_governance_decisions", "modify_code"]
-
-  ui_e2e_tester:
-    description: "Drives running UI/runtime (LAN/local) for E2E & guardrail verification; produces UI evidence"
-    preferred_worker: "hermes_agent"   # CANDIDATE — subject to validation (EH-0005B, PROPOSED)
-    status: "candidate"
-    fallback_worker: "approved_e2e_driver"
-    modes: [review, execution]
-    can_modify_code: false
-    test_only: true
-    network_scope: "lan_local_only"
-    must_not: ["author_code", "self_approve", "bypass_policy_gate", "target_public_endpoints"]
