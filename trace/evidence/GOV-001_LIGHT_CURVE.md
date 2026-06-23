@@ -51,7 +51,7 @@ browser-QA expectations without modifying runtime code or accepting Sprint 5.
 | Stage strategy supersession | PASS | EH-0003 marked superseded by EH-0017 |
 | KENOSHA spelling | PASS | Active sources use KENOSHA; historical text retained |
 | Runtime/Sprint 5 changes | PASS | None included in branch diff |
-| Branch-head Gitleaks scan | PENDING | Must run through local pre-push/CI validation before merge |
+| Branch-head Gitleaks scan | PASS | GitHub Actions Governance validation run #1; Gitleaks 8.30.1 |
 | Independent review | PENDING | Required before acceptance |
 
 ## Findings and limitations
@@ -61,8 +61,7 @@ browser-QA expectations without modifying runtime code or accepting Sprint 5.
 - The architecture/specification and editable diagrams are accepted migration inputs but
   are intentionally excluded from GOV-001; they require curated follow-up PRs.
 - The Magna-owned product license is still an open Product Owner decision.
-- Required GitHub status checks are not enabled because the stable CI workflow has not yet
-  been established.
+- Governance validation CI now exists and passed; making it a required ruleset check remains a repository-administration follow-up after its stable check name is confirmed.
 - GitHub write operations produced multiple branch commits; the protected workflow will
   squash them into one `main` commit if accepted.
 
