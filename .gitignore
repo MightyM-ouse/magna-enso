@@ -1,5 +1,5 @@
 # .gitignore — Magna Enso
-# Scope per ChatGPTReview/git-initialization-decision-package/GITIGNORE_SCOPE_REVIEW.md (human-approved).
+# Governed public-repository exclusions. Evidence intended for Git is not ignored.
 # NOTE: trace/evidence/** is intentionally NOT ignored — Light Curves are real, version-controlled evidence.
 
 # --- OS / editor noise ---
@@ -12,6 +12,7 @@ Thumbs.db
 # --- Secrets / environment (defense-in-depth; none exist yet) ---
 .env
 .env.*
+!.env.example
 *.key
 *.pem
 secrets/
@@ -34,3 +35,10 @@ ChatGPTReview/
 **/ChatGPTReview/
 *scratch*/
 *hermes-audit*/
+
+# --- Local validation and browser artifacts ---
+.gitleaks-report*.json
+playwright-report/
+test-results/
+artifacts/
+coverage/
