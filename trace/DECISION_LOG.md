@@ -2,7 +2,7 @@
 
 > Material decisions cross the Event Horizon and become permanent project memory.
 > Rule: if a decision matters beyond the current chat, it belongs here. Never delete; supersede instead.
-> Template & field definitions: `../planning/MAGNA_ENSO_DECISION_LOG_TEMPLATE.md`.
+> Decisions are append-only. Superseded decisions remain visible with their replacement ID.
 > Status vocabulary: PROPOSED · ACCEPTED · REJECTED · SUPERSEDED · REVISITED.
 
 ## Decision Index
@@ -11,7 +11,7 @@
 |---|---|---|---|---|
 | EH-0001 | 2026-06-17 | Official name is **Magna Enso** (first operational form of Magna). | ACCEPTED | Human owner |
 | EH-0002 | 2026-06-17 | Parent folder `/Users/vinay/Projects/AI/Magna/` with `magna-helix/`, `magna-enso/`, `trace/`, `brand-assets/`, `planning/`. | ACCEPTED | Human owner |
-| EH-0003 | 2026-06-17 | Future stages (Satori→Beyond) are **releases/tags**, not copied code folders. | ACCEPTED | Human owner |
+| EH-0003 | 2026-06-17 | Future stages (Satori→Beyond) are **releases/tags**, not copied code folders. | SUPERSEDED by EH-0017 | Human owner |
 | EH-0004 | 2026-06-17 | Magna Enso is a **new, separate** repo; the HELIX/Magna repo is never modified. | ACCEPTED | Human owner |
 | EH-0005A | 2026-06-17 | Hermes codebase is the **candidate technical base** for Magna Enso, pending Sprint 2 read-only audit + Sprint 3 governance design. | ACCEPTED | Human owner |
 | EH-0005B | 2026-06-17 | Hermes Agent may be **evaluated as a candidate UI/E2E testing & runtime-verification worker** in later sprints. | PROPOSED | Proposed by Claude |
@@ -133,8 +133,7 @@
 
 ## Notes
 
-- The expanded EH-0005A / EH-0005B entry cards (with reasons and alternatives) are in
-  `../planning/MAGNA_ENSO_DECISION_LOG_TEMPLATE.md`.
+- Earlier decision details may reference historical local review packages. New decisions and operational links must resolve within GitHub.
 - New decisions get the next `EH-<seq>` and are appended here. A reversed decision is `SUPERSEDED`
   by a new ID, never deleted.
 
