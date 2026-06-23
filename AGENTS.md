@@ -1,43 +1,86 @@
-# AGENTS.md — Magna Enso
+# AGENTS.md - Magna Enso
 
-This repository is **Magna Enso** — the first operational form of Magna (the living cognitive
-orchestration environment built on the DNA of HELIX). It is governed by **TRACE**
-(Template · Route · Assign · Check · Evidence) from day one.
+This repository is the canonical source for Magna Enso. All workers must use TRACE
+(Template, Route, Assign, Check, Evidence) and must verify repository state before
+making claims or changes.
 
-> **Status:** Sprint 1 — TRACE Project Skeleton. No runtime code yet. This repo currently contains
-> only the TRACE operating instance and project-entry files.
+## Required startup
 
-## Before you do anything
+1. Read this file.
+2. Read `trace/STAR_MAP.md` for current accepted state.
+3. Read the active GitHub issue, pull request, and task packet under `trace/tasks/`.
+4. Load only the context routes listed in `trace/CELESTIAL_INDEX.json`.
+5. Confirm the assigned role in `trace/ROLE_REGISTRY.yaml` and workflow in
+   `trace/WORKFLOWS.yaml`.
+6. Verify branch, HEAD, and working-tree state before changing anything.
 
-1. Read `trace/TRACE_ONBOARDING.md` — how to operate inside this TRACE repository.
-2. Read `trace/STAR_MAP.md` — the current project status and next steps.
-3. Identify your **role** (`trace/ROLE_REGISTRY.yaml`) and your **mode**
-   (Discovery / Investigation / Execution / Review / Mixed — see `trace/WORKFLOWS.yaml`).
-4. Load **only** the context your task needs via `trace/CELESTIAL_INDEX.json`. Do not scan the whole repo.
-5. Work from a **task packet** (`trace/TASK_PACKET_TEMPLATE.md`). Produce **evidence**
-   (`trace/EVIDENCE_TEMPLATE.md`) into `trace/evidence/`.
-6. Log material decisions in `trace/DECISION_LOG.md` (Event Horizon).
+If GitHub or the repository cannot be accessed, state that the project state is not
+verified. Do not answer from chat memory as though it were current.
 
-## Hard rules (frozen in Sprint 0)
+## Authority and source order
 
-- **Human owner (Vinay) is the final authority.** Nothing material ships without human approval.
-- **No auto-commit. No auto-push. No force-push.**
-- **Local-first, LAN-first, safe-by-default.** No public exposure by default. No cloud execution by default.
-- **No hidden autonomous execution. No silent memory mutation. No auto-activation of skills.**
-- **The existing Magna / HELIX repository is never modified.**
-- **No Hermes source is cloned or copied into this repo.** (A read-only Hermes audit is a *future*
-  sprint — Sprint 2 — performed in a separate scratch workspace after explicit human approval.)
-- **Future stages (Satori → Beyond) are releases/tags, not copied code folders.**
-- **Repository sovereignty:** the repository is the source of truth, not any chat session.
+1. Human Product Owner decisions recorded in `trace/DECISION_LOG.md`.
+2. Accepted requirements, architecture, and technical specifications.
+3. Active task packet and linked GitHub issue.
+4. Current code, tests, configuration, and migrations.
+5. `trace/STAR_MAP.md`, registries, and curated evidence.
+6. README files and historical reports.
 
-## Model-specific bridges
+Conflicts must be reported. Decisions are superseded, never silently deleted.
 
-Thin adapter files exist for convenience and **must not** become separate sources of truth:
-`CLAUDE.md`, `CODEX.md`, `ANTIGRAVITY.md`. They all point back here.
+## GitHub workflow
 
-## Source of truth
+- `main` is protected. Never push directly to it.
+- Every change uses one approved task, one isolated branch/worktree, and one pull request.
+- A worker may commit and push only to its assigned task branch when the task packet
+  authorizes it.
+- Never force-push, rewrite shared history, merge, or self-accept work.
+- Preserve user changes and unrelated worktree content.
+- The Product Owner approves product scope, functional acceptance, risk acceptance,
+  and merge. Review recommendations are inputs, not approval.
 
-- Project identity & governance: `../planning/MAGNA_ENSO_PROJECT_CHARTER.md`
-- Repo/branch/tag strategy: `../planning/MAGNA_ENSO_FOLDER_AND_REPO_STRATEGY.md`
-- TRACE methodology: `../trace/TRACE_STRATEGIC_BLUEPRINT_v1.0.md`
-- Worker model: `../planning/MAGNA_ENSO_WORKER_MODEL.md`
+## TRACE contract
+
+- **Template:** use a task packet under `trace/tasks/`.
+- **Route:** load declared context routes only; broaden with a recorded reason.
+- **Assign:** stay inside the assigned role and allowed file scope.
+- **Check:** run required validation and preserve exact results.
+- **Evidence:** update or create a Light Curve under `trace/evidence/`.
+
+Meaningful work is incomplete without evidence and a reviewable pull request.
+
+## Security and evidence
+
+- Never commit secrets, credentials, cookies, browser profiles, personal data, `.env`
+  files, or private keys.
+- Run Gitleaks before pushing and in CI when available.
+- Commit concise, reproducible evidence. Store large/raw logs, videos, traces, and
+  generated packages as GitHub Actions artifacts, not source.
+- Public repository visibility does not authorize public runtime/network exposure.
+  Magna remains local-first and LAN-first unless an accepted decision says otherwise.
+- Do not activate Hermes, tools, skills, memory writes, schedulers, cloud providers,
+  messaging, or external execution without an explicit task and applicable policy gate.
+
+## Verification policy
+
+- Workers own automated build, test, security, browser, responsive, accessibility,
+  console, network, screenshot, and visual-regression evidence.
+- Do not ask the Product Owner to verify layout, alignment, browser-console state, or
+  routine UI regressions manually.
+- Ask the Product Owner only for functional/product acceptance, subjective UX choices,
+  risk acceptance, credentials entered through approved local interfaces, or actions
+  that cannot be automated safely.
+
+## Worker adapters
+
+`CLAUDE.md`, `CODEX.md`, `ANTIGRAVITY.md`, `HERMES.md`, and `CHATGPT.md` are thin
+role adapters. They may narrow permissions but may not override this file.
+
+## Current boundaries
+
+- Sprint 4's inert Hermes provenance baseline is accepted.
+- Sprint 5 implementation exists only as untracked local work until separately reviewed.
+- The canonical policy engine is not selected.
+- Hermes capabilities are not activated.
+- SGN-01 remains blocked.
+
