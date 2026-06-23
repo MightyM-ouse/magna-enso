@@ -40,7 +40,7 @@ browser-QA expectations without modifying runtime code or accepting Sprint 5.
 | Check | Result | Evidence/limitation |
 |---|---|---|
 | GitHub access and branch isolation | PASS | Branch created from `main` at `4d5c203` |
-| Protected-main ruleset | PASS | Active; PR required; squash only; conversations resolved; no bypass |
+| Protected-main ruleset | PASS | Active; PR required; squash only; conversations resolved; strict `governance` check required; no bypass |
 | Initial published history Gitleaks scan | PASS | Gitleaks 8.30.1, exit 0 |
 | Initial local working-tree Gitleaks scan | PASS | Gitleaks 8.30.1, exit 0; includes untracked Sprint 5 files |
 | Revised Celestial Index JSON parse | PASS | Local and remote content parsed |
@@ -61,7 +61,7 @@ browser-QA expectations without modifying runtime code or accepting Sprint 5.
 - The architecture/specification and editable diagrams are accepted migration inputs but
   are intentionally excluded from GOV-001; they require curated follow-up PRs.
 - The Magna-owned product license is still an open Product Owner decision.
-- Governance validation CI now exists and passed; making it a required ruleset check remains a repository-administration follow-up after its stable check name is confirmed.
+- Governance validation CI is required by the active `protect-main` ruleset with strict up-to-date enforcement and no bypass actors.
 - GitHub write operations produced multiple branch commits; the protected workflow will
   squash them into one `main` commit if accepted.
 - Antigravity reviewed head `1dd4d29`. The only later pre-review-record delta added the repository-native review packet at `598637f`; Governance validation run #3 passed it.
@@ -75,7 +75,7 @@ Issue: #1
 ## Review verdict
 
 Recommendation: ACCEPT_WITH_NON_BLOCKING_NOTES
-Independent review: completed; LOW-01 accepted, LOW-02 pending ruleset administration
+Independent review: completed; LOW-01 accepted; LOW-02 resolved by required strict `governance` status check
 Product Owner functional acceptance: pending
 Merge status: pending
 
