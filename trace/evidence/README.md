@@ -1,20 +1,16 @@
-# trace/evidence/ — Light Curves
+# TRACE Evidence
 
-This directory holds **Light Curves** (TRACE evidence packages) — durable, reviewable proof of work.
+This directory contains curated, durable Light Curves. Use
+`../EVIDENCE_TEMPLATE.md`.
 
-## Conventions
+- One evidence file per task, named `<TASK-ID>_LIGHT_CURVE.md`.
+- Commit concise results, traceability, selected screenshots, and review verdicts.
+- Store raw logs, browser traces/videos, bulk screenshots, coverage HTML, and generated
+  packages as GitHub Actions artifacts and link them from the Light Curve.
+- Never commit secrets, cookies, browser profiles, private keys, personal data, or
+  unredacted sensitive output.
+- Human functional acceptance and merge status are recorded separately from technical
+  review recommendations.
 
-- One file per task: `ENSO-NNNN_LIGHT_CURVE.md`.
-- Use the template at `../EVIDENCE_TEMPLATE.md`.
-- Evidence levels: **Light** (identity/cosmetic/docs), **Standard** (normal feature/fix),
-  **Full** (governance, policy, memory, network, security, release).
-- Evidence is **real**, never estimated. Any token/cost/effort figure is labeled approximate.
-- Human approval is recorded in the Light Curve before any material action ships.
+Accepted historical evidence for ENSO-0001 through ENSO-0004 remains in this directory.
 
-## Status
-
-Empty at Sprint 1. The first Light Curve will be the Sprint 1 skeleton evidence package
-(`ENSO-0001_LIGHT_CURVE.md`), produced for human review of feature `ENSO-F-0101`.
-
-> The skeleton itself is not self-approving — a worker writes the Light Curve; the **human owner**
-> reviews and approves it.
