@@ -45,7 +45,7 @@ Machine-specific paths are represented by logical aliases because the repository
 | Input ID | Logical source | Reported evidence | Current classification |
 |---|---|---|---|
 | ARCH-SRC-01 | `<MAGNA_LOCAL_ROOT>/ChatGPTReview/magna-enso-architecture-technical-specification-corrected/` | Reported 59 files, 22 architecture views, 52 requirements, 52/52 traceability; produced 2026-06-22 | ACCEPTED_MIGRATION_INPUT + MISSING_INPUT |
-| DIAG-SRC-01 | `<MAGNA_LOCAL_ROOT>/ChatGPTReview/magna-enso-architecture-diagrams-draft-corrected.zip` | Reported SHA-256 `04471f54baf64b23e96365ee1232ed6f1ab2ed0c859111845620fcc53dac4577`; 25 Draw.io sources, 25 SVG previews, HTML viewer; produced 2026-06-22 | ACCEPTED_MIGRATION_INPUT + MISSING_INPUT |
+| DIAG-SRC-01 | Attached `magna-enso-architecture-diagrams-draft-corrected.zip` | SHA-256 verified; 25 Draw.io, 25 SVG, 25 HTML views, 25 Mermaid sources, 7 curated validation files and 78 raw validation entries | AUTHENTICATED_CANDIDATE_SOURCE |
 | GOV-SRC-01 | `<MAGNA_LOCAL_ROOT>/ChatGPTReview/sprint-3-capability-governance-design/` | 17 reports accepted as design/report-only under EH-0014 | ACCEPTED_DESIGN_LOCAL_ONLY + MISSING_INPUT |
 | HELIX-SRC-01 | Separate Magna HELIX repository/doctrine | Enso is built on HELIX doctrine; repository must never be modified by Enso work | EXTERNAL_AUTHORITY_REFERENCE + exact version missing |
 
@@ -69,13 +69,9 @@ relationships are not verified.
 
 ## Diagram evidence boundary
 
-The corrected diagram ZIP checksum is recorded, but the ZIP bytes are unavailable. The
-reported counts and formats are inventory claims, not revalidated results. No diagram has
-been classified as canonical, accurate, editable, or synchronized with ARCH-SRC-01 during
-this run.
+The corrected diagram ZIP checksum and inventory are verified. Its internal validation reports pass, but no diagram is canonical or synchronized with the current repository until its 17 referenced architecture/specification sources are inspected. See `DIAGRAM_PACKAGE_ASSESSMENT.md`.
 
 ## Discovery conclusion
 
 GitHub currently has governance and delivery evidence, not a canonical product architecture
-baseline. ARCH-SRC-01 and DIAG-SRC-01 must be supplied before Phase A can complete content
-comparison, per-file mapping, conflict resolution, and a final Phase B recommendation.
+baseline. ARCH-SRC-01 must be supplied before Phase A can complete normative content comparison, per-file mapping, conflict resolution, and a final Phase B recommendation. DIAG-SRC-01 is authenticated and assessed as a candidate source.
