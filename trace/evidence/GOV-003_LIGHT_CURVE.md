@@ -32,9 +32,9 @@ and squash merge.
 
 | Check | Result |
 |---|---|
-| Allowed-path diff | PENDING |
-| GOV-002 status consistency | PENDING |
-| `trace/CELESTIAL_INDEX.json` unchanged and valid | PENDING |
+| Allowed-path diff | PASS - 6/6 changed files within GOV-003 scope |
+| GOV-002 status consistency | PASS - task, evidence, Star Map, and migration register reconciled |
+| `trace/CELESTIAL_INDEX.json` unchanged and valid | PASS - JSON parsed; existing GOV-002 acceptance route remains current |
 | GitHub Governance validation | PENDING - pull request required |
 
 ## Boundaries preserved
