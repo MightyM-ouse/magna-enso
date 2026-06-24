@@ -10,6 +10,7 @@
 - Branch: `codex/GOV-004-chatgpt-review-archive`
 - Starting task-branch HEAD: `a8ca4125326280861b02100fde5c652517e6306c`
 - Verified `main` baseline: `20e69cad9edfc71e193de3411f7778a64c041273`
+- Migration commit: `ab8f7bb`
 - Date: 2026-06-24
 
 ## Scope result
@@ -72,7 +73,7 @@ Committed archive payload: 401 files / 2,909,677 archived bytes.
 | Held/symlink/special/oversize staging | Pass; none staged |
 | Complete staged-tree Gitleaks | Pass; Gitleaks 8.30.1, zero findings |
 | `git diff --check` | Pass under Product Owner exception: exactly 38 source-identical findings across the 28 governed paths below; all non-archive changed files pass |
-| Governance Actions | Pending push |
+| Governance Actions | Pass for migration commit `ab8f7bb`; run `28120144618`, job `83269695182` |
 | Build/backend/router/browser | Not applicable; archive/documentation-only task |
 
 ## Visible failures and limitations

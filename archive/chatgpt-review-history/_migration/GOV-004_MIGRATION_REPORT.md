@@ -85,7 +85,7 @@ The local source remained present and unchanged.
 | Allowed staged paths | Pass: only GOV-004 task-packet paths |
 | Held/symlink/special/oversize staging | Pass: none staged |
 | `git diff --check` | Pass under Product Owner exception: exactly 38 source-identical findings across the 28 governed paths below; all non-archive changed files pass |
-| Governance Actions check | Pending push |
+| Governance Actions check | Pass for migration commit `ab8f7bb`; run `28120144618`, job `83269695182` |
 
 Historical Python and JavaScript files were archived as noncanonical text and were not
 executed. The first source-scan wrapper used zsh's reserved `status` variable after the
