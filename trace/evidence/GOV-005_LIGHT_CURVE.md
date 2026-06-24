@@ -84,3 +84,19 @@ proposed corrections only to a separate review branch. Product Owner merge remai
   `e7e0e0798a6b40fcce9335abe7378b39141d10bc`
 - Final publication metadata is intentionally recorded in a later evidence-only commit;
   Issue #12 and PR #13 remain authoritative for the live branch head.
+
+## Post-implementation review-packet correction
+
+The first Claude launch response incorrectly reproduced a long chat instruction and exposed
+the implementation branch's inherited `codex/` publishing namespace as though Codex owned
+GOV-005. The Product Owner identified both problems before Claude started.
+
+Corrections:
+
+- Added an accountable-worker branch-namespace rule to AGENTS, policy, and workflows.
+- Recorded the current branch as a one-time publishing-adapter namespace exception; ChatGPT
+  remains the accountable GOV-005 author.
+- Added `trace/tasks/GOV-005-CLAUDE-REVIEW.md` as the canonical repository-native review
+  instruction.
+- Reduced the Product Owner launch message to a reference to that packet.
+- No Claude review branch or review execution existed before this correction.
