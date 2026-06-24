@@ -1,0 +1,79 @@
+package: magna-enso-architecture-technical-specification-corrected
+document: MAGNA_ARCHITECTURE_STATUS
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Multi-dimensional status registry (Correction 5). No value grants human acceptance.
+  magna-enso IS the forward Enso stage repository (Correction 1).
+
+status_dimensions:
+  implementation_status: [NOT_STARTED, PARTIAL, IMPLEMENTED, VALIDATED, BLOCKED, EXTERNAL, UNKNOWN]
+  acceptance_status: [NOT_SUBMITTED, IN_REVIEW, AWAITING_HUMAN_ACCEPTANCE, ACCEPTED, FROZEN, REJECTED, NOT_APPLICABLE]
+  decision_status: [DECIDED, DECISION_REQUIRED, SUPERSEDED, PROPOSED, NOT_APPLICABLE]
+  evidence_status: [NONE, NARRATIVE, PARTIAL, REPRODUCIBLE, INDEPENDENTLY_VERIFIED, UNKNOWN]
+  reuse_status: [REUSE_UNCHANGED, REUSE_AFTER_REFACTOR, EXTRACT_SHARED_COMPONENT, REIMPLEMENT_FROM_SPECIFICATION, HISTORICAL_EVIDENCE_ONLY, REJECT, DECISION_REQUIRED, NOT_APPLICABLE]
+
+architecture_id_families: [MAG-PRG, MAG-EXP, MAG-INT, MAG-COG, MAG-ORC, MAG-GOV, MAG-IDN, MAG-HLX, MAG-COS, MAG-MEM, MAG-TRC, MAG-AGT, MAG-TOL, MAG-SEC, MAG-OBS, MAG-ENV]
+requirement_id_families: [MAG-FR, MAG-NFR, MAG-SEC, MAG-UX, MAG-TRC, MAG-OPS]
+note_on_MAG_UX: "MAG-UX-* are REQUIREMENT ids only. UX architecture COMPONENTS use MAG-EXP-* (Correction 6)."
+
+repositories:
+  - id: magna-enso
+    role: "Forward Enso evolutionary-stage repository (CONTINUE; do not create a replacement)"
+    branch: sprint/05-policy-engine
+    head: 4d5c203cc236be84bd4b9bd8004cb88e8797a34d
+    implementation_status: PARTIAL
+    acceptance_status: IN_REVIEW
+    note: "Sprint 5 source on isolated branch; harness-level; not accepted; not runtime-integrated."
+  - id: magna-command-center
+    role: "Verified implementation + reuse donor (human decision 3)"
+    branch: main
+    head: 68981c8a540d5b99fc91f92bc4e290b09d81fccd
+    implementation_status: VALIDATED
+    acceptance_status: NOT_APPLICABLE
+    evidence_status: REPRODUCIBLE
+    note: "backend 701/701, router 65/65, frontend build PASS."
+  - id: TRACE
+    role: "Canonical TRACE implementation/reference repository (TRC-SRC-02)"
+    branch: main
+    head: c6b4bbd3679ff3d7a3580c48af67b3b5d78b5884
+    remote: https://github.com/MightyM-ouse/trace.git
+    implementation_status: PARTIAL
+    evidence_status: PARTIAL
+    note: "Template + Observatory; UI build not reproducible. Effectiveness NOT established."
+
+trace_sources:
+  - { id: TRC-SRC-01, path: <MAGNA_LOCAL_ROOT>/trace/TRACE_STRATEGIC_BLUEPRINT_v1.0.md, role: canonical_methodology_blueprint, sha256: 9fff38ab2147e614494bddc8e4098afe57b77502850d8bc00e27f4d3591755f2 }
+  - { id: TRC-SRC-02, path: <LOCAL_USER_HOME>/Projects/AI/TRACE, role: canonical_implementation_reference_repo, commit: c6b4bbd3679ff3d7a3580c48af67b3b5d78b5884 }
+  - { id: TRC-SRC-03, path: <MAGNA_LOCAL_ROOT>/magna-enso/trace/, role: applied_enso_instance, config_sha256: e4408c70e7e9acb8db11eed4db0adab3787971b2b78939513f4db2fec107476b }
+
+evolution_repositories:
+  - { id: magna-enso, stage: Enso, decision_status: DECIDED, implementation_status: PARTIAL, note: "current forward repo" }
+  - { id: magna-satori, stage: Satori, decision_status: DECIDED, implementation_status: NOT_STARTED }
+  - { id: magna-kenosha, stage: KENOSHA, decision_status: DECIDED, implementation_status: NOT_STARTED, note: "official spelling; legacy 'Kensho' SUPERSEDED" }
+  - { id: magna-bodhi, stage: Bodhi, decision_status: DECIDED, implementation_status: NOT_STARTED }
+  - { id: magna-prabhava, stage: Prabhava, decision_status: DECIDED, implementation_status: NOT_STARTED }
+  - { id: magna-beyond, stage: Beyond, decision_status: DECISION_REQUIRED, implementation_status: NOT_STARTED, note: "only after a separate decision" }
+
+superseded_decisions:
+  - { id: SUP-01, was: "One repo + tags for all stages (folder/repo strategy; roadmap)", now: "Separate repository per stage (human decision 4)", decision_status: SUPERSEDED, needs_event_horizon_id: true }
+  - { id: SUP-02, was: "Third stage spelled 'Kensho'", now: "KENOSHA (human decision 5)", decision_status: SUPERSEDED, needs_event_horizon_id: true }
+
+pre_sgn_belt:
+  HAB-01: { implementation_status: VALIDATED, acceptance_status: ACCEPTED }
+  ATM-01: { implementation_status: VALIDATED, acceptance_status: ACCEPTED, note: "some boundaries advisory" }
+  CSF-01: { implementation_status: VALIDATED, acceptance_status: FROZEN }
+  BRS-01: { implementation_status: VALIDATED, acceptance_status: AWAITING_HUMAN_ACCEPTANCE }
+  MEM-01: { implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED }
+  NRV-01: { implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED }
+  SGN-01: { implementation_status: BLOCKED, acceptance_status: NOT_APPLICABLE, note: "blocked within canonical Command Center scope" }
+  accepted_readiness: "3/6 (50%)"
+
+hermes:
+  active_families: 0
+  total_families: 6
+  implementation_status: EXTERNAL
+  note: "0/6 active; provenance/license metadata only. See HERMES_DERIVED_CAPABILITY_PLAN.md."
+
+change_control: Governed. Superseded entries marked, never deleted. No repository was modified.

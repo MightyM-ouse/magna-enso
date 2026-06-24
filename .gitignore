@@ -35,6 +35,8 @@ ChatGPTReview/
 **/ChatGPTReview/
 *scratch*/
 *hermes-audit*/
+# GOV-004 governed historical archive; files still require manifest and security gates.
+!archive/chatgpt-review-history/content/sprint-2-hermes-audit/
 
 # --- Local validation and browser artifacts ---
 .gitleaks-report*.json

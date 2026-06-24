@@ -1,0 +1,25 @@
+package: magna-enso-architecture-technical-specification-corrected
+document: MAGNA_INTERFACE_REGISTRY
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Interface/contract register (ports). Every `between` references VALID full component IDs from
+  MAGNA_COMPONENT_REGISTRY.yaml (Correction 6). New paths/schemas are PROPOSED. Contracts (not code copies)
+  keep separate stage repositories compatible.
+
+interfaces:
+  - { id: IF-GATE, name: "Capability gate port", between: [MAG-COG-001, MAG-GOV-001], contract: "authorize(request, ctx) -> outcome (see spec 19)", decision_status: DECIDED, proposed: true }
+  - { id: IF-POLICY, name: "Policy decision port", between: [MAG-GOV-001, MAG-GOV-002], contract: "evaluate(request, policy_record, ctx) -> ALLOW|DENY_POLICY|HOLD_FOR_APPROVAL; default-deny", decision_status: DECIDED, proposed: true }
+  - { id: IF-APPROVAL, name: "Approval / HumanDecisionProvider port", between: [MAG-GOV-003, MAG-IDN-001], contract: "decide(request) -> approve_once|deny; absent => DENY; single-use fingerprint-bound", decision_status: DECIDED, proposed: true }
+  - { id: IF-FINGERPRINT, name: "Invocation fingerprint port", between: [MAG-GOV-003, MAG-SEC-201], contract: "build_fingerprint(invocation) -> sha256 canonical; compare whole-fingerprint in serialized section", decision_status: DECIDED, proposed: true }
+  - { id: IF-AUDIT, name: "Secure audit sink port (audit-before-effect)", between: [MAG-GOV-001, MAG-SEC-202], contract: "append(record) durable+flush => AUDIT_CONFIRMED before any effect; 0600; hash-chain; integrity-detecting", decision_status: DECIDED, proposed: true }
+  - { id: IF-EVENT, name: "Event bus / replay port", between: [MAG-ORC-001, MAG-OBS-001], contract: "publish(event); subscribe(type); replay(from)", decision_status: DECIDED, proposed: true }
+  - { id: IF-PROVIDER, name: "Model provider adapter port", between: [MAG-AGT-001, MAG-COG-001], contract: "generate(request); local-first; cloud consent-gated; metadata digest only", decision_status: DECIDED, proposed: true }
+  - { id: IF-TOOL, name: "Tool/capability adapter port", between: [MAG-TOL-001, MAG-GOV-001], contract: "describe(); invoke(request) reachable only after AUDIT_CONFIRMED (behind gate)", decision_status: DECISION_REQUIRED, proposed: true }
+  - { id: IF-TRACE-XPLANE, name: "Cross-plane traceability contract", between: [MAG-OBS-001, MAG-TRC-202], contract: "runtime emits digested facts; verification_status default unverified; runtime cannot self-verify", decision_status: PROPOSED, proposed: true }
+  - { id: IF-HELIX, name: "HELIX read-only doctrine port", between: [MAG-HLX-001, MAG-GOV-001], contract: "read-only; constrains; NO runtime-mutation path", decision_status: DECISION_REQUIRED, proposed: true }
+  - { id: IF-COSMOS, name: "Cosmos ratification port", between: [MAG-ORC-003, MAG-COS-001], contract: "propose(entry) -> human ratify -> append; no agent self-ratify", decision_status: DECIDED, proposed: true }
+  - { id: IF-STAGE, name: "Cross-stage compatibility contract", between: [MAG-PRG-001, MAG-PRG-001], contract: "versioned contracts + helix pin shared across stage repos; NO shared source tree", decision_status: DECIDED, proposed: true }
+
+change_control: Governed. All component refs valid. New paths/schemas PROPOSED. Contracts not code-duplication.

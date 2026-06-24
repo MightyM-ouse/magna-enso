@@ -1,0 +1,92 @@
+package: magna-enso-architecture-technical-specification-draft
+document: MAGNA_INTERFACE_REGISTRY
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Interface/contract register (ports). New paths/schemas are PROPOSED.
+  Contracts are how stages stay compatible WITHOUT code duplication.
+
+interfaces:
+  - id: IF-GATE
+    name: Capability gate port
+    between: [MAG-COG, MAG-GOV]
+    contract: "authorize(request, ctx) -> ALLOW | DENY | HOLD"
+    status: IN_PROGRESS
+    proposed: true
+    evidence: "evidence-completion/05"
+  - id: IF-POLICY
+    name: Policy decision port
+    between: [MAG-GOV, MAG-GOV]
+    contract: "evaluate(request, policy_record, ctx) -> decision; default-deny"
+    status: IN_PROGRESS
+    proposed: true
+    evidence: "evidence-completion/05"
+  - id: IF-APPROVAL
+    name: Approval / HumanDecisionProvider port
+    between: [MAG-GOV, MAG-IDN]
+    contract: "decide(request) -> approve_once | deny; absent => DENY; single-use fingerprint-bound"
+    status: IN_PROGRESS
+    proposed: true
+    evidence: "evidence-completion/05"
+  - id: IF-AUDIT
+    name: Secure audit sink port
+    between: [MAG-GOV, MAG-SEC]
+    contract: "append(record) durable+flush before ALLOW; 0600; hash-chain; integrity-detecting"
+    status: IN_PROGRESS
+    proposed: true
+    evidence: "evidence-completion/05"
+  - id: IF-EVENT
+    name: Event bus / replay port
+    between: [MAG-ORC, MAG-OBS]
+    contract: "publish(event); subscribe(type); replay(from)"
+    status: CANDIDATE_FOR_REUSE
+    proposed: true
+    evidence: "evidence-completion/03,07"
+  - id: IF-PROVIDER
+    name: Model provider adapter port
+    between: [MAG-AGT, MAG-TOL]
+    contract: "generate(request); local-first; cloud consent-gated; metadata digest only"
+    status: CANDIDATE_FOR_REUSE
+    proposed: true
+    evidence: "evidence-completion/03"
+  - id: IF-TOOL
+    name: Tool/capability adapter port
+    between: [MAG-TOL, MAG-GOV]
+    contract: "describe(); invoke(request) reachable only post-authorization (behind gate)"
+    status: PLANNED
+    proposed: true
+    evidence: "evidence-completion/05"
+  - id: IF-TRACE-XPLANE
+    name: Cross-plane traceability contract
+    between: [MAG-OBS, MAG-TRC]
+    contract: >-
+      {trace_id, plane, event_id, task_id, correlation_id, causation_id, actor, source,
+      occurred_at, artifact_uri, content_digest, policy_version, privacy_class, replay_safe,
+      verification_status(default unverified), verified_by, verified_at}; runtime cannot self-verify
+    status: PLANNED
+    proposed: true
+    evidence: "evidence-completion/07"
+  - id: IF-HELIX
+    name: HELIX read-only doctrine port
+    between: [MAG-HLX, MAG-GOV]
+    contract: "read-only; constrains; NO runtime-mutation path"
+    status: PLANNED
+    proposed: true
+    evidence: "evidence-completion/02"
+  - id: IF-COSMOS
+    name: Cosmos ratification port
+    between: [MAG-ORC, MAG-COS]
+    contract: "propose(entry) -> human ratify -> append; no agent self-ratify"
+    status: PLANNED
+    proposed: true
+    evidence: "evidence-completion/02"
+  - id: IF-STAGE
+    name: Cross-stage compatibility contract
+    between: [MAG-PRG, MAG-PRG]
+    contract: "versioned contracts shared across stage repos; NO shared source tree"
+    status: PLANNED
+    proposed: true
+    evidence: "human-owner decision 7,8"
+
+change_control: Governed. New paths/schemas are PROPOSED. Contracts not code-duplication. Nothing deleted.

@@ -1,0 +1,2848 @@
+[
+  {
+    "diagram_id": "DIAG-01",
+    "title": "Program logical layers",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "both",
+    "source_document": "03_MAGNA_PROGRAM_ARCHITECTURE.md",
+    "source_section": "§4",
+    "scope": "4. Program-level logical layers (DIAG-01)",
+    "source_line": 72,
+    "mermaid_block_digest": "4e9c82062fc5ff22e4760308c6f934658d540adcad4c653618de5633dbba3b30",
+    "drawio_path": "drawio/DIAG-01-program-logical-layers.drawio",
+    "svg_path": "svg/DIAG-01-program-logical-layers.svg",
+    "html_path": "html/views/DIAG-01.html",
+    "component_ids": [
+      "MAG-AGT-001",
+      "MAG-COG-001",
+      "MAG-EXP-001",
+      "MAG-GOV-001",
+      "MAG-INT-001",
+      "MAG-MEM-001",
+      "MAG-OBS-001",
+      "MAG-ORC-001",
+      "MAG-TOL-001",
+      "MAG-TRC-201"
+    ],
+    "component_names": [
+      "Local model adapter (Ollama)",
+      "CSF to BRS routing",
+      "Ten-tab shell (frozen)",
+      "Capability gate (single chokepoint)",
+      "API surface (FastAPI routers)",
+      "SQLite/SQLModel persistence",
+      "Runtime observability + replay + WS dispatcher",
+      "Event bus (durable, replay)",
+      "Tool/capability adapter port",
+      "TRACE engineering-plane instance + Observatory"
+    ],
+    "requirement_ids": [
+      "MAG-FR-002",
+      "MAG-FR-003",
+      "MAG-FR-006",
+      "MAG-FR-009",
+      "MAG-FR-010",
+      "MAG-FR-015",
+      "MAG-FR-016",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-004",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-008",
+      "MAG-TRC-001",
+      "MAG-TRC-005",
+      "MAG-UX-001",
+      "MAG-UX-004",
+      "MAG-UX-005",
+      "MAG-UX-007"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R10",
+      "ADR-R3",
+      "OD-01b",
+      "OD-09.2",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "both-plane",
+      "current",
+      "engineering-plane",
+      "external",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-002",
+            "component_id": "MAG-COG-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-006",
+            "component_id": "MAG-ORC-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-009",
+            "component_id": "MAG-AGT-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R10",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-004",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-005",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-007",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R3",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-001",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-09.2",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-005",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-02",
+    "title": "Human authority & governance hierarchy",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "both",
+    "source_document": "03_MAGNA_PROGRAM_ARCHITECTURE.md",
+    "source_section": "§3",
+    "scope": "3. Human authority & governance hierarchy (DIAG-02, MAG-GOV-001)",
+    "source_line": 50,
+    "mermaid_block_digest": "5fd4734a96ee46db64d27ebf07a5ca81a5372323ab7e6a1fd7a1e9651a529b9f",
+    "drawio_path": "drawio/DIAG-02-human-authority-governance-hierarchy.drawio",
+    "svg_path": "svg/DIAG-02-human-authority-governance-hierarchy.svg",
+    "html_path": "html/views/DIAG-02.html",
+    "component_ids": [
+      "MAG-GOV-001",
+      "MAG-HLX-001",
+      "MAG-OBS-001",
+      "MAG-ORC-001",
+      "MAG-TOL-001",
+      "MAG-TRC-201"
+    ],
+    "component_names": [
+      "Capability gate (single chokepoint)",
+      "HELIX doctrine/observability surface (read-only)",
+      "Runtime observability + replay + WS dispatcher",
+      "Event bus (durable, replay)",
+      "Tool/capability adapter port",
+      "TRACE engineering-plane instance + Observatory"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-006",
+      "MAG-FR-010",
+      "MAG-FR-012",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-008",
+      "MAG-TRC-001",
+      "MAG-TRC-005"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R3",
+      "OD-01b",
+      "OD-09.2",
+      "OD-HLX.1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "both-plane",
+      "current",
+      "engineering-plane",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-006",
+            "component_id": "MAG-ORC-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R3",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-001",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-09.2",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-005",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-HLX.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-012",
+            "component_id": "MAG-HLX-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-03",
+    "title": "Repository & versioning",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "current+target",
+    "source_document": "04_EVOLUTION_AND_REPOSITORY_ARCHITECTURE.md",
+    "source_section": "§4",
+    "scope": "4. Repository & versioning architecture (DIAG-03)",
+    "source_line": 64,
+    "mermaid_block_digest": "8295b7d5cda113b5a3944bcaf6f2c9ef1ccf2a3e23b1af4bbef36d8b241602e3",
+    "drawio_path": "drawio/DIAG-03-repository-versioning.drawio",
+    "svg_path": "svg/DIAG-03-repository-versioning.svg",
+    "html_path": "html/views/DIAG-03.html",
+    "component_ids": [
+      "MAG-PRG-001"
+    ],
+    "component_names": [
+      "Program/evolution frame"
+    ],
+    "requirement_ids": [
+      "MAG-NFR-001",
+      "MAG-NFR-007"
+    ],
+    "open_decisions": [],
+    "flags": [
+      "both-plane",
+      "current",
+      "decision-required",
+      "engineering-plane",
+      "proposed",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-04",
+    "title": "Current verified Command Center",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "current",
+    "source_document": "05_CURRENT_VERIFIED_ARCHITECTURE.md",
+    "source_section": "§1",
+    "scope": "1. Magna Command Center — verified runtime (DIAG-04) — `Status: IMPLEMENTED_VALIDATED`",
+    "source_line": 37,
+    "mermaid_block_digest": "b5fe7a2805b2aa2943464cbec3386b3b200178c69328cdcf442952b8e430f062",
+    "drawio_path": "drawio/DIAG-04-current-verified-command-center.drawio",
+    "svg_path": "svg/DIAG-04-current-verified-command-center.svg",
+    "html_path": "html/views/DIAG-04.html",
+    "component_ids": [
+      "MAG-AGT-001",
+      "MAG-COG-001",
+      "MAG-EXP-001",
+      "MAG-GOV-001",
+      "MAG-INT-001",
+      "MAG-MEM-001",
+      "MAG-OBS-001",
+      "MAG-ORC-001",
+      "MAG-TOL-001"
+    ],
+    "component_names": [
+      "Local model adapter (Ollama)",
+      "CSF to BRS routing",
+      "Ten-tab shell (frozen)",
+      "Capability gate (single chokepoint)",
+      "API surface (FastAPI routers)",
+      "SQLite/SQLModel persistence",
+      "Runtime observability + replay + WS dispatcher",
+      "Event bus (durable, replay)",
+      "Tool/capability adapter port"
+    ],
+    "requirement_ids": [
+      "MAG-FR-002",
+      "MAG-FR-003",
+      "MAG-FR-006",
+      "MAG-FR-009",
+      "MAG-FR-010",
+      "MAG-FR-015",
+      "MAG-FR-016",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-004",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-008",
+      "MAG-UX-001",
+      "MAG-UX-004",
+      "MAG-UX-005",
+      "MAG-UX-007"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R10",
+      "OD-01b",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "current",
+      "runtime-plane"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-002",
+            "component_id": "MAG-COG-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-006",
+            "component_id": "MAG-ORC-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-009",
+            "component_id": "MAG-AGT-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R10",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-004",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-005",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-007",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-05",
+    "title": "Current Magna Enso (harness)",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "current",
+    "source_document": "05_CURRENT_VERIFIED_ARCHITECTURE.md",
+    "source_section": "§2",
+    "scope": "2. Magna Enso Sprint 5 — verified harness (DIAG-05) — `Status: IN_PROGRESS / IN_REVIEW (not accepted)`",
+    "source_line": 64,
+    "mermaid_block_digest": "3691d05c837d26c276671bb8d595a954184ab11b62dda9b373e641253a1bdab4",
+    "drawio_path": "drawio/DIAG-05-current-magna-enso-harness.drawio",
+    "svg_path": "svg/DIAG-05-current-magna-enso-harness.svg",
+    "html_path": "html/views/DIAG-05.html",
+    "component_ids": [
+      "MAG-GOV-001",
+      "MAG-OBS-001",
+      "MAG-SEC-202",
+      "MAG-TOL-001"
+    ],
+    "component_names": [
+      "Capability gate (single chokepoint)",
+      "Runtime observability + replay + WS dispatcher",
+      "Secure audit sink (0600, hash-chain JSONL)",
+      "Tool/capability adapter port"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-010",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-002",
+      "MAG-SEC-003",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "OD-14.1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "current",
+      "runtime-plane"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-14.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-003",
+            "component_id": "MAG-SEC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-06",
+    "title": "Target Magna Enso logical",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "target",
+    "source_document": "06_MAGNA_ENSO_TARGET_ARCHITECTURE.md",
+    "source_section": "§2",
+    "scope": "2. Target logical architecture (DIAG-06)",
+    "source_line": 44,
+    "mermaid_block_digest": "31bd4dfe5a65ac6fbed3e7e1c8797cb0bebcafd3a3bd8689b50f22823996c367",
+    "drawio_path": "drawio/DIAG-06-target-magna-enso-logical.drawio",
+    "svg_path": "svg/DIAG-06-target-magna-enso-logical.svg",
+    "html_path": "html/views/DIAG-06.html",
+    "component_ids": [
+      "MAG-AGT-001",
+      "MAG-COG-001",
+      "MAG-EXP-001",
+      "MAG-GOV-001",
+      "MAG-GOV-003",
+      "MAG-HLX-001",
+      "MAG-INT-002",
+      "MAG-MEM-001",
+      "MAG-OBS-001",
+      "MAG-ORC-001",
+      "MAG-SEC-202",
+      "MAG-TOL-001",
+      "MAG-TOL-002"
+    ],
+    "component_names": [
+      "Local model adapter (Ollama)",
+      "CSF to BRS routing",
+      "Ten-tab shell (frozen)",
+      "Capability gate (single chokepoint)",
+      "Approval coordinator + HumanDecisionProvider",
+      "HELIX doctrine/observability surface (read-only)",
+      "Command interpreter (Enso)",
+      "SQLite/SQLModel persistence",
+      "Runtime observability + replay + WS dispatcher",
+      "Event bus (durable, replay)",
+      "Secure audit sink (0600, hash-chain JSONL)",
+      "Tool/capability adapter port",
+      "Hermes-derived capabilities"
+    ],
+    "requirement_ids": [
+      "MAG-FR-001",
+      "MAG-FR-002",
+      "MAG-FR-003",
+      "MAG-FR-004",
+      "MAG-FR-006",
+      "MAG-FR-009",
+      "MAG-FR-010",
+      "MAG-FR-012",
+      "MAG-FR-015",
+      "MAG-FR-016",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-004",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-002",
+      "MAG-SEC-003",
+      "MAG-SEC-006",
+      "MAG-SEC-008",
+      "MAG-UX-001",
+      "MAG-UX-004",
+      "MAG-UX-005",
+      "MAG-UX-007"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R10",
+      "OD-01b",
+      "OD-14.1",
+      "OD-HLX.1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "external",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-002",
+            "component_id": "MAG-COG-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-006",
+            "component_id": "MAG-ORC-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-009",
+            "component_id": "MAG-AGT-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R10",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-004",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-005",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-007",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-14.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-003",
+            "component_id": "MAG-SEC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-HLX.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-012",
+            "component_id": "MAG-HLX-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-07",
+    "title": "Request-to-action pipeline",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "target",
+    "source_document": "07_REQUEST_TO_ACTION_AND_COGNITION.md",
+    "source_section": "§1",
+    "scope": "1. Request-to-action pipeline (DIAG-07) — `Status: TARGET (routing pattern reuses verified MCC)`",
+    "source_line": 38,
+    "mermaid_block_digest": "dd2fbccf96521d09755162a6fbdedfe268a3664e8391f8fb83c9a0c1398c8971",
+    "drawio_path": "drawio/DIAG-07-request-to-action-pipeline.drawio",
+    "svg_path": "svg/DIAG-07-request-to-action-pipeline.svg",
+    "html_path": "html/views/DIAG-07.html",
+    "component_ids": [
+      "MAG-COG-001",
+      "MAG-GOV-001",
+      "MAG-GOV-003",
+      "MAG-INT-001",
+      "MAG-INT-002",
+      "MAG-OBS-001",
+      "MAG-ORC-001",
+      "MAG-SEC-202",
+      "MAG-TOL-001"
+    ],
+    "component_names": [
+      "CSF to BRS routing",
+      "Capability gate (single chokepoint)",
+      "Approval coordinator + HumanDecisionProvider",
+      "API surface (FastAPI routers)",
+      "Command interpreter (Enso)",
+      "Runtime observability + replay + WS dispatcher",
+      "Event bus (durable, replay)",
+      "Secure audit sink (0600, hash-chain JSONL)",
+      "Tool/capability adapter port"
+    ],
+    "requirement_ids": [
+      "MAG-FR-001",
+      "MAG-FR-002",
+      "MAG-FR-003",
+      "MAG-FR-004",
+      "MAG-FR-006",
+      "MAG-FR-010",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-002",
+      "MAG-SEC-003",
+      "MAG-SEC-006",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "OD-14.1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-002",
+            "component_id": "MAG-COG-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-006",
+            "component_id": "MAG-ORC-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-14.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-003",
+            "component_id": "MAG-SEC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-08",
+    "title": "Sensory/attention/reflex/cognition/routing",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "target",
+    "source_document": "07_REQUEST_TO_ACTION_AND_COGNITION.md",
+    "source_section": "§2",
+    "scope": "2. Sensory / attention / reflex / cognition / routing (DIAG-08) — `Status: PARTLY TARGET`",
+    "source_line": 84,
+    "mermaid_block_digest": "db166c067bbf4fc43ea1a62f2a9d3d9a22d603b714cac2a491d76a13e3349e95",
+    "drawio_path": "drawio/DIAG-08-sensory-attention-reflex-cognition-routing.drawio",
+    "svg_path": "svg/DIAG-08-sensory-attention-reflex-cognition-routing.svg",
+    "html_path": "html/views/DIAG-08.html",
+    "component_ids": [
+      "MAG-COG-001",
+      "MAG-GOV-001",
+      "MAG-OBS-001"
+    ],
+    "component_names": [
+      "CSF to BRS routing",
+      "Capability gate (single chokepoint)",
+      "Runtime observability + replay + WS dispatcher"
+    ],
+    "requirement_ids": [
+      "MAG-FR-002",
+      "MAG-FR-003",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-002",
+            "component_id": "MAG-COG-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-09",
+    "title": "Event bus / workflow / orchestration",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "current+target",
+    "source_document": "07_REQUEST_TO_ACTION_AND_COGNITION.md",
+    "source_section": "§3",
+    "scope": "3. Event bus, workflow, orchestration (DIAG-09) — `Status: REUSE_AFTER_REFACTOR (verified in MCC)`",
+    "source_line": 99,
+    "mermaid_block_digest": "6ecaa99368a4d23d5ea373a8b5757493fe6431edfd05a02b91e9a2938a92356f",
+    "drawio_path": "drawio/DIAG-09-event-bus-workflow-orchestration.drawio",
+    "svg_path": "svg/DIAG-09-event-bus-workflow-orchestration.svg",
+    "html_path": "html/views/DIAG-09.html",
+    "component_ids": [
+      "MAG-GOV-001",
+      "MAG-OBS-001",
+      "MAG-ORC-001"
+    ],
+    "component_names": [
+      "Capability gate (single chokepoint)",
+      "Runtime observability + replay + WS dispatcher",
+      "Event bus (durable, replay)"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-006",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "current",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-006",
+            "component_id": "MAG-ORC-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-10",
+    "title": "Policy / risk / authorization / approval",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "current+target",
+    "source_document": "08_GOVERNANCE_POLICY_AND_APPROVAL.md",
+    "source_section": "§2",
+    "scope": "2. Policy / risk / authorization / approval flow (DIAG-10)",
+    "source_line": 43,
+    "mermaid_block_digest": "99a4a07069ea52094454b637c2ae8e2450232b3e60ce7ec155a2aabe5c9cc813",
+    "drawio_path": "drawio/DIAG-10-policy-risk-authorization-approval.drawio",
+    "svg_path": "svg/DIAG-10-policy-risk-authorization-approval.svg",
+    "html_path": "html/views/DIAG-10.html",
+    "component_ids": [
+      "MAG-GOV-001",
+      "MAG-GOV-002",
+      "MAG-GOV-003",
+      "MAG-GOV-004",
+      "MAG-OBS-001",
+      "MAG-SEC-201",
+      "MAG-SEC-202",
+      "MAG-TOL-001"
+    ],
+    "component_names": [
+      "Capability gate (single chokepoint)",
+      "Policy evaluator (default-deny)",
+      "Approval coordinator + HumanDecisionProvider",
+      "Risk classification + authorization context",
+      "Runtime observability + replay + WS dispatcher",
+      "Canonical invocation fingerprint",
+      "Secure audit sink (0600, hash-chain JSONL)",
+      "Tool/capability adapter port"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-004",
+      "MAG-FR-005",
+      "MAG-FR-010",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-002",
+      "MAG-SEC-003",
+      "MAG-SEC-006",
+      "MAG-SEC-007",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "OD-14.1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "current",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-14.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-003",
+            "component_id": "MAG-SEC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-11",
+    "title": "Identity / HELIX / Cosmos relationship",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "both",
+    "source_document": "02_TERMINOLOGY_AND_DOMAIN_MODEL.md",
+    "source_section": "§6",
+    "scope": "6. Domain relationships (Mermaid — DIAG-11 source)",
+    "source_line": 143,
+    "mermaid_block_digest": "b33b38a6244a9d68257f90c06c7dc5e8dfc961863443829b00ce7e736d984345",
+    "drawio_path": "drawio/DIAG-11-identity-helix-cosmos-relationship.drawio",
+    "svg_path": "svg/DIAG-11-identity-helix-cosmos-relationship.svg",
+    "html_path": "html/views/DIAG-11.html",
+    "component_ids": [
+      "MAG-COS-001",
+      "MAG-EXP-001",
+      "MAG-GOV-001",
+      "MAG-HLX-001",
+      "MAG-IDN-001",
+      "MAG-PRG-001"
+    ],
+    "component_names": [
+      "Cosmos ratified chronicle",
+      "Ten-tab shell (frozen)",
+      "Capability gate (single chokepoint)",
+      "HELIX doctrine/observability surface (read-only)",
+      "Identity / CSF truth registry",
+      "Program/evolution frame"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-011",
+      "MAG-FR-012",
+      "MAG-FR-013",
+      "MAG-FR-016",
+      "MAG-NFR-001",
+      "MAG-NFR-002",
+      "MAG-NFR-007",
+      "MAG-SEC-001",
+      "MAG-SEC-008",
+      "MAG-UX-001",
+      "MAG-UX-004",
+      "MAG-UX-005",
+      "MAG-UX-007"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R10",
+      "ADR-R7",
+      "OD-18.2",
+      "OD-HLX.1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "both-plane",
+      "current",
+      "engineering-plane",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R10",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-004",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-005",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-007",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R7",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-011",
+            "component_id": "MAG-IDN-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-18.2",
+        "sources": [
+          {
+            "type": "manifest_entry",
+            "reference": "18_ARCHITECTURE_DIAGRAM_MANIFEST.md"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-HLX.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-012",
+            "component_id": "MAG-HLX-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-12",
+    "title": "Memory / persistence / evidence",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "current+target",
+    "source_document": "10_MEMORY_DATA_EVIDENCE_AND_REPLAY.md",
+    "source_section": "§2",
+    "scope": "2. Persistence & evidence (DIAG-12)",
+    "source_line": 37,
+    "mermaid_block_digest": "514c16ce026de38e84c3280a8257794b9434d70853dccd9ec284bdbbdc914038",
+    "drawio_path": "drawio/DIAG-12-memory-persistence-evidence.drawio",
+    "svg_path": "svg/DIAG-12-memory-persistence-evidence.svg",
+    "html_path": "html/views/DIAG-12.html",
+    "component_ids": [
+      "MAG-GOV-001",
+      "MAG-MEM-001",
+      "MAG-OBS-001",
+      "MAG-ORC-001",
+      "MAG-SEC-202"
+    ],
+    "component_names": [
+      "Capability gate (single chokepoint)",
+      "SQLite/SQLModel persistence",
+      "Runtime observability + replay + WS dispatcher",
+      "Event bus (durable, replay)",
+      "Secure audit sink (0600, hash-chain JSONL)"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-006",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-002",
+      "MAG-SEC-003",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "OD-14.1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "current",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-006",
+            "component_id": "MAG-ORC-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-14.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-003",
+            "component_id": "MAG-SEC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-13",
+    "title": "Agents / models / tools / adapters",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "current+target",
+    "source_document": "11_AGENTS_MODELS_TOOLS_AND_HERMES.md",
+    "source_section": "§2",
+    "scope": "2. Agents / models / tools / adapters (DIAG-13)",
+    "source_line": 34,
+    "mermaid_block_digest": "3a7dc4eeddbc6c38fb57c2957c947ed07a33d007950650a8b6b3f3d3eb67e373",
+    "drawio_path": "drawio/DIAG-13-agents-models-tools-adapters.drawio",
+    "svg_path": "svg/DIAG-13-agents-models-tools-adapters.svg",
+    "html_path": "html/views/DIAG-13.html",
+    "component_ids": [
+      "MAG-AGT-001",
+      "MAG-AGT-002",
+      "MAG-COG-001",
+      "MAG-GOV-001",
+      "MAG-ORC-003",
+      "MAG-TOL-001",
+      "MAG-TOL-002"
+    ],
+    "component_names": [
+      "Local model adapter (Ollama)",
+      "Cloud review adapter (env-gated, consent)",
+      "CSF to BRS routing",
+      "Capability gate (single chokepoint)",
+      "Orchestration runtime",
+      "Tool/capability adapter port",
+      "Hermes-derived capabilities"
+    ],
+    "requirement_ids": [
+      "MAG-FR-002",
+      "MAG-FR-003",
+      "MAG-FR-008",
+      "MAG-FR-009",
+      "MAG-FR-010",
+      "MAG-NFR-002",
+      "MAG-NFR-004",
+      "MAG-SEC-001",
+      "MAG-SEC-005",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R12",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "current",
+      "external",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-002",
+            "component_id": "MAG-COG-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-009",
+            "component_id": "MAG-AGT-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R12",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-005",
+            "component_id": "MAG-AGT-002",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-14",
+    "title": "TRACE engineering plane",
+    "category": "architecture",
+    "plane": "engineering",
+    "current_target": "current",
+    "source_document": "09_TRACE_DUAL_PLANE_ARCHITECTURE.md",
+    "source_section": "§2",
+    "scope": "3. Engineering plane (DIAG-14) — partly current",
+    "source_line": 51,
+    "mermaid_block_digest": "c5cd245bd2be93c5ec546e3e37da4b0733343a9c99b7313e270d7694345996ff",
+    "drawio_path": "drawio/DIAG-14-trace-engineering-plane.drawio",
+    "svg_path": "svg/DIAG-14-trace-engineering-plane.svg",
+    "html_path": "html/views/DIAG-14.html",
+    "component_ids": [
+      "MAG-TRC-201"
+    ],
+    "component_names": [
+      "TRACE engineering-plane instance + Observatory"
+    ],
+    "requirement_ids": [
+      "MAG-TRC-001",
+      "MAG-TRC-005"
+    ],
+    "open_decisions": [
+      "ADR-R3",
+      "OD-09.2"
+    ],
+    "flags": [
+      "current",
+      "engineering-plane"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R3",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-001",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-09.2",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-005",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-15",
+    "title": "TRACE runtime plane",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "target",
+    "source_document": "09_TRACE_DUAL_PLANE_ARCHITECTURE.md",
+    "source_section": "§3",
+    "scope": "4. Runtime plane (DIAG-15) — TARGET",
+    "source_line": 64,
+    "mermaid_block_digest": "3156738275ace94992aa42df3806b7ee9651db7a37017937e10cdb8ac8685475",
+    "drawio_path": "drawio/DIAG-15-trace-runtime-plane.drawio",
+    "svg_path": "svg/DIAG-15-trace-runtime-plane.svg",
+    "html_path": "html/views/DIAG-15.html",
+    "component_ids": [
+      "MAG-OBS-001",
+      "MAG-ORC-003",
+      "MAG-SEC-203",
+      "MAG-TRC-202"
+    ],
+    "component_names": [
+      "Runtime observability + replay + WS dispatcher",
+      "Orchestration runtime",
+      "Privacy/secrets boundary (redaction, no secrets in evidence)",
+      "Cross-plane runtime traceability contract + verifier"
+    ],
+    "requirement_ids": [
+      "MAG-FR-008",
+      "MAG-FR-015",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-NFR-008",
+      "MAG-OPS-005",
+      "MAG-OPS-006",
+      "MAG-SEC-004",
+      "MAG-TRC-002",
+      "MAG-TRC-003",
+      "MAG-TRC-004",
+      "MAG-TRC-006"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R12",
+      "ADR-R3",
+      "OD-01b"
+    ],
+    "flags": [
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R12",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-OPS-006",
+            "component_id": "MAG-SEC-203",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R3",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-002",
+            "component_id": "MAG-TRC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-003",
+            "component_id": "MAG-TRC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-004",
+            "component_id": "MAG-TRC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-16",
+    "title": "TRACE cross-plane interoperability",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "target",
+    "source_document": "09_TRACE_DUAL_PLANE_ARCHITECTURE.md",
+    "source_section": "§4",
+    "scope": "5. Cross-plane + anti-self-certification (DIAG-16) — TARGET",
+    "source_line": 74,
+    "mermaid_block_digest": "f70951927fce695f0c78540f3cc5ee6791b73ae8867cdf2d8711c16ae9ef1381",
+    "drawio_path": "drawio/DIAG-16-trace-cross-plane-interoperability.drawio",
+    "svg_path": "svg/DIAG-16-trace-cross-plane-interoperability.svg",
+    "html_path": "html/views/DIAG-16.html",
+    "component_ids": [
+      "MAG-GOV-003",
+      "MAG-OBS-001",
+      "MAG-TRC-201",
+      "MAG-TRC-202"
+    ],
+    "component_names": [
+      "Approval coordinator + HumanDecisionProvider",
+      "Runtime observability + replay + WS dispatcher",
+      "TRACE engineering-plane instance + Observatory",
+      "Cross-plane runtime traceability contract + verifier"
+    ],
+    "requirement_ids": [
+      "MAG-FR-004",
+      "MAG-FR-015",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-006",
+      "MAG-TRC-001",
+      "MAG-TRC-002",
+      "MAG-TRC-003",
+      "MAG-TRC-004",
+      "MAG-TRC-005",
+      "MAG-TRC-006"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R3",
+      "OD-01b",
+      "OD-09.2"
+    ],
+    "flags": [
+      "both-plane",
+      "engineering-plane",
+      "external",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R3",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-001",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-002",
+            "component_id": "MAG-TRC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-003",
+            "component_id": "MAG-TRC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-004",
+            "component_id": "MAG-TRC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-09.2",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-005",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-17",
+    "title": "UX ten-tab information architecture",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "current",
+    "source_document": "12_UX_INFORMATION_ARCHITECTURE.md",
+    "source_section": "§2",
+    "scope": "2. Ten-tab information architecture (DIAG-17)",
+    "source_line": 37,
+    "mermaid_block_digest": "72cdb71c2ff61786e136bcb534843be78ccc0d85206bede5cf76e55f3fa1638f",
+    "drawio_path": "drawio/DIAG-17-ux-ten-tab-information-architecture.drawio",
+    "svg_path": "svg/DIAG-17-ux-ten-tab-information-architecture.svg",
+    "html_path": "html/views/DIAG-17.html",
+    "component_ids": [
+      "MAG-AGT-001",
+      "MAG-COG-001",
+      "MAG-COS-001",
+      "MAG-EXP-001",
+      "MAG-IDN-001",
+      "MAG-MEM-001",
+      "MAG-OBS-001"
+    ],
+    "component_names": [
+      "Local model adapter (Ollama)",
+      "CSF to BRS routing",
+      "Cosmos ratified chronicle",
+      "Ten-tab shell (frozen)",
+      "Identity / CSF truth registry",
+      "SQLite/SQLModel persistence",
+      "Runtime observability + replay + WS dispatcher"
+    ],
+    "requirement_ids": [
+      "MAG-FR-002",
+      "MAG-FR-009",
+      "MAG-FR-011",
+      "MAG-FR-013",
+      "MAG-FR-015",
+      "MAG-FR-016",
+      "MAG-NFR-003",
+      "MAG-NFR-004",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-UX-001",
+      "MAG-UX-004",
+      "MAG-UX-005",
+      "MAG-UX-007"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R10",
+      "ADR-R7",
+      "OD-01b"
+    ],
+    "flags": [
+      "current",
+      "runtime-plane"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-002",
+            "component_id": "MAG-COG-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-009",
+            "component_id": "MAG-AGT-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R10",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-004",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-005",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-UX-007",
+            "component_id": "MAG-EXP-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R7",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-011",
+            "component_id": "MAG-IDN-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-18",
+    "title": "Local environments & release",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "current+target",
+    "source_document": "13_ENVIRONMENT_DEPLOYMENT_AND_OPERATIONS.md",
+    "source_section": "§3",
+    "scope": "3. Environment / release architecture (DIAG-18)",
+    "source_line": 43,
+    "mermaid_block_digest": "87936473db878aaff081ea0929659dbbc37abd82dad956c7f4bceac84bc63a90",
+    "drawio_path": "drawio/DIAG-18-local-environments-release.drawio",
+    "svg_path": "svg/DIAG-18-local-environments-release.svg",
+    "html_path": "html/views/DIAG-18.html",
+    "component_ids": [
+      "MAG-ENV-001"
+    ],
+    "component_names": [
+      "Local environments model"
+    ],
+    "requirement_ids": [
+      "MAG-NFR-006",
+      "MAG-OPS-001",
+      "MAG-OPS-002",
+      "MAG-OPS-003",
+      "MAG-OPS-004"
+    ],
+    "open_decisions": [
+      "ADR-R9",
+      "OD-01b"
+    ],
+    "flags": [
+      "both-plane",
+      "current",
+      "engineering-plane",
+      "external",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R9",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-OPS-001",
+            "component_id": "MAG-ENV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-OPS-002",
+            "component_id": "MAG-ENV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-OPS-003",
+            "component_id": "MAG-ENV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-OPS-004",
+            "component_id": "MAG-ENV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-006",
+            "component_id": "MAG-ENV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-19",
+    "title": "Security zones & trust boundaries",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "both",
+    "source_document": "14_SECURITY_PRIVACY_AND_TRUST_BOUNDARIES.md",
+    "source_section": "§2",
+    "scope": "2. Security zones & trust boundaries (DIAG-19)",
+    "source_line": 37,
+    "mermaid_block_digest": "35a56f32add94d66c968b223a61cc726ad3a339f7dec39ef7135be30ff56fedc",
+    "drawio_path": "drawio/DIAG-19-security-zones-trust-boundaries.drawio",
+    "svg_path": "svg/DIAG-19-security-zones-trust-boundaries.svg",
+    "html_path": "html/views/DIAG-19.html",
+    "component_ids": [
+      "MAG-AGT-001",
+      "MAG-GOV-001",
+      "MAG-MEM-001",
+      "MAG-ORC-001",
+      "MAG-SEC-202",
+      "MAG-TRC-201"
+    ],
+    "component_names": [
+      "Local model adapter (Ollama)",
+      "Capability gate (single chokepoint)",
+      "SQLite/SQLModel persistence",
+      "Event bus (durable, replay)",
+      "Secure audit sink (0600, hash-chain JSONL)",
+      "TRACE engineering-plane instance + Observatory"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-006",
+      "MAG-FR-009",
+      "MAG-NFR-002",
+      "MAG-NFR-004",
+      "MAG-SEC-001",
+      "MAG-SEC-002",
+      "MAG-SEC-003",
+      "MAG-SEC-008",
+      "MAG-TRC-001",
+      "MAG-TRC-005"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "ADR-R3",
+      "OD-09.2",
+      "OD-14.1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "blocked",
+      "both-plane",
+      "current",
+      "engineering-plane",
+      "external",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-006",
+            "component_id": "MAG-ORC-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-009",
+            "component_id": "MAG-AGT-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "ADR-R3",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-001",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-09.2",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-TRC-005",
+            "component_id": "MAG-TRC-201",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-14.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-003",
+            "component_id": "MAG-SEC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-20",
+    "title": "Observability / replay / recovery / audit",
+    "category": "architecture",
+    "plane": "runtime",
+    "current_target": "current+target",
+    "source_document": "10_MEMORY_DATA_EVIDENCE_AND_REPLAY.md",
+    "source_section": "§4",
+    "scope": "4. Observability, replay, recovery, audit (DIAG-20)",
+    "source_line": 60,
+    "mermaid_block_digest": "1107a8c4fa0815f25227c4e85df068d6019bfea47bd103c0da02558659ece892",
+    "drawio_path": "drawio/DIAG-20-observability-replay-recovery-audit.drawio",
+    "svg_path": "svg/DIAG-20-observability-replay-recovery-audit.svg",
+    "html_path": "html/views/DIAG-20.html",
+    "component_ids": [
+      "MAG-GOV-001",
+      "MAG-OBS-001"
+    ],
+    "component_names": [
+      "Capability gate (single chokepoint)",
+      "Runtime observability + replay + WS dispatcher"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "current",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-21",
+    "title": "Current-to-target capability transition",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "both",
+    "source_document": "15_REUSE_AND_MIGRATION_ARCHITECTURE.md",
+    "source_section": "§3",
+    "scope": "3. Current-to-target capability transition (DIAG-21)",
+    "source_line": 58,
+    "mermaid_block_digest": "f12564eab5342b55394686004f8925949641282772556a6268c2ba747abf26d6",
+    "drawio_path": "drawio/DIAG-21-current-to-target-capability-transition.drawio",
+    "svg_path": "svg/DIAG-21-current-to-target-capability-transition.svg",
+    "html_path": "html/views/DIAG-21.html",
+    "component_ids": [],
+    "component_names": [],
+    "requirement_ids": [],
+    "open_decisions": [
+      "ADR-R1"
+    ],
+    "flags": [
+      "both-plane",
+      "current",
+      "decision-required",
+      "engineering-plane",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "mermaid_block",
+            "reference": "DIAG-21"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-22",
+    "title": "Enso-to-Beyond evolutionary architecture",
+    "category": "architecture",
+    "plane": "both",
+    "current_target": "target",
+    "source_document": "16_EVOLUTION_STAGE_CONTRACTS.md",
+    "source_section": "§3",
+    "scope": "3. Enso-to-Beyond evolution architecture (DIAG-22)",
+    "source_line": 75,
+    "mermaid_block_digest": "b3b288fe09b74c80c2abcc16fd4d6127d106d28f4fdc75856cf2fc37dc157d43",
+    "drawio_path": "drawio/DIAG-22-enso-to-beyond-evolutionary-architecture.drawio",
+    "svg_path": "svg/DIAG-22-enso-to-beyond-evolutionary-architecture.svg",
+    "html_path": "html/views/DIAG-22.html",
+    "component_ids": [
+      "MAG-PRG-001"
+    ],
+    "component_names": [
+      "Program/evolution frame"
+    ],
+    "requirement_ids": [
+      "MAG-NFR-001",
+      "MAG-NFR-007"
+    ],
+    "open_decisions": [],
+    "flags": [
+      "both-plane",
+      "engineering-plane",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-S1",
+    "title": "Audit-before-effect order",
+    "category": "behavioural",
+    "plane": "runtime",
+    "current_target": "target",
+    "source_document": "technical-specifications/18_STATE_MACHINE_SPECIFICATIONS.md",
+    "source_section": "§1",
+    "scope": "1. Audit-before-effect order (Correction 10) — `MAG-GOV-001`, `MAG-SEC-202`, `MAG-OBS-001`",
+    "source_line": 26,
+    "mermaid_block_digest": "4ded97acee5cda274077a69a69797c9a73de05c88e730f45330cb1e64030a6e7",
+    "drawio_path": "drawio/DIAG-S1-audit-before-effect-order.drawio",
+    "svg_path": "svg/DIAG-S1-audit-before-effect-order.svg",
+    "html_path": "html/views/DIAG-S1.html",
+    "component_ids": [
+      "MAG-GOV-002",
+      "MAG-GOV-003",
+      "MAG-INT-001",
+      "MAG-OBS-001",
+      "MAG-SEC-202",
+      "MAG-TOL-001"
+    ],
+    "component_names": [
+      "Policy evaluator (default-deny)",
+      "Approval coordinator + HumanDecisionProvider",
+      "API surface (FastAPI routers)",
+      "Runtime observability + replay + WS dispatcher",
+      "Secure audit sink (0600, hash-chain JSONL)",
+      "Tool/capability adapter port"
+    ],
+    "requirement_ids": [
+      "MAG-FR-004",
+      "MAG-FR-010",
+      "MAG-FR-015",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-002",
+      "MAG-SEC-003",
+      "MAG-SEC-006"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "OD-14.1"
+    ],
+    "flags": [
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-010",
+            "component_id": "MAG-TOL-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-14.1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-003",
+            "component_id": "MAG-SEC-202",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-S2",
+    "title": "Failure and outcome decision",
+    "category": "behavioural",
+    "plane": "runtime",
+    "current_target": "target",
+    "source_document": "technical-specifications/19_FAILURE_AND_OUTCOME_TAXONOMY.md",
+    "source_section": "§4",
+    "scope": "4. Outcome decision (diagram)",
+    "source_line": 55,
+    "mermaid_block_digest": "2e770ffe653eb92c33620616689a983b1f739801c537e9f3011fecdecf729058",
+    "drawio_path": "drawio/DIAG-S2-failure-and-outcome-decision.drawio",
+    "svg_path": "svg/DIAG-S2-failure-and-outcome-decision.svg",
+    "html_path": "html/views/DIAG-S2.html",
+    "component_ids": [
+      "MAG-GOV-001",
+      "MAG-GOV-003",
+      "MAG-INT-001"
+    ],
+    "component_names": [
+      "Capability gate (single chokepoint)",
+      "Approval coordinator + HumanDecisionProvider",
+      "API surface (FastAPI routers)"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-004",
+      "MAG-NFR-002",
+      "MAG-SEC-001",
+      "MAG-SEC-006",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  },
+  {
+    "diagram_id": "DIAG-S3",
+    "title": "Restart / recovery",
+    "category": "behavioural",
+    "plane": "runtime",
+    "current_target": "current+target",
+    "source_document": "10_MEMORY_DATA_EVIDENCE_AND_REPLAY.md",
+    "source_section": "§4",
+    "scope": "4. Observability, replay, recovery, audit (DIAG-20)",
+    "source_line": 60,
+    "mermaid_block_digest": "1107a8c4fa0815f25227c4e85df068d6019bfea47bd103c0da02558659ece892",
+    "drawio_path": "drawio/DIAG-S3-restart-recovery.drawio",
+    "svg_path": "svg/DIAG-S3-restart-recovery.svg",
+    "html_path": "html/views/DIAG-S3.html",
+    "component_ids": [
+      "MAG-GOV-001",
+      "MAG-OBS-001"
+    ],
+    "component_names": [
+      "Capability gate (single chokepoint)",
+      "Runtime observability + replay + WS dispatcher"
+    ],
+    "requirement_ids": [
+      "MAG-FR-003",
+      "MAG-FR-015",
+      "MAG-NFR-002",
+      "MAG-NFR-003",
+      "MAG-NFR-005",
+      "MAG-OPS-005",
+      "MAG-SEC-001",
+      "MAG-SEC-008"
+    ],
+    "open_decisions": [
+      "ADR-R1",
+      "OD-01b",
+      "R-06 OPEN"
+    ],
+    "flags": [
+      "current",
+      "runtime-plane",
+      "target"
+    ],
+    "render_status": "pass",
+    "drawio_validation_status": "pass",
+    "notes": "Manifest-defined behavioural alias sharing the DIAG-20 Mermaid source block and digest.",
+    "decision_provenance": [
+      {
+        "decision_id": "ADR-R1",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-003",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-FR-015",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          },
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-003",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "OD-01b",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-NFR-005",
+            "component_id": "MAG-OBS-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      },
+      {
+        "decision_id": "R-06 OPEN",
+        "sources": [
+          {
+            "type": "traceability_row",
+            "requirement_id": "MAG-SEC-008",
+            "component_id": "MAG-GOV-001",
+            "reference": "registries/MAGNA_TRACEABILITY_REGISTRY.yaml"
+          }
+        ]
+      }
+    ],
+    "semantic_match": true
+  }
+]

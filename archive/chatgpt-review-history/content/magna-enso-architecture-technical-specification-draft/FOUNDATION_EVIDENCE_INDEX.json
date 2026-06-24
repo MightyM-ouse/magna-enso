@@ -1,0 +1,66 @@
+{
+  "package": "magna-enso-architecture-technical-specification-draft",
+  "date": "2026-06-21",
+  "status": "DRAFT_FOR_HUMAN_REVIEW",
+  "authority_level": "SUBORDINATE_DRAFT - informs and proposes; decides nothing; grants no approval",
+  "scope": "Architecture + technical-specification foundation for the Magna program and the Magna Enso target, prepared before backlog and sprint planning",
+  "reviewed_repositories": [
+    { "path": "<LOCAL_USER_HOME>/Projects/AI/magna-command-center", "branch": "main", "head": "68981c8", "working_tree": "dirty (M .codex/config.toml, M AGENTS.md, untracked agent-logs/*)", "modified_by_this_package": false },
+    { "path": "<MAGNA_LOCAL_ROOT>/magna-enso", "branch": "sprint/05-policy-engine", "head": "4d5c203", "working_tree": "untracked policy/, tests/, trace/evidence/ENSO-0005_LIGHT_CURVE.md", "modified_by_this_package": false },
+    { "path": "<LOCAL_USER_HOME>/Projects/AI/TRACE", "branch": "main", "head": "c6b4bbd", "working_tree": "untracked proposed-governed-loop/", "modified_by_this_package": false }
+  ],
+  "accepted_evidence_baseline": "<CHATGPT_REVIEW_SOURCE>/magna-program-evidence-completion/",
+  "preliminary_supporting_only": "<CHATGPT_REVIEW_SOURCE>/magna-program-discovery-reconstruction/",
+  "rejected_evidence_source": "Antigravity validation package (NOT used, NOT cited)",
+  "architecture_documents": [
+    "00_MASTER_FOUNDATION_SUMMARY.md","01_SOURCE_AND_AUTHORITY_REGISTER.md","02_TERMINOLOGY_AND_DOMAIN_MODEL.md",
+    "03_MAGNA_PROGRAM_ARCHITECTURE.md","04_EVOLUTION_AND_REPOSITORY_ARCHITECTURE.md","05_CURRENT_VERIFIED_ARCHITECTURE.md",
+    "06_MAGNA_ENSO_TARGET_ARCHITECTURE.md","07_REQUEST_TO_ACTION_AND_COGNITION.md","08_GOVERNANCE_POLICY_AND_APPROVAL.md",
+    "09_TRACE_DUAL_PLANE_ARCHITECTURE.md","10_MEMORY_DATA_EVIDENCE_AND_REPLAY.md","11_AGENTS_MODELS_TOOLS_AND_HERMES.md",
+    "12_UX_INFORMATION_ARCHITECTURE.md","13_ENVIRONMENT_DEPLOYMENT_AND_OPERATIONS.md","14_SECURITY_PRIVACY_AND_TRUST_BOUNDARIES.md",
+    "15_REUSE_AND_MIGRATION_ARCHITECTURE.md","16_EVOLUTION_STAGE_CONTRACTS.md","17_ARCHITECTURE_DECISIONS_REQUIRED.md",
+    "18_ARCHITECTURE_DIAGRAM_MANIFEST.md"
+  ],
+  "technical_specifications": [
+    "technical-specifications/00_TECHNICAL_SPECIFICATION_INDEX.md","technical-specifications/01_SYSTEM_REQUIREMENTS_AND_NFRS.md",
+    "technical-specifications/02_FRONTEND_AND_UX_SPECIFICATION.md","technical-specifications/03_BACKEND_AND_API_SPECIFICATION.md",
+    "technical-specifications/04_COMMAND_COGNITION_AND_ROUTING.md","technical-specifications/05_EVENT_WORKFLOW_AND_ORCHESTRATION.md",
+    "technical-specifications/06_POLICY_PERMISSION_AND_APPROVAL.md","technical-specifications/07_IDENTITY_HELIX_AND_COSMOS.md",
+    "technical-specifications/08_DATA_MEMORY_AND_PERSISTENCE.md","technical-specifications/09_TRACEABILITY_AND_EVIDENCE_CONTRACTS.md",
+    "technical-specifications/10_AGENT_MODEL_AND_TOOL_ADAPTERS.md","technical-specifications/11_SECURITY_PRIVACY_AND_SECRETS.md",
+    "technical-specifications/12_CONFIGURATION_AND_ENVIRONMENTS.md","technical-specifications/13_OBSERVABILITY_REPLAY_AND_RECOVERY.md",
+    "technical-specifications/14_TESTING_AND_QUALITY_STRATEGY.md","technical-specifications/15_RELEASE_BACKUP_AND_ROLLBACK.md",
+    "technical-specifications/16_IMPLEMENTATION_AND_REUSE_INDEX.md","technical-specifications/17_REQUIREMENT_TRACEABILITY_MATRIX.md"
+  ],
+  "registries": [
+    "registries/MAGNA_ARCHITECTURE_STATUS.yaml","registries/MAGNA_REQUIREMENT_REGISTRY.yaml",
+    "registries/MAGNA_COMPONENT_REGISTRY.yaml","registries/MAGNA_INTERFACE_REGISTRY.yaml","registries/MAGNA_OPEN_DECISIONS.yaml"
+  ],
+  "learning": [
+    "learning/MAGNA_ENGINEERING_LEARNING_GUIDE.md","learning/ARCHITECTURE_REVIEW_CHECKLIST_FOR_VINAY.md",
+    "learning/TECHNICAL_SPECIFICATION_REVIEW_CHECKLIST_FOR_VINAY.md"
+  ],
+  "counts": {
+    "architecture_documents": 19,
+    "technical_specifications": 18,
+    "registries": 5,
+    "learning_documents": 3,
+    "architecture_views_diagrams": 22,
+    "requirements": { "MAG-FR": 17, "MAG-NFR": 8, "MAG-SEC": 8, "MAG-UX": 7, "MAG-TRC": 6, "MAG-OPS": 6, "total": 52 },
+    "open_decisions_ADR": 12
+  },
+  "invariants_held": {
+    "sgn_01": "BLOCKED",
+    "hermes_active_families": "0/6",
+    "ten_ui_tabs": "intact and frozen",
+    "trace_planes": "engineering and runtime kept separate",
+    "canonical_policy_engine_selected": false,
+    "brs_01": "AWAITING_HUMAN_ACCEPTANCE",
+    "r_06_policy_bypass": "OPEN",
+    "no_document_grants_approval_for_vinay": true,
+    "no_sprint_numbers_assigned": true,
+    "no_repository_modified": true
+  },
+  "status_model": ["ACCEPTED_AND_VALIDATED","IMPLEMENTED_VALIDATED","AWAITING_HUMAN_ACCEPTANCE","IN_PROGRESS","CANDIDATE_FOR_REUSE","PLANNED","BLOCKED","EXTERNAL","UNKNOWN"],
+  "change_control": "Superseding changes require a governed decision. Superseded content is marked, never deleted."
+}

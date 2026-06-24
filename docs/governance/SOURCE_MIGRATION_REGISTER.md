@@ -6,7 +6,7 @@
 | Root model adapter files | Canonical thin role adapters | Retain |
 | `trace/` operating instance | Canonical applied TRACE instance | Retain and maintain through tasks |
 | `../planning/*` references | Missing legacy references | Do not restore; use repository-native sources |
-| `../../ChatGPTReview/*` | Historical local staging | Do not use as operational source |
+| Local ChatGPT review history | Historical local staging | GOV-004 copies safe material into a noncanonical archive; never use as operational authority |
 | Corrected architecture/spec package | Accepted migration input | Integrate in a dedicated architecture PR |
 | Corrected diagram package | Accepted editable/visual input | Integrate curated sources in a dedicated PR |
 | Draft/correction ZIPs | Generated transport artifacts | Do not commit |
@@ -31,3 +31,11 @@
 GOV-002 completed on 2026-06-24. The Product Owner activated the four canonical replacement
 files, removed all seven legacy active files, validated the replacement in a fresh
 conversation, and squash-merged PR #5 as `af8c73a`.
+
+## GOV-004 archive migration
+
+GOV-004 created `archive/chatgpt-review-history/` as a noncanonical historical archive.
+The manifest records every local source object and its disposition. Archive presence does
+not promote or accept content; promotion requires a separate approved task. Generated
+transport packages, raw validation artifacts, screenshots, logs, and machine noise remain
+outside Git. The local source remains unchanged.
