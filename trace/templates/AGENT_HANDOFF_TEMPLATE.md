@@ -4,7 +4,9 @@
 
 - Instruction prepared by: ChatGPT / System Architect
 - Instruction approved by: Product Owner
-- Output prepared for: ChatGPT architectural review and Product Owner decision
+- Intended reviewer: ChatGPT / System Architect  <!-- CF-6: who WILL review -->
+- Review status: `PENDING` | `COMPLETED`  <!-- PENDING until review evidence exists -->
+- Review completed by: `<reviewer or null>`  <!-- null while PENDING -->
 - Agent and role: `<agent> / <role>`
 
 ## Identity and state
@@ -12,11 +14,12 @@
 | Field | Value |
 |---|---|
 | Task | `<TASK-ID>` |
-| Status | `<status>` |
+| Status | `<one of the governed status_vocabulary values>` |
 | Branch | `<branch>` |
 | Starting commit | `<full SHA>` |
-| Final commit | `<full SHA>` |
-| Pull request | `<URL>` |
+| Final commit (pre-handoff) | `<full SHA or null>`  <!-- CF-2: never the commit containing this handoff -->
+| Synchronization authority | live GitHub branch head  <!-- CF-2: commit fields are point-in-time only -->
+| Pull request | `<URL or null>` |
 | Synchronization verdict | `SYNC_PASS` |
 
 ## Outcome

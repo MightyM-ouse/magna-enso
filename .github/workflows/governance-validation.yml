@@ -1,8 +1,16 @@
 name: Governance validation
 
+# CF-1 / AC #2: validate the main PR and stacked correction/review PRs. Branch filters apply
+# to the PR base branch; this does not change branch-protection on `main`.
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - 'codex/**'
+      - 'claude/**'
+      - 'chatgpt/**'
+      - 'antigravity/**'
+      - 'architect/**'
   workflow_dispatch:
 
 permissions:
@@ -32,6 +40,8 @@ jobs:
             ].each { |path| YAML.load_file(path); puts "valid #{path}" }
           '
 
+      # CF-1 / AC #3: explicitly check the GOV-005 canonical governance files (in addition to
+      # the GOV-001-era baseline files).
       - name: Check required governance files
         run: |
           test -f AGENTS.md
@@ -39,6 +49,26 @@ jobs:
           test -f docs/governance/MULTI_AGENT_OPERATING_MODEL.md
           test -f trace/tasks/GOV-001.md
           test -f trace/evidence/GOV-001_LIGHT_CURVE.md
+          test -f docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+          test -f trace/ACTIVE_WORK_REGISTRY.yaml
+          test -f trace/schemas/agent_handoff.schema.json
+          test -f scripts/validate_multi_agent_governance.py
+          test -f scripts/check_changed_path_ownership.py
+          test -f scripts/governance-requirements.txt
+
+      # CF-1 / NB-1: install the narrowly scoped, pinned governance dependency.
+      - name: Install governance Python dependency
+        run: python3 -m pip install --user -r scripts/governance-requirements.txt
+
+      # CF-1 / AC #1: run the substantive GOV-005 validator; it fails the job on a real
+      # contract violation.
+      - name: Run GOV-005 governance validator
+        run: python3 scripts/validate_multi_agent_governance.py
+
+      # CF-5 / AC #8: git-aware changed-path ownership check against the PR base branch.
+      - name: Changed-path ownership check
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/check_changed_path_ownership.py --base "origin/${{ github.base_ref }}"
 
       - name: Install pinned Gitleaks
         env:

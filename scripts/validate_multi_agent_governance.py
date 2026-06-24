@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
-"""Validate GOV-005 multi-agent governance contracts without network access."""
+"""Validate GOV-005 multi-agent governance contracts without network access.
+
+Corrections (GOV-005-CLAUDE-CORRECTIONS):
+- CF-3/CF-4: task/registry status is constrained to one governed vocabulary, and the
+  schema enum is cross-checked against that vocabulary (single source of truth).
+- CF-6: provenance distinguishes the intended reviewer from a completed review; a handoff
+  may not claim a completed review before evidence exists.
+- CF-2: the live GitHub branch head is the synchronization authority; commit fields are
+  truthful and never required to self-reference.
+Companion: scripts/check_changed_path_ownership.py provides the git-aware changed-path
+ownership check (CF-5 / AC #8); it is intentionally separate because it needs git.
+"""
 
 from __future__ import annotations
 
@@ -12,10 +23,23 @@ from typing import Any
 try:
     import yaml
 except ImportError as exc:  # pragma: no cover - explicit environment failure
-    raise SystemExit("PyYAML is required by the repository governance validator") from exc
+    raise SystemExit(
+        "PyYAML is required by the repository governance validator. "
+        "Install it with: python3 -m pip install -r scripts/governance-requirements.txt"
+    ) from exc
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SHA = re.compile(r"^[0-9a-f]{40}$")
+
+REQUIRED_GOVERNANCE_FILES = [
+    "AGENTS.md",
+    "docs/governance/MULTI_AGENT_EXECUTION_POLICY.md",
+    "trace/ACTIVE_WORK_REGISTRY.yaml",
+    "trace/schemas/agent_handoff.schema.json",
+    "scripts/validate_multi_agent_governance.py",
+    "scripts/check_changed_path_ownership.py",
+]
 
 
 def fail(message: str) -> None:
@@ -39,7 +63,7 @@ def require_text(path: str, tokens: list[str]) -> None:
         fail(f"{path} missing required tokens: {missing}")
 
 
-def validate_schema_shape(schema: dict[str, Any]) -> None:
+def validate_schema_shape(schema: dict[str, Any], status_vocabulary: list[str]) -> None:
     required = set(schema.get("required", []))
     expected = {
         "task",
@@ -57,27 +81,54 @@ def validate_schema_shape(schema: dict[str, Any]) -> None:
     }
     if not expected.issubset(required):
         fail(f"handoff schema missing required keys: {sorted(expected - required)}")
+    # CF-4: the schema task-status enum must equal the governed vocabulary (single source).
+    schema_enum = schema["$defs"]["task_status"]["enum"]
+    if schema_enum != status_vocabulary:
+        fail(
+            "schema task_status enum must equal ACTIVE_WORK_REGISTRY status_vocabulary; "
+            f"schema={schema_enum} registry={status_vocabulary}"
+        )
+    # CF-6: provenance must require intended_reviewer + review_status, not a bare reviewed_by.
+    prov_required = set(schema["properties"]["provenance"]["required"])
+    if "reviewed_by" in prov_required:
+        fail("provenance must not require 'reviewed_by'; use intended_reviewer + review_status (CF-6)")
+    if not {"intended_reviewer", "review_status", "review_completed_by"}.issubset(prov_required):
+        fail("provenance must require intended_reviewer, review_status, review_completed_by (CF-6)")
 
 
-def validate_handoff(handoff: dict[str, Any], schema: dict[str, Any]) -> None:
+def validate_handoff(handoff: dict[str, Any], schema: dict[str, Any], status_vocabulary: list[str]) -> None:
     missing = [key for key in schema["required"] if key not in handoff]
     if missing:
         fail(f"handoff missing required keys: {missing}")
     if handoff["schema_version"] != "1.0":
         fail("handoff schema_version must be 1.0")
+    # CF-3/CF-4: task status must be in the governed vocabulary.
+    if handoff["task"]["status"] not in status_vocabulary:
+        fail(f"handoff task.status '{handoff['task']['status']}' not in governed vocabulary")
     if handoff["synchronization"]["verdict"] != "SYNC_PASS":
         fail("published implementation handoff must record SYNC_PASS")
-    if handoff["provenance"] != {
-        "instruction_prepared_by": "ChatGPT / System Architect",
-        "instruction_approved_by": "Product Owner",
-        "reviewed_by": "ChatGPT / System Architect",
-    }:
-        fail("handoff provenance contract does not match policy")
-    sha = re.compile(r"^[0-9a-f]{40}$")
-    if not sha.fullmatch(handoff["repository_state"]["starting_commit"]):
+    # CF-6: provenance distinguishes intended reviewer from completed review.
+    prov = handoff["provenance"]
+    if prov.get("instruction_prepared_by") != "ChatGPT / System Architect":
+        fail("provenance instruction_prepared_by must be 'ChatGPT / System Architect'")
+    if prov.get("instruction_approved_by") != "Product Owner":
+        fail("provenance instruction_approved_by must be 'Product Owner'")
+    if prov.get("intended_reviewer") != "ChatGPT / System Architect":
+        fail("provenance intended_reviewer must be 'ChatGPT / System Architect'")
+    if prov.get("review_status") not in {"PENDING", "COMPLETED"}:
+        fail("provenance review_status must be PENDING or COMPLETED")
+    if "reviewed_by" in prov:
+        fail("provenance must not assert reviewed_by before review (CF-6)")
+    completed_by = prov.get("review_completed_by")
+    if prov["review_status"] == "PENDING" and completed_by is not None:
+        fail("review_completed_by must be null while review_status is PENDING")
+    if prov["review_status"] == "COMPLETED" and not completed_by:
+        fail("review_completed_by must name the reviewer when review_status is COMPLETED")
+    # CF-2: commit fields are truthful; the live branch head is the authority, not these fields.
+    if not SHA.fullmatch(handoff["repository_state"]["starting_commit"]):
         fail("handoff starting_commit is not a full SHA")
     final = handoff["repository_state"]["final_commit"]
-    if final is not None and not sha.fullmatch(final):
+    if final is not None and not SHA.fullmatch(final):
         fail("handoff final_commit is not null or a full SHA")
     for download in handoff["downloads"]:
         required_download = {
@@ -89,7 +140,7 @@ def validate_handoff(handoff: dict[str, Any], schema: dict[str, Any]) -> None:
             fail("download entry is missing provenance fields")
 
 
-def validate_active_work(registry: dict[str, Any]) -> None:
+def validate_active_work(registry: dict[str, Any], status_vocabulary: list[str]) -> None:
     tasks = registry.get("active_tasks", [])
     ids = [task["task_id"] for task in tasks]
     branches = [task["branch"] for task in tasks]
@@ -98,10 +149,13 @@ def validate_active_work(registry: dict[str, Any]) -> None:
     if len(branches) != len(set(branches)):
         fail("active-work branches must be unique")
     for task in tasks:
-        if not re.fullmatch(r"[0-9a-f]{40}", task["starting_commit"]):
+        if not SHA.fullmatch(task["starting_commit"]):
             fail(f"{task['task_id']} starting_commit must be a full SHA")
         if not task.get("writable_paths"):
             fail(f"{task['task_id']} must declare writable paths")
+        # CF-3/CF-4: each task status must be in the governed vocabulary.
+        if "status" in task and task["status"] not in status_vocabulary:
+            fail(f"{task['task_id']} status '{task['status']}' not in governed vocabulary")
     for index, left in enumerate(tasks):
         for right in tasks[index + 1 :]:
             overlap = set(left["writable_paths"]) & set(right["writable_paths"])
@@ -122,9 +176,11 @@ def main() -> int:
     active = load_yaml("trace/ACTIVE_WORK_REGISTRY.yaml")
     index = load_json("trace/CELESTIAL_INDEX.json")
 
-    validate_schema_shape(schema)
-    validate_handoff(handoff, schema)
-    validate_active_work(active)
+    status_vocabulary = active["status_vocabulary"]
+
+    validate_schema_shape(schema, status_vocabulary)
+    validate_handoff(handoff, schema, status_vocabulary)
+    validate_active_work(active, status_vocabulary)
 
     outcomes = set(workflows["synchronization_gate"]["outcomes"])
     if outcomes != {"SYNC_PASS", "SYNC_BLOCKED", "SYNC_UNVERIFIED_LOCAL_STATE"}:
@@ -135,6 +191,11 @@ def main() -> int:
         fail("role registry final authority must remain Product Owner")
     if roles["roles"]["governed_runtime_experiment"]["status"] != "inactive":
         fail("GOV-005 must not activate Hermes")
+
+    # CF-1: required GOV-005 governance files must exist (mirrored in CI).
+    for path in REQUIRED_GOVERNANCE_FILES:
+        if not (ROOT / path).exists():
+            fail(f"required governance file missing: {path}")
 
     require_text(
         "AGENTS.md",
@@ -166,7 +227,8 @@ def main() -> int:
 
     print("GOV-005 governance validation: PASS")
     print(f"active tasks validated: {len(active['active_tasks'])}")
-    print("handoff schema and representative handoff: PASS")
+    print(f"governed status vocabulary: {len(status_vocabulary)} values (schema enum matches)")
+    print("handoff schema, status vocabulary, and provenance contract: PASS")
     return 0
 
 

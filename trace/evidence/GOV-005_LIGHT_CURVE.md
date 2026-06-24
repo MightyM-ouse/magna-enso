@@ -100,3 +100,22 @@ Corrections:
   instruction.
 - Reduced the Product Owner launch message to a reference to that packet.
 - No Claude review branch or review execution existed before this correction.
+
+## Claude four-eyes review and corrections (CF-1 … CF-6)
+
+The independent Claude four-eyes review (PR #16, merged) found that the governance validator
+was **not** executed by CI (the green check ran GOV-001-era checks + gitleaks only), among
+other findings. The earlier line in this Light Curve asserting structural-alignment "Pass:
+`scripts/validate_multi_agent_governance.py`" reflected a **manual/local** run, not CI.
+
+The `GOV-005-CLAUDE-CORRECTIONS` task (branch `claude/GOV-005-corrections`) resolves CF-1…CF-6:
+
+- **Governance CI now runs the substantive validator** (pinned `PyYAML`) and a git-aware
+  changed-path ownership check, on the main PR and stacked correction/review PRs; the
+  required-files check includes the GOV-005 canonical files.
+- Status uses one governed vocabulary (schema enum == registry vocabulary, validator-enforced);
+  provenance distinguishes intended reviewer from completed review; the live branch head is the
+  synchronization authority. Negative tests prove invalid status/provenance/ownership cases fail.
+
+See `trace/reviews/GOV-005-CLAUDE-CORRECTIONS-MATRIX.md` and
+`trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json`.
