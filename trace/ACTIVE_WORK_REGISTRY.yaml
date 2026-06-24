@@ -1,0 +1,85 @@
+version: 1
+canonical_repository: MightyM-ouse/magna-enso
+updated_at: "2026-06-24T20:55:00+02:00"
+status_vocabulary:
+  - PLANNED
+  - AUTHORIZED
+  - IN_PROGRESS
+  - BLOCKED
+  - PUSHED_FOR_REVIEW
+  - CHANGES_REQUIRED
+  - READY_FOR_PRODUCT_OWNER
+  - MERGED
+  - CLOSED
+
+ownership_rules:
+  writable_paths_exclusive: true
+  overlapping_write_requires_recorded_resolution: true
+  task_packet_immutable_after_in_progress: true
+  assigned_branch_only: true
+  main_merge_authority: product_owner
+
+active_tasks:
+  - task_id: ARCH-001
+    agent: chatgpt
+    role: system_architect_sme
+    status: BLOCKED
+    branch: architect/ARCH-001-canonical-architecture-baseline
+    worktree: agent_managed
+    starting_commit: 20e69cad9edfc71e193de3411f7778a64c041273
+    latest_known_commit: 631d5cf23b72e7aa0ae8f520446efdc7fde747bf
+    issue: 8
+    pull_request: 9
+    writable_paths:
+      - docs/architecture/
+      - docs/technical-specifications/
+      - trace/tasks/ARCH-001.md
+      - trace/evidence/ARCH-001_LIGHT_CURVE.md
+      - trace/STAR_MAP.md
+    read_only_dependencies:
+      - archive/chatgpt-review-history/
+    shared_paths:
+      - trace/STAR_MAP.md
+    integration_order: after_GOV-005_or_explicit_resynchronization
+    blocked_on:
+      - task_branch_resynchronization_with_current_main
+      - confirmation_of_normative_architecture_source_from_governed_archive
+    handoff: null
+
+  - task_id: GOV-005
+    agent: chatgpt
+    role: system_architect_sme
+    status: IN_PROGRESS
+    branch: codex/GOV-005-multi-agent-governance
+    worktree: connected_github_isolated_branch
+    starting_commit: 4afeb0ceec14262c8bbafd86f41a7734fac5e0ae
+    latest_known_commit: 4afeb0ceec14262c8bbafd86f41a7734fac5e0ae
+    issue: 12
+    pull_request: null
+    writable_paths:
+      - AGENTS.md
+      - CODEX.md
+      - CLAUDE.md
+      - ANTIGRAVITY.md
+      - HERMES.md
+      - CHATGPT.md
+      - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+      - trace/ACTIVE_WORK_REGISTRY.yaml
+      - trace/WORKFLOWS.yaml
+      - trace/ROLE_REGISTRY.yaml
+      - trace/CELESTIAL_INDEX.json
+      - trace/DECISION_LOG.md
+      - trace/STAR_MAP.md
+      - trace/templates/
+      - trace/schemas/
+      - trace/tasks/GOV-005.md
+      - trace/evidence/GOV-005_LIGHT_CURVE.md
+      - scripts/validate_multi_agent_governance.py
+    read_only_dependencies:
+      - docs/governance/PUBLIC_REPOSITORY_SECURITY.md
+      - docs/governance/EVIDENCE_AND_ARTIFACT_POLICY.md
+    shared_paths:
+      - trace/STAR_MAP.md
+    integration_order: before_ARCH-001_resumes
+    blocked_on: []
+    handoff: trace/evidence/GOV-005_HANDOFF.json
