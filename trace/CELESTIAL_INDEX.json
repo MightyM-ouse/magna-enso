@@ -1,6 +1,6 @@
 {
   "description": "TRACE context routing for Magna Enso",
-  "version": 2,
+  "version": 3,
   "canonical_repository": "MightyM-ouse/magna-enso",
   "areas": {
     "trace-governance": {
@@ -15,6 +15,14 @@
         "trace/WORKFLOWS.yaml"
       ],
       "default_mode": "discovery"
+    },
+    "chatgpt-project-source": {
+      "status": "CURRENT_AFTER_GOV_002_ACCEPTANCE",
+      "source_files": [
+        "CHATGPT.md",
+        "docs/governance/chatgpt-project-source/"
+      ],
+      "default_mode": "mixed"
     },
     "evidence-and-decisions": {
       "status": "CURRENT",
@@ -57,4 +65,3 @@
     "do_not_treat_planned_files_as_delivered": true
   }
 }
-
