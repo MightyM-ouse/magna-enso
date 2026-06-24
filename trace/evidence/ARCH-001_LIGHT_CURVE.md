@@ -68,7 +68,7 @@ without importing or rewriting architecture sources.
 | Phase B execution | PASS | Not started; explicitly blocked |
 | Allowed-path diff | PASS | 8/8 changed files within approved Phase A paths |
 | Markdown/path review | PASS_WITH_LIMITATION | Proposed targets are clearly marked; external machine paths are redacted and unavailable |
-| Governance validation | PENDING | Await final branch workflow |
+| Governance validation | PASS | GitHub workflow run #15 |
 
 ## Additional validation
 
