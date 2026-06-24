@@ -70,6 +70,8 @@ not silently change the approved outcome or authority envelope.
 
 Parallel work is permitted when each active task has:
 
+- a branch namespace matching the accountable worker or an explicitly approved neutral
+  task namespace;
 - a unique task ID, branch, worktree, starting commit, and pull request;
 - one accountable worker;
 - declared writable and read-only paths;
