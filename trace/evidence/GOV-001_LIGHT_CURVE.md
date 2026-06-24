@@ -74,8 +74,8 @@ Issue: #1
 
 ## Review verdict
 
-Recommendation: ACCEPT_WITH_NON_BLOCKING_NOTES
+Final recommendation: ACCEPTED_AND_MERGED
 Independent review: completed; LOW-01 accepted; LOW-02 resolved by required strict `governance` status check
-Product Owner functional acceptance: pending
-Merge status: pending
+Product Owner functional acceptance: accepted by squash merge on 2026-06-24
+Merge status: merged to `main` as `6c1a693c4621913a605c9f6f859f9647eade2dca`
 
