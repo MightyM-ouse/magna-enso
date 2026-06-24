@@ -49,13 +49,13 @@ active_tasks:
   - task_id: GOV-005
     agent: chatgpt
     role: system_architect_sme
-    status: IN_PROGRESS
+    status: PUSHED_FOR_REVIEW
     branch: codex/GOV-005-multi-agent-governance
     worktree: connected_github_isolated_branch
     starting_commit: 4afeb0ceec14262c8bbafd86f41a7734fac5e0ae
-    latest_known_commit: 4afeb0ceec14262c8bbafd86f41a7734fac5e0ae
+    latest_known_commit: e7e0e0798a6b40fcce9335abe7378b39141d10bc
     issue: 12
-    pull_request: null
+    pull_request: 13
     writable_paths:
       - AGENTS.md
       - CODEX.md
