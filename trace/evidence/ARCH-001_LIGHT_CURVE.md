@@ -66,9 +66,20 @@ without importing or rewriting architecture sources.
 | Target structure proposal | PASS | Proposal only; no target import paths created |
 | Runtime/code changes | PASS | None |
 | Phase B execution | PASS | Not started; explicitly blocked |
-| Allowed-path diff | PENDING | Validate after committing discovery outputs |
-| Markdown/path review | PENDING | Validate after branch update |
+| Allowed-path diff | PASS | 8/8 changed files within approved Phase A paths |
+| Markdown/path review | PASS_WITH_LIMITATION | Proposed targets are clearly marked; external machine paths are redacted and unavailable |
 | Governance validation | PENDING | Await final branch workflow |
+
+## Additional validation
+
+| Check | Result |
+|---|---|
+| Branch divergence | PASS - 9 commits ahead, 0 behind `main` |
+| Celestial Index JSON parse | PASS - unchanged routing file parsed |
+| Public-path redaction | PASS - no Product Owner username committed |
+| Secret-pattern review | PASS - no credential/private-key markers detected |
+| Missing-input discipline | PASS - unavailable packages explicitly classified |
+| Phase B gate | PASS - remains blocked |
 
 ## Boundary results
 
