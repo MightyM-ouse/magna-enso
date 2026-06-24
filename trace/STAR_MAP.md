@@ -5,7 +5,7 @@ Last governance review: 2026-06-24
 | Field | Current state |
 |---|---|
 | Repository | `MightyM-ouse/magna-enso` |
-| Accepted `main` baseline | `4d5c203` before GOV-001 merge |
+| Accepted `main` baseline | `6c1a693` — GOV-001 accepted and squash-merged |
 | Delivery state | Sprints 1-4 accepted; Sprint 4 inert provenance baseline only |
 | Sprint 5 | Untracked local `policy/`, `tests/`, and ENSO-0005 evidence; not accepted |
 | Policy engine | Selection and integration strategy open |
@@ -27,14 +27,13 @@ Last governance review: 2026-06-24
 
 ## Active work
 
-- Issue #1 / `trace/tasks/GOV-001.md`: GitHub canonical-source and multi-agent
-  governance bootstrap.
+- GOV-001 completed: GitHub canonical-source and multi-agent governance merged; Issue #1 closed.
 
 ## Next gates
 
-1. Review and merge GOV-001.
-2. Integrate accepted architecture/specification sources through a separate PR.
-3. Integrate curated editable diagrams through a separate PR.
+1. Integrate accepted architecture/specification sources through a separate PR.
+2. Integrate curated editable diagrams through a separate PR.
+3. Replace redundant ChatGPT project sources with a thin GitHub bootstrap.
 4. Review the untracked Sprint 5 implementation independently; do not assume acceptance.
 5. Decide the first bounded Hermes local-model capability-lab scope before activation.
 
