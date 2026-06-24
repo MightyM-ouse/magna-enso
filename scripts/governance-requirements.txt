@@ -1,0 +1,5 @@
+# Narrowly scoped dependency for GOV-005 governance validation (GOV-005-CLAUDE-CORRECTIONS, NB-1).
+# Source: PyPI (https://pypi.org/project/PyYAML/). License: MIT.
+# Used only by scripts/validate_multi_agent_governance.py and
+# scripts/check_changed_path_ownership.py to parse governance YAML. No runtime/product impact.
+PyYAML==6.0.2

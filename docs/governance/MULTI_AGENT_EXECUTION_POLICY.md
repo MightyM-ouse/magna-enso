@@ -174,10 +174,35 @@ Every meaningful worker result includes:
 3. A JSON handoff conforming to `trace/schemas/agent_handoff.schema.json`.
 
 The handoff identifies the instruction as prepared by ChatGPT/System Architect and approved
-by the Product Owner. It states that ChatGPT will review and summarize the result. It must
-include task/agent identity, branch and commits, files changed, downloads, commands,
-validation, failures, deviations, decisions, architecture/security impact, residual risk,
-pull request, and recommended next action. Exact failures and skipped checks remain visible.
+by the Product Owner. Provenance distinguishes the **intended reviewer** from a **completed
+review**: `intended_reviewer` names who will review, while `review_status` is `PENDING` until
+an independent review actually occurs and `review_completed_by` is set only when it is
+`COMPLETED`. A handoff must never assert a completed review before review evidence exists
+(CF-6). It must include task/agent identity, branch and commits, files changed, downloads,
+commands, validation, failures, deviations, decisions, architecture/security impact, residual
+risk, pull request, and recommended next action. Exact failures and skipped checks remain
+visible.
+
+## Status authority and commit-field semantics
+
+- **Canonical live task status** is `trace/ACTIVE_WORK_REGISTRY.yaml` (`active_tasks[].status`).
+  The immutable task packet records the status frozen at publication (historical, not live);
+  the Star Map is a human narrative summary that mirrors the live status; a handoff `task.status`
+  is a point-in-time snapshot. All statuses use one governed vocabulary, declared once in
+  `ACTIVE_WORK_REGISTRY.status_vocabulary` and enforced by the schema enum and validator (CF-3/CF-4).
+- **Synchronization authority is the live GitHub branch head.** Recorded commit fields
+  (`repository_state.final_commit`, registry `latest_known_commit`) are point-in-time pointers,
+  are never required to equal the commit that contains them (impossible self-reference), and
+  must not be read as freshness guarantees (CF-2).
+
+## Governance enforcement (CI)
+
+The governance validator `scripts/validate_multi_agent_governance.py` runs in CI on the main
+PR and on stacked correction/review PRs, with a pinned dependency
+(`scripts/governance-requirements.txt`). A git-aware changed-path ownership check
+(`scripts/check_changed_path_ownership.py`) fails the build when a changed path falls outside
+declared task ownership and the governance allowlist (CF-1/CF-5). This adds enforcement
+without changing `main` branch protection.
 
 ## Review and integration
 

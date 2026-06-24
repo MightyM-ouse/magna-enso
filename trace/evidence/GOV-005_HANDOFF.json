@@ -2,14 +2,16 @@
   "schema_version": "1.0",
   "task": {
     "id": "GOV-005",
-    "status": "IMPLEMENTED_AWAITING_INDEPENDENT_REVIEW",
+    "status": "PUSHED_FOR_REVIEW",
     "agent": "chatgpt",
     "role": "system_architect_sme"
   },
   "provenance": {
     "instruction_prepared_by": "ChatGPT / System Architect",
     "instruction_approved_by": "Product Owner",
-    "reviewed_by": "ChatGPT / System Architect"
+    "intended_reviewer": "ChatGPT / System Architect",
+    "review_status": "PENDING",
+    "review_completed_by": null
   },
   "repository_state": {
     "branch": "codex/GOV-005-multi-agent-governance",

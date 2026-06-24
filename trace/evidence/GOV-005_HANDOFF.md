@@ -4,8 +4,8 @@
 
 - Instruction prepared by: ChatGPT / System Architect
 - Instruction approved by: Product Owner
-- Output prepared for: Claude four-eyes review, ChatGPT architectural review, and Product
-  Owner merge decision
+- Intended reviewer: ChatGPT / System Architect (independent four-eyes reviewer: Claude)
+- Review status at handoff time: `PENDING` (no review had occurred — CF-6)
 - Agent and role: ChatGPT / System Architect SME
 
 ## Identity and state
@@ -13,10 +13,11 @@
 | Field | Value |
 |---|---|
 | Task | `GOV-005` |
-| Status | `IMPLEMENTED_AWAITING_INDEPENDENT_REVIEW` |
+| Status | `PUSHED_FOR_REVIEW` (governed vocabulary — CF-3) |
 | Branch | `codex/GOV-005-multi-agent-governance` |
 | Starting commit | `4afeb0ceec14262c8bbafd86f41a7734fac5e0ae` |
-| Implementation commit | `e7e0e0798a6b40fcce9335abe7378b39141d10bc` |
+| Implementation commit (pre-handoff) | `e7e0e0798a6b40fcce9335abe7378b39141d10bc` |
+| Synchronization authority | live GitHub branch head (commit fields are point-in-time only — CF-2) |
 | Pull request | `https://github.com/MightyM-ouse/magna-enso/pull/13` |
 | Synchronization verdict | `SYNC_PASS` after GOV-004 closure reconciliation |
 

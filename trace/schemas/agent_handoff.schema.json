@@ -27,7 +27,7 @@
       "required": ["id", "status", "agent", "role"],
       "properties": {
         "id": { "type": "string", "pattern": "^[A-Z]+-[0-9]{3,}$" },
-        "status": { "type": "string" },
+        "status": { "$ref": "#/$defs/task_status" },
         "agent": { "type": "string" },
         "role": { "type": "string" }
       }
@@ -35,11 +35,14 @@
     "provenance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["instruction_prepared_by", "instruction_approved_by", "reviewed_by"],
+      "description": "CF-6: the intended reviewer is distinct from a completed review. review_status is PENDING until an independent review actually occurs; review_completed_by names the reviewer only once COMPLETED. No handoff may assert a completed review before evidence exists.",
+      "required": ["instruction_prepared_by", "instruction_approved_by", "intended_reviewer", "review_status", "review_completed_by"],
       "properties": {
         "instruction_prepared_by": { "const": "ChatGPT / System Architect" },
         "instruction_approved_by": { "const": "Product Owner" },
-        "reviewed_by": { "const": "ChatGPT / System Architect" }
+        "intended_reviewer": { "const": "ChatGPT / System Architect" },
+        "review_status": { "enum": ["PENDING", "COMPLETED"] },
+        "review_completed_by": { "type": ["string", "null"] }
       }
     },
     "repository_state": {
@@ -49,7 +52,7 @@
       "properties": {
         "branch": { "type": "string", "minLength": 1 },
         "starting_commit": { "$ref": "#/$defs/sha" },
-        "final_commit": { "oneOf": [{ "$ref": "#/$defs/sha" }, { "type": "null" }] },
+        "final_commit": { "oneOf": [{ "$ref": "#/$defs/sha" }, { "type": "null" }], "description": "CF-2: the last commit BEFORE this handoff, or null. It cannot reference the commit that contains this handoff (self-reference is impossible). The live GitHub branch head, not this field, is the synchronization authority." },
         "pull_request": { "type": ["string", "null"] }
       }
     },
@@ -91,6 +94,11 @@
   },
   "$defs": {
     "sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "task_status": {
+      "type": "string",
+      "description": "CF-4: governed task-status vocabulary. Must equal ACTIVE_WORK_REGISTRY status_vocabulary; the validator cross-checks this.",
+      "enum": ["PLANNED", "AUTHORIZED", "IN_PROGRESS", "BLOCKED", "PUSHED_FOR_REVIEW", "CHANGES_REQUIRED", "READY_FOR_PRODUCT_OWNER", "MERGED", "CLOSED"]
+    },
     "check": {
       "type": "object",
       "additionalProperties": false,

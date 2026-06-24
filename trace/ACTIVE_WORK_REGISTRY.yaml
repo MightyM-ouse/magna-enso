@@ -1,6 +1,22 @@
 version: 1
 canonical_repository: MightyM-ouse/magna-enso
-updated_at: "2026-06-24T20:55:00+02:00"
+updated_at: "2026-06-24T21:45:00+02:00"
+
+# CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
+# `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
+# it is never required to equal the commit that contains this file (impossible self-reference)
+# and must not be read as a freshness guarantee. Always reconcile against the live branch head.
+synchronization_authority: live_github_branch_head
+
+# CF-3 (AC #5): one canonical live task-status authority, with explicit roles for the other
+# status surfaces so they cannot silently disagree.
+status_authority:
+  canonical_live_status: "trace/ACTIVE_WORK_REGISTRY.yaml (active_tasks[].status)"
+  immutable_task_status: "trace/tasks/<TASK>.md (frozen at publication; historical, not live)"
+  human_summary: "trace/STAR_MAP.md (narrative; mirrors the live status, not authoritative)"
+  handoff_status: "handoff task.status (point-in-time snapshot at handoff)"
+  vocabulary_source: status_vocabulary
+
 status_vocabulary:
   - PLANNED
   - AUTHORIZED
@@ -49,12 +65,14 @@ active_tasks:
   - task_id: GOV-005
     agent: chatgpt
     role: system_architect_sme
-    status: PUSHED_FOR_REVIEW
+    status: CHANGES_REQUIRED
+    status_note: "Claude four-eyes review (PR #16, merged) found changes required; GOV-005-CLAUDE-CORRECTIONS is the active correction phase."
     branch: codex/GOV-005-multi-agent-governance
     branch_namespace_exception: "Created by ChatGPT through a Codex-namespaced publishing adapter before GOV-005 established accountable-worker namespaces; retained to preserve the validated PR and must not be repeated."
     worktree: connected_github_isolated_branch
     starting_commit: 4afeb0ceec14262c8bbafd86f41a7734fac5e0ae
-    latest_known_commit: e7e0e0798a6b40fcce9335abe7378b39141d10bc
+    latest_known_commit: 2796b4aac9ac32f49d8a5e95f558c161c02d953f
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
     issue: 12
     pull_request: 13
     writable_paths:
@@ -75,7 +93,10 @@ active_tasks:
       - trace/schemas/
       - trace/tasks/GOV-005.md
       - trace/tasks/GOV-005-CLAUDE-REVIEW.md
+      - trace/tasks/GOV-005-CLAUDE-CORRECTIONS.md
       - trace/evidence/GOV-005_LIGHT_CURVE.md
+      - trace/evidence/GOV-005_HANDOFF.json
+      - trace/evidence/GOV-005_HANDOFF.md
       - scripts/validate_multi_agent_governance.py
     read_only_dependencies:
       - docs/governance/PUBLIC_REPOSITORY_SECURITY.md
@@ -110,3 +131,47 @@ active_tasks:
     integration_order: review_targets_codex/GOV-005-multi-agent-governance_do_not_merge
     blocked_on: []
     handoff: trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+
+  - task_id: GOV-005-CLAUDE-CORRECTIONS
+    agent: claude
+    role: correction_implementer
+    corrects: GOV-005
+    status: PUSHED_FOR_REVIEW
+    branch: claude/GOV-005-corrections
+    worktree: connected_github_isolated_branch
+    starting_commit: 2796b4aac9ac32f49d8a5e95f558c161c02d953f
+    latest_known_commit: 2796b4aac9ac32f49d8a5e95f558c161c02d953f
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
+    issue: 12
+    pull_request: pending_draft_correction_pr
+    independent_validator_after: antigravity
+    writable_paths:
+      - scripts/check_changed_path_ownership.py
+      - scripts/governance-requirements.txt
+      - trace/reviews/GOV-005-CLAUDE-CORRECTIONS-MATRIX.md
+      - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.md
+      - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+    correction_phase_modifies:
+      note: "Authorized by trace/tasks/GOV-005-CLAUDE-CORRECTIONS.md as a sequential correction phase over the GOV-005 implementation branch. These GOV-005-owned governance files are corrected, not re-owned; GOV-005 status is CHANGES_REQUIRED during this phase. Kept out of writable_paths above to avoid false exclusive-ownership overlap; the git-aware changed-path check covers them via the union of declared ownership plus the governance allowlist."
+      files:
+        - .github/workflows/governance-validation.yml
+        - scripts/validate_multi_agent_governance.py
+        - trace/schemas/agent_handoff.schema.json
+        - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+        - trace/templates/AGENT_HANDOFF_TEMPLATE.md
+        - trace/ACTIVE_WORK_REGISTRY.yaml
+        - trace/evidence/GOV-005_HANDOFF.json
+        - trace/evidence/GOV-005_HANDOFF.md
+        - trace/evidence/GOV-005_LIGHT_CURVE.md
+    must_not_modify:
+      - trace/tasks/GOV-005.md
+      - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+    read_only_dependencies:
+      - trace/tasks/GOV-005-CLAUDE-CORRECTIONS.md
+      - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+    shared_paths: []
+    integration_order: corrects_codex/GOV-005-multi-agent-governance_do_not_merge_independent_validator_antigravity
+    blocked_on: []
+    handoff: trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
