@@ -12,10 +12,10 @@
 | ARCH-SRC-01 requirement registry | `docs/technical-specifications/requirements/` | Import as normative registry candidate | Structured parse and ID uniqueness |
 | ARCH-SRC-01 traceability matrix | `docs/technical-specifications/traceability/` | Recalculate against accepted targets | 52/52 claim must be independently reproduced |
 | ARCH-SRC-01 remaining 54 reported files | Undetermined | MISSING_INPUT; no mapping attempted | Full manifest and contents required |
-| DIAG-SRC-01 Draw.io sources | `docs/architecture/diagrams/source/` | Import native editable sources | ZIP checksum and per-file manifest |
-| DIAG-SRC-01 SVG previews | `docs/architecture/diagrams/rendered/` | Regenerate from accepted Draw.io sources where possible | Visual/source equivalence check |
-| DIAG-SRC-01 HTML viewer | GitHub Actions artifact or optional documentation tooling | Do not make canonical architecture source | Security and maintenance review |
-| DIAG-SRC-01 behavioral diagrams | `docs/architecture/diagrams/behavioral/` | Map to contracts/requirements | Exact 3 behavioral artifact identities required |
+| DIAG-SRC-01 Draw.io sources | `docs/architecture/diagrams/source/` | Authenticated candidate; import only after normative reconciliation | ZIP checksum verified; per-file manifest present |
+| DIAG-SRC-01 SVG previews | `docs/architecture/diagrams/rendered/` | Derived candidates; regenerate from accepted Draw.io sources where possible | Package validation passes; repository claim review pending |
+| DIAG-SRC-01 HTML viewer | GitHub Actions artifact or optional documentation tooling | Generated artifact; do not make canonical architecture source | Separate security and maintenance justification required |
+| DIAG-SRC-01 behavioral diagrams | `docs/architecture/diagrams/behavioral/` | Three authenticated candidate views; map to contracts/requirements | Normative architecture package required |
 | GOV-SRC-01 Sprint 3 reports | Architecture/governance target determined per document | Reference or curate; avoid duplication | Compare against ARCH-SRC-01 |
 | `trace/DECISION_LOG.md` | Remains in `trace/` | Reference only | No migration |
 | `trace/FEATURE_TRACKER.md` | Remains in `trace/` | Reference only | No migration |
