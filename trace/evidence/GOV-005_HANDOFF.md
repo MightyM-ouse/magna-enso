@@ -16,8 +16,8 @@
 | Status | `IMPLEMENTED_AWAITING_INDEPENDENT_REVIEW` |
 | Branch | `codex/GOV-005-multi-agent-governance` |
 | Starting commit | `4afeb0ceec14262c8bbafd86f41a7734fac5e0ae` |
-| Final commit | Recorded in Issue #12 and PR after publication |
-| Pull request | Recorded after creation |
+| Implementation commit | `e7e0e0798a6b40fcce9335abe7378b39141d10bc` |
+| Pull request | `https://github.com/MightyM-ouse/magna-enso/pull/13` |
 | Synchronization verdict | `SYNC_PASS` after GOV-004 closure reconciliation |
 
 ## Outcome
