@@ -8,7 +8,7 @@ No decision below should be made from filenames alone.
 
 | ID | Decision | Why needed | Architect recommendation | Product Owner timing |
 |---|---|---|---|---|
-| AD-001 | Provide ARCH-SRC-01 and DIAG-SRC-01 to the ARCH-001 review context | Detailed Phase A comparison is blocked | Supply both exact packages; do not substitute regenerated copies | Required now |
+| AD-001 | Provide ARCH-SRC-01 to the ARCH-001 review context | Normative Phase A comparison remains blocked; DIAG-SRC-01 is now authenticated | Supply the exact corrected architecture/specification package; do not substitute a regenerated copy | Required now |
 | AD-002 | Confirm whether ARCH-SRC-01 is the preferred candidate baseline or one input among Sprint 0/3 sources | Accepted migration input does not equal canonical authority | Treat it as preferred candidate only until conflict comparison passes | After package inspection |
 | AD-003 | Select Magna-owned product license or approve an interim copyright notice | Public repository does not grant reuse rights | Resolve before importing substantial Magna-owned architecture | Before Phase B merge |
 | AD-004 | Approve the proposed target information architecture | Target paths determine long-term ownership and traceability | Use separated architecture/specification/diagram/decision/archive structure | After full inventory |
@@ -19,11 +19,6 @@ No decision below should be made from filenames alone.
 
 ## Immediate Product Owner input
 
-Provide these two exact artifacts to this conversation or another explicitly approved
-ARCH-001-accessible source:
-
-1. A ZIP of `magna-enso-architecture-technical-specification-corrected/`.
-2. `magna-enso-architecture-diagrams-draft-corrected.zip` with expected SHA-256
-   `04471f54baf64b23e96365ee1232ed6f1ab2ed0c859111845620fcc53dac4577`.
+Provide a ZIP of `magna-enso-architecture-technical-specification-corrected/` to this conversation or another explicitly approved ARCH-001-accessible source. DIAG-SRC-01 has been received and its expected SHA-256 verified.
 
 Do not merge PR #9 while Phase A remains blocked.
