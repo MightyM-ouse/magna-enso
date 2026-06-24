@@ -42,11 +42,13 @@ explanation.
 | Package file count | 4 files plus one directory entry |
 | ZIP integrity | PASS; no CRC errors |
 | ZIP hygiene | PASS; no macOS metadata or unexpected files |
+| Allowed-path branch diff | PASS; 10/10 files within GOV-002 scope |
+| GitHub Governance validation | PASS; workflow run 7 |
 | Legacy/stale active references in package | None; `frontend-design` appears only in removal guidance |
 | SHA-256 | `73eef1a8ae93869ced186e4345292a45218351f0566102a842335257288a4bad` |
 
-Repository Gitleaks, allowed-path diff, and governance CI results remain pending until the
-GitHub branch and pull request are complete.
+The governance workflow includes the repository security and structural checks required by
+the accepted baseline. Product-source upload validation remains a Product Owner action.
 
 ## Limitations
 
