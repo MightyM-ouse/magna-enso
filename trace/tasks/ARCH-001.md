@@ -2,7 +2,7 @@
 
 ## Status
 
-`TASK_PACKET_PREPARED_DISCOVERY_NOT_STARTED`
+`PHASE_A_PARTIAL_BLOCKED_MISSING_INPUTS`
 
 ## Authority
 
@@ -41,6 +41,14 @@ Conditional:
   verification
 
 A broader repository scan requires a written reason in the Light Curve.
+
+## Phase A authorization and current state
+
+- Product Owner authorized Phase A discovery on 2026-06-24.
+- Repository-side discovery outputs are committed on the assigned branch.
+- Detailed content comparison is blocked because ARCH-SRC-01 and DIAG-SRC-01 are not
+  available to the current session.
+- Phase B remains blocked.
 
 ## Phase A - Discovery and migration design
 
