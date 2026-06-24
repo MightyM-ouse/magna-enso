@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="24.7.17" type="device">
+  <diagram id="DIAG-19" name="DIAG-19 Security zones &amp; trust boundaries">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="group-1" value="Trusted zone - local owner - MAG-SEC-202" style="swimlane;html=1;rounded=1;startSize=30;fillColor=#111923;strokeColor=#40506a;fontColor=#aebbd0;dashed=1;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="grouping_container" sourceNodeId="TRUSTED">
+          <mxGeometry x="85" y="45" width="275" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="group-2" value="Semi-trusted - workers/models - MAG-AGT-001" style="swimlane;html=1;rounded=1;startSize=30;fillColor=#111923;strokeColor=#40506a;fontColor=#aebbd0;dashed=1;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="grouping_container" sourceNodeId="SEMI">
+          <mxGeometry x="385" y="45" width="575" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="group-3" value="Untrusted/external - EXTERNAL" style="swimlane;html=1;rounded=1;startSize=30;fillColor=#111923;strokeColor=#40506a;fontColor=#aebbd0;dashed=1;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="grouping_container" sourceNodeId="UNTRUSTED">
+          <mxGeometry x="985" y="45" width="875" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="node-1" value="Vinay - authenticated owner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#242a34;strokeColor=#93a0b4;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;strokeColor=#6cb3ff;strokeWidth=3;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="VINAY" nodeKind="actor" componentIds="" statusClass="neutral" currentTarget="current">
+          <mxGeometry x="120" y="100" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="node-2" value="Capability gate + approvals - MAG-GOV-001" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#40301c;strokeColor=#ffbd63;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;strokeColor=#6cb3ff;strokeWidth=3;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="GATE" nodeKind="component" componentIds="MAG-GOV-001" statusClass="decision" currentTarget="current">
+          <mxGeometry x="120" y="245" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="node-3" value="Runtime core + persistence + audit - MAG-ORC-001 MAG-MEM-001 MAG-SEC-202" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#453718;strokeColor=#f6c85f;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="CORE" nodeKind="component" componentIds="MAG-MEM-001,MAG-ORC-001,MAG-SEC-202" statusClass="partial" currentTarget="current">
+          <mxGeometry x="120" y="390" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="node-4" value="Workers - propose only, no self-approve" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#242a34;strokeColor=#93a0b4;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="WORKERS" nodeKind="actor_repository_external_or_state" componentIds="" statusClass="neutral" currentTarget="current">
+          <mxGeometry x="420" y="100" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="node-5" value="Local models" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#242a34;strokeColor=#93a0b4;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="LOCALM" nodeKind="actor_repository_external_or_state" componentIds="" statusClass="neutral" currentTarget="current">
+          <mxGeometry x="720" y="100" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="node-6" value="Cloud providers - consent-gated" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#37234e;strokeColor=#c9a4ff;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;dashed=1;dashPattern=7 5;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="CLOUD" nodeKind="actor_repository_external_or_state" componentIds="" statusClass="external" currentTarget="target">
+          <mxGeometry x="1020" y="100" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="node-7" value="Web/search - default mock" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#242a34;strokeColor=#93a0b4;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="WEB" nodeKind="actor_repository_external_or_state" componentIds="" statusClass="neutral" currentTarget="current">
+          <mxGeometry x="1320" y="100" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="node-8" value="Hermes-derived - INACTIVE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#37234e;strokeColor=#c9a4ff;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;dashed=1;dashPattern=7 5;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="HERMES" nodeKind="external_system" componentIds="" statusClass="external" currentTarget="target">
+          <mxGeometry x="1620" y="100" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="node-9" value="Independent verifier - MAG-TRC-201" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#453718;strokeColor=#f6c85f;fontColor=#f2f6fb;fontSize=13;strokeWidth=2;spacing=10;shadow=0;" vertex="1" parent="1" diagramId="DIAG-19" sourceNodeId="VERIFIER" nodeKind="component" componentIds="MAG-TRC-201" statusClass="partial" currentTarget="current">
+          <mxGeometry x="120" y="535" width="235" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#71809a;fontColor=#c8d2df;labelBackgroundColor=#111722;" edge="1" parent="1" source="node-1" target="node-2" diagramId="DIAG-19" edgeKind="connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#71809a;fontColor=#c8d2df;labelBackgroundColor=#111722;" edge="1" parent="1" source="node-2" target="node-3" diagramId="DIAG-19" edgeKind="connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-3" value="requests through" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#71809a;fontColor=#c8d2df;labelBackgroundColor=#111722;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="node-4" target="node-2" diagramId="DIAG-19" edgeKind="connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-4" value="behind gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#71809a;fontColor=#c8d2df;labelBackgroundColor=#111722;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="node-5" target="node-2" diagramId="DIAG-19" edgeKind="connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-5" value="consent + gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#71809a;fontColor=#c8d2df;labelBackgroundColor=#111722;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="node-6" target="node-2" diagramId="DIAG-19" edgeKind="connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-6" value="gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#71809a;fontColor=#c8d2df;labelBackgroundColor=#111722;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="node-7" target="node-2" diagramId="DIAG-19" edgeKind="connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-7" value="blocked until governed activation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#71809a;fontColor=#c8d2df;labelBackgroundColor=#111722;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="node-8" target="node-2" diagramId="DIAG-19" edgeKind="connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-8" value="read-only facts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#71809a;fontColor=#c8d2df;labelBackgroundColor=#111722;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="node-3" target="node-9" diagramId="DIAG-19" edgeKind="connector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-1" value="Current / implemented" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#173e32;strokeColor=#83e3b2;fontColor=#f2f6fb;fontSize=11;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="legend">
+          <mxGeometry x="120" y="1450" width="170" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-2" value="Target / proposed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#30343d;strokeColor=#9ca6b7;fontColor=#f2f6fb;fontSize=11;dashed=1;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="legend">
+          <mxGeometry x="310" y="1450" width="170" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-3" value="Human / governance boundary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#172d4d;strokeColor=#6cb3ff;fontColor=#f2f6fb;fontSize=11;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="legend">
+          <mxGeometry x="500" y="1450" width="170" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-4" value="Blocked" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a2025;strokeColor=#ff7a86;fontColor=#f2f6fb;fontSize=11;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="legend">
+          <mxGeometry x="690" y="1450" width="170" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-5" value="External / inactive" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#37234e;strokeColor=#c9a4ff;fontColor=#f2f6fb;fontSize=11;dashed=1;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="legend">
+          <mxGeometry x="880" y="1450" width="170" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-6" value="Decision required" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#40301c;strokeColor=#ffbd63;fontColor=#f2f6fb;fontSize=11;dashed=1;" vertex="1" parent="1" diagramId="DIAG-19" nodeKind="legend">
+          <mxGeometry x="1070" y="1450" width="170" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

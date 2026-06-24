@@ -30,7 +30,8 @@ Last governance review: 2026-06-24
 
 ## Active work
 
-- GOV-003: post-merge state reconciliation, Issue #6.
+- GOV-004: noncanonical ChatGPT review-history archive executed on its task branch; draft
+  PR #11 awaits review and Product Owner acceptance/merge.
 
 ## Next gates
 

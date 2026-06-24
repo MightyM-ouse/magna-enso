@@ -1,0 +1,66 @@
+{
+  "package": "magna-enso-architecture-technical-specification-corrected",
+  "supersedes_for_review": "magna-enso-architecture-technical-specification-draft (preserved, not overwritten)",
+  "date": "2026-06-21",
+  "status": "DRAFT_FOR_HUMAN_REVIEW",
+  "authority_level": "SUBORDINATE_DRAFT - informs and proposes; decides nothing; grants no approval",
+  "scope": "Corrected architecture + technical-specification foundation for the Magna program and the Magna Enso stage repository",
+  "reviewed_repositories": [
+    { "path": "<MAGNA_LOCAL_ROOT>/magna-enso", "branch": "sprint/05-policy-engine", "head": "4d5c203", "role": "forward Enso stage repository", "modified_by_this_package": false },
+    { "path": "<LOCAL_USER_HOME>/Projects/AI/magna-command-center", "branch": "main", "head": "68981c8", "role": "verified implementation + reuse donor", "modified_by_this_package": false },
+    { "path": "<LOCAL_USER_HOME>/Projects/AI/TRACE", "branch": "main", "head": "c6b4bbd", "role": "TRACE implementation/reference repo (TRC-SRC-02)", "modified_by_this_package": false }
+  ],
+  "trace_sources_resolved": {
+    "TRC-SRC-01": { "path": "<MAGNA_LOCAL_ROOT>/trace/TRACE_STRATEGIC_BLUEPRINT_v1.0.md", "role": "canonical_methodology_blueprint", "sha256": "9fff38ab2147e614494bddc8e4098afe57b77502850d8bc00e27f4d3591755f2" },
+    "TRC-SRC-02": { "path": "<LOCAL_USER_HOME>/Projects/AI/TRACE", "role": "canonical_implementation_reference_repo", "commit": "c6b4bbd3679ff3d7a3580c48af67b3b5d78b5884" },
+    "TRC-SRC-03": { "path": "<MAGNA_LOCAL_ROOT>/magna-enso/trace/", "role": "applied_enso_instance", "config_sha256": "e4408c70e7e9acb8db11eed4db0adab3787971b2b78939513f4db2fec107476b" }
+  },
+  "accepted_evidence_baseline": "<CHATGPT_REVIEW_SOURCE>/magna-program-evidence-completion/",
+  "canonical_planning_sources": "<MAGNA_LOCAL_ROOT>/planning/ (roadmap, charter, sprint plan, repo strategy, TRACE adoption, worker model)",
+  "rejected_evidence_source": "Antigravity validation package (NOT used, NOT cited)",
+  "new_correction_documents": [
+    "CORRECTION_REPORT.md", "TRACE_SOURCE_RESOLUTION.md", "PRESGN_TO_EVOLUTION_RELATIONSHIP_MATRIX.md",
+    "HERMES_DERIVED_CAPABILITY_PLAN.md", "HELIX_VERSIONING_OPTIONS.md",
+    "technical-specifications/18_STATE_MACHINE_SPECIFICATIONS.md", "technical-specifications/19_FAILURE_AND_OUTCOME_TAXONOMY.md",
+    "registries/MAGNA_TRACEABILITY_REGISTRY.yaml",
+    "validation/REGISTRY_VALIDATION_REPORT.md", "validation/ID_AND_REFERENCE_VALIDATION_REPORT.md",
+    "validation/MERMAID_VALIDATION_REPORT.md", "validation/LINK_VALIDATION_REPORT.md", "validation/PACKAGE_COMPLETENESS_REPORT.md"
+  ],
+  "counts": {
+    "architecture_documents": 19,
+    "correction_top_level_documents": 5,
+    "technical_specifications": 20,
+    "registries": 6,
+    "learning_documents": 3,
+    "validation_reports": 5,
+    "architecture_views_diagrams": 22,
+    "supplementary_state_outcome_diagrams": 3,
+    "requirements": { "MAG-FR": 17, "MAG-NFR": 8, "MAG-SEC": 8, "MAG-UX": 7, "MAG-TRC": 6, "MAG-OPS": 6, "total": 52 },
+    "traceability_rows": 52,
+    "open_decisions_ADR": 13
+  },
+  "status_dimensions": {
+    "implementation_status": ["NOT_STARTED","PARTIAL","IMPLEMENTED","VALIDATED","BLOCKED","EXTERNAL","UNKNOWN"],
+    "acceptance_status": ["NOT_SUBMITTED","IN_REVIEW","AWAITING_HUMAN_ACCEPTANCE","ACCEPTED","FROZEN","REJECTED","NOT_APPLICABLE"],
+    "decision_status": ["DECIDED","DECISION_REQUIRED","SUPERSEDED","PROPOSED","NOT_APPLICABLE"],
+    "evidence_status": ["NONE","NARRATIVE","PARTIAL","REPRODUCIBLE","INDEPENDENTLY_VERIFIED","UNKNOWN"],
+    "reuse_status": ["REUSE_UNCHANGED","REUSE_AFTER_REFACTOR","EXTRACT_SHARED_COMPONENT","REIMPLEMENT_FROM_SPECIFICATION","HISTORICAL_EVIDENCE_ONLY","REJECT","DECISION_REQUIRED","NOT_APPLICABLE"]
+  },
+  "invariants_held": {
+    "magna_enso_is_forward_repo": true,
+    "no_new_clean_enso_repo": true,
+    "future_stages_separate_repos": true,
+    "kenosha_official_kensho_superseded": true,
+    "sgn_01": "BLOCKED",
+    "hermes_active_families": "0/6",
+    "ten_ui_tabs": "intact and frozen",
+    "trace_planes_separate": true,
+    "canonical_policy_engine_selected": false,
+    "brs_01": "AWAITING_HUMAN_ACCEPTANCE",
+    "r_06_policy_bypass": "OPEN",
+    "no_document_grants_approval_for_vinai": true,
+    "no_sprint_numbers_assigned": true,
+    "no_repository_modified": true
+  },
+  "change_control": "Corrected package; -draft preserved. Superseded content marked, never deleted. No repository modified."
+}

@@ -1,0 +1,203 @@
+package: magna-enso-architecture-technical-specification-draft
+document: MAGNA_COMPONENT_REGISTRY
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Component register with status + reuse classification. Every component has a status.
+  No planned component is described as implemented. Hermes is inactive (0/6).
+
+components:
+  - id: MAG-EXP-01
+    name: Ten-tab shell + Presence
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    source: "frontend/src/app/App.tsx; navigationRoutes.ts"
+    evidence: "evidence-completion/03"
+  - id: MAG-INT-01
+    name: API surface (FastAPI routers)
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    source: "backend/app/main.py"
+    evidence: "evidence-completion/03"
+  - id: MAG-INT-02
+    name: Command interpreter (clean Enso)
+    origin: target
+    status: PLANNED
+    reuse: REIMPLEMENT_FROM_SPECIFICATION
+    evidence: "spec 04"
+  - id: MAG-COG-01
+    name: CSF to BRS routing
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    source: "routes_local_model.py; intent_router.py"
+    evidence: "evidence-completion/03,04"
+  - id: MAG-ORC-01
+    name: Event bus (durable, replay)
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: EXTRACT_SHARED_COMPONENT
+    source: "core/event_bus.py"
+    evidence: "evidence-completion/03,05"
+  - id: MAG-ORC-02
+    name: Workflow engine
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    source: "core/workflow_engine.py"
+    evidence: "evidence-completion/03"
+  - id: MAG-ORC-03
+    name: Orchestration runtime
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    source: "core/orchestration_runtime.py"
+    evidence: "evidence-completion/03"
+  - id: MAG-GOV-01
+    name: Capability gate (single chokepoint)
+    origin: magna-enso
+    status: IN_PROGRESS
+    reuse: EXTRACT_SHARED_COMPONENT
+    source: "gate.CapabilityGate.authorize"
+    evidence: "evidence-completion/05"
+    note: harness-level; runtime completeness TARGET; R-06 OPEN
+  - id: MAG-GOV-02
+    name: Policy evaluator (default-deny)
+    origin: magna-enso
+    status: IN_PROGRESS
+    reuse: EXTRACT_SHARED_COMPONENT
+    source: "evaluator.PolicyEvaluator.evaluate; schema.load_policy_records"
+    evidence: "evidence-completion/05"
+  - id: MAG-GOV-03
+    name: Approval coordinator + HumanDecisionProvider
+    origin: magna-enso
+    status: IN_PROGRESS
+    reuse: EXTRACT_SHARED_COMPONENT
+    source: "approval.ApprovalCoordinator.consume"
+    evidence: "evidence-completion/05"
+  - id: MAG-GOV-04
+    name: Risk classification + authorization context
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: DECISION_REQUIRED
+    source: "services/risk_policy_engine; services/authorization_service"
+    evidence: "evidence-completion/05"
+  - id: MAG-GOV-05
+    name: Approval engine (durable lifecycle)
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: DECISION_REQUIRED
+    source: "core/approval_engine.ApprovalEngine"
+    evidence: "evidence-completion/05"
+  - id: MAG-SEC-01
+    name: Canonical invocation fingerprint
+    origin: magna-enso
+    status: IN_PROGRESS
+    reuse: EXTRACT_SHARED_COMPONENT
+    source: "canonical.build_fingerprint"
+    evidence: "evidence-completion/05"
+  - id: MAG-SEC-02
+    name: Secure audit sink (0600, hash-chain JSONL)
+    origin: magna-enso
+    status: IN_PROGRESS
+    reuse: EXTRACT_SHARED_COMPONENT
+    source: "audit.SecureAuditSink"
+    evidence: "evidence-completion/05"
+    note: integrity-detecting, NOT tamper-proof
+  - id: MAG-MEM-01
+    name: SQLite/SQLModel persistence
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    source: "db/models.py; repositories.py"
+    evidence: "evidence-completion/03"
+  - id: MAG-MEM-02
+    name: Governed working memory
+    origin: target
+    status: PLANNED
+    reuse: REIMPLEMENT_FROM_SPECIFICATION
+    evidence: "MEM-01 pending (evidence-completion/04)"
+  - id: MAG-OBS-01
+    name: Runtime observability + replay + WS dispatcher
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: EXTRACT_SHARED_COMPONENT
+    source: "core/runtime_observability.py; websocket_dispatcher.py"
+    evidence: "evidence-completion/03"
+  - id: MAG-AGT-01
+    name: Local Ollama adapter
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    source: "services/ollama_service.py"
+    evidence: "evidence-completion/03"
+  - id: MAG-AGT-02
+    name: Cloud review adapter (env-gated)
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    source: "services/cloud_review_service.py"
+    evidence: "evidence-completion/03"
+  - id: MAG-TOL-01
+    name: Web-search agent (default mock)
+    origin: magna-command-center
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    evidence: "evidence-completion/03"
+  - id: MAG-TOL-02
+    name: Hermes-derived capabilities
+    origin: hermes
+    status: EXTERNAL
+    reuse: HISTORICAL_EVIDENCE_ONLY
+    active_families: "0/6"
+    evidence: "evidence-completion/10,11"
+    note: INACTIVE; provenance/license metadata only
+  - id: MAG-TRC-01
+    name: TRACE template + Observatory
+    origin: TRACE
+    status: IMPLEMENTED_VALIDATED
+    reuse: REUSE_UNCHANGED
+    evidence: "evidence-completion/06"
+    note: UI build not reproducible (missing rollup binary)
+  - id: MAG-TRC-02
+    name: Cross-plane runtime traceability contract
+    origin: target
+    status: PLANNED
+    reuse: REIMPLEMENT_FROM_SPECIFICATION
+    evidence: "evidence-completion/07"
+  - id: MAG-HLX-01
+    name: HELIX doctrine/observability surface
+    origin: magna-command-center
+    status: UNKNOWN
+    reuse: DECISION_REQUIRED
+    evidence: "evidence-completion/02"
+    note: read-only; executable runtime scope beyond docs is PLANNED/UNKNOWN
+  - id: MAG-COS-01
+    name: Cosmos ratified chronicle
+    origin: magna-command-center
+    status: ACCEPTED_AND_VALIDATED
+    reuse: DECISION_REQUIRED
+    evidence: "evidence-completion/02"
+  - id: MAG-IDN-01
+    name: Identity / CSF truth registry
+    origin: magna-command-center
+    status: ACCEPTED_AND_VALIDATED
+    reuse: REUSE_AFTER_REFACTOR
+    evidence: "evidence-completion/02,04"
+    note: capability-truth drift (Ollama) requires governed correction (ADR-R7)
+  - id: MAG-ENV-01
+    name: Local environments model
+    origin: target
+    status: PLANNED
+    reuse: REIMPLEMENT_FROM_SPECIFICATION
+    evidence: "evidence-completion/08"
+
+sgn:
+  id: SGN-01
+  status: BLOCKED
+  note: Broad command intelligence; blocked until belt complete + human-approved.
+
+change_control: Governed. Every component carries a status. Hermes inactive. Nothing deleted.

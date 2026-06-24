@@ -1,0 +1,37 @@
+package: magna-enso-architecture-technical-specification-corrected
+document: MAGNA_OPEN_DECISIONS
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Consolidated open decisions. Every item requires Vinay. This registry resolves nothing and grants no
+  approval on Vinai's behalf. decision_status uses the declared enum (DECIDED/DECISION_REQUIRED/SUPERSEDED/
+  PROPOSED/NOT_APPLICABLE).
+
+decisions:
+  - { id: ADR-R1, title: "Canonical runtime/policy engine disposition", decision_status: DECISION_REQUIRED, options: [compose MCC + Enso, select one, replace], default_if_undecided: "run experiment first; NO selection", evidence: "evidence 05; pkg 06,08,15", owner: Vinay }
+  - { id: ADR-R2, title: "Repo-strategy + KENOSHA supersession (Event Horizon ID)", decision_status: DECISION_REQUIRED, options: [new accepted EH IDs; mark one-repo + Kensho SUPERSEDED], default_if_undecided: "keep historical, mark superseded; do not delete", evidence: "pkg 04; evidence 12#1", owner: Vinay }
+  - { id: ADR-R3, title: "TRACE dual-plane contract + verifier + blueprint pin", decision_status: DECISION_REQUIRED, options: [adopt schema + external verifier, defer], default_if_undecided: "unverified default; no self-certification", evidence: "evidence 07; pkg 09; TRACE_SOURCE_RESOLUTION", owner: Vinay }
+  - { id: ADR-R4, title: "BRS-01 acceptance/freeze", decision_status: DECISION_REQUIRED, options: [accept and freeze, keep AWAITING], default_if_undecided: "AWAITING_HUMAN_ACCEPTANCE", evidence: "evidence 04", owner: Vinay }
+  - { id: ADR-R5, title: "MEM-01 / NRV-01 scope + Pre-SGN to evolution relation", decision_status: DECISION_REQUIRED, options: [define and accept, defer], default_if_undecided: "pending belt layers; relation DECISION_REQUIRED", evidence: "evidence 04,12#4; PRESGN_TO_EVOLUTION_RELATIONSHIP_MATRIX", owner: Vinay }
+  - { id: ADR-R6, title: "SGN-01 status", decision_status: DECIDED, options: [stays blocked], default_if_undecided: "BLOCKED (unchanged, canonical scope)", evidence: "evidence 04", owner: Vinay }
+  - { id: ADR-R7, title: "CSF Ollama capability-truth drift correction", decision_status: DECISION_REQUIRED, options: [governed correction], default_if_undecided: "record; correct via governance, not audit edit", evidence: "evidence 02,12#5", owner: Vinay }
+  - { id: ADR-R8, title: "Enso pytest correction + independent Sprint 5 review", decision_status: DECISION_REQUIRED, options: [correct + review, leave], default_if_undecided: "correction + independent review required", evidence: "evidence 05,12#6", owner: Vinay }
+  - { id: ADR-R9, title: "Environment + release topology (UAT/prod/DR)", decision_status: DECISION_REQUIRED, options: [define, stay local/test], default_if_undecided: "local/test only; rest PLANNED", evidence: "evidence 08; pkg 13", owner: Vinay }
+  - { id: ADR-R10, title: "UX acceptance baseline (a11y/responsive/perf/visual-regression)", decision_status: DECISION_REQUIRED, options: [set targets, defer], default_if_undecided: "none accepted yet", evidence: "evidence 08; pkg 12", owner: Vinay }
+  - { id: ADR-R11, title: "Sprint 5 isolated-branch disposition", decision_status: DECISION_REQUIRED, options: [keep isolated, quarantine pending review], default_if_undecided: "keep isolated, unaccepted", evidence: "pkg 01,05", owner: Vinay }
+  - { id: ADR-R12, title: "Cloud/data consent + dependency governance policy", decision_status: DECISION_REQUIRED, options: [formalize, defer], default_if_undecided: "local-first, consent-gated default", evidence: "evidence 13 gate 9; pkg 14", owner: Vinay }
+  - { id: ADR-HLX, title: "HELIX preservation across separate stage repos", decision_status: DECISION_REQUIRED, options: [own repo (Option A), generated profile (Option B), contract package (Option C)], default_if_undecided: "no repo decision; options only", evidence: "HELIX_VERSIONING_OPTIONS.md", owner: Vinay }
+
+foundation_approval_gates:   # Correction 13 — replaces "new Enso repo creation gate"
+  - { id: GATE-1, title: "Existing Enso foundation-baseline approval", decision_status: DECISION_REQUIRED }
+  - { id: GATE-2, title: "Architecture-package integration approval (into magna-enso)", decision_status: DECISION_REQUIRED }
+  - { id: GATE-3, title: "Backlog-preparation approval", decision_status: DECISION_REQUIRED }
+  - { id: GATE-4, title: "Sprint-planning approval (then sprint numbers may be assigned)", decision_status: DECISION_REQUIRED }
+
+superseded:
+  - { id: SUP-01, was: "One repo + tags for all stages", now: "Separate repository per stage (decision 4)", decision_status: SUPERSEDED, needs_event_horizon_id: true }
+  - { id: SUP-02, was: "Third stage spelled 'Kensho'", now: "KENOSHA (decision 5)", decision_status: SUPERSEDED, needs_event_horizon_id: true }
+
+cross_reference_note: "Per-document OD-xx.y items map into the ADR-R register above."
+change_control: Governed. Vinay decides. Superseded options marked, never deleted. No approval granted here.

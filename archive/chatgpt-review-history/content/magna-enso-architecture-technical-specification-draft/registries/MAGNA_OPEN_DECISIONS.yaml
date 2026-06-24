@@ -1,0 +1,87 @@
+package: magna-enso-architecture-technical-specification-draft
+document: MAGNA_OPEN_DECISIONS
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Consolidated open decisions. Every item requires Vinay. This registry resolves nothing
+  and grants no approval on Vinay's behalf.
+
+decisions:
+  - id: ADR-R1
+    title: Canonical runtime/policy engine disposition
+    options: [compose MCC primitives + Enso policy, select one, replace]
+    default_if_undecided: run the comparative experiment first; NO selection
+    evidence: "evidence-completion/05; package 06,08,15"
+    owner: Vinay
+  - id: ADR-R2
+    title: Stage naming + repository-strategy supersession
+    options: [new accepted EH IDs + mark legacy SUPERSEDED]
+    default_if_undecided: keep historical, mark superseded; never delete
+    evidence: "evidence-completion/12 item 1; package 04"
+    owner: Vinay
+  - id: ADR-R3
+    title: TRACE dual-plane contract + verifier identity
+    options: [adopt minimum schema + external verifier, defer]
+    default_if_undecided: unverified default; no self-certification
+    evidence: "evidence-completion/07; package 09"
+    owner: Vinay
+  - id: ADR-R4
+    title: BRS-01 acceptance/freeze
+    options: [accept and freeze, keep AWAITING]
+    default_if_undecided: AWAITING_HUMAN_ACCEPTANCE (do not accept here)
+    evidence: "evidence-completion/04"
+    owner: Vinay
+  - id: ADR-R5
+    title: MEM-01 / NRV-01 acceptance scope
+    options: [define and accept, defer]
+    default_if_undecided: pending belt layers
+    evidence: "evidence-completion/04,12 item 4"
+    owner: Vinay
+  - id: ADR-R6
+    title: SGN-01 status
+    options: [stays blocked]
+    default_if_undecided: BLOCKED (unchanged)
+    evidence: "evidence-completion/04"
+    owner: Vinay
+  - id: ADR-R7
+    title: CSF Ollama capability-truth drift correction
+    options: [governed correction]
+    default_if_undecided: record drift; correct via governance, not audit edit
+    evidence: "evidence-completion/02,12 item 5"
+    owner: Vinay
+  - id: ADR-R8
+    title: Enso pytest correction + independent Sprint 5 review
+    options: [correct + independent review, leave]
+    default_if_undecided: correction + independent review required
+    evidence: "evidence-completion/05,12 item 6"
+    owner: Vinay
+  - id: ADR-R9
+    title: Environment + release topology
+    options: [define integration/UAT/prod/DR, stay local/test]
+    default_if_undecided: local/test only today; rest PLANNED
+    evidence: "evidence-completion/08; package 13"
+    owner: Vinay
+  - id: ADR-R10
+    title: UX acceptance baseline (a11y/responsive/perf/visual-regression)
+    options: [set targets, defer]
+    default_if_undecided: none accepted yet
+    evidence: "evidence-completion/08; package 12"
+    owner: Vinay
+  - id: ADR-R11
+    title: Sprint 5 isolated-branch disposition
+    options: [keep isolated, quarantine pending review]
+    default_if_undecided: keep isolated, unaccepted
+    evidence: "package 01 FND-01; evidence-completion/05"
+    owner: Vinay
+  - id: ADR-R12
+    title: Cloud/data consent + dependency governance policy
+    options: [formalize, defer]
+    default_if_undecided: local-first, consent-gated default
+    evidence: "evidence-completion/13 gate 9; package 14"
+    owner: Vinay
+
+cross_reference_note: >-
+  Per-document OD-xx.y items in 00-18 and the technical specs map into the ADR-R register above.
+
+change_control: Governed. Vinay decides. Superseded options marked, never deleted. No approval granted here.

@@ -1,0 +1,76 @@
+package: magna-enso-architecture-technical-specification-corrected
+document: MAGNA_REQUIREMENT_REGISTRY
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  52 requirements with multi-dimensional status (Correction 5) and full component refs (Correction 6).
+  Only declared enum values are used. No requirement is human-accepted. No sprint numbers.
+  Enums are declared in MAGNA_ARCHITECTURE_STATUS.yaml:status_dimensions.
+
+functional:
+  - { id: MAG-FR-001, title: "Command interpretation to structured intent; no privilege from payload", component: MAG-INT-002, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-FR-002, title: "Bounded cognitive routing (CSF to BRS pattern)", component: MAG-COG-001, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-FR-003, title: "Single capability gate, default-deny", component: MAG-GOV-001, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-FR-004, title: "approval_required HOLD via HumanDecisionProvider; absent provider denies", component: MAG-GOV-003, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-FR-005, title: "Canonical SHA-256 invocation fingerprint, single-use", component: MAG-SEC-201, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-FR-006, title: "Durable event lineage", component: MAG-ORC-001, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-FR-007, title: "Execute only permitted actions via workflow", component: MAG-ORC-002, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-FR-008, title: "Orchestration runtime", component: MAG-ORC-003, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-FR-009, title: "Provider-neutral model adapters", component: MAG-AGT-001, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-FR-010, title: "Tool/capability adapters behind the gate", component: MAG-TOL-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: PARTIAL, reuse_status: DECISION_REQUIRED }
+  - { id: MAG-FR-011, title: "Identity truthful self-model surface", component: MAG-IDN-001, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-FR-012, title: "HELIX read-only doctrine integration", component: MAG-HLX-001, implementation_status: UNKNOWN, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: NARRATIVE, reuse_status: DECISION_REQUIRED }
+  - { id: MAG-FR-013, title: "Cosmos ratification (propose then Vinay ratifies)", component: MAG-COS-001, implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: DECISION_REQUIRED }
+  - { id: MAG-FR-014, title: "Governed memory; draft persistence is an approval", component: MAG-MEM-002, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-FR-015, title: "Replay/recover from append-only log", component: MAG-OBS-001, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-FR-016, title: "Frozen ten-tab shell surfaces", component: MAG-EXP-001, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-FR-017, title: "Reversibility / draft discard", component: MAG-MEM-002, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+
+non_functional:
+  - { id: MAG-NFR-001, title: "Single-user, local-first", component: MAG-PRG-001, implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-NFR-002, title: "Fail-closed on any failure or ambiguity (consequential)", component: MAG-GOV-001, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-NFR-003, title: "Replay-safe deterministic recovery; resting default-deny", component: MAG-OBS-001, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-NFR-004, title: "Provider/worker replaceability", component: MAG-AGT-001, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-NFR-005, title: "Performance budget (shell, gate latency)", component: MAG-OBS-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: PROPOSED, evidence_status: NONE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-NFR-006, title: "Local resource constraints", component: MAG-ENV-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: PROPOSED, evidence_status: NONE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-NFR-007, title: "Modularity - no cognitive monolith", component: MAG-PRG-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-NFR-008, title: "Minimal necessary context", component: MAG-SEC-203, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: NOT_APPLICABLE }
+
+security:
+  - { id: MAG-SEC-001, title: "Default-deny capability control", component: MAG-GOV-001, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-SEC-002, title: "Secure audit file (0600, owner/regular/symlink checks)", component: MAG-SEC-202, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-SEC-003, title: "Integrity-detecting hash-chain (NOT tamper-proof)", component: MAG-SEC-202, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-SEC-004, title: "No secrets in TRACE/evidence; hash redaction", component: MAG-SEC-203, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-SEC-005, title: "Explicit local/cloud consent", component: MAG-AGT-002, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-SEC-006, title: "No self-approval; human authority for approvals", component: MAG-GOV-003, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-SEC-007, title: "Monotonic expiry; clock rollback denies", component: MAG-SEC-201, implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-SEC-008, title: "No capability bypass / single chokepoint (completeness TARGET, R-06 OPEN)", component: MAG-GOV-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: PARTIAL, reuse_status: NOT_APPLICABLE }
+
+ux:
+  - { id: MAG-UX-001, title: "Frozen ten-tab shell", component: MAG-EXP-001, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-UX-002, title: "Approval & recovery surfaces", component: MAG-EXP-002, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-UX-003, title: "Loading/empty/error states", component: MAG-EXP-002, implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-UX-004, title: "Accessibility WCAG 2.1 AA target", component: MAG-EXP-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: PROPOSED, evidence_status: NONE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-UX-005, title: "Desktop responsiveness breakpoints", component: MAG-EXP-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: PROPOSED, evidence_status: NONE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-UX-006, title: "Offline/degraded behavior", component: MAG-EXP-002, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-UX-007, title: "Performance budget for shell (address 1.85MB bundle)", component: MAG-EXP-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: PROPOSED, evidence_status: PARTIAL, reuse_status: NOT_APPLICABLE }
+
+trace:
+  - { id: MAG-TRC-001, title: "Engineering-plane artifacts per task", component: MAG-TRC-201, implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: REUSE_UNCHANGED }
+  - { id: MAG-TRC-002, title: "Runtime-plane fact emission (digested/signed)", component: MAG-TRC-202, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-TRC-003, title: "Cross-plane schema; verification_status defaults unverified", component: MAG-TRC-202, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: PROPOSED, evidence_status: NONE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-TRC-004, title: "Independent verifier; no self-certification", component: MAG-TRC-202, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-TRC-005, title: "Evidence reproducibility (raw output, digests)", component: MAG-TRC-201, implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: PARTIAL, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-TRC-006, title: "Privacy classes carried in evidence", component: MAG-TRC-202, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+
+operational:
+  - { id: MAG-OPS-001, title: "Four environments defined", component: MAG-ENV-001, implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-OPS-002, title: "Backup/restore for Local Production", component: MAG-ENV-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NONE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-OPS-003, title: "Rollback (branch discard / restore+replay)", component: MAG-ENV-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-OPS-004, title: "Release artifact + signed acceptance (tags are not releases)", component: MAG-ENV-001, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-OPS-005, title: "Observability/replay/recovery operations", component: MAG-OBS-001, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-OPS-006, title: "Dependency policy / cloud-data consent governance", component: MAG-SEC-203, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: NARRATIVE, reuse_status: NOT_APPLICABLE }
+
+counts: { functional: 17, non_functional: 8, security: 8, ux: 7, trace: 6, operational: 6, total: 52 }
+change_control: Governed. Only declared enums used. No human acceptance granted. No sprint numbers.

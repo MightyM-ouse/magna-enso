@@ -1,0 +1,93 @@
+package: magna-enso-architecture-technical-specification-draft
+document: MAGNA_ARCHITECTURE_STATUS
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Status registry for the Magna program. Values use the package status model.
+  No value here grants human acceptance; acceptance is Vinay's.
+
+status_model:
+  - ACCEPTED_AND_VALIDATED
+  - IMPLEMENTED_VALIDATED
+  - AWAITING_HUMAN_ACCEPTANCE
+  - IN_PROGRESS
+  - CANDIDATE_FOR_REUSE
+  - PLANNED
+  - BLOCKED
+  - EXTERNAL
+  - UNKNOWN
+
+repositories:
+  - id: magna-command-center
+    branch: main
+    head: 68981c8
+    status: IMPLEMENTED_VALIDATED
+    working_tree: dirty
+  - id: magna-enso
+    branch: sprint/05-policy-engine
+    head: 4d5c203
+    status: IN_PROGRESS
+    working_tree: untracked policy/, tests/, trace/evidence/ENSO-0005_LIGHT_CURVE.md
+    note: Sprint 5 source exists on isolated branch; IN_REVIEW; not accepted; not runtime-integrated.
+  - id: TRACE
+    branch: main
+    head: c6b4bbd
+    status: IMPLEMENTED_VALIDATED
+    working_tree: untracked proposed-governed-loop/
+
+pre_sgn_belt:
+  HAB-01: ACCEPTED_AND_VALIDATED
+  ATM-01: ACCEPTED_AND_VALIDATED   # some boundaries advisory
+  CSF-01: ACCEPTED_AND_VALIDATED
+  BRS-01: AWAITING_HUMAN_ACCEPTANCE  # implemented + validated; not accepted
+  MEM-01: IN_PROGRESS
+  NRV-01: IN_PROGRESS
+  SGN-01: BLOCKED
+  accepted_readiness: "3/6 (50%)"
+  code_plus_validation: "4/6 (66.7%)"
+
+hermes:
+  active_families: 0
+  total_families: 6
+  status: EXTERNAL
+  note: inert vendor baseline + provenance metadata only; not activation.
+
+readiness_metrics:
+  enso_accepted_sprints: "4/15 (26.7%)"
+  enso_verified_runtime_completion: "0.0%"
+  architecture_readiness: "8/12 (66.7%)"
+  ux_readiness: "6/10 (60%)"
+  environment_readiness: "2/7 (28.6%)"
+  release_readiness: "3/12 (25%)"
+  current_validation_coverage: "7/9 (77.8%)"
+
+validation:
+  command_center_frontend_build: pass
+  command_center_backend_pytest: "701 passed"
+  command_center_router: "65/65"
+  enso_unittest: "49 passed"
+  enso_pytest: "7 collection errors"
+  trace_backend_pytest: "6 passed"
+  trace_frontend_lint: pass
+  trace_frontend_build: "blocked: missing rollup optional binary"
+
+architecture_id_families:
+  - MAG-PRG
+  - MAG-EXP
+  - MAG-INT
+  - MAG-COG
+  - MAG-ORC
+  - MAG-GOV
+  - MAG-IDN
+  - MAG-HLX
+  - MAG-COS
+  - MAG-MEM
+  - MAG-TRC
+  - MAG-AGT
+  - MAG-TOL
+  - MAG-SEC
+  - MAG-OBS
+  - MAG-ENV
+
+change_control: Governed. Superseded entries are marked, never deleted. No repository was modified.

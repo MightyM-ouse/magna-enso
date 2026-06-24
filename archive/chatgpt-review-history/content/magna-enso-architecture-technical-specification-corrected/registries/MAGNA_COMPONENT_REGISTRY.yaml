@@ -1,0 +1,51 @@
+package: magna-enso-architecture-technical-specification-corrected
+document: MAGNA_COMPONENT_REGISTRY
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Full stable component IDs (Correction 6) with multi-dimensional status (Correction 5).
+  ID namespacing: requirement families MAG-SEC-/MAG-TRC- ALSO exist as architecture families;
+  to keep IDs globally unique, SECURITY and TRACE *components* use a 200-block (MAG-SEC-2NN, MAG-TRC-2NN),
+  never colliding with MAG-SEC-001..008 / MAG-TRC-001..006 requirement IDs.
+  MAG-UX-* are requirement-only; UX components are MAG-EXP-*. Hermes inactive (0/6). SGN-01 BLOCKED.
+
+components:
+  - { id: MAG-PRG-001, name: "Program/evolution frame", origin: target, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: NOT_APPLICABLE }
+  - { id: MAG-EXP-001, name: "Ten-tab shell (frozen)", origin: magna-command-center, source: "frontend/src/app/App.tsx; navigationRoutes.ts", implementation_status: VALIDATED, acceptance_status: ACCEPTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-EXP-002, name: "Approval/recovery + state surfaces + Presence", origin: magna-command-center, implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-INT-001, name: "API surface (FastAPI routers)", origin: magna-command-center, source: "backend/app/main.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-INT-002, name: "Command interpreter (Enso)", origin: target, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-COG-001, name: "CSF to BRS routing", origin: magna-command-center, source: "routes_local_model.py; intent_router.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-ORC-001, name: "Event bus (durable, replay)", origin: magna-command-center, source: "core/event_bus.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-ORC-002, name: "Workflow engine", origin: magna-command-center, source: "core/workflow_engine.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-ORC-003, name: "Orchestration runtime", origin: magna-command-center, source: "core/orchestration_runtime.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-GOV-001, name: "Capability gate (single chokepoint)", origin: magna-enso, source: "gate.CapabilityGate.authorize", implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECISION_REQUIRED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT, note: "harness-level; runtime completeness TARGET; R-06 OPEN" }
+  - { id: MAG-GOV-002, name: "Policy evaluator (default-deny)", origin: magna-enso, source: "evaluator.PolicyEvaluator; schema.load_policy_records", implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-GOV-003, name: "Approval coordinator + HumanDecisionProvider", origin: magna-enso, source: "approval.ApprovalCoordinator.consume", implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-GOV-004, name: "Risk classification + authorization context", origin: magna-command-center, source: "services/risk_policy_engine; services/authorization_service", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: REPRODUCIBLE, reuse_status: DECISION_REQUIRED }
+  - { id: MAG-GOV-005, name: "Approval engine (durable lifecycle)", origin: magna-command-center, source: "core/approval_engine.ApprovalEngine", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: REPRODUCIBLE, reuse_status: DECISION_REQUIRED }
+  - { id: MAG-IDN-001, name: "Identity / CSF truth registry", origin: magna-command-center, implementation_status: VALIDATED, acceptance_status: FROZEN, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR, note: "CSF Ollama capability-truth drift requires governed correction (ADR-R7)" }
+  - { id: MAG-HLX-001, name: "HELIX doctrine/observability surface (read-only)", origin: magna-command-center, implementation_status: UNKNOWN, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: NARRATIVE, reuse_status: DECISION_REQUIRED, note: "executable runtime scope beyond docs is PLANNED/UNKNOWN; see HELIX_VERSIONING_OPTIONS.md" }
+  - { id: MAG-COS-001, name: "Cosmos ratified chronicle", origin: magna-command-center, implementation_status: PARTIAL, acceptance_status: ACCEPTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: DECISION_REQUIRED }
+  - { id: MAG-MEM-001, name: "SQLite/SQLModel persistence", origin: magna-command-center, source: "db/models.py; repositories.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-MEM-002, name: "Governed working memory (draft/persist/discard)", origin: target, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION, note: "MEM-01 pending" }
+  - { id: MAG-OBS-001, name: "Runtime observability + replay + WS dispatcher", origin: magna-command-center, source: "core/runtime_observability.py; websocket_dispatcher.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-AGT-001, name: "Local model adapter (Ollama)", origin: magna-command-center, source: "services/ollama_service.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-AGT-002, name: "Cloud review adapter (env-gated, consent)", origin: magna-command-center, source: "services/cloud_review_service.py", implementation_status: VALIDATED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: REPRODUCIBLE, reuse_status: REUSE_AFTER_REFACTOR }
+  - { id: MAG-TOL-001, name: "Tool/capability adapter port", origin: target, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECISION_REQUIRED, evidence_status: PARTIAL, reuse_status: DECISION_REQUIRED }
+  - { id: MAG-TOL-002, name: "Hermes-derived capabilities", origin: hermes, implementation_status: EXTERNAL, acceptance_status: NOT_APPLICABLE, decision_status: DECISION_REQUIRED, evidence_status: NARRATIVE, reuse_status: HISTORICAL_EVIDENCE_ONLY, active_families: "0/6", note: "INACTIVE; see HERMES_DERIVED_CAPABILITY_PLAN.md" }
+  - { id: MAG-SEC-201, name: "Canonical invocation fingerprint", origin: magna-enso, source: "canonical.build_fingerprint", implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT }
+  - { id: MAG-SEC-202, name: "Secure audit sink (0600, hash-chain JSONL)", origin: magna-enso, source: "audit.SecureAuditSink", implementation_status: PARTIAL, acceptance_status: IN_REVIEW, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: EXTRACT_SHARED_COMPONENT, note: "integrity-detecting, NOT tamper-proof" }
+  - { id: MAG-SEC-203, name: "Privacy/secrets boundary (redaction, no secrets in evidence)", origin: target, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: NARRATIVE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-TRC-201, name: "TRACE engineering-plane instance + Observatory", origin: TRACE+magna-enso, implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: REUSE_UNCHANGED, note: "effectiveness NOT established; UI build not reproducible" }
+  - { id: MAG-TRC-202, name: "Cross-plane runtime traceability contract + verifier", origin: target, implementation_status: NOT_STARTED, acceptance_status: NOT_SUBMITTED, decision_status: PROPOSED, evidence_status: NONE, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+  - { id: MAG-ENV-001, name: "Local environments model", origin: target, implementation_status: PARTIAL, acceptance_status: NOT_SUBMITTED, decision_status: DECIDED, evidence_status: PARTIAL, reuse_status: REIMPLEMENT_FROM_SPECIFICATION }
+
+sgn:
+  id: SGN-01
+  implementation_status: BLOCKED
+  acceptance_status: NOT_APPLICABLE
+  note: "Broad command intelligence; blocked within canonical Command Center scope."
+
+change_control: Governed. Every component has a full ID + status dimensions. Hermes inactive. Nothing deleted.

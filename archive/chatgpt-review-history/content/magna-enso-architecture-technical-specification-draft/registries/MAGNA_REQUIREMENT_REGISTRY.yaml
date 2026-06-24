@@ -1,0 +1,282 @@
+package: magna-enso-architecture-technical-specification-draft
+document: MAGNA_REQUIREMENT_REGISTRY
+status: DRAFT_FOR_HUMAN_REVIEW
+authority_level: SUBORDINATE_DRAFT
+date: "2026-06-21"
+note: >-
+  Stable requirement registry. Every requirement has evidence or is marked PROPOSED.
+  No sprint numbers assigned. No requirement is marked human-accepted.
+
+functional:
+  - id: MAG-FR-001
+    title: Command interpretation to structured intent; no privilege from payload
+    arch: MAG-INT
+    status: PLANNED
+    evidence: "evidence-completion/03"
+  - id: MAG-FR-002
+    title: Bounded cognitive routing (CSF to BRS pattern)
+    arch: MAG-COG
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/03,04"
+  - id: MAG-FR-003
+    title: Single capability gate, default-deny
+    arch: MAG-GOV
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-FR-004
+    title: approval_required HOLD via HumanDecisionProvider; absent provider denies
+    arch: MAG-GOV
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-FR-005
+    title: Canonical SHA-256 invocation fingerprint, single-use
+    arch: MAG-SEC
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-FR-006
+    title: Durable event lineage
+    arch: MAG-ORC
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/03,07"
+  - id: MAG-FR-007
+    title: Execute only permitted actions via workflow
+    arch: MAG-ORC
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/03"
+  - id: MAG-FR-008
+    title: Orchestration runtime
+    arch: MAG-ORC
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/03"
+  - id: MAG-FR-009
+    title: Provider-neutral model adapters
+    arch: MAG-AGT
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/03"
+  - id: MAG-FR-010
+    title: Tool/capability adapters behind the gate
+    arch: MAG-TOL
+    status: DECISION_REQUIRED
+    evidence: "evidence-completion/05"
+  - id: MAG-FR-011
+    title: Identity truthful self-model surface
+    arch: MAG-IDN
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/02"
+  - id: MAG-FR-012
+    title: HELIX read-only doctrine integration
+    arch: MAG-HLX
+    status: PLANNED
+    evidence: "evidence-completion/02"
+  - id: MAG-FR-013
+    title: Cosmos ratification (propose then Vinay ratifies)
+    arch: MAG-COS
+    status: PLANNED
+    evidence: "evidence-completion/02"
+  - id: MAG-FR-014
+    title: Governed memory; draft persistence is an approval
+    arch: MAG-MEM
+    status: PLANNED
+    evidence: "evidence-completion/02"
+  - id: MAG-FR-015
+    title: Replay/recover from append-only log
+    arch: MAG-OBS
+    status: IN_PROGRESS
+    evidence: "evidence-completion/03,05"
+  - id: MAG-FR-016
+    title: Frozen ten-tab shell surfaces
+    arch: MAG-EXP
+    status: IMPLEMENTED_VALIDATED
+    evidence: "evidence-completion/03"
+  - id: MAG-FR-017
+    title: Reversibility / draft discard
+    arch: MAG-MEM
+    status: PLANNED
+    evidence: "evidence-completion/05"
+
+non_functional:
+  - id: MAG-NFR-001
+    title: Single-user, local-first
+    arch: MAG-PRG
+    status: PLANNED
+    evidence: "evidence-completion/02,03"
+  - id: MAG-NFR-002
+    title: Fail-closed on any failure or ambiguity
+    arch: MAG-GOV
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-NFR-003
+    title: Replay-safe deterministic recovery; resting default-deny
+    arch: MAG-OBS
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-NFR-004
+    title: Provider/worker replaceability
+    arch: MAG-AGT
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/03"
+  - id: MAG-NFR-005
+    title: Performance budget (shell, gate latency)
+    arch: MAG-OBS
+    status: PROPOSED
+    evidence: "PROPOSED - no current budget; MCC bundle warning 1.85MB (evidence-completion/08)"
+  - id: MAG-NFR-006
+    title: Local resource constraints
+    arch: MAG-ENV
+    status: PROPOSED
+    evidence: "PROPOSED"
+  - id: MAG-NFR-007
+    title: Modularity - no cognitive monolith
+    arch: MAG-PRG
+    status: PLANNED
+    evidence: "human-owner principle"
+  - id: MAG-NFR-008
+    title: Minimal necessary context
+    arch: MAG-SEC
+    status: PLANNED
+    evidence: "evidence-completion/07"
+
+security:
+  - id: MAG-SEC-001
+    title: Default-deny capability control
+    arch: MAG-GOV
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-SEC-002
+    title: Secure audit file (0600, owner/regular/symlink checks)
+    arch: MAG-SEC
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-SEC-003
+    title: Integrity-detecting hash-chain (NOT tamper-proof)
+    arch: MAG-SEC
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-SEC-004
+    title: No secrets in TRACE/evidence; hash redaction
+    arch: MAG-SEC
+    status: PLANNED
+    evidence: "evidence-completion/07"
+  - id: MAG-SEC-005
+    title: Explicit local/cloud consent
+    arch: MAG-SEC
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/03"
+  - id: MAG-SEC-006
+    title: No self-approval; human authority for approvals
+    arch: MAG-GOV
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-SEC-007
+    title: Monotonic expiry; clock rollback denies
+    arch: MAG-SEC
+    status: IN_PROGRESS
+    evidence: "evidence-completion/05"
+  - id: MAG-SEC-008
+    title: No capability bypass / single chokepoint (completeness TARGET, R-06 OPEN)
+    arch: MAG-SEC
+    status: PLANNED
+    evidence: "evidence-completion/05 (R-06 OPEN)"
+
+ux:
+  - id: MAG-UX-001
+    title: Frozen ten-tab shell
+    arch: MAG-EXP
+    status: IMPLEMENTED_VALIDATED
+    evidence: "evidence-completion/03"
+  - id: MAG-UX-002
+    title: Approval & recovery surfaces
+    arch: MAG-EXP
+    status: IMPLEMENTED_VALIDATED
+    evidence: "evidence-completion/08"
+  - id: MAG-UX-003
+    title: Loading/empty/error states
+    arch: MAG-EXP
+    status: IN_PROGRESS
+    evidence: "evidence-completion/08 (uneven)"
+  - id: MAG-UX-004
+    title: Accessibility WCAG 2.1 AA target
+    arch: MAG-UX
+    status: PROPOSED
+    evidence: "PROPOSED - no current a11y evidence (evidence-completion/08)"
+  - id: MAG-UX-005
+    title: Desktop responsiveness breakpoints
+    arch: MAG-UX
+    status: PROPOSED
+    evidence: "PROPOSED (evidence-completion/08)"
+  - id: MAG-UX-006
+    title: Offline/degraded behavior
+    arch: MAG-EXP
+    status: PLANNED
+    evidence: "evidence-completion/03"
+  - id: MAG-UX-007
+    title: Performance budget for shell (address 1.85MB bundle)
+    arch: MAG-UX
+    status: PROPOSED
+    evidence: "evidence-completion/08"
+
+trace:
+  - id: MAG-TRC-001
+    title: Engineering-plane artifacts per task
+    arch: MAG-TRC
+    status: IMPLEMENTED_VALIDATED
+    evidence: "evidence-completion/06"
+  - id: MAG-TRC-002
+    title: Runtime-plane fact emission (digested/signed)
+    arch: MAG-TRC
+    status: PLANNED
+    evidence: "evidence-completion/06,07"
+  - id: MAG-TRC-003
+    title: Cross-plane schema; verification_status defaults unverified
+    arch: MAG-TRC
+    status: PROPOSED
+    evidence: "evidence-completion/07"
+  - id: MAG-TRC-004
+    title: Independent verifier; no self-certification
+    arch: MAG-TRC
+    status: PLANNED
+    evidence: "evidence-completion/06,07"
+  - id: MAG-TRC-005
+    title: Evidence reproducibility (raw output, digests)
+    arch: MAG-TRC
+    status: IN_PROGRESS
+    evidence: "evidence-completion/06 (partial)"
+  - id: MAG-TRC-006
+    title: Privacy classes carried in evidence
+    arch: MAG-TRC
+    status: PLANNED
+    evidence: "evidence-completion/07"
+
+operational:
+  - id: MAG-OPS-001
+    title: Four environments defined
+    arch: MAG-ENV
+    status: PLANNED
+    evidence: "evidence-completion/08"
+  - id: MAG-OPS-002
+    title: Backup/restore for Local Production
+    arch: MAG-ENV
+    status: PLANNED
+    evidence: "evidence-completion/10"
+  - id: MAG-OPS-003
+    title: Rollback (branch discard / restore+replay)
+    arch: MAG-ENV
+    status: PLANNED
+    evidence: "evidence-completion/10"
+  - id: MAG-OPS-004
+    title: Release artifact + signed acceptance (tags are not releases)
+    arch: MAG-ENV
+    status: PLANNED
+    evidence: "evidence-completion/10"
+  - id: MAG-OPS-005
+    title: Observability/replay/recovery operations
+    arch: MAG-OBS
+    status: CANDIDATE_FOR_REUSE
+    evidence: "evidence-completion/03"
+  - id: MAG-OPS-006
+    title: Dependency policy / cloud-data consent governance
+    arch: MAG-SEC
+    status: PLANNED
+    evidence: "evidence-completion/13 gate 9"
+
+change_control: Governed. PROPOSED marks unevidenced items. No sprint numbers. No human acceptance granted.
