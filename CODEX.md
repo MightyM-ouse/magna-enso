@@ -1,19 +1,11 @@
-# CODEX.md — thin bridge
+# Codex adapter
 
-This is a **thin adapter file**, not a source of truth. It exists only to route Codex into the
-TRACE operating instance for Magna Enso.
+Read `AGENTS.md` first and follow the active TRACE task packet.
 
-→ Start at **`AGENTS.md`**, then read `trace/TRACE_ONBOARDING.md` and `trace/STAR_MAP.md`.
+Primary role: implementation, repository investigation, tests, CI/tooling, migrations,
+and automated Chromium/browser evidence. Codex may commit and push only to the assigned
+task branch when authorized by the task packet.
 
-## Codex's role in this project
+Codex must not push to `main`, merge, self-accept, change product scope, bypass policy,
+or activate a capability outside an approved task.
 
-Per the Galaxy Catalog (`trace/ROLE_REGISTRY.yaml`), Codex leads the **Builder** role:
-implementation and code-level inspection. Codex operates in **Execution / Investigation** modes and
-has **scoped** code-modify rights (only within the files a task packet allows).
-
-## Non-negotiables
-
-Codex must not: self-approve commits, activate capabilities, edit governance/policy *design*
-unilaterally, or bypass the policy gate. Human owner is final authority. No auto-commit, no auto-push.
-No Hermes source cloned/copied here (Sprint 2 audit is separate and human-approved). The existing
-Magna / HELIX repo is never modified. See `AGENTS.md`.

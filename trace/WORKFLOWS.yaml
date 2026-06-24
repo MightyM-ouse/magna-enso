@@ -1,54 +1,43 @@
-# WORKFLOWS.yaml — Orbital Paths (Magna Enso)
-# Governed movement through work states. Source: ../planning/TRACE_ADOPTION_PLAN_FOR_MAGNA_ENSO.md
-# Modes may switch dynamically within one task (same Task ID; mode history preserved).
-
 modes:
   discovery:
-    purpose: "Configure/plan: establish context and produce/extend TRACE artifacts."
-    flow: [initialize, read_available_files, ask_only_missing_questions, produce_artifacts, validate_readiness]
-    expected_output: [plan_or_artifacts, decisions_logged]
-
+    flow: [verify_repository, identify_task, route_context, resolve_missing_information, propose]
+    outputs: [findings, options, decisions_required]
   investigation:
-    purpose: "Find root cause before changing anything."
-    flow: [observe_symptom, route_context, gather_evidence, build_hypotheses, validate_hypotheses, identify_root_cause, recommend_next]
-    expected_output: [symptom, hypotheses_with_evidence, root_cause_confidence, recommended_action, should_switch_to_execution]
-
+    flow: [preflight, reproduce, gather_evidence, test_hypotheses, identify_root_cause]
+    outputs: [evidence, root_cause, confidence, recommendation]
   execution:
-    purpose: "Implement a scoped change."
-    flow: [confirm_goal, load_context_route, inspect_current_state, implement_change, run_checks, prepare_evidence, update_status]
-    expected_output: [implementation_summary, files_changed, validation_results, risks, light_curve]
-
+    flow: [preflight, confirm_scope, implement, validate, capture_evidence, push_task_branch]
+    outputs: [changes, checks, evidence, draft_pull_request]
   review:
-    purpose: "Assess proposed changes or evidence."
-    flow: [inspect_task_packet, inspect_changed_files, inspect_evidence, assess_risk, recommend]
-    expected_output: [findings, risk_classification, recommendation]   # approve / reject / follow-up
-
+    flow: [verify_scope, inspect_diff, inspect_evidence, assess_risk, issue_verdict]
+    outputs: [findings, verdict, residual_risk]
   mixed:
-    purpose: "Realistic engineering loop across modes."
-    flow: [investigate, execute, review, close]
-    expected_output: [mode_history, evidence_chain, final_status]
+    flow: [discovery, investigation, execution, review]
+    outputs: [mode_history, evidence_chain, final_status]
 
-dynamic_switching:
-  same_task_id: true
-  preserve: [mode_history, evidence_chain, context_route_changes, status_updates]
-
-gates:
-  # Hard human-approval gates (frozen Sprint 0). These MAY block.
-  before_commit: human_approval_required
-  before_push: human_approval_required
-  before_capability_activation: human_approval_required
-  before_memory_write: human_approval_required
-  before_skill_activation: human_approval_required
-  before_network_exposure: human_approval_required
-  before_dependency_change: human_approval_required
+git:
+  direct_push_main: forbidden
+  force_push: forbidden
+  shared_mutable_agent_branch: forbidden
+  assigned_task_branch_commit: task_packet_authorized
+  assigned_task_branch_push: task_packet_authorized
+  pull_request: required
+  merge_method: squash
+  merge_authority: product_owner
+  resolve_review_conversations: required
 
 evidence:
-  every_meaningful_task: "light_curve"   # written to trace/evidence/
-  levels: [light, standard, full]
-  merge_to_main: "requires human-reviewed review-package"
+  task_packet: required
+  light_curve: required_for_meaningful_work
+  exact_failures_visible: true
+  large_raw_outputs: github_actions_artifact
+  curated_outputs: repository
 
 closure_requires:
-  - star_map_updated
-  - light_curve_written
-  - material_decisions_logged_to_event_horizon
-  - human_approval_for_material_actions
+  - acceptance_criteria_accounted_for
+  - checks_recorded
+  - light_curve_updated
+  - material_decisions_logged
+  - independent_review_when_required
+  - product_owner_merge_or_explicit_rejection
+

@@ -1,39 +1,41 @@
-# Light Curve — Evidence Package Template
+# TRACE Light Curve
 
-> A Light Curve is durable, reviewable proof of work. Every meaningful task writes one into
-> `trace/evidence/`. Naming: `trace/evidence/ENSO-NNNN_LIGHT_CURVE.md`.
+Task ID:
+GitHub Issue / PR:
+Commit SHA:
+Mode history:
+Evidence level: Light | Standard | Full
+Date:
+Workers and roles:
 
-```md
-# Light Curve — ENSO-NNNN
-Task ID: ENSO-NNNN
-Mode History: <e.g. investigation → execution → review>
-Evidence Level: <Light | Standard | Full>
-Date: YYYY-MM-DD
-Worker(s): <role/worker>
+## Objective and scope
 
-Goal:
+## Context routes and sources inspected
 
-Context Route Used:           # which CELESTIAL_INDEX area(s)
-Files Inspected:
-Files Changed:                # "none" for non-code tasks
-Commands Run:                 # "none" if not applicable
-Validation Results:           # Spectrometer checklist results; real, not estimated
+## Files changed
 
-Findings:
-Risks:                        # link R-<id> where relevant
-Decisions Made:               # link EH-<id> where relevant
-Final Status:                 # in_review | needs_changes | approved (human)
-Next Steps:
+## Commands and validation
 
-Human Approval:               # name + date, or "pending"
-```
+| Command/check | Environment/tool version | Result | Notes/artifact |
+|---|---|---|---|
 
-## Honest data contract
-- What changed / shipped must be **real**. Any token/cost/effort numbers are **approximate** and labeled so.
-- Governance evidence (no policy bypass, no public listener, no silent memory write, etc.) must be shown,
-  not asserted — include the test/observation that demonstrates it.
+## Acceptance criteria
 
-## Evidence by mode
-- **Investigation:** symptom, hypotheses, evidence for/against, root-cause confidence, recommended fix.
-- **Execution:** implementation summary, files changed, tests run, risks.
-- **Review:** findings, risk level, approval recommendation.
+| Criterion | Result | Evidence |
+|---|---|---|
+
+## Findings, failures, skips, and limitations
+
+## Traceability
+
+Requirements/features:
+Risks:
+Decisions:
+
+## Review verdict
+
+Recommendation: ACCEPT | CORRECTIONS_REQUIRED | REJECT | BLOCKED
+Independent reviewer:
+Product Owner functional acceptance:
+Merge/release status:
+

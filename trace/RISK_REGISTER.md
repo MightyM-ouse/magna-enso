@@ -1,7 +1,6 @@
 # RISK_REGISTER.md — Magna Enso (operating instance)
 
-> Live, in-repo risk tracker. The canonical detail cards (mitigations, owners, links) live in
-> `../planning/MAGNA_ENSO_RISK_REGISTER.md`. This file mirrors current status and is updated each sprint.
+> Canonical in-repository risk tracker. Risks must link to requirements, decisions, tasks, tests, and evidence where applicable.
 > Severity: `LOW · MEDIUM · HIGH · CRITICAL` · Status: `OPEN · MITIGATED · ACCEPTED · CLOSED · WATCH`.
 
 ## Risk Summary
@@ -12,7 +11,7 @@
 | R-02 | License / dependency / ToS | HIGH | MEDIUM | OPEN | Antigravity + Human | Sprint 2/4 |
 | R-03 | Trademark / branding | MEDIUM | MEDIUM | WATCH | Human | Charter §2; brand-assets |
 | R-04 | Cloud / provider creep | HIGH | MEDIUM | OPEN | Antigravity | Charter §6; Sprint 5 |
-| R-05 | Public exposure | CRITICAL | LOW | OPEN | Antigravity + Human | Sprint 10/11 |
+| R-05 | Unauthorized public runtime/network exposure | CRITICAL | LOW | OPEN | Antigravity + Human | EH-0019; runtime work |
 | R-06 | Policy bypass | CRITICAL | MEDIUM | OPEN | Codex + Antigravity | Sprint 3/5 |
 | R-07 | Prompt-injection persistence | HIGH | MEDIUM | OPEN | Antigravity + Grok | Sprint 8/11 |
 | R-08 | Silent memory mutation | HIGH | LOW | OPEN | Codex + Antigravity | Sprint 8 |
@@ -21,8 +20,9 @@
 | R-11 | Fork maintenance | MEDIUM | HIGH | WATCH | Codex | Sprint 4; EH-0005A |
 | R-12 | Two-codebase complexity | MEDIUM | MEDIUM | WATCH | Claude + Codex | Sprint 4 |
 | R-13 | Overengineering | MEDIUM | HIGH | WATCH | Claude | All sprints |
-| R-14 | Scope creep into Satori/Kensho | HIGH | MEDIUM | OPEN | Claude + Human | Roadmap; EH-0009 |
+| R-14 | Scope creep across stage repositories | HIGH | MEDIUM | OPEN | System Architect + Human | EH-0009; EH-0017 |
 | R-15 | UI/E2E worker feasibility | MEDIUM | MEDIUM | OPEN | Codex + Human | Sprint 13/15; EH-0005B |
+| R-16 | Public source leaks secrets, personal data, or sensitive evidence | HIGH | LOW | MITIGATED | All workers | EH-0019; GOV-001 |
 
 ## Sprint 1 note
 
@@ -80,3 +80,7 @@ Risk posture after Sprint 4 acceptance:
 - R-11 (fork maintenance) remains **WATCH**. This is not a full fork; it is a selective vendor provenance baseline.
 - EH-0005B remains **PROPOSED**; Hermes Agent not activated.
 - Sprint 5 remains **NOT STARTED**.
+
+## GOV-001 note
+
+The source repository is public under EH-0019. This does not close R-05, which concerns runtime exposure. R-16 is mitigated by protected `main`, task-scoped PRs, `.gitignore`, Gitleaks, curated evidence, Actions artifacts for large/raw output, and explicit prohibition on secrets, cookies, browser profiles, and personal data. The initial Gitleaks 8.30.1 history and working-tree scans both passed with exit 0 on 2026-06-24.

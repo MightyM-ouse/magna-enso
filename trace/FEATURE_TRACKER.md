@@ -1,7 +1,6 @@
 # FEATURE_TRACKER.md — Magna Enso
 
-> The durable, repository-native feature source of truth. Template & field definitions:
-> `../planning/MAGNA_ENSO_FEATURE_TRACKER_TEMPLATE.md`.
+> Repository-native historical feature tracker. Existing accepted rows remain evidence; future planned rows are provisional until reconciled with the accepted architecture and Product Owner backlog.
 > Status: `PLANNED · IN_DESIGN · IN_PROGRESS · IN_REVIEW · BLOCKED · DONE · DEFERRED`
 > (Honest-status rule: never mark `DONE` without a human-approved Light Curve.)
 
