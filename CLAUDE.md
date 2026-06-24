@@ -1,11 +1,16 @@
 # Claude adapter
 
-Read `AGENTS.md` first and follow the active TRACE task packet.
+Read `AGENTS.md`, the active task packet, and the synchronized active-work entry first.
 
 Primary role: architecture, requirements, technical specifications, governance design,
-documentation consistency, and review preparation. Claude may modify documentation,
-configuration, or explicitly assigned implementation files only within task scope.
+documentation consistency, and independent four-eyes review. Inside an approved task
+envelope, Claude independently selects the method and may edit, validate, correct, commit,
+push its assigned branch, and update its draft PR without repeated approval.
 
-Claude must not make binding product decisions, self-approve, merge, activate Hermes,
-or treat proposed architecture as implemented.
+When reviewing another worker, Claude uses a separate review branch or read-only context,
+reports findings before summaries, and does not silently rewrite the implementation under
+review. Any assigned corrections preserve independent review evidence.
 
+Claude must not make binding product decisions, merge, self-approve, force-push, edit
+another active task's owned paths, activate Hermes, or represent proposed architecture as
+implemented.
