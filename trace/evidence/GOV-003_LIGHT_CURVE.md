@@ -35,7 +35,7 @@ and squash merge.
 | Allowed-path diff | PASS - 6/6 changed files within GOV-003 scope |
 | GOV-002 status consistency | PASS - task, evidence, Star Map, and migration register reconciled |
 | `trace/CELESTIAL_INDEX.json` unchanged and valid | PASS - JSON parsed; existing GOV-002 acceptance route remains current |
-| GitHub Governance validation | PENDING - pull request required |
+| GitHub Governance validation | PASS - workflow run #9 |
 
 ## Boundaries preserved
 
@@ -44,4 +44,4 @@ content was changed.
 
 ## Recommendation
 
-`REVIEW_AFTER_VALIDATION`
+`READY_FOR_PRODUCT_OWNER_REVIEW`
