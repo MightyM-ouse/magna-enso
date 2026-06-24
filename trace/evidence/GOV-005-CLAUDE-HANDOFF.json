@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "task": {
+    "id": "GOV-005",
+    "status": "INDEPENDENT_REVIEW_COMPLETE_CHANGES_REQUIRED",
+    "agent": "claude",
+    "role": "architecture_specification"
+  },
+  "provenance": {
+    "instruction_prepared_by": "ChatGPT / System Architect",
+    "instruction_approved_by": "Product Owner",
+    "reviewed_by": "ChatGPT / System Architect"
+  },
+  "repository_state": {
+    "branch": "claude/GOV-005-four-eyes-review",
+    "starting_commit": "2885f0bc62b7f5c941a1525d26eb0a97b51a6186",
+    "final_commit": null,
+    "pull_request": null
+  },
+  "synchronization": {
+    "verdict": "SYNC_PASS",
+    "checked_at": "2026-06-24T21:30:00+02:00",
+    "sources": [
+      "origin/main",
+      "PR #13",
+      "Issue #12",
+      "trace/STAR_MAP.md",
+      "trace/ACTIVE_WORK_REGISTRY.yaml",
+      "gh pr checks 13"
+    ],
+    "discrepancies": [
+      "PR #13 governance check passes but does not execute scripts/validate_multi_agent_governance.py (CF-1).",
+      "Recorded latest_known_commit/final_commit e7e0e07 is stale vs branch head 2885f0b (CF-2)."
+    ]
+  },
+  "outcome": {
+    "summary": "Independent four-eyes review of GOV-005 complete: design coherent and authority-preserving but not yet safely enforceable; 1 HIGH and 4 MEDIUM confirmed defects, verified controls, and residual risks recorded. Reviewer recommendation CHANGES_REQUIRED (advisory).",
+    "acceptance_criteria": [
+      { "name": "AC4 Product Owner authority explicit and non-delegable", "status": "PASS", "evidence": "trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md VC-1" },
+      { "name": "AC9 Cross-artifact status agreement", "status": "FAIL", "evidence": "trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md CF-3" },
+      { "name": "AC10 Automated validation enforced", "status": "FAIL", "evidence": "trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md CF-1" },
+      { "name": "AC11 No runtime/out-of-scope content", "status": "PASS", "evidence": "trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md VC-2" }
+    ]
+  },
+  "changes": [
+    { "path": "trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md", "purpose": "Findings-first independent four-eyes review evidence.", "ownership_expansion_reason": null },
+    { "path": "trace/evidence/GOV-005-CLAUDE-HANDOFF.md", "purpose": "Human-readable Claude review handoff.", "ownership_expansion_reason": null },
+    { "path": "trace/evidence/GOV-005-CLAUDE-HANDOFF.json", "purpose": "Machine-readable Claude review handoff.", "ownership_expansion_reason": null },
+    { "path": "trace/ACTIVE_WORK_REGISTRY.yaml", "purpose": "Register the Claude review task entry only (authorized review registration).", "ownership_expansion_reason": "Review registration is explicitly authorized by the review packet; only the GOV-005-CLAUDE entry was appended, the GOV-005 entry was not modified." }
+  ],
+  "downloads": [],
+  "validation": [
+    { "name": "PR governance check", "status": "PASS", "command": "gh pr checks 13", "evidence": "does not run the GOV-005 validator (CF-1)" },
+    { "name": "GOV-005 governance validator", "status": "SKIPPED", "command": "python3 scripts/validate_multi_agent_governance.py", "evidence": "PyYAML not installed in review environment; no dependency install permitted" },
+    { "name": "Governance JSON parse", "status": "PASS", "command": "python3 json.load", "evidence": "schema, handoff, celestial index" },
+    { "name": "Governance YAML parse", "status": "PASS", "command": "ruby -ryaml", "evidence": "active-work, workflows, roles, trace_config" },
+    { "name": "Whitespace/conflict markers", "status": "PASS", "command": "git diff --check main..head", "evidence": "exit 0" },
+    { "name": "Secret / private-path scan", "status": "PASS", "command": "grep over PR diff", "evidence": "no /Users/ path or key/token pattern" },
+    { "name": "Owned-path conformance", "status": "FAIL", "command": "changed-files vs writable_paths", "evidence": "2 files outside ownership (CF-5)" },
+    { "name": "Commit-pointer drift", "status": "FAIL", "command": "head vs latest_known_commit", "evidence": "2885f0b != e7e0e07 (CF-2)" },
+    { "name": "Status agreement", "status": "FAIL", "command": "packet/registry/handoff/STAR_MAP", "evidence": "3+ differing statuses (CF-3)" }
+  ],
+  "deviations": [
+    "Repository governance validator could not run locally (PyYAML absent; no install permitted); recorded SKIPPED and CI status used instead.",
+    "No correction applied to implementation-owned paths; per four-eyes rule, corrections recorded for ChatGPT to apply with assigned ownership."
+  ],
+  "impacts": {
+    "architecture": "No product architecture or runtime change; independent governance review only.",
+    "security": "Contract security is sound (Product Owner authority, approval-gating, inactive Hermes, no secrets), but enforcement is weakened until the validator gates the PR (CF-1).",
+    "integration": "GOV-005 precedes ARCH-001 (PR #9); ARCH-001 must resynchronize after merge.",
+    "residual_risk": "Until CF-1 is fixed, drift (CF-2/CF-3) can re-enter undetected; pure-file validation cannot verify git head or changed-file ownership."
+  },
+  "decisions_required": [
+    "Q1: Accept the one-time codex/ branch-namespace exception (disclosed in registry).",
+    "Q2: Require the GOV-005 validator in CI before merge, or merge with tracked fast-follow.",
+    "Q3: Choose the single canonical task-status source and cross-artifact mapping.",
+    "Product Owner merge decision for GOV-005."
+  ],
+  "recommended_next_action": "ChatGPT triages CF-1..CF-5 on the implementation branch and the Product Owner decides Q1-Q3 and merge; do not merge until CF-1 disposition and finding resolution are agreed."
+}

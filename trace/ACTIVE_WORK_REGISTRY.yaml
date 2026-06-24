@@ -85,3 +85,28 @@ active_tasks:
     integration_order: before_ARCH-001_resumes
     blocked_on: []
     handoff: trace/evidence/GOV-005_HANDOFF.json
+
+  - task_id: GOV-005-CLAUDE
+    agent: claude
+    role: architecture_specification
+    review_of: GOV-005
+    status: PUSHED_FOR_REVIEW
+    branch: claude/GOV-005-four-eyes-review
+    worktree: connected_github_isolated_branch
+    starting_commit: 2885f0bc62b7f5c941a1525d26eb0a97b51a6186
+    latest_known_commit: 2885f0bc62b7f5c941a1525d26eb0a97b51a6186
+    issue: 12
+    pull_request: pending_draft_review_pr
+    writable_paths:
+      - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+    read_only_dependencies:
+      - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+      - trace/tasks/GOV-005.md
+      - trace/tasks/GOV-005-CLAUDE-REVIEW.md
+    shared_paths: []
+    registry_note: "Review registration only (authorized by the GOV-005-CLAUDE-REVIEW packet); the GOV-005 entry above is not modified by Claude. trace/ACTIVE_WORK_REGISTRY.yaml is intentionally omitted from writable_paths to avoid undeclared overlap with GOV-005 ownership."
+    integration_order: review_targets_codex/GOV-005-multi-agent-governance_do_not_merge
+    blocked_on: []
+    handoff: trace/evidence/GOV-005-CLAUDE-HANDOFF.json
