@@ -29,6 +29,7 @@
 | EH-0017 | 2026-06-24 | Each Magna evolution stage uses a separate repository so any stage can be selected independently. Supersedes EH-0003. | ACCEPTED | Human owner |
 | EH-0018 | 2026-06-24 | The canonical stage spelling is **KENOSHA**. Earlier `Kensho` references are superseded. | ACCEPTED | Human owner |
 | EH-0019 | 2026-06-24 | The Enso source repository is public to enable repository rules on the current GitHub plan; runtime/network exposure remains local/LAN-only by default. | ACCEPTED | Human owner |
+| EH-0020 | 2026-06-24 | Approved task envelopes authorize bounded autonomous branch execution; synchronized parallel ownership, outcome-oriented instructions, standardized handoffs, System Architect review, and Product Owner-only merge are mandatory. | ACCEPTED | Human owner |
 
 ### EH-0012 — Git initialization at magna-enso/ (expanded)
 - Date: 2026-06-17
@@ -130,6 +131,33 @@
 - Status: ACCEPTED
 - Decided By: Human owner (Vinay)
 - Decision: The GitHub source repository is public. This does not authorize public listeners, tunnels, cloud execution, external messaging, or public runtime endpoints. Public-source security, secret scanning, provenance, and evidence-redaction controls are mandatory.
+
+### EH-0020 - Synchronized bounded multi-agent execution
+- Date: 2026-06-24
+- Status: ACCEPTED
+- Decided By: Human owner (Vinay)
+- Decision:
+  - ChatGPT must verify GitHub canonical and operational state before issuing any worker
+    instruction. Only `SYNC_PASS` permits execution.
+  - Codex, Claude, Antigravity, and a separately activated Hermes worker may execute in
+    parallel through unique tasks, branches, worktrees, ownership boundaries, dependencies,
+    and integration order.
+  - An approved task envelope authorizes routine investigation, implementation, validation,
+    correction, commit, push, draft-PR updates, and governed public task downloads without
+    repeated Product Owner approval.
+  - Personal/system access, credentials/private sources, paid services, privileged/global
+    changes, destructive operations, external effects, material scope/architecture changes,
+    risk acceptance, merge, and release remain Product Owner-gated.
+  - Instructions define precise outcomes and boundaries while workers independently select
+    methods and record rationale.
+  - Active task packets are immutable; amendments are separate and require resynchronization.
+  - Worker handoffs are human-readable and machine-readable for ChatGPT review.
+  - ChatGPT issues merge-readiness recommendations; only the Product Owner merges to `main`.
+- Supersession: Replaces only the blanket no-autonomous-execution and per-commit approval
+  portions of EH-0008, EH-0010, and EH-0012. Their human authority, safety, and no-direct-main
+  intent remains accepted. EH-0016 remains accepted and is expanded by this decision.
+- Impact: Enables controlled parallel delivery without granting self-approval, merge,
+  runtime activation, system access, or external-action authority.
 
 ## Notes
 
