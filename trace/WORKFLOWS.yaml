@@ -42,6 +42,7 @@ instruction_contract:
 parallel_execution:
   enabled: true
   unique_per_task: [task_id, branch, worktree, starting_commit, pull_request, accountable_worker]
+  branch_namespace: accountable_worker_or_approved_neutral_namespace
   writable_path_ownership: exclusive
   overlap_resolutions: [single_owner, sequential_phase, separate_amendment, product_owner_approved_reconciliation]
   dependencies_and_integration_order: required
