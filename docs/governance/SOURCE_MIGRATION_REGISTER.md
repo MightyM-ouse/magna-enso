@@ -11,8 +11,8 @@
 | Corrected diagram package | Accepted editable/visual input | Integrate curated sources in a dedicated PR |
 | Draft/correction ZIPs | Generated transport artifacts | Do not commit |
 | Raw render logs/scripts | Reproducible but noisy | Store as Actions artifacts when needed |
-| ChatGPT four-file project source | Canonical stable bootstrap exported from GitHub | Retain in GitHub and upload to ChatGPT project source |
-| Legacy seven-file ChatGPT source bundle | Redundant and partly stale; old `SKILL.md` is unrelated | Remove from active source after GOV-002 validation |
+| ChatGPT four-file project source | Canonical stable bootstrap exported from GitHub and active in ChatGPT | Retain and govern through GitHub |
+| Legacy seven-file ChatGPT source bundle | Superseded and removed from active project source after GOV-002 validation | Do not restore as active instructions |
 | Sprint 1-4 Light Curves | Historical accepted evidence | Retain unchanged |
 | Untracked Sprint 5 files | Unreviewed implementation | Review separately |
 
@@ -28,6 +28,6 @@
 | `CHATGPT_MENTOR_ROLE_AND_OPERATING_MODEL.md` | `CHATGPT.md` and `PROJECT_BOOTSTRAP.md` |
 | `CHATGPT_REVIEW_AND_NEXT_STEP_FORMAT.md` | TRACE evidence workflow and `RESPONSE_CONTRACT.md` |
 
-Nothing is deleted solely because it is redundant. The Product Owner removes legacy active
-project-source files only after the replacement package is uploaded and validated in a
-fresh conversation.
+GOV-002 completed on 2026-06-24. The Product Owner activated the four canonical replacement
+files, removed all seven legacy active files, validated the replacement in a fresh
+conversation, and squash-merged PR #5 as `af8c73a`.

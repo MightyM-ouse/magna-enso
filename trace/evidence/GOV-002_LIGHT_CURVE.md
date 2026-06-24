@@ -2,7 +2,7 @@
 
 ## Status
 
-`IMPLEMENTED_AWAITING_REVIEW`
+`ACCEPTED_COMPLETE`
 
 ## Scope
 
@@ -13,13 +13,13 @@ thin GitHub-first bootstrap and concise response contract.
 
 | Legacy source | Finding | Disposition |
 |---|---|---|
-| Existing `SKILL.md` | Unrelated generic frontend-design skill | Replace |
-| Agent-output usage prompt | Duplicates review instructions | Supersede |
-| Agent-output review template | Rigid and percentage-heavy; duplicates TRACE review | Supersede |
-| Mentor-template README | Describes the legacy bundle only | Replace |
-| Prompt response format | Requires oversized pasted prompts and stale local paths | Supersede |
-| Mentor operating model | Useful role/teaching rules already governed in GitHub | Consolidate |
-| Review/next-step format | Duplicates evidence and review rules; forces long output | Consolidate |
+| Existing `SKILL.md` | Unrelated generic frontend-design skill | Replaced |
+| Agent-output usage prompt | Duplicated review instructions | Superseded |
+| Agent-output review template | Rigid and percentage-heavy; duplicated TRACE review | Superseded |
+| Mentor-template README | Described the legacy bundle only | Replaced |
+| Prompt response format | Required oversized pasted prompts and stale local paths | Superseded |
+| Mentor operating model | Useful role/teaching rules already governed in GitHub | Consolidated |
+| Review/next-step format | Duplicated evidence and review rules; forced long output | Consolidated |
 
 Useful principles retained: Product Owner authority, senior-architect mentoring, evidence
 discipline, no invented state, worker boundaries, practical learning, and analogy-based
@@ -38,24 +38,30 @@ explanation.
 | Check | Result |
 |---|---|
 | `trace/CELESTIAL_INDEX.json` parse | PASS |
-| GitHub-source files vs upload-package files | 4/4 byte-identical |
-| Package file count | 4 files plus one directory entry |
-| ZIP integrity | PASS; no CRC errors |
-| ZIP hygiene | PASS; no macOS metadata or unexpected files |
-| Allowed-path branch diff | PASS; 10/10 files within GOV-002 scope |
-| GitHub Governance validation | PASS; workflow run 7 |
-| Legacy/stale active references in package | None; `frontend-design` appears only in removal guidance |
+| GitHub-source files vs upload-package files | PASS - 4/4 byte-identical |
+| Package file count | PASS - 4 files plus one directory entry |
+| ZIP integrity | PASS - no CRC errors |
+| ZIP hygiene | PASS - no macOS metadata or unexpected files |
+| Allowed-path branch diff | PASS - 10/10 files within GOV-002 scope |
+| GitHub Governance validation | PASS - workflow run 7 |
+| Legacy/stale active references in package | PASS - none |
 | SHA-256 | `73eef1a8ae93869ced186e4345292a45218351f0566102a842335257288a4bad` |
+| Fresh-conversation Product Owner validation | PASS - 2026-06-24 |
 
-The governance workflow includes the repository security and structural checks required by
-the accepted baseline. Product-source upload validation remains a Product Owner action.
+## Acceptance evidence
 
-## Limitations
+- Product Owner confirmed the four replacement files were active.
+- Product Owner confirmed the seven legacy files were removed.
+- The four validation questions produced acceptable GitHub-first responses.
+- PR #5 was squash-merged as `af8c73a1ccd4478d09dd9e52ef424d7ecf1bc769`.
+- Issue #4 closed as completed.
+- The task branch was deleted after merge.
 
-- The Product Owner must upload the package because ChatGPT project-source administration
-  is outside repository automation.
-- Legacy files are not deleted before replacement validation.
+## Residual risk
 
-## Recommendation
+No GOV-002 delivery risk remains. Future changes to project-source behavior must use a new
+governed task and preserve GitHub as the canonical changing source.
 
-`REVIEW_AFTER_VALIDATION`
+## Verdict
+
+`ACCEPTED_COMPLETE`
