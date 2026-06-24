@@ -53,6 +53,8 @@ review and Product Owner decision.
 ## Parallel ownership
 
 - Parallel agents use unique task IDs, branches, worktrees, starting commits, and PRs.
+- Branch namespaces identify the accountable worker (`chatgpt/`, `codex/`, `claude/`,
+  `antigravity/`, or an approved neutral task namespace); they are not generic tool labels.
 - Writable paths are exclusive while a task is active.
 - Dependencies, shared paths, designated owners, and integration order are recorded in
   `trace/ACTIVE_WORK_REGISTRY.yaml`.
