@@ -1,6 +1,6 @@
 version: 1
 canonical_repository: MightyM-ouse/magna-enso
-updated_at: "2026-06-24T21:45:00+02:00"
+updated_at: "2026-06-24T23:40:00+02:00"
 
 # CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
 # `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
@@ -175,3 +175,30 @@ active_tasks:
     integration_order: corrects_codex/GOV-005-multi-agent-governance_do_not_merge_independent_validator_antigravity
     blocked_on: []
     handoff: trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+
+  - task_id: GOV-005-ANTIGRAVITY-VALIDATION
+    agent: antigravity
+    role: independent_validator
+    validates: GOV-005-CLAUDE-CORRECTIONS
+    status: IN_PROGRESS
+    branch: antigravity/GOV-005-corrections-validation
+    worktree: connected_github_isolated_branch
+    starting_commit: bc5194e025f4f16da2c1ab867aed8e632258f147
+    latest_known_commit: bc5194e025f4f16da2c1ab867aed8e632258f147
+    issue: 12
+    pull_request: pending_draft_validation_pr
+    writable_paths:
+      - trace/reviews/GOV-005-ANTIGRAVITY-VALIDATION-REPORT.md
+      - trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.json
+      - trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.md
+      - trace/tasks/GOV-005-ANTIGRAVITY-VALIDATION.md
+    read_only_dependencies:
+      - trace/tasks/GOV-005-ANTIGRAVITY-VALIDATION.md
+      - trace/tasks/GOV-005-CLAUDE-CORRECTIONS.md
+      - trace/reviews/GOV-005-CLAUDE-CORRECTIONS-MATRIX.md
+      - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+      - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.md
+    shared_paths: []
+    integration_order: validates_claude/GOV-005-corrections_do_not_merge
+    blocked_on: []
+    handoff: trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.json
