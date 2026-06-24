@@ -14,8 +14,8 @@
   "repository_state": {
     "branch": "codex/GOV-005-multi-agent-governance",
     "starting_commit": "4afeb0ceec14262c8bbafd86f41a7734fac5e0ae",
-    "final_commit": null,
-    "pull_request": null
+    "final_commit": "e7e0e0798a6b40fcce9335abe7378b39141d10bc",
+    "pull_request": "https://github.com/MightyM-ouse/magna-enso/pull/13"
   },
   "synchronization": {
     "verdict": "SYNC_PASS",
