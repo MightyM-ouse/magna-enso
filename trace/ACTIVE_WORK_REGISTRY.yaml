@@ -51,6 +51,7 @@ active_tasks:
     role: system_architect_sme
     status: PUSHED_FOR_REVIEW
     branch: codex/GOV-005-multi-agent-governance
+    branch_namespace_exception: "Created by ChatGPT through a Codex-namespaced publishing adapter before GOV-005 established accountable-worker namespaces; retained to preserve the validated PR and must not be repeated."
     worktree: connected_github_isolated_branch
     starting_commit: 4afeb0ceec14262c8bbafd86f41a7734fac5e0ae
     latest_known_commit: e7e0e0798a6b40fcce9335abe7378b39141d10bc
@@ -73,6 +74,7 @@ active_tasks:
       - trace/templates/
       - trace/schemas/
       - trace/tasks/GOV-005.md
+      - trace/tasks/GOV-005-CLAUDE-REVIEW.md
       - trace/evidence/GOV-005_LIGHT_CURVE.md
       - scripts/validate_multi_agent_governance.py
     read_only_dependencies:
