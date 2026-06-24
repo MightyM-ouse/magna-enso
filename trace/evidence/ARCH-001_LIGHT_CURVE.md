@@ -35,8 +35,7 @@ without importing or rewriting architecture sources.
 
 - ARCH-SRC-01 corrected architecture/specification directory: exact logical identity
   recorded; contents unavailable
-- DIAG-SRC-01 corrected diagram ZIP: exact logical identity and reported checksum recorded;
-  bytes unavailable
+- DIAG-SRC-01 corrected diagram ZIP: attached; expected SHA-256 verified; structured index and curated validation inspected
 - GOV-SRC-01 accepted Sprint 3 design folder: exact logical identity recorded; contents
   unavailable
 - HELIX authority: separate repository/doctrine; exact referenced version unavailable
@@ -60,9 +59,10 @@ without importing or rewriting architecture sources.
 | Existing canonical architecture tree | PASS | Confirmed absent; architecture route remains `MIGRATION_PENDING` |
 | Routed GitHub source inventory | PASS | Governance, TRACE and inert Hermes paths inspected |
 | External architecture package access | BLOCKED | ARCH-SRC-01 unavailable in this session |
-| Corrected diagram ZIP access | BLOCKED | DIAG-SRC-01 unavailable; checksum not reverified |
+| Corrected diagram ZIP access | PASS | SHA-256 matches expected `04471f54baf64b23e96365ee1232ed6f1ab2ed0c859111845620fcc53dac4577` |
 | Sprint 3 local report access | BLOCKED | GOV-SRC-01 unavailable |
-| Content conflict comparison | BLOCKED | Requires missing package contents |
+| Diagram package assessment | PASS_WITH_LIMITATION | 25 diagram records authenticated; current/target claims require ARCH-SRC-01 and repository proof |
+| Content conflict comparison | BLOCKED | Normative comparison requires missing ARCH-SRC-01 contents |
 | Target structure proposal | PASS | Proposal only; no target import paths created |
 | Runtime/code changes | PASS | None |
 | Phase B execution | PASS | Not started; explicitly blocked |
@@ -95,5 +95,5 @@ without importing or rewriting architecture sources.
 `PHASE_A_NOT_COMPLETE`
 
 Repository discovery and migration design are prepared, but Phase A cannot complete until
-the Product Owner supplies ARCH-SRC-01 and DIAG-SRC-01 for exact inspection. Phase B remains
+the Product Owner supplies ARCH-SRC-01 for exact normative inspection. DIAG-SRC-01 is authenticated but not approved for import. Phase B remains
 blocked.
