@@ -5,7 +5,7 @@ Last governance review: 2026-06-24
 | Field | Current state |
 |---|---|
 | Repository | `MightyM-ouse/magna-enso` |
-| Accepted `main` baseline | `6c1a693` — GOV-001 accepted and squash-merged |
+| Accepted `main` baseline | `ea1fd10` - GOV-001 accepted, closed, and recorded |
 | Delivery state | Sprints 1-4 accepted; Sprint 4 inert provenance baseline only |
 | Sprint 5 | Untracked local `policy/`, `tests/`, and ENSO-0005 evidence; not accepted |
 | Policy engine | Selection and integration strategy open |
@@ -13,7 +13,8 @@ Last governance review: 2026-06-24
 | Hermes capabilities | Inactive; capability lab not yet authorized |
 | Architecture package | Corrected package accepted as migration input; repository integration pending |
 | Diagram package | Editable package prepared; repository integration pending |
-| TRACE | Applied instance exists; GOV-001 alignment in progress |
+| ChatGPT project source | GOV-002 thin GitHub-first replacement under review |
+| TRACE | Applied instance current; GOV-001 complete |
 | SGN-01 | Blocked |
 | Product authority | Product Owner |
 
@@ -23,19 +24,21 @@ Last governance review: 2026-06-24
 - `trace/evidence/ENSO-0002_LIGHT_CURVE.md`
 - `trace/evidence/ENSO-0003_LIGHT_CURVE.md`
 - `trace/evidence/ENSO-0004_LIGHT_CURVE.md`
+- `trace/evidence/GOV-001_LIGHT_CURVE.md`
 - Inert Hermes provenance metadata under `vendor/hermes/`
 
 ## Active work
 
-- GOV-001 completed: GitHub canonical-source and multi-agent governance merged; Issue #1 closed.
+- GOV-002: thin ChatGPT project source and response contract, Issue #4.
 
 ## Next gates
 
-1. Integrate accepted architecture/specification sources through a separate PR.
-2. Integrate curated editable diagrams through a separate PR.
-3. Replace redundant ChatGPT project sources with a thin GitHub bootstrap.
-4. Review the untracked Sprint 5 implementation independently; do not assume acceptance.
-5. Decide the first bounded Hermes local-model capability-lab scope before activation.
+1. Validate and upload the GOV-002 four-file project-source package; then remove legacy files.
+2. Validate multi-agent delivery readiness for ChatGPT, Codex, Claude, Antigravity, and Hermes.
+3. Integrate accepted architecture/specification sources through a separate PR.
+4. Integrate curated editable diagrams through a separate PR.
+5. Review the untracked Sprint 5 implementation independently; do not assume acceptance.
+6. Decide the first bounded Hermes local-model capability-lab scope before activation.
 
 ## Open decisions
 
@@ -43,4 +46,3 @@ Last governance review: 2026-06-24
 - Canonical policy-engine strategy.
 - Architecture open decisions recorded in the accepted package.
 - Hermes capability-lab task and containment contract.
-
