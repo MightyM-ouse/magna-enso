@@ -58,7 +58,7 @@ jobs:
 
       # CF-1 / NB-1: install the narrowly scoped, pinned governance dependency.
       - name: Install governance Python dependency
-        run: python3 -m pip install --user --require-hashes=false -r scripts/governance-requirements.txt
+        run: python3 -m pip install --user -r scripts/governance-requirements.txt
 
       # CF-1 / AC #1: run the substantive GOV-005 validator; it fails the job on a real
       # contract violation.
