@@ -76,3 +76,11 @@ Claude must independently inspect the policy for internal contradictions, bypass
 unsafe download authority, ownership deadlocks, task-amendment ambiguity, schema quality,
 and compatibility with Product Owner authority. Claude may commit review artifacts and
 proposed corrections only to a separate review branch. Product Owner merge remains pending.
+
+## Publication
+
+- Draft PR: `https://github.com/MightyM-ouse/magna-enso/pull/13`
+- Implementation commit at review-package creation:
+  `e7e0e0798a6b40fcce9335abe7378b39141d10bc`
+- Final publication metadata is intentionally recorded in a later evidence-only commit;
+  Issue #12 and PR #13 remain authoritative for the live branch head.
