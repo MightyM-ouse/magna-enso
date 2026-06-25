@@ -1,0 +1,45 @@
+{
+  "task_id": "REPO-001",
+  "agent": "Codex",
+  "branch": "codex/REPO-001-inventory-report",
+  "base_commit": "4afeb0ceec14262c8bbafd86f41a7734fac5e0ae",
+  "generated_at": "2026-06-25T21:13:49Z",
+  "outputs": [
+    "trace/reviews/REPO-001-INVENTORY-REPORT.md",
+    "trace/evidence/REPO-001-INVENTORY.json",
+    "trace/evidence/REPO-001-HANDOFF.md",
+    "trace/evidence/REPO-001-HANDOFF.json"
+  ],
+  "scope_confirmation": {
+    "runtime_code_modified": false,
+    "workflows_modified": false,
+    "gov_005_modified": false,
+    "gov_006_modified": false,
+    "arch_001_modified": false,
+    "existing_task_packets_modified": false,
+    "findings_corrected": false
+  },
+  "primary_findings": [
+    "trace/STAR_MAP.md is stale after GOV-004 merge.",
+    "PAR-001 task packets exist only on draft PR #20 branch.",
+    "GOV-005/GOV-006 open PR topology has nested dependencies.",
+    "Historical remote branches remain present.",
+    "Primary local checkout has out-of-scope GOV-005 untracked work."
+  ],
+  "decisions_required": [
+    "Authorize or defer status-surface cleanup.",
+    "Decide whether PR #20 should merge before parallel worker launch.",
+    "Set GOV-005/GOV-006/GOV-005-corrections sequencing.",
+    "Set historical branch retention policy.",
+    "Decide whether GOV-004 archive needs first-class routing."
+  ],
+  "validation": [
+    "git status -sb",
+    "git fetch origin chatgpt/PAR-001-parallel-agent-task-packets main",
+    "git show origin/chatgpt/PAR-001-parallel-agent-task-packets:trace/tasks/REPO-001-CODEX-INVENTORY.md",
+    "gh pr list --repo MightyM-ouse/magna-enso --state open",
+    "gh issue list --repo MightyM-ouse/magna-enso --state open",
+    "git ls-remote --heads origin",
+    "jq inspection of archive/chatgpt-review-history/_migration/GOV-004_SOURCE_MANIFEST.json"
+  ]
+}
