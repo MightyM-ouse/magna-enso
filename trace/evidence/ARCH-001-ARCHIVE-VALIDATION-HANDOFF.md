@@ -38,7 +38,6 @@ Validation checks were run programmatically on the files in `archive/chatgpt-rev
 
 ## Changes
 
-- [ARCH-001V-ANTIGRAVITY-ARCHIVE-VALIDATION.md](file:///Users/vinay/Projects/AI/Magna/magna-enso-arch001v/trace/tasks/ARCH-001V-ANTIGRAVITY-ARCHIVE-VALIDATION.md): Checked out the task packet from remote.
 - [ARCH-001-ARCHIVE-VALIDATION-REPORT.md](file:///Users/vinay/Projects/AI/Magna/magna-enso-arch001v/trace/reviews/ARCH-001-ARCHIVE-VALIDATION-REPORT.md): Validation findings report.
 - [ARCH-001-ARCHIVE-VALIDATION-HANDOFF.md](file:///Users/vinay/Projects/AI/Magna/magna-enso-arch001v/trace/evidence/ARCH-001-ARCHIVE-VALIDATION-HANDOFF.md): Markdown handoff.
 - [ARCH-001-ARCHIVE-VALIDATION-HANDOFF.json](file:///Users/vinay/Projects/AI/Magna/magna-enso-arch001v/trace/evidence/ARCH-001-ARCHIVE-VALIDATION-HANDOFF.json): JSON handoff.

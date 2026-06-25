@@ -38,7 +38,6 @@
     ]
   },
   "changes": [
-    { "path": "trace/tasks/ARCH-001V-ANTIGRAVITY-ARCHIVE-VALIDATION.md", "purpose": "Task packet.", "ownership_expansion_reason": null },
     { "path": "trace/reviews/ARCH-001-ARCHIVE-VALIDATION-REPORT.md", "purpose": "Findings report.", "ownership_expansion_reason": null },
     { "path": "trace/evidence/ARCH-001-ARCHIVE-VALIDATION-HANDOFF.md", "purpose": "Markdown handoff.", "ownership_expansion_reason": null },
     { "path": "trace/evidence/ARCH-001-ARCHIVE-VALIDATION-HANDOFF.json", "purpose": "JSON handoff.", "ownership_expansion_reason": null }
