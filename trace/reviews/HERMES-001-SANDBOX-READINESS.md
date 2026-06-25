@@ -3,7 +3,7 @@
 **Task ID:** HERMES-001  
 **Branch:** hermes/HERMES-001-sandbox-readiness  
 **Base:** main @ 4afeb0c (post-GOV-004)  
-**Commit:** 0d6e9666234725e40e60b21c360b8051e32bbc85  
+**Commit:** f24c74f29508d357a0bc16da08876b8e3fc887d4  
 **Mode:** Planning-only / design-only (no operational activation)  
 **Status:** Sandbox readiness design complete — no Hermes worker activated
 
@@ -87,4 +87,4 @@ This readiness report directly supports the future GOV-005 bounded-autonomy fram
 
 **Handoff Contract:** This concludes the planning-only execution. No Hermes operational worker was activated. All actions stayed within allowed outputs and prohibitions. Detailed analysis resides in the repository files above. Product Owner review and explicit activation decision required before any future Hermes use.
 
-**Final Chat Response Summary (per handoff contract):** Branch: `hermes/HERMES-001-sandbox-readiness` @ 0d6e9666234725e40e60b21c360b8051e32bbc85, Draft PR: (generated below), Readiness verdict: READY-FOR-REVIEW (planning-only), Evidence paths: listed above, Product Owner decisions required: approval of report + activation prerequisites.
+**Final Chat Response Summary (per handoff contract):** Branch: `hermes/HERMES-001-sandbox-readiness` @ f24c74f29508d357a0bc16da08876b8e3fc887d4, Draft PR: (generated below), Readiness verdict: READY-FOR-REVIEW (planning-only), Evidence paths: listed above, Product Owner decisions required: approval of report + activation prerequisites.

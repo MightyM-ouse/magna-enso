@@ -1,28 +1,21 @@
 {
-  "task_id": "HERMES-001",
-  "status": "planning_complete",
-  "readiness_verdict": "READY_FOR_REVIEW",
-  "operational_activation": "NOT_AUTHORIZED",
+  "task": "HERMES-001",
+  "type": "sandbox-readiness-design",
+  "mode": "planning-only",
+  "verdict": "READY_FOR_REVIEW",
+  "activation_status": "NOT_ACTIVATED",
   "branch": "hermes/HERMES-001-sandbox-readiness",
-  "commit_sha": "a1560bee0fc1451f9ff90a5859a4ec106c0afe79",
-  "base": "main@4afeb0c",
-  "evidence_files": [
+  "commit": "f24c74f29508d357a0bc16da08876b8e3fc887d4",
+  "allowed_files_produced": [
     "trace/reviews/HERMES-001-SANDBOX-READINESS.md",
     "trace/evidence/HERMES-001-HANDOFF.md",
     "trace/evidence/HERMES-001-HANDOFF.json"
   ],
-  "report_sections_completed": 10,
-  "prohibitions_observed": true,
-  "product_owner_decisions_required": [
-    "Approve this readiness report",
-    "Resolve Hermes capability-lab containment contract",
-    "Approve ARCH-001 first",
-    "Decide local inference provider for sandbox",
-    "Authorize any future operational Hermes task packet"
-  ],
-  "handoff_contract_fulfilled": true,
-  "no_operational_worker_activated": true,
-  "timestamp": "2026-06-25T23:50:00Z",
-  "generated_by": "Hermes (planning-only mode per task packet from chatgpt/PAR-001-parallel-agent-task-packets branch)",
-  "compliance_note": "All actions limited to synchronization, preflight, reading task packet, creating ONLY the three allowed files. No code changes, no forbidden accesses."
+  "prohibited_actions_avoided": true,
+  "preflight_completed": true,
+  "synchronization_completed": true,
+  "task_packet_source": "chatgpt/PAR-001-parallel-agent-task-packets:trace/tasks/HERMES-001-SANDBOX-READINESS.md",
+  "open_decisions": ["Product Owner approval of report", "local provider selection", "future activation packet"],
+  "timestamp": "2026-06-25",
+  "compliance": "100% adherence to all constraints. Produce only allowed readiness report/evidence. No operational worker activated."
 }
