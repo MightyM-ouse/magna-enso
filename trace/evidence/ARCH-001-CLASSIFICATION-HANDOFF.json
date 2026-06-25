@@ -1,0 +1,49 @@
+{
+  "task_id": "ARCH-001A",
+  "agent": "claude",
+  "role": "architecture_source_classifier",
+  "branch": "claude/ARCH-001-source-classification",
+  "base_commit": "4afeb0ceec14262c8bbafd86f41a7734fac5e0ae",
+  "status": "PUSHED_FOR_REVIEW",
+  "provenance": {
+    "instruction_prepared_by": "ChatGPT / System Architect",
+    "instruction_approved_by": "Product Owner",
+    "intended_reviewer": "ChatGPT / System Architect",
+    "review_status": "PENDING",
+    "review_completed_by": null
+  },
+  "synchronization": { "verdict": "SYNC_PASS", "base": "main", "base_commit": "4afeb0ceec14262c8bbafd86f41a7734fac5e0ae", "conflicting_branch_or_pr": false },
+  "scope": "Classification and recommendation only. No promotion, rewrite, canonicalization, or acceptance.",
+  "outputs": [
+    "trace/reviews/ARCH-001-SOURCE-CLASSIFICATION.md",
+    "trace/evidence/ARCH-001-SOURCE-INVENTORY.json",
+    "trace/evidence/ARCH-001-CLASSIFICATION-HANDOFF.md",
+    "trace/evidence/ARCH-001-CLASSIFICATION-HANDOFF.json"
+  ],
+  "sources_examined": { "root": "archive/chatgpt-review-history/", "files": 406, "packages": 24 },
+  "summary": {
+    "candidate_canonical_architecture": "magna-enso-architecture-technical-specification-corrected (00-18 + supplemental reports)",
+    "candidate_technical_specification": "corrected technical-specifications/00-19 + registries/*.yaml",
+    "candidate_diagram_source": "diagrams-draft/drawio/*.drawio + DIAGRAM_INDEX.json",
+    "candidate_rendered_diagram": "diagrams-draft/svg/*.svg",
+    "superseded_or_duplicate": "magna-enso-architecture-technical-specification-draft (archive-only)",
+    "rejected_source": "magna-program-antigravity-independent-validation (archive-only, do not cite)",
+    "accepted_evidence_baseline": "magna-program-evidence-completion"
+  },
+  "validation": [
+    { "name": "Inventory + handoff JSON parse", "status": "PASS" },
+    { "name": "Only the 4 allowed output files created", "status": "PASS" },
+    { "name": "No move into docs/architecture or docs/technical-specifications", "status": "PASS" },
+    { "name": "No edit to GOV-005/GOV-006/runtime/workflows/validators/schemas/canonical docs/other branches", "status": "PASS" }
+  ],
+  "decisions_required": [
+    "C1 canonical diagram source (Mermaid-in-docs+manifest vs .drawio)",
+    "C2 confirm corrected supersedes draft for promotion",
+    "C3 rejected program-level Antigravity package stays archive-only / never cited",
+    "C4 reconcile sprint-3 capability-governance-design with GOV-005 before reuse",
+    "C5 authorize/defer ARCH-001 promotion to docs/architecture + docs/technical-specifications",
+    "Record Mermaid CLI version + viewer QA status before promoting rendered diagrams"
+  ],
+  "recommended_next_action": "System Architect reviews classification, resolves C1-C5 with Product Owner; ARCH-001 performs any approved promotion. Do not merge or promote based on this task alone.",
+  "boundaries": "No promotion/rewrite/canonicalization/acceptance; no push to main; no merge; no edit to other agents' branches or governance/runtime files."
+}
