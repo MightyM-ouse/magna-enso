@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "task": {
+    "id": "GOV-005",
+    "status": "PUSHED_FOR_REVIEW",
+    "agent": "claude",
+    "role": "correction_implementer"
+  },
+  "provenance": {
+    "instruction_prepared_by": "ChatGPT / System Architect",
+    "instruction_approved_by": "Product Owner",
+    "intended_reviewer": "ChatGPT / System Architect",
+    "review_status": "PENDING",
+    "review_completed_by": null
+  },
+  "repository_state": {
+    "branch": "claude/GOV-005-cf5-hardening",
+    "starting_commit": "9120017be38c445a920b1e29a0063458fe17ed57",
+    "final_commit": null,
+    "pull_request": null
+  },
+  "synchronization": {
+    "verdict": "SYNC_PASS",
+    "checked_at": "2026-06-26T10:30:00+02:00",
+    "sources": [
+      "origin/claude/GOV-005-corrections",
+      "origin/chatgpt/GOV-005-cf5-hardening-packet",
+      "trace/ACTIVE_WORK_REGISTRY.yaml",
+      "PR #13", "PR #17", "PR #24"
+    ],
+    "discrepancies": [
+      "Base branch claude/GOV-005-corrections advanced to 9120017 (integrate Antigravity validation evidence) since the CF-1..CF-6 work; consistent lineage, not a STOP condition."
+    ]
+  },
+  "outcome": {
+    "summary": "CF-5 hardened: changed-path ownership validates against the one accountable active task (by branch), not a cross-task union or broad governance allowlist; fail-closed on missing/ambiguous/inactive identity; every changed governed handoff is schema-validated. Adversarial tests added (11/11 pass).",
+    "acceptance_criteria": [
+      { "name": "Task-specific ownership (no union, no broad-dir override)", "status": "PASS", "evidence": "trace/reviews/GOV-005-CF5-CORRECTION-REPORT.md; tests" },
+      { "name": "Fail-closed identity (missing/ambiguous/inactive/unregistered)", "status": "PASS", "evidence": "tests test_missing/ambiguous/inactive_identity" },
+      { "name": "All changed governed handoffs validated; arbitrary status rejected", "status": "PASS", "evidence": "tests test_governed_handoff_detection, test_handoff_rejects_arbitrary_status" },
+      { "name": "Adversarial cross-task edits rejected", "status": "PASS", "evidence": "tests test_task_a_cannot_edit_task_b_handoff, test_cannot_combine_multiple_task_paths" },
+      { "name": "No runtime/product/ARCH-001/PAR-001/HERMES/SGN-01/Sprint-5 change", "status": "PASS", "evidence": "change set is governance/CI only" }
+    ]
+  },
+  "changes": [
+    { "path": "scripts/check_changed_path_ownership.py", "purpose": "Task-specific, fail-closed ownership + changed-handoff validation.", "ownership_expansion_reason": "Declared correction_phase_modifies for GOV-005-CF5." },
+    { "path": ".github/workflows/governance-validation.yml", "purpose": "Pass --branch so CI evaluates the accountable task envelope.", "ownership_expansion_reason": "Declared correction_phase_modifies for GOV-005-CF5." },
+    { "path": "docs/governance/MULTI_AGENT_EXECUTION_POLICY.md", "purpose": "Document hardened CF-5 enforcement.", "ownership_expansion_reason": "Declared correction_phase_modifies for GOV-005-CF5." },
+    { "path": "trace/ACTIVE_WORK_REGISTRY.yaml", "purpose": "Register the GOV-005-CF5 task (self-registration).", "ownership_expansion_reason": null },
+    { "path": "tests/test_changed_path_ownership.py", "purpose": "Adversarial CF-5 tests.", "ownership_expansion_reason": null },
+    { "path": "trace/tasks/GOV-005-CLAUDE-CF5-HARDENING.md", "purpose": "CF-5 task packet copied to the branch.", "ownership_expansion_reason": null },
+    { "path": "trace/reviews/GOV-005-CF5-CORRECTION-REPORT.md", "purpose": "CF-5 correction report.", "ownership_expansion_reason": null },
+    { "path": "trace/evidence/GOV-005-CF5-HANDOFF.md", "purpose": "Human-readable handoff.", "ownership_expansion_reason": null },
+    { "path": "trace/evidence/GOV-005-CF5-HANDOFF.json", "purpose": "Machine-readable handoff.", "ownership_expansion_reason": null }
+  ],
+  "downloads": [
+    { "source_url": "https://pypi.org/project/PyYAML/", "publisher": "PyYAML maintainers (PyPI)", "purpose": "Parse governance YAML locally.", "version": "6.0.2", "destination": "isolated venv /tmp/cf5venv (not committed)", "size_bytes": 0, "sha256": null, "license": "MIT", "executed": false, "security_checks": ["pinned version", "isolated venv", "already declared in scripts/governance-requirements.txt"], "resulting_changes": [] }
+  ],
+  "validation": [
+    { "name": "Adversarial ownership tests", "status": "PASS", "command": "python tests/test_changed_path_ownership.py", "evidence": "11/11 pass" },
+    { "name": "Governance validator", "status": "PASS", "command": "python scripts/validate_multi_agent_governance.py", "evidence": "6 tasks; enum matches" },
+    { "name": "Changed-path ownership (CF-5 change set)", "status": "PASS", "command": "python scripts/check_changed_path_ownership.py --branch claude/GOV-005-cf5-hardening --paths <change set>", "evidence": "within accountable task envelope" },
+    { "name": "GitHub CI governance workflow", "status": "SKIPPED", "command": "GitHub Actions on the CF-5 PR", "evidence": "runs after push; result recorded on the PR" }
+  ],
+  "deviations": [
+    "Base branch advanced by one evidence commit (9120017); consistent lineage, not a STOP condition.",
+    "No correction touched the immutable GOV-005 packet, the merged Claude review evidence, or protected paths."
+  ],
+  "impacts": {
+    "architecture": "Governance/CI contract only; no product or runtime change.",
+    "security": "Ownership enforcement is now task-scoped and fail-closed; main branch protection unchanged.",
+    "integration": "Stacks on claude/GOV-005-corrections; independent CF-5 validation by Antigravity.",
+    "residual_risk": "Branch-based identity (no signed identity yet); registry self-registration relies on PR review + validator checks."
+  },
+  "decisions_required": [
+    "ChatGPT / System Architect file review of CF-5 changes.",
+    "Antigravity focused CF-5 independent validation.",
+    "Product Owner merge authorization into the GOV-005 correction path."
+  ],
+  "recommended_next_action": "Antigravity validates CF-5 independently; ChatGPT reviews; Product Owner decides merge. Do not merge until independent validation and Product Owner approval."
+}

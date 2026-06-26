@@ -199,10 +199,19 @@ visible.
 
 The governance validator `scripts/validate_multi_agent_governance.py` runs in CI on the main
 PR and on stacked correction/review PRs, with a pinned dependency
-(`scripts/governance-requirements.txt`). A git-aware changed-path ownership check
-(`scripts/check_changed_path_ownership.py`) fails the build when a changed path falls outside
-declared task ownership and the governance allowlist (CF-1/CF-5). This adds enforcement
-without changing `main` branch protection.
+(`scripts/governance-requirements.txt`).
+
+**Task-specific changed-path ownership (CF-5, hardened).** `scripts/check_changed_path_ownership.py`
+identifies the **one accountable active task** from the PR head branch and validates the change set
+against **only that task's** envelope — its `writable_paths`, declared `shared_paths`, and any
+explicit `correction_phase_modifies` files — plus the single self-registration file
+`trace/ACTIVE_WORK_REGISTRY.yaml`. It does **not** accept a union of writable paths across tasks, and
+broad directory allowances do not override explicit task ownership. The check **fails closed** when the
+task identity is missing, ambiguous, unregistered, or not active (status `MERGED`/`CLOSED`/`REJECTED`),
+and when a changed path falls outside the accountable task's envelope. Every changed governed handoff
+file (`trace/evidence/*HANDOFF.json`) is schema-validated, rejecting out-of-vocabulary status and any
+handoff changed outside the task envelope. This adds enforcement without changing `main` branch
+protection.
 
 ## Review and integration
 

@@ -65,10 +65,16 @@ jobs:
       - name: Run GOV-005 governance validator
         run: python3 scripts/validate_multi_agent_governance.py
 
-      # CF-5 / AC #8: git-aware changed-path ownership check against the PR base branch.
+      # CF-5 (hardened): task-specific changed-path ownership against the PR base branch.
+      # --branch identifies the ONE accountable active task (the PR head branch); the checker
+      # validates the change set against only that task's envelope and validates changed
+      # governed handoffs. Fails closed on missing/ambiguous/inactive task identity.
       - name: Changed-path ownership check
         if: github.event_name == 'pull_request'
-        run: python3 scripts/check_changed_path_ownership.py --base "origin/${{ github.base_ref }}"
+        run: >-
+          python3 scripts/check_changed_path_ownership.py
+          --base "origin/${{ github.base_ref }}"
+          --branch "${{ github.head_ref }}"
 
       - name: Install pinned Gitleaks
         env:
