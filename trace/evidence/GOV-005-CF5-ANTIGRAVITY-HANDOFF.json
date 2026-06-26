@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "task": {
+    "id": "GOV-005",
+    "status": "PUSHED_FOR_REVIEW",
+    "agent": "antigravity",
+    "role": "independent_validator"
+  },
+  "provenance": {
+    "instruction_prepared_by": "ChatGPT / System Architect",
+    "instruction_approved_by": "Product Owner",
+    "intended_reviewer": "ChatGPT / System Architect",
+    "review_status": "PENDING",
+    "review_completed_by": null
+  },
+  "repository_state": {
+    "branch": "antigravity/GOV-005-cf5-validation",
+    "starting_commit": "3a694ed835e625bc529ad834035f8bd826609546",
+    "final_commit": null,
+    "pull_request": "pending_draft_validation_pr"
+  },
+  "synchronization": {
+    "verdict": "SYNC_PASS",
+    "checked_at": "2026-06-26T14:35:00+02:00",
+    "sources": [
+      "MightyM-ouse/magna-enso",
+      "origin/claude/GOV-005-cf5-hardening",
+      "origin/chatgpt/GOV-005-antigravity-cf5-validation-packet"
+    ],
+    "discrepancies": []
+  },
+  "outcome": {
+    "summary": "Independently validated Claude's task-specific changed-path ownership hardening (PR #28). All 5 safety checks pass.",
+    "acceptance_criteria": [
+      { "name": "no union-of-all-active-task writable paths", "status": "PASS", "evidence": "Scripts check matches branch against active registry, no union checks." },
+      { "name": "no broad governance directory bypass", "status": "PASS", "evidence": "GOVERNANCE_ALLOWLIST was removed; only task-specific paths or registration allowed." },
+      { "name": "fail-closed task identity detection", "status": "PASS", "evidence": "Fails on missing, ambiguous, unregistered, or inactive branches." },
+      { "name": "all changed governed handoffs validated", "status": "PASS", "evidence": "Scans for and schema-validates all files matching trace/evidence/*HANDOFF.json." },
+      { "name": "adversarial cross-task modification checks", "status": "PASS", "evidence": "Verified via 11/11 passing test cases in tests/test_changed_path_ownership.py." }
+    ]
+  },
+  "changes": [
+    { "path": "trace/reviews/GOV-005-CF5-ANTIGRAVITY-VALIDATION.md", "purpose": "Validation findings report.", "ownership_expansion_reason": null },
+    { "path": "trace/evidence/GOV-005-CF5-ANTIGRAVITY-HANDOFF.md", "purpose": "Human-readable handoff.", "ownership_expansion_reason": null },
+    { "path": "trace/evidence/GOV-005-CF5-ANTIGRAVITY-HANDOFF.json", "purpose": "Machine-readable handoff.", "ownership_expansion_reason": null }
+  ],
+  "downloads": [],
+  "validation": [
+    { "name": "Adversarial ownership tests", "status": "PASS", "command": "python tests/test_changed_path_ownership.py", "evidence": "11/11 pass" },
+    { "name": "Governance validator", "status": "PASS", "command": "python scripts/validate_multi_agent_governance.py", "evidence": "6 tasks; enum matches" },
+    { "name": "Changed-path ownership check (Claude branch)", "status": "PASS", "command": "python scripts/check_changed_path_ownership.py --branch claude/GOV-005-cf5-hardening --base origin/claude/GOV-005-corrections", "evidence": "Passes on target branch" }
+  ],
+  "deviations": [
+    "The validation PR fails closed in CI as expected due to unregistered branch/paths."
+  ],
+  "impacts": {
+    "architecture": "No product code or runtime impact. Changes restricted to governance verification script, workflows, and tests.",
+    "security": "Significantly improves task-based safety enforcement. Prevents unauthorized cross-task file modifications.",
+    "integration": "Validates PR #28. Draft PR opened targeting claude/GOV-005-cf5-hardening.",
+    "residual_risk": "Branch matching is string-based, relying on GITHUB_HEAD_REF and git refs. Registry modification must still be guarded by human review."
+  },
+  "decisions_required": [
+    "Product Owner approval to merge PR #28 into claude/GOV-005-corrections."
+  ],
+  "recommended_next_action": "Accept Claude's CF-5 hardening and merge PR #28."
+}
