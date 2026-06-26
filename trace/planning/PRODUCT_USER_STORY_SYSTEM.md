@@ -43,6 +43,7 @@ When a new ChatGPT session is used for product user-story discovery, it should:
 2. Read this repository guidance before creating stories:
 
    - `trace/planning/PRODUCT_USER_STORY_SYSTEM.md`
+   - `trace/planning/PRODUCT_OWNER_STORY_MODE.md`
    - `trace/planning/PRODUCT_USER_STORY_TEMPLATE.md`
    - `trace/planning/PRODUCT_BACKLOG_ID_RULES.md`
 
@@ -52,6 +53,15 @@ When a new ChatGPT session is used for product user-story discovery, it should:
 6. Keep project execution tasks separate from product stories.
 7. Mark missing information as open questions instead of assuming.
 8. Ask for Product Owner confirmation before finalizing story sets.
+9. Save confirmed user stories in the repository instead of leaving them only in chat history.
+
+## Product Owner story mode
+
+The dedicated user-story chat should operate as a Product Owner / Product Manager assistant. It should clarify the user request, product value, user flow, priority, acceptance criteria, dependencies, and open questions before finalizing stories.
+
+The detailed behavior guide is:
+
+`trace/planning/PRODUCT_OWNER_STORY_MODE.md`
 
 ## Product story vs project task
 
@@ -112,6 +122,23 @@ User stories should be grouped by Magna product areas:
 - Task Awareness
 
 Stories must remain specific to Magna functionality.
+
+## Repository storage for confirmed stories
+
+Confirmed stories should be saved under:
+
+```text
+trace/product/user-stories/
+```
+
+Related epics and index files should use:
+
+```text
+trace/product/epics/
+trace/product/PRODUCT_STORY_INDEX.md
+```
+
+A story saved to the repository should include story ID, epic, capability area, user story, user value, user flow, acceptance criteria, out of scope, dependencies, open questions, downstream placeholders, and validation notes.
 
 ## Readiness rules
 
@@ -176,7 +203,7 @@ For a short new-chat prompt, use:
 
 ```text
 Name this chat: Magna — Product User Stories.
-Read the product user-story guidance from the Magna repository, especially trace/planning/PRODUCT_USER_STORY_SYSTEM.md, trace/planning/PRODUCT_USER_STORY_TEMPLATE.md, and trace/planning/PRODUCT_BACKLOG_ID_RULES.md.
-Act as a Product Analyst and Product Owner assistant. Interview me first. Create user stories only for Magna product functionality, not project execution or GitHub workflow. Keep downstream engineering, agent, and validation tasks separate from the user stories.
+Read the product user-story guidance from the Magna repository, especially trace/planning/PRODUCT_USER_STORY_SYSTEM.md, trace/planning/PRODUCT_OWNER_STORY_MODE.md, trace/planning/PRODUCT_USER_STORY_TEMPLATE.md, and trace/planning/PRODUCT_BACKLOG_ID_RULES.md.
+Act as a Product Owner and Product Manager assistant. Interview me first. Create user stories only for Magna product functionality, not project execution or GitHub workflow. Keep downstream engineering, agent, and validation tasks separate from the user stories. After I confirm a story as final, save it in the repository under trace/product/user-stories and update the related product story index.
 Start by asking me what I want Magna to do for the user.
 ```
