@@ -1,43 +1,125 @@
+version: 2
+
+synchronization_gate:
+  required_before: [instruction_issue, execution_start, review_verdict, dependent_task_start]
+  checks:
+    - default_branch_and_accepted_commit
+    - star_map_and_applicable_registries
+    - decision_and_risk_state
+    - active_issue_task_and_amendments
+    - assigned_branch_starting_and_latest_commit
+    - pull_request_reviews_and_checks
+    - active_work_ownership_dependencies_and_integration_order
+    - known_local_unpushed_work
+  outcomes:
+    SYNC_PASS: proceed
+    SYNC_BLOCKED: stop_reconcile_and_report
+    SYNC_UNVERIFIED_LOCAL_STATE: stop_until_owner_accounts_for_local_state
+
 modes:
   discovery:
-    flow: [verify_repository, identify_task, route_context, resolve_missing_information, propose]
-    outputs: [findings, options, decisions_required]
+    flow: [synchronize, identify_outcome, route_context, investigate, compare_options, propose]
+    outputs: [findings, options, recommendation, decisions_required]
   investigation:
-    flow: [preflight, reproduce, gather_evidence, test_hypotheses, identify_root_cause]
+    flow: [synchronize, reproduce, gather_evidence, test_hypotheses, identify_root_cause]
     outputs: [evidence, root_cause, confidence, recommendation]
   execution:
-    flow: [preflight, confirm_scope, implement, validate, capture_evidence, push_task_branch]
-    outputs: [changes, checks, evidence, draft_pull_request]
+    flow: [synchronize, confirm_envelope, investigate_method, implement, validate, capture_evidence, commit, push_task_branch, update_draft_pr]
+    outputs: [changes, checks, light_curve, markdown_handoff, json_handoff, draft_pull_request]
   review:
-    flow: [verify_scope, inspect_diff, inspect_evidence, assess_risk, issue_verdict]
+    flow: [synchronize, verify_scope, inspect_diff, inspect_evidence, assess_architecture_security_and_risk, issue_verdict]
     outputs: [findings, verdict, residual_risk]
   mixed:
-    flow: [discovery, investigation, execution, review]
+    flow: [synchronize, discovery, investigation, execution, review]
     outputs: [mode_history, evidence_chain, final_status]
+
+instruction_contract:
+  principle: precise_outcome_bounded_authority_independent_method
+  required: [outcome, acceptance_criteria, protected_boundaries, ownership, autonomy_envelope, evidence, escalation_conditions]
+  avoid_without_recorded_reason: [prescribed_solution, predetermined_root_cause, unnecessary_command_sequence, premature_file_list]
+  exact_method_allowed_for: [accepted_architecture_contract, security_control, deterministic_migration, regulatory_requirement, irreversible_risk_boundary]
+
+parallel_execution:
+  enabled: true
+  unique_per_task: [task_id, branch, worktree, starting_commit, pull_request, accountable_worker]
+  branch_namespace: accountable_worker_or_approved_neutral_namespace
+  writable_path_ownership: exclusive
+  overlap_resolutions: [single_owner, sequential_phase, separate_amendment, product_owner_approved_reconciliation]
+  dependencies_and_integration_order: required
+  stacked_dependency_requires_exact_commit: true
 
 git:
   direct_push_main: forbidden
   force_push: forbidden
+  history_rewrite: forbidden
   shared_mutable_agent_branch: forbidden
-  assigned_task_branch_commit: task_packet_authorized
-  assigned_task_branch_push: task_packet_authorized
+  assigned_task_branch_commit: autonomous_within_approved_envelope
+  assigned_task_branch_push: autonomous_within_approved_envelope
+  draft_pull_request_update: autonomous_within_approved_envelope
   pull_request: required
   merge_method: squash
   merge_authority: product_owner
+  self_acceptance: forbidden
+  branch_deletion: product_owner_or_explicit_authorization
   resolve_review_conversations: required
+
+task_authority:
+  immutable_from_status: IN_PROGRESS
+  progress_records: [checkpoints, issue_comments, light_curve, handoffs, pull_request]
+  amendment_required_for: [scope_change, authority_change, protected_boundary_change, material_acceptance_change]
+  amendment_requires: [separate_record, product_owner_decision, effective_commit, new_sync_pass]
+
+autonomy:
+  allowed_within_envelope:
+    - investigate_and_select_method
+    - modify_owned_paths
+    - run_builds_tests_and_security_checks
+    - make_corrective_iterations
+    - commit_and_push_assigned_branch
+    - update_draft_pull_request
+    - create_evidence_and_handoffs
+    - download_public_task_required_material
+    - install_isolated_project_dependencies
+  approval_required:
+    - unapproved_personal_or_system_paths
+    - credentials_private_sources_or_nonpublic_data
+    - paid_services
+    - privileged_global_or_system_changes
+    - destructive_user_or_unrelated_data_change
+    - public_or_consequential_external_effect
+    - material_architecture_or_scope_expansion
+    - policy_bypass_or_risk_acceptance
+    - merge_release_or_acceptance
+
+downloads:
+  autonomous_conditions: [public, task_required, approved_destination, size_compliant, license_checked, no_credentials, no_privileged_host_change]
+  report_fields: [source_url, publisher, purpose, version, destination, size_bytes, sha256, license, executed, security_checks, resulting_changes]
+  executable_or_material_runtime_dependency: explicit_task_coverage_required
 
 evidence:
   task_packet: required
   light_curve: required_for_meaningful_work
+  markdown_handoff: required_for_meaningful_work
+  json_handoff_schema: trace/schemas/agent_handoff.schema.json
   exact_failures_visible: true
+  skipped_checks_visible: true
   large_raw_outputs: github_actions_artifact
   curated_outputs: repository
 
+review:
+  system_architect_verdicts: [APPROVE_TO_MERGE, CHANGES_REQUIRED, BLOCKED]
+  independent_review_context: separate_branch_or_read_only
+  reviewer_must_not_be_feature_implementer: true
+  product_owner_retains: [scope, priority, functional_acceptance, risk_acceptance, merge, release]
+
 closure_requires:
+  - synchronization_pass
   - acceptance_criteria_accounted_for
   - checks_recorded
+  - downloads_and_dependencies_recorded
   - light_curve_updated
+  - markdown_and_json_handoffs_valid
   - material_decisions_logged
   - independent_review_when_required
   - product_owner_merge_or_explicit_rejection
-
+  - canonical_status_reconciled_after_merge
