@@ -1,5 +1,20 @@
 # GOV-005 — Antigravity Independent Correction Validation Report
 
+## Supersession Notice
+
+This report is retained as historical evidence for PR #17 at head `61098c04f7b98016a7ce17efc20cfa1d44bf7f6b`.
+
+Its CF-5 bypass finding was correct for that inspected head. It is superseded for current decision-making by the CF-5 child hardening and validation chain:
+
+1. PR #28 implemented task-specific CF-5 ownership hardening at `3a694ed835e625bc529ad834035f8bd826609546`.
+2. PR #31 independently validated that hardening with verdict `ACCEPT`.
+3. PR #28 was merged into `claude/GOV-005-corrections`, producing parent head `db20c4ef2a4b1f7c3a4d32d07d9480f5287185aa`.
+4. Current consolidated status is tracked in `trace/reviews/GOV-005-CORRECTIONS-CONSOLIDATED-STATUS.md`.
+
+Do not use this report alone as the current PR #17 verdict. Use it as backward traceability showing why CF-5 hardening was required.
+
+---
+
 ## Provenance and scope
 
 - Validation task: `GOV-005-ANTIGRAVITY-VALIDATION` (packet [GOV-005-ANTIGRAVITY-VALIDATION.md](file:///Users/vinay/Projects/AI/Magna/magna-enso/trace/tasks/GOV-005-ANTIGRAVITY-VALIDATION.md))
