@@ -119,3 +119,12 @@ The `GOV-005-CLAUDE-CORRECTIONS` task (branch `claude/GOV-005-corrections`) reso
 
 See `trace/reviews/GOV-005-CLAUDE-CORRECTIONS-MATRIX.md` and
 `trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json`.
+
+## PR #13 merge-readiness refresh
+
+After PR #17 was merged into `codex/GOV-005-multi-agent-governance`, PR #13 was refreshed so
+the parent GOV-005 envelope explicitly carries its integrated Claude review, Claude corrections,
+CF-5 hardening, and Antigravity validation artifacts. The historical Claude review handoff was
+also normalized to the governed status/provenance contract while preserving its original finding
+meaning (`CHANGES_REQUIRED`). Product Owner authorization to merge PR #13 into `main` was received
+after governance CI passed on the refreshed head.
