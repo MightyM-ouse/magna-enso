@@ -2,14 +2,16 @@
   "schema_version": "1.0",
   "task": {
     "id": "GOV-005",
-    "status": "INDEPENDENT_REVIEW_COMPLETE_CHANGES_REQUIRED",
+    "status": "CHANGES_REQUIRED",
     "agent": "claude",
     "role": "architecture_specification"
   },
   "provenance": {
     "instruction_prepared_by": "ChatGPT / System Architect",
     "instruction_approved_by": "Product Owner",
-    "reviewed_by": "ChatGPT / System Architect"
+    "intended_reviewer": "ChatGPT / System Architect",
+    "review_status": "COMPLETED",
+    "review_completed_by": "Claude / independent four-eyes reviewer"
   },
   "repository_state": {
     "branch": "claude/GOV-005-four-eyes-review",
