@@ -202,3 +202,48 @@ active_tasks:
     integration_order: validates_claude/GOV-005-corrections_do_not_merge
     blocked_on: []
     handoff: trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.json
+
+  - task_id: GOV-005-CF5
+    agent: claude
+    role: correction_implementer
+    corrects: GOV-005
+    finding: CF-5
+    status: PUSHED_FOR_REVIEW
+    branch: claude/GOV-005-cf5-hardening
+    worktree: connected_github_isolated_branch
+    starting_commit: 9120017be38c445a920b1e29a0063458fe17ed57
+    latest_known_commit: 9120017be38c445a920b1e29a0063458fe17ed57
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
+    issue: 26
+    pull_request: pending_draft_cf5_pr
+    independent_validator_after: antigravity
+    writable_paths:
+      - tests/
+      - trace/tasks/GOV-005-CLAUDE-CF5-HARDENING.md
+      - trace/reviews/GOV-005-CF5-CORRECTION-REPORT.md
+      - trace/evidence/GOV-005-CF5-HANDOFF.md
+      - trace/evidence/GOV-005-CF5-HANDOFF.json
+    correction_phase_modifies:
+      note: "Authorized by trace/tasks/GOV-005-CLAUDE-CF5-HARDENING.md as a focused CF-5 hardening over the GOV-005 correction lineage. These GOV-005-owned governance files are corrected, not re-owned; kept out of writable_paths to avoid false exclusive-ownership overlap. The task-specific ownership checker authorizes them only for this accountable task via this explicit declaration."
+      files:
+        - scripts/check_changed_path_ownership.py
+        - .github/workflows/governance-validation.yml
+        - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+    must_not_modify:
+      - trace/tasks/GOV-005.md
+      - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+      - backend/
+      - frontend/
+      - src/
+      - archive/
+      - vendor/
+    read_only_dependencies:
+      - trace/ROLE_REGISTRY.yaml
+      - trace/schemas/agent_handoff.schema.json
+      - scripts/validate_multi_agent_governance.py
+    shared_paths: []
+    integration_order: hardens_CF-5_targets_claude/GOV-005-corrections_do_not_merge_independent_validator_antigravity
+    blocked_on: []
+    handoff: trace/evidence/GOV-005-CF5-HANDOFF.json
