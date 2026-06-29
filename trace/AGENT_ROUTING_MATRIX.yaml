@@ -1,0 +1,49 @@
+version: 1
+status: PROPOSED_GOV_006
+final_authority: product_owner
+router: chatgpt
+
+agents:
+  chatgpt:
+    status: active
+    primary: [system_architecture, synchronization, task_framing, routing, integration, evidence_review, product_owner_briefing]
+    prohibited: [routine_coding_worker, self_approval, merge]
+  claude:
+    status: active
+    primary: [architecture, requirements, specifications, governance_design, four_eyes_review]
+    prohibited: [self_review_of_primary_work, binding_product_decision, merge]
+  codex:
+    status: active
+    primary: [repository_investigation, implementation, refactoring, migrations, tests, tooling, ci, browser_automation]
+    prohibited: [product_authority, architecture_acceptance, self_approval, merge]
+  antigravity:
+    status: active
+    primary: [independent_qa, adversarial_validation, security_review, architecture_conformance, ui_validation, evidence_verification]
+    prohibited: [primary_implementation_of_reviewed_feature, self_approval, merge]
+  hermes:
+    status: inactive
+    primary_when_activated: [bounded_local_model_experiment, sandboxed_research, repetitive_governed_verification]
+    activation_requires: [approved_capability_lab_task, isolated_runtime, explicit_tools_and_paths, policy_gate, audit_trail, independent_review]
+    prohibited: [routing_while_inactive, canonical_authority, unrestricted_repository_or_system_action, merge]
+
+routes:
+  architecture_design: {primary: claude, reviewer: chatgpt}
+  governance_change_chatgpt_authored: {primary: chatgpt, reviewer: claude}
+  governance_change_claude_authored: {primary: claude, reviewer: chatgpt}
+  product_implementation: {primary: codex, reviewer: antigravity}
+  code_defect: {primary: codex, reviewer: risk_based_antigravity}
+  ci_tooling_migration: {primary: codex, reviewer: risk_based_antigravity}
+  independent_qa_security: {primary: antigravity, reviewer: chatgpt_synthesis}
+  architecture_conformance_semantic: {primary: claude, reviewer: chatgpt_synthesis}
+  architecture_conformance_executable: {primary: antigravity, reviewer: chatgpt_synthesis}
+  ui_implementation: {primary: codex, reviewer: antigravity}
+  status_reconciliation: {primary: chatgpt, reviewer: risk_based_claude}
+  local_model_experiment: {primary: hermes_after_activation, reviewer: antigravity_then_chatgpt}
+
+selection_rules:
+  smallest_capable_agent_set: true
+  implementation_and_independent_review_separated: true
+  verify_active_status_before_route: true
+  verify_ownership_before_parallel_work: true
+  explain_recommendation_to_product_owner: true
+  repository_native_instruction_required: true
