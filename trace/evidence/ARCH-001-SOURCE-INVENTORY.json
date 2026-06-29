@@ -1,0 +1,85 @@
+{
+  "task_id": "ARCH-001A",
+  "agent": "claude",
+  "branch": "claude/ARCH-001-source-classification",
+  "base_commit": "4afeb0ceec14262c8bbafd86f41a7734fac5e0ae",
+  "generated_at": "2026-06-25T21:30:00+02:00",
+  "scope_note": "Classification and recommendation only. No promotion, rewrite, or canonicalization. No file moved into docs/architecture/ or docs/technical-specifications/. Nothing accepted.",
+  "sources_examined": {
+    "root": "archive/chatgpt-review-history/",
+    "total_archived_files": 406,
+    "content_packages": 24,
+    "file_types": { "md": 308, "html": 26, "svg": 25, "drawio": 25, "yaml": 11, "json": 7, "js": 2, "py": 1, "css": 1 },
+    "provenance_manifest": "archive/chatgpt-review-history/_migration/GOV-004_SOURCE_MANIFEST.json (per-file sha256, disposition, duplicate_of, reason_code)"
+  },
+  "classification_categories": [
+    "candidate_canonical_architecture",
+    "candidate_technical_specification",
+    "candidate_diagram_source",
+    "candidate_rendered_diagram",
+    "trace_evidence_material",
+    "review_material",
+    "archive_only_historical",
+    "duplicate_or_generated",
+    "missing_input_or_unresolved_dependency",
+    "conflict_requiring_decision"
+  ],
+  "classification_matrix": [
+    { "source": "content/magna-enso-architecture-technical-specification-corrected/00..18_*.md + CORRECTION_REPORT.md + FINAL_CONSISTENCY_CORRECTION_REPORT.md + TRACE_SOURCE_RESOLUTION.md + PRESGN_TO_EVOLUTION_RELATIONSHIP_MATRIX.md + HERMES_DERIVED_CAPABILITY_PLAN.md + HELIX_VERSIONING_OPTIONS.md", "category": "candidate_canonical_architecture", "status": "DRAFT_FOR_HUMAN_REVIEW (not accepted)", "recommended_destination": "docs/architecture/ (future, via ARCH-001 + PO approval)", "rationale": "Latest corrected architecture package; supersedes the -draft package per its CORRECTION_REPORT." },
+    { "source": "content/magna-enso-architecture-technical-specification-corrected/technical-specifications/00..19_*.md", "category": "candidate_technical_specification", "status": "DRAFT_FOR_HUMAN_REVIEW", "recommended_destination": "docs/technical-specifications/ (future)", "rationale": "20 technical specs incl. state machines (18) and failure/outcome taxonomy (19)." },
+    { "source": "content/magna-enso-architecture-technical-specification-corrected/registries/*.yaml", "category": "candidate_technical_specification", "status": "DRAFT_FOR_HUMAN_REVIEW", "recommended_destination": "docs/architecture/registries/ or docs/technical-specifications/registries/ (future)", "rationale": "Machine-readable architecture/requirement/component/interface/traceability/decisions registries underpinning the specs." },
+    { "source": "content/magna-enso-architecture-technical-specification-corrected/learning/*.md", "category": "review_material", "status": "DRAFT_FOR_HUMAN_REVIEW", "recommended_destination": "docs/architecture/learning/ or trace/reviews/ (future)", "rationale": "Reviewer checklists + engineering learning guide; supporting, not canonical architecture." },
+    { "source": "content/magna-enso-architecture-technical-specification-corrected/validation/*.md + FOUNDATION_EVIDENCE_INDEX.json", "category": "trace_evidence_material", "status": "evidence", "recommended_destination": "trace/evidence/ (future)", "rationale": "Package self-validation reports (registry/ID/link/mermaid/completeness) + evidence index." },
+    { "source": "content/magna-enso-architecture-technical-specification-draft/** (46 files)", "category": "duplicate_or_generated", "status": "SUPERSEDED, preserved", "recommended_destination": "archive_only (retain as historical; do not promote)", "rationale": "Superseded by the corrected package (CORRECTION_REPORT: '-draft package is preserved unchanged'). Duplicate-of corrected." },
+    { "source": "content/magna-enso-architecture-diagrams-draft/drawio/*.drawio (25)", "category": "candidate_diagram_source", "status": "DRAFT (editable)", "recommended_destination": "docs/architecture/diagrams/src/ (future)", "rationale": "Native editable Draw.io for DIAG-01..22 + DIAG-S1..S3. Derived from the corrected package Mermaid + 18_ARCHITECTURE_DIAGRAM_MANIFEST.md (see conflict C1)." },
+    { "source": "content/magna-enso-architecture-diagrams-draft/DIAGRAM_INDEX.json", "category": "candidate_diagram_source", "status": "DRAFT", "recommended_destination": "docs/architecture/diagrams/ (future)", "rationale": "Machine index of diagrams with registry-derived requirements/decisions/provenance." },
+    { "source": "content/magna-enso-architecture-diagrams-draft/svg/*.svg (25)", "category": "candidate_rendered_diagram", "status": "generated", "recommended_destination": "docs/architecture/diagrams/rendered/ (future)", "rationale": "Mermaid-CLI-rendered SVGs (one per diagram). Regenerable from source." },
+    { "source": "content/magna-enso-architecture-diagrams-draft/html/** (viewer index, views/*.html, assets app.js/app.css/data.js)", "category": "duplicate_or_generated", "status": "generated", "recommended_destination": "archive_only or docs/architecture/diagrams/viewer/ (future, optional)", "rationale": "Offline static viewer generated from the diagram sources; not authoritative; regenerable." },
+    { "source": "content/magna-enso-architecture-diagrams-draft/validation/*.md (8)", "category": "trace_evidence_material", "status": "evidence", "recommended_destination": "trace/evidence/ (future)", "rationale": "Diagram package validation (semantic comparison, drawio editability, mermaid render, html viewer, manifest)." },
+    { "source": "content/magna-program-evidence-completion/** (15)", "category": "trace_evidence_material", "status": "ACCEPTED evidence baseline", "recommended_destination": "trace/evidence/ (future) or archive_only", "rationale": "Accepted technical evidence baseline (reports 00-13 + index + raw-command-output) the corrected package is grounded on." },
+    { "source": "content/magna-program-discovery-reconstruction/** (19)", "category": "archive_only_historical", "status": "preliminary (not replaced, materially corrected)", "recommended_destination": "archive_only", "rationale": "First discovery package; 'directionally useful but incomplete and materially wrong' per evidence-completion master report. Preliminary supporting only." },
+    { "source": "content/magna-program-antigravity-independent-validation/** (13)", "category": "conflict_requiring_decision", "status": "REJECTED evidence source", "recommended_destination": "archive_only (do NOT promote or cite)", "rationale": "Explicitly rejected as an evidence source by the corrected package (01_SOURCE_AND_AUTHORITY_REGISTER). Retain as history only; conflict C3." },
+    { "source": "content/antigravity-sprint-1-trace-skeleton-review/** (8); content/sprint-2-antigravity-validation/**; content/sprint-3-antigravity-validation/**; content/sprint-4-antigravity-validation/**; content/sprint-5-antigravity-approval-validation/**; content/sprint-5-antigravity-security-revalidation/**", "category": "review_material", "status": "historical review", "recommended_destination": "trace/reviews/ (future) or archive_only", "rationale": "Sprint-level Antigravity validation/review packages (accepted-with-corrections in their sprints). Distinct from the rejected program-level package above." },
+    { "source": "content/sprint-2-approval-package/**; content/sprint-3-approval-package/**; content/sprint-4-approval-package/**; content/sprint-5-approval-package/**", "category": "archive_only_historical", "status": "historical decision/approval", "recommended_destination": "archive_only", "rationale": "Pre-execution approval packages for past sprints; decision history, not canonical architecture." },
+    { "source": "content/sprint-3-capability-governance-design/** (17)", "category": "candidate_technical_specification", "status": "historical design (superseded by GOV-005 governance)", "recommended_destination": "archive_only (cross-check against GOV-005 before any reuse)", "rationale": "Capability-governance design; overlaps current GOV-005 governance — reuse only after comparison; conflict C4." },
+    { "source": "content/sprint-2-hermes-audit/** (9); content/sprint-4-governed-hermes-baseline/** (11)", "category": "trace_evidence_material", "status": "historical audit/evidence", "recommended_destination": "archive_only or trace/evidence/ (future)", "rationale": "Hermes read-only audit + governed baseline records; evidence; Hermes remains inactive (0/6)." },
+    { "source": "content/git-initialization-decision-package/** (5)", "category": "archive_only_historical", "status": "historical decision", "recommended_destination": "archive_only", "rationale": "Git/branch model decision history." },
+    { "source": "content/AGENT_OUTPUT_REVIEW_*.md (3); content/PromptStyle/** (4)", "category": "review_material", "status": "historical templates", "recommended_destination": "archive_only or trace/reviews/templates/ (future)", "rationale": "Review templates / ChatGPT mentor prompt style; supporting, not architecture." },
+    { "source": "archive/chatgpt-review-history/_migration/** (GOV-004 migration + source manifest)", "category": "trace_evidence_material", "status": "archive provenance", "recommended_destination": "archive_only (provenance of the archive itself)", "rationale": "GOV-004 migration report + per-file source manifest; authoritative provenance for duplicates/generated/excluded files." },
+    { "source": "archive/chatgpt-review-history/README.md", "category": "archive_only_historical", "status": "archive index", "recommended_destination": "archive_only", "rationale": "Archive readme." }
+  ],
+  "duplicates": [
+    { "primary": "content/magna-enso-architecture-technical-specification-corrected/", "duplicate": "content/magna-enso-architecture-technical-specification-draft/", "relationship": "corrected SUPERSEDES draft; draft preserved as history", "recommendation": "promote corrected only; keep draft archive-only" },
+    { "primary": "Mermaid blocks inside corrected package docs + 18_ARCHITECTURE_DIAGRAM_MANIFEST.md", "duplicate": "content/magna-enso-architecture-diagrams-draft/drawio/*.drawio + svg/*.svg + html/", "relationship": "diagrams are a second representation rendered/derived from the corrected-package Mermaid source", "recommendation": "designate one canonical diagram source (see conflict C1); SVG/HTML are generated/regenerable" }
+  ],
+  "missing_inputs": [
+    { "item": "Mermaid CLI 11.15.0 rendering toolchain", "location": "outside all Git repos at <MAGNA_LOCAL_ROOT>/Tools/mermaid-cli/", "impact": "rendered SVGs are not reproducible from the repo alone; record the toolchain/version as a build dependency if SVGs are promoted" },
+    { "item": "Diagram viewer interactive browser QA", "status": "HUMAN_REVIEW_PENDING per the diagram package README", "impact": "the HTML viewer's interactive QA is not completed; do not represent as verified" },
+    { "item": "Source-Markdown sibling links in the diagram package", "detail": "viewer 'Source Markdown' links work only when magna-enso-architecture-technical-specification-corrected sits beside the diagram package", "impact": "if promoted to different canonical folders, these relative links break and must be re-pointed" }
+  ],
+  "conflicts": [
+    { "id": "C1", "title": "Canonical diagram source ambiguity", "detail": "Two diagram representations exist: (a) Mermaid blocks + 18_ARCHITECTURE_DIAGRAM_MANIFEST.md inside the corrected package, and (b) the .drawio sources in the diagrams package. Both claim to be editable source.", "decision_owner": "System Architect / Product Owner" },
+    { "id": "C2", "title": "corrected vs draft promotion", "detail": "Both spec packages are archived; corrected supersedes draft. Confirm corrected is the sole promotion candidate and draft remains archive-only.", "decision_owner": "Product Owner" },
+    { "id": "C3", "title": "Rejected program-level Antigravity validation present in archive", "detail": "magna-program-antigravity-independent-validation is an explicitly rejected evidence source yet archived alongside accepted sprint-level Antigravity validations. Must not be promoted or cited.", "decision_owner": "System Architect / Product Owner" },
+    { "id": "C4", "title": "Historical capability-governance design vs current GOV-005", "detail": "sprint-3-capability-governance-design overlaps current GOV-005 governance; reuse only after explicit comparison to avoid resurrecting superseded design.", "decision_owner": "System Architect" },
+    { "id": "C5", "title": "Nothing accepted", "detail": "All architecture/spec/diagram materials are DRAFT_FOR_HUMAN_REVIEW; promotion to docs/architecture or docs/technical-specifications requires ARCH-001 execution + Product Owner approval (out of scope here).", "decision_owner": "Product Owner" }
+  ],
+  "recommended_promotion_map": {
+    "docs/architecture/": ["corrected package 00..18 + supplemental reports (CORRECTION_REPORT, FINAL_CONSISTENCY_CORRECTION_REPORT, TRACE_SOURCE_RESOLUTION, PRESGN_TO_EVOLUTION_RELATIONSHIP_MATRIX, HERMES_DERIVED_CAPABILITY_PLAN, HELIX_VERSIONING_OPTIONS)"],
+    "docs/technical-specifications/": ["corrected package technical-specifications/00..19", "corrected package registries/*.yaml (as supporting registries)"],
+    "docs/architecture/diagrams/src/": ["diagrams-draft/drawio/*.drawio", "diagrams-draft/DIAGRAM_INDEX.json"],
+    "docs/architecture/diagrams/rendered/": ["diagrams-draft/svg/*.svg"],
+    "trace/evidence/": ["corrected package validation/* + FOUNDATION_EVIDENCE_INDEX.json", "diagrams-draft/validation/*", "magna-program-evidence-completion/* (accepted baseline)"],
+    "trace/reviews/": ["sprint-level Antigravity validations", "corrected package learning/*", "AGENT_OUTPUT_REVIEW_* + PromptStyle (templates)"],
+    "archive_only": ["magna-enso-architecture-technical-specification-draft/** (superseded)", "magna-program-discovery-reconstruction/** (preliminary)", "magna-program-antigravity-independent-validation/** (REJECTED)", "sprint-N approval-packages", "git-initialization-decision-package", "diagrams-draft/html/** (generated viewer)", "_migration provenance", "README"],
+    "note": "Recommendation only. Actual promotion/move is performed by ARCH-001 (not this task) after Product Owner approval."
+  },
+  "decisions_required": [
+    "C1: choose the canonical diagram source (Mermaid-in-docs+manifest vs .drawio).",
+    "C2: confirm corrected supersedes draft for promotion; draft stays archive-only.",
+    "C3: confirm the rejected program-level Antigravity package stays archive-only and is never cited.",
+    "C4: confirm whether sprint-3 capability-governance-design is reconciled with GOV-005 before any reuse.",
+    "C5: authorize (or defer) promotion to docs/architecture and docs/technical-specifications via ARCH-001; nothing is accepted by this task.",
+    "Record the Mermaid CLI version + viewer QA status as promotion prerequisites for rendered diagrams."
+  ]
+}
