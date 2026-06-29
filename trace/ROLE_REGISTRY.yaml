@@ -1,43 +1,61 @@
 meta:
-  enforcement: "repository_rules_plus_task_scope"
+  version: 2
+  enforcement: repository_rules_plus_task_envelope_plus_active_path_ownership
   human_override: true
-  final_authority: "product_owner"
+  final_authority: product_owner
+  execution_authority: approved_task_envelope
+  acceptance_authority: product_owner
 
 roles:
   product_owner:
-    worker: "vinay"
+    worker: vinay
     responsibilities: [scope, priority, functional_acceptance, risk_acceptance, merge, release]
     must_not: [replace_technical_evidence_with_manual_assertion]
 
   system_architect_sme:
-    worker: "chatgpt"
-    modes: [discovery, review, mixed]
-    can_modify: [governance_docs, architecture_docs, task_packets, review_artifacts]
-    must_not: [merge, self_accept, invent_state, make_binding_product_decisions]
+    worker: chatgpt
+    modes: [discovery, execution, review, mixed]
+    can_modify: [task_envelope_owned_governance, task_envelope_owned_architecture, task_packets_before_execution, review_artifacts]
+    responsibilities: [synchronization_gate, outcome_oriented_task_design, ownership_coordination, integration_order, architecture_review, merge_recommendation]
+    verdicts: [APPROVE_TO_MERGE, CHANGES_REQUIRED, BLOCKED]
+    must_not: [merge, self_accept, invent_state, hide_discrepancy, make_binding_product_decisions, mutate_active_task_packet]
 
   architecture_specification:
-    worker: "claude"
-    modes: [discovery, review, mixed]
-    can_modify: [assigned_docs, assigned_configuration, explicitly_assigned_code]
-    must_not: [self_approve, merge, silently_change_scope]
+    worker: claude
+    modes: [discovery, execution, review, mixed]
+    can_modify: [task_envelope_owned_docs, task_envelope_owned_configuration, explicitly_assigned_code, review_artifacts]
+    autonomous_within_envelope: [investigate, select_method, edit, validate, correct, commit, push_branch, update_draft_pr]
+    must_not: [self_approve, merge, force_push, silently_change_scope, modify_other_task_ownership, present_proposal_as_implementation]
 
   builder:
-    worker: "codex"
+    worker: codex
     modes: [execution, investigation]
-    can_modify: [task_packet_allowed_scope]
-    must_not: [push_main, merge, self_accept, bypass_policy, activate_unapproved_capabilities]
+    can_modify: [task_envelope_owned_paths]
+    autonomous_within_envelope: [investigate, select_method, edit, validate, correct, commit, push_branch, update_draft_pr, public_task_download, isolated_dependency_install]
+    must_not: [push_main, merge, self_accept, force_push, bypass_policy, modify_other_task_ownership, activate_unapproved_capabilities]
 
   independent_validator:
-    worker: "antigravity"
-    modes: [review, investigation]
+    worker: antigravity
+    modes: [review, investigation, execution]
     can_modify: [validation_artifacts, explicitly_assigned_corrections]
-    must_not: [implement_feature_under_review, self_approve, merge, use_unverified_paths]
+    autonomous_within_envelope: [investigate, validate, commit, push_branch, update_draft_pr]
+    must_not: [implement_feature_under_review, self_approve, merge, force_push, use_unverified_paths, modify_other_task_ownership]
 
   governed_runtime_experiment:
-    worker: "hermes"
-    status: "inactive"
+    worker: hermes
+    status: inactive
     modes: [execution, review]
     can_modify: []
-    activation_requires: [approved_task, isolated_runtime, policy_gate, audit_before_effect, independent_review]
-    must_not: [self_enable_tools, silent_memory_write, external_action, repository_write]
+    activation_requires: [approved_capability_lab_task, isolated_runtime, explicit_tools_and_paths, policy_gate, audit_before_effect, independent_review]
+    when_activated_autonomy: task_envelope_only
+    must_not: [self_activate, self_enable_tools, silent_memory_write, credential_use, external_action, unassigned_repository_write, push_main, merge]
 
+common_worker_requirements:
+  synchronization: SYNC_PASS
+  branch_and_worktree_isolation: required
+  active_work_registration: required
+  instruction_provenance: prepared_by_chatgpt_approved_by_product_owner
+  handoff: [markdown, schema_valid_json]
+  detailed_evidence_location: repository
+  concise_chat_summary: required
+  protected_boundaries: docs/governance/MULTI_AGENT_EXECUTION_POLICY.md

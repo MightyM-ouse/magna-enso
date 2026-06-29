@@ -1,0 +1,292 @@
+version: 1
+canonical_repository: MightyM-ouse/magna-enso
+updated_at: "2026-06-28T18:10:00+02:00"
+
+# CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
+# `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
+# it is never required to equal the commit that contains this file (impossible self-reference)
+# and must not be read as a freshness guarantee. Always reconcile against the live branch head.
+synchronization_authority: live_github_branch_head
+
+# CF-3 (AC #5): one canonical live task-status authority, with explicit roles for the other
+# status surfaces so they cannot silently disagree.
+status_authority:
+  canonical_live_status: "trace/ACTIVE_WORK_REGISTRY.yaml (active_tasks[].status)"
+  immutable_task_status: "trace/tasks/<TASK>.md (frozen at publication; historical, not live)"
+  human_summary: "trace/STAR_MAP.md (narrative; mirrors the live status, not authoritative)"
+  handoff_status: "handoff task.status (point-in-time snapshot at handoff)"
+  vocabulary_source: status_vocabulary
+
+status_vocabulary:
+  - PLANNED
+  - AUTHORIZED
+  - IN_PROGRESS
+  - BLOCKED
+  - PUSHED_FOR_REVIEW
+  - CHANGES_REQUIRED
+  - READY_FOR_PRODUCT_OWNER
+  - MERGED
+  - CLOSED
+
+ownership_rules:
+  writable_paths_exclusive: true
+  overlapping_write_requires_recorded_resolution: true
+  task_packet_immutable_after_in_progress: true
+  assigned_branch_only: true
+  main_merge_authority: product_owner
+
+active_tasks:
+  - task_id: ARCH-001
+    agent: chatgpt
+    role: system_architect_sme
+    status: BLOCKED
+    branch: architect/ARCH-001-canonical-architecture-baseline
+    worktree: agent_managed
+    starting_commit: 20e69cad9edfc71e193de3411f7778a64c041273
+    latest_known_commit: 631d5cf23b72e7aa0ae8f520446efdc7fde747bf
+    issue: 8
+    pull_request: 9
+    writable_paths:
+      - docs/architecture/
+      - docs/technical-specifications/
+      - trace/tasks/ARCH-001.md
+      - trace/evidence/ARCH-001_LIGHT_CURVE.md
+      - trace/STAR_MAP.md
+    read_only_dependencies:
+      - archive/chatgpt-review-history/
+    shared_paths:
+      - trace/STAR_MAP.md
+    integration_order: after_GOV-005_or_explicit_resynchronization
+    blocked_on:
+      - task_branch_resynchronization_with_current_main
+      - confirmation_of_normative_architecture_source_from_governed_archive
+    handoff: null
+
+  - task_id: GOV-005
+    agent: chatgpt
+    role: system_architect_sme
+    status: READY_FOR_PRODUCT_OWNER
+    status_note: "GOV-005 implementation, Claude review, Claude corrections, CF-5 hardening, and Antigravity validation evidence are integrated. Awaiting Product Owner decision on PR #13 merge to main."
+    branch: codex/GOV-005-multi-agent-governance
+    branch_namespace_exception: "Created by ChatGPT through a Codex-namespaced publishing adapter before GOV-005 established accountable-worker namespaces; retained to preserve the validated PR and must not be repeated."
+    worktree: connected_github_isolated_branch
+    starting_commit: 4afeb0ceec14262c8bbafd86f41a7734fac5e0ae
+    latest_known_commit: ef751b8c10f615f0babb57177bf727f91517469d
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative. Recorded before the PR #13 parent-envelope cleanup commit."
+    issue: 12
+    pull_request: 13
+    integrated_child_tasks:
+      - GOV-005-CLAUDE
+      - GOV-005-CLAUDE-CORRECTIONS
+      - GOV-005-CF5
+      - GOV-005-ANTIGRAVITY-VALIDATION
+      - GOV-005-ANTIGRAVITY-CF5-VALIDATION
+    writable_paths:
+      - AGENTS.md
+      - CODEX.md
+      - CLAUDE.md
+      - ANTIGRAVITY.md
+      - HERMES.md
+      - CHATGPT.md
+      - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+      - trace/ACTIVE_WORK_REGISTRY.yaml
+      - trace/WORKFLOWS.yaml
+      - trace/ROLE_REGISTRY.yaml
+      - trace/CELESTIAL_INDEX.json
+      - trace/DECISION_LOG.md
+      - trace/STAR_MAP.md
+      - trace/templates/
+      - trace/schemas/
+      - trace/tasks/GOV-005.md
+      - trace/tasks/GOV-005-CLAUDE-REVIEW.md
+      - trace/tasks/GOV-005-CLAUDE-CORRECTIONS.md
+      - trace/evidence/GOV-005_LIGHT_CURVE.md
+      - trace/evidence/GOV-005_HANDOFF.json
+      - trace/evidence/GOV-005_HANDOFF.md
+      - scripts/validate_multi_agent_governance.py
+    correction_phase_modifies:
+      note: "PR #13 is the parent GOV-005 integration PR into main. It now carries approved review, correction, CF-5 hardening, and validation artifacts that were produced on child branches and merged into the GOV-005 branch. These explicit file-level allowances apply only to the accountable GOV-005 parent branch and do not reintroduce broad governance directory permissions."
+      files:
+        - .github/workflows/governance-validation.yml
+        - scripts/check_changed_path_ownership.py
+        - scripts/governance-requirements.txt
+        - tests/test_changed_path_ownership.py
+        - trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.json
+        - trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.md
+        - trace/evidence/GOV-005-CF5-HANDOFF.json
+        - trace/evidence/GOV-005-CF5-HANDOFF.md
+        - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+        - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.md
+        - trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+        - trace/evidence/GOV-005-CLAUDE-HANDOFF.md
+        - trace/reviews/GOV-005-ANTIGRAVITY-VALIDATION-REPORT.md
+        - trace/reviews/GOV-005-CF5-CORRECTION-REPORT.md
+        - trace/reviews/GOV-005-CLAUDE-CORRECTIONS-MATRIX.md
+        - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+        - trace/reviews/GOV-005-CORRECTIONS-CONSOLIDATED-STATUS.md
+        - trace/tasks/GOV-005-ANTIGRAVITY-VALIDATION.md
+        - trace/tasks/GOV-005-CLAUDE-CF5-HARDENING.md
+    read_only_dependencies:
+      - docs/governance/PUBLIC_REPOSITORY_SECURITY.md
+      - docs/governance/EVIDENCE_AND_ARTIFACT_POLICY.md
+    shared_paths:
+      - trace/STAR_MAP.md
+    integration_order: before_ARCH-001_resumes
+    blocked_on: []
+    handoff: trace/evidence/GOV-005_HANDOFF.json
+
+  - task_id: GOV-005-CLAUDE
+    agent: claude
+    role: architecture_specification
+    review_of: GOV-005
+    status: PUSHED_FOR_REVIEW
+    branch: claude/GOV-005-four-eyes-review
+    worktree: connected_github_isolated_branch
+    starting_commit: 2885f0bc62b7f5c941a1525d26eb0a97b51a6186
+    latest_known_commit: 2885f0bc62b7f5c941a1525d26eb0a97b51a6186
+    issue: 12
+    pull_request: pending_draft_review_pr
+    writable_paths:
+      - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+    read_only_dependencies:
+      - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+      - trace/tasks/GOV-005.md
+      - trace/tasks/GOV-005-CLAUDE-REVIEW.md
+    shared_paths: []
+    registry_note: "Review registration only (authorized by the GOV-005-CLAUDE-REVIEW packet); the GOV-005 entry above is not modified by Claude. trace/ACTIVE_WORK_REGISTRY.yaml is intentionally omitted from writable_paths to avoid undeclared overlap with GOV-005 ownership."
+    integration_order: review_targets_codex/GOV-005-multi-agent-governance_do_not_merge
+    blocked_on: []
+    handoff: trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+
+  - task_id: GOV-005-CLAUDE-CORRECTIONS
+    agent: claude
+    role: correction_implementer
+    corrects: GOV-005
+    status: PUSHED_FOR_REVIEW
+    branch: claude/GOV-005-corrections
+    worktree: connected_github_isolated_branch
+    starting_commit: 2796b4aac9ac32f49d8a5e95f558c161c02d953f
+    latest_known_commit: c56933a5ededc244005b193ba8b6022a0759a116
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative. Recorded after PR #28 integration and before this registry update commit."
+    issue: 12
+    pull_request: 17
+    independent_validator_after: antigravity
+    integrated_child_tasks:
+      - GOV-005-CF5
+      - GOV-005-ANTIGRAVITY-VALIDATION
+      - GOV-005-ANTIGRAVITY-CF5-VALIDATION
+    writable_paths:
+      - scripts/check_changed_path_ownership.py
+      - scripts/governance-requirements.txt
+      - trace/reviews/GOV-005-CLAUDE-CORRECTIONS-MATRIX.md
+      - trace/reviews/GOV-005-CORRECTIONS-CONSOLIDATED-STATUS.md
+      - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.md
+      - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+    correction_phase_modifies:
+      note: "Authorized by trace/tasks/GOV-005-CLAUDE-CORRECTIONS.md as a sequential correction phase over the GOV-005 implementation branch. This parent correction branch now also integrates approved child-task artifacts from PR #28 (CF-5 hardening) and Antigravity validation evidence. The entries below are explicit file-level integration allowances for this parent branch only; they do not reintroduce a broad governance directory allowlist or cross-task union ownership."
+      files:
+        - .github/workflows/governance-validation.yml
+        - scripts/validate_multi_agent_governance.py
+        - tests/test_changed_path_ownership.py
+        - trace/schemas/agent_handoff.schema.json
+        - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+        - trace/templates/AGENT_HANDOFF_TEMPLATE.md
+        - trace/ACTIVE_WORK_REGISTRY.yaml
+        - trace/evidence/GOV-005_HANDOFF.json
+        - trace/evidence/GOV-005_HANDOFF.md
+        - trace/evidence/GOV-005_LIGHT_CURVE.md
+        - trace/tasks/GOV-005-ANTIGRAVITY-VALIDATION.md
+        - trace/tasks/GOV-005-CLAUDE-CF5-HARDENING.md
+        - trace/reviews/GOV-005-ANTIGRAVITY-VALIDATION-REPORT.md
+        - trace/reviews/GOV-005-CF5-CORRECTION-REPORT.md
+        - trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.json
+        - trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.md
+        - trace/evidence/GOV-005-CF5-HANDOFF.json
+        - trace/evidence/GOV-005-CF5-HANDOFF.md
+    must_not_modify:
+      - trace/tasks/GOV-005.md
+      - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+    read_only_dependencies:
+      - trace/tasks/GOV-005-CLAUDE-CORRECTIONS.md
+      - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+      - trace/reviews/GOV-005-CORRECTIONS-CONSOLIDATED-STATUS.md
+    shared_paths: []
+    integration_order: corrects_codex/GOV-005-multi-agent-governance_do_not_merge_independent_validator_antigravity
+    blocked_on: []
+    handoff: trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+
+  - task_id: GOV-005-ANTIGRAVITY-VALIDATION
+    agent: antigravity
+    role: independent_validator
+    validates: GOV-005-CLAUDE-CORRECTIONS
+    status: IN_PROGRESS
+    branch: antigravity/GOV-005-corrections-validation
+    worktree: connected_github_isolated_branch
+    starting_commit: bc5194e025f4f16da2c1ab867aed8e632258f147
+    latest_known_commit: bc5194e025f4f16da2c1ab867aed8e632258f147
+    issue: 12
+    pull_request: pending_draft_validation_pr
+    writable_paths:
+      - trace/reviews/GOV-005-ANTIGRAVITY-VALIDATION-REPORT.md
+      - trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.json
+      - trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.md
+      - trace/tasks/GOV-005-ANTIGRAVITY-VALIDATION.md
+    read_only_dependencies:
+      - trace/tasks/GOV-005-ANTIGRAVITY-VALIDATION.md
+      - trace/tasks/GOV-005-CLAUDE-CORRECTIONS.md
+      - trace/reviews/GOV-005-CLAUDE-CORRECTIONS-MATRIX.md
+      - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+      - trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.md
+    shared_paths: []
+    integration_order: validates_claude/GOV-005-corrections_do_not_merge
+    blocked_on: []
+    handoff: trace/evidence/GOV-005-ANTIGRAVITY-VALIDATION-HANDOFF.json
+
+  - task_id: GOV-005-CF5
+    agent: claude
+    role: correction_implementer
+    corrects: GOV-005
+    finding: CF-5
+    status: PUSHED_FOR_REVIEW
+    branch: claude/GOV-005-cf5-hardening
+    worktree: connected_github_isolated_branch
+    starting_commit: 9120017be38c445a920b1e29a0063458fe17ed57
+    latest_known_commit: 9120017be38c445a920b1e29a0063458fe17ed57
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
+    issue: 26
+    pull_request: pending_draft_cf5_pr
+    independent_validator_after: antigravity
+    writable_paths:
+      - tests/
+      - trace/tasks/GOV-005-CLAUDE-CF5-HARDENING.md
+      - trace/reviews/GOV-005-CF5-CORRECTION-REPORT.md
+      - trace/evidence/GOV-005-CF5-HANDOFF.md
+      - trace/evidence/GOV-005-CF5-HANDOFF.json
+    correction_phase_modifies:
+      note: "Authorized by trace/tasks/GOV-005-CLAUDE-CF5-HARDENING.md as a focused CF-5 hardening over the GOV-005 correction lineage. These GOV-005-owned governance files are corrected, not re-owned; kept out of writable_paths to avoid false exclusive-ownership overlap. The task-specific ownership checker authorizes them only for this accountable task via this explicit declaration."
+      files:
+        - scripts/check_changed_path_ownership.py
+        - .github/workflows/governance-validation.yml
+        - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
+    must_not_modify:
+      - trace/tasks/GOV-005.md
+      - trace/reviews/GOV-005-CLAUDE-FOUR-EYES-REVIEW.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.md
+      - trace/evidence/GOV-005-CLAUDE-HANDOFF.json
+      - backend/
+      - frontend/
+      - src/
+      - archive/
+      - vendor/
+    read_only_dependencies:
+      - trace/ROLE_REGISTRY.yaml
+      - trace/schemas/agent_handoff.schema.json
+      - scripts/validate_multi_agent_governance.py
+    shared_paths: []
+    integration_order: hardens_CF-5_targets_claude/GOV-005-corrections_do_not_merge_independent_validator_antigravity
+    blocked_on: []
+    handoff: trace/evidence/GOV-005-CF5-HANDOFF.json

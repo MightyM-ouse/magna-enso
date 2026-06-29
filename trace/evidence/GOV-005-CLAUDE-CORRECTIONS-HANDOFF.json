@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "task": {
+    "id": "GOV-005",
+    "status": "PUSHED_FOR_REVIEW",
+    "agent": "claude",
+    "role": "correction_implementer"
+  },
+  "provenance": {
+    "instruction_prepared_by": "ChatGPT / System Architect",
+    "instruction_approved_by": "Product Owner",
+    "intended_reviewer": "ChatGPT / System Architect",
+    "review_status": "PENDING",
+    "review_completed_by": null
+  },
+  "repository_state": {
+    "branch": "claude/GOV-005-corrections",
+    "starting_commit": "2796b4aac9ac32f49d8a5e95f558c161c02d953f",
+    "final_commit": null,
+    "pull_request": null
+  },
+  "synchronization": {
+    "verdict": "SYNC_PASS",
+    "checked_at": "2026-06-24T21:55:00+02:00",
+    "sources": [
+      "origin/main",
+      "PR #16 (merged)",
+      "PR #13 (open/draft)",
+      "implementation head 2796b4a",
+      "trace/ACTIVE_WORK_REGISTRY.yaml"
+    ],
+    "discrepancies": [
+      "PR #16 merged; corrections packet present on implementation head 2796b4a; no existing correction branch."
+    ]
+  },
+  "outcome": {
+    "summary": "Resolved CF-1..CF-6 and related nonblocking weaknesses: CI now runs the substantive validator and a git-aware ownership check on the main and stacked PRs; one governed status vocabulary enforced by schema+validator; provenance distinguishes intended reviewer from completed review; commit fields are point-in-time with the live branch head as authority; GOV-005 handoff files brought into declared ownership.",
+    "acceptance_criteria": [
+      { "name": "AC1 CI runs substantive validator and fails on real violation", "status": "PASS", "evidence": "trace/reviews/GOV-005-CLAUDE-CORRECTIONS-MATRIX.md (N1-N4)" },
+      { "name": "AC7 Schema and validator reject out-of-vocabulary status", "status": "PASS", "evidence": "negative test N1" },
+      { "name": "AC8 Git-aware unauthorized changed-path detection", "status": "PASS", "evidence": "negative test N4; positive N5" },
+      { "name": "AC9 Provenance distinguishes intended from completed review", "status": "PASS", "evidence": "negative tests N2, N3" },
+      { "name": "AC10 Existing Claude findings preserved unchanged", "status": "PASS", "evidence": "merged review files not modified" },
+      { "name": "AC11 No runtime/product/out-of-scope change", "status": "PASS", "evidence": "governance/CI files only" }
+    ]
+  },
+  "changes": [
+    { "path": ".github/workflows/governance-validation.yml", "purpose": "CF-1: run validator + ownership check + extended required files on main and stacked PRs.", "ownership_expansion_reason": "Authorized by the correction packet (governance CI workflow)." },
+    { "path": "scripts/validate_multi_agent_governance.py", "purpose": "CF-3/CF-4/CF-6: enforce status vocabulary, schema-enum consistency, and provenance semantics.", "ownership_expansion_reason": null },
+    { "path": "scripts/check_changed_path_ownership.py", "purpose": "CF-5/AC8: git-aware changed-path ownership enforcement.", "ownership_expansion_reason": null },
+    { "path": "scripts/governance-requirements.txt", "purpose": "NB-1: pinned governance dependency (PyYAML 6.0.2, MIT).", "ownership_expansion_reason": null },
+    { "path": "trace/schemas/agent_handoff.schema.json", "purpose": "CF-4/CF-6/CF-2: task_status enum, provenance shape, final_commit semantics.", "ownership_expansion_reason": null },
+    { "path": "trace/ACTIVE_WORK_REGISTRY.yaml", "purpose": "CF-2/CF-3/CF-5: status authority, sync authority, ownership; correction task entry.", "ownership_expansion_reason": null },
+    { "path": "docs/governance/MULTI_AGENT_EXECUTION_POLICY.md", "purpose": "CF-1/CF-2/CF-3/CF-6: status authority, commit semantics, provenance, CI enforcement.", "ownership_expansion_reason": null },
+    { "path": "trace/templates/AGENT_HANDOFF_TEMPLATE.md", "purpose": "CF-6/CF-2: provenance and commit-field semantics in the template.", "ownership_expansion_reason": null },
+    { "path": "trace/evidence/GOV-005_HANDOFF.json", "purpose": "CF-3/CF-6: governed status and corrected provenance.", "ownership_expansion_reason": null },
+    { "path": "trace/evidence/GOV-005_HANDOFF.md", "purpose": "CF-3/CF-6/CF-2: aligned status, provenance, commit semantics.", "ownership_expansion_reason": null }
+  ],
+  "downloads": [
+    { "source_url": "https://pypi.org/project/PyYAML/", "publisher": "PyYAML maintainers (PyPI)", "purpose": "Parse governance YAML in the validator and ownership check.", "version": "6.0.2", "destination": "isolated venv /tmp/gov005venv (not committed)", "size_bytes": 0, "sha256": null, "license": "MIT", "executed": false, "security_checks": ["pinned version", "isolated virtualenv", "declared in scripts/governance-requirements.txt", "no global/host change"], "resulting_changes": ["scripts/governance-requirements.txt"] }
+  ],
+  "validation": [
+    { "name": "Governance validator (positive)", "status": "PASS", "command": "python3 scripts/validate_multi_agent_governance.py", "evidence": "4 active tasks; schema enum matches vocabulary" },
+    { "name": "Negative N1 out-of-vocabulary status", "status": "PASS", "command": "mutated handoff -> validator", "evidence": "exit 1 as expected" },
+    { "name": "Negative N2 legacy reviewed_by provenance", "status": "PASS", "command": "mutated handoff -> validator", "evidence": "exit 1 as expected" },
+    { "name": "Negative N3 review COMPLETED without reviewer", "status": "PASS", "command": "mutated handoff -> validator", "evidence": "exit 1 as expected" },
+    { "name": "Negative N4 forbidden changed path", "status": "PASS", "command": "check_changed_path_ownership.py --paths src/runtime/app.py", "evidence": "exit 1 as expected" },
+    { "name": "Positive N5 governance changed paths", "status": "PASS", "command": "check_changed_path_ownership.py --paths <governance>", "evidence": "exit 0" },
+    { "name": "JSON/YAML parse", "status": "PASS", "command": "python3 json.load; ruby -ryaml", "evidence": "schema, handoff, registry" },
+    { "name": "GitHub CI governance workflow", "status": "SKIPPED", "command": "GitHub Actions on correction PR", "evidence": "runs after push; result recorded on the PR" }
+  ],
+  "deviations": [
+    "Added a narrowly scoped, pinned governance dependency (PyYAML 6.0.2) per the correction packet; installed in an isolated venv, not committed.",
+    "No correction modified the immutable GOV-005 task packet or the merged Claude review evidence (preserved)."
+  ],
+  "impacts": {
+    "architecture": "Governance/CI contract only; no product or runtime change.",
+    "security": "Enforcement now actually runs in CI; ownership and provenance are machine-checked; main branch protection unchanged.",
+    "integration": "Correction PR stacks on the GOV-005 implementation branch; ARCH-001 resynchronizes after GOV-005.",
+    "residual_risk": "Ownership check uses union-of-ownership plus a governance allowlist; stricter per-branch ownership is a possible future hardening."
+  },
+  "decisions_required": [
+    "Schedule Antigravity independent validation of the corrections.",
+    "ChatGPT review and Product Owner merge decision.",
+    "Carry-over review questions Q1 (namespace exception) and final merge remain open."
+  ],
+  "recommended_next_action": "Antigravity independently validates the corrections from a separate context; ChatGPT reviews and the Product Owner decides the merge. Do not merge until independent validation and Product Owner approval."
+}

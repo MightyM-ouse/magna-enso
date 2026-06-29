@@ -1,18 +1,27 @@
 {
   "description": "TRACE context routing for Magna Enso",
-  "version": 3,
+  "version": 4,
   "canonical_repository": "MightyM-ouse/magna-enso",
   "areas": {
     "trace-governance": {
-      "status": "CURRENT",
+      "status": "CURRENT_GOV_005_REVIEW_PENDING",
       "source_files": [
         "AGENTS.md",
+        "CHATGPT.md",
+        "CODEX.md",
+        "CLAUDE.md",
+        "ANTIGRAVITY.md",
+        "HERMES.md",
         "docs/governance/",
+        "docs/governance/MULTI_AGENT_EXECUTION_POLICY.md",
         "trace/TRACE_CONFIG.yaml",
         "trace/TRACE_ONBOARDING.md",
         "trace/STAR_MAP.md",
+        "trace/ACTIVE_WORK_REGISTRY.yaml",
         "trace/ROLE_REGISTRY.yaml",
-        "trace/WORKFLOWS.yaml"
+        "trace/WORKFLOWS.yaml",
+        "trace/templates/",
+        "trace/schemas/"
       ],
       "default_mode": "discovery"
     },
@@ -36,6 +45,11 @@
       ],
       "default_mode": "review"
     },
+    "review-history-archive": {
+      "status": "CURRENT_NONCANONICAL_AFTER_GOV_004",
+      "source_files": ["archive/chatgpt-review-history/"],
+      "default_mode": "investigation"
+    },
     "hermes-provenance": {
       "status": "CURRENT_INERT",
       "source_files": ["vendor/hermes/"],
@@ -47,7 +61,7 @@
       "default_mode": "review"
     },
     "architecture": {
-      "status": "MIGRATION_PENDING",
+      "status": "ARCH_001_PHASE_A_BLOCKED_DRAFT",
       "planned_files": ["docs/architecture/", "docs/technical-specifications/"],
       "default_mode": "discovery"
     },
@@ -62,6 +76,9 @@
     "allow_full_repo_scan": false,
     "escalate_context_only_when_justified": true,
     "verify_github_before_current_state_claims": true,
-    "do_not_treat_planned_files_as_delivered": true
+    "require_sync_pass_before_worker_instruction": true,
+    "require_active_work_ownership_check": true,
+    "do_not_treat_planned_files_as_delivered": true,
+    "do_not_treat_archive_as_canonical": true
   }
 }
