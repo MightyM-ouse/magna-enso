@@ -1,0 +1,240 @@
+{
+  "task": "HERMES-TECH-001-CLAUDE-REVIEW",
+  "parent_task": "HERMES-TECH-001",
+  "type": "independent-four-eyes-review",
+  "mode": "read-only-assessment",
+  "verdict": "ACCEPT_WITH_CORRECTIONS",
+  "reviewer": "claude",
+  "review_branch": "claude/HERMES-TECH-001-review",
+  "target_branch": "chatgpt/HERMES-TECH-001-assessment",
+  "target_latest_known_commit": "36e5e46",
+  "review_date": "2026-06-30",
+  "issue": 36,
+  "sync_verdict": "SYNC_PASS",
+  "activation_status": "NOT_ACTIVATED",
+  "hermes_activated": false,
+  "runtime_code_modified": false,
+  "sprint_plan_created": false,
+  "stories_finalized": false,
+
+  "files_produced": [
+    "trace/reviews/HERMES-TECH-001-CLAUDE-REVIEW.md",
+    "trace/evidence/HERMES-TECH-001-CLAUDE-HANDOFF.md",
+    "trace/evidence/HERMES-TECH-001-CLAUDE-HANDOFF.json"
+  ],
+
+  "evidence_reviewed": {
+    "accepted_github_evidence": [
+      "AGENTS.md",
+      "CLAUDE.md",
+      "trace/STAR_MAP.md",
+      "trace/ACTIVE_WORK_REGISTRY.yaml",
+      "trace/CELESTIAL_INDEX.json",
+      "trace/tasks/HERMES-TECH-001.md",
+      "trace/tasks/HERMES-TECH-001-CLAUDE-REVIEW.md",
+      "trace/tasks/HERMES-TECH-001-LOCAL-EVIDENCE-AMENDMENT.md",
+      "trace/assessments/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SEED.md",
+      "trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md",
+      "trace/planning/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SCOPE.md",
+      "trace/reviews/HERMES-001-SANDBOX-READINESS.md",
+      "trace/evidence/HERMES-001-HANDOFF.md",
+      "trace/evidence/HERMES-001-HANDOFF.json",
+      "vendor/hermes/README.md",
+      "vendor/hermes/retained/RETAINED_SURFACE_STATES.yaml",
+      "vendor/hermes/provenance/UPSTREAM_PYPROJECT.toml.source.txt",
+      "vendor/hermes/provenance/UPSTREAM_PACKAGE.json.source.txt"
+    ],
+    "noncanonical_archive_evidence": [
+      "archive/chatgpt-review-history/content/sprint-2-hermes-audit/HERMES_CODE_MAP.md",
+      "archive/chatgpt-review-history/content/sprint-3-capability-governance-design/HERMES_SURFACE_GOVERNANCE_MATRIX.md",
+      "archive/chatgpt-review-history/content/sprint-3-approval-package/HERMES_SURFACE_GOVERNANCE_PLAN.md",
+      "archive/chatgpt-review-history/content/sprint-4-governed-hermes-baseline/HERMES_SOURCE_PROVENANCE_MANIFEST.md",
+      "archive/chatgpt-review-history/content/magna-program-discovery-reconstruction/07_CAPABILITY_AND_HERMES_ADOPTION_INVENTORY.md",
+      "archive/chatgpt-review-history/content/magna-enso-architecture-technical-specification-corrected/HERMES_DERIVED_CAPABILITY_PLAN.md"
+    ],
+    "local_only_unverified": [
+      "policy/",
+      "tests/policy/",
+      "trace/evidence/ENSO-0005_LIGHT_CURVE.md"
+    ]
+  },
+
+  "prior_hermes_assessment_recovery": {
+    "sprint_2_audit": {
+      "file": "archive/.../sprint-2-hermes-audit/HERMES_CODE_MAP.md",
+      "content": "Full Hermes source architecture audit at SHA 33b1d144; 9 module categories; risky module identification",
+      "status": "NONCANONICAL_ARCHIVE"
+    },
+    "sprint_3_governance_matrix": {
+      "file": "archive/.../sprint-3-capability-governance-design/HERMES_SURFACE_GOVERNANCE_MATRIX.md",
+      "content": "Per-surface MVP state, enforcement tier (T1–T4), Sprint 4 retain/disable/remove decisions — this is the primary prior capability assessment",
+      "status": "NONCANONICAL_ARCHIVE"
+    },
+    "sprint_3_governance_plan": {
+      "file": "archive/.../sprint-3-approval-package/HERMES_SURFACE_GOVERNANCE_PLAN.md",
+      "content": "Proposed posture for every Hermes surface; rationale for remove/disable/gate decisions",
+      "status": "NONCANONICAL_ARCHIVE"
+    },
+    "sprint_4_provenance_manifest": {
+      "file": "archive/.../sprint-4-governed-hermes-baseline/HERMES_SOURCE_PROVENANCE_MANIFEST.md",
+      "content": "Import manifest, SHA verification, what was retained vs removed in vendor/hermes/",
+      "status": "NONCANONICAL_ARCHIVE"
+    },
+    "vendor_retained_surface_states": {
+      "file": "vendor/hermes/retained/RETAINED_SURFACE_STATES.yaml",
+      "content": "Machine-readable Sprint 3 surface classification — terminal:approval_required_disabled, memory:draft_only, skills:draft_only, scheduler:report_only, messaging_gateways:EXCLUDED",
+      "status": "ACCEPTED_GITHUB_EVIDENCE"
+    },
+    "hermes_001_sandbox_readiness": {
+      "file": "trace/reviews/HERMES-001-SANDBOX-READINESS.md",
+      "content": "Planning-only sandbox readiness design for Hermes as documentation assistant — NOT a full operational capability assessment",
+      "status": "ACCEPTED_GITHUB_EVIDENCE"
+    }
+  },
+
+  "local_workspace_findings": {
+    "sprint_5_policy_engine": {
+      "paths": ["policy/", "tests/policy/"],
+      "description": "Magna-native default-deny policy engine — 9 production modules, 49 unit tests (0 failures), secure audit sink, capability gate, harness",
+      "relevant_to_capability": "Command approval and safety controls",
+      "test_status": "49 tests PASS (python3 -m unittest discover)",
+      "compile_status": "PASS (python3 -m compileall)",
+      "hermes_imports": false,
+      "third_party_imports": false,
+      "curate_to_github": true,
+      "recommended_destination": "policy/, tests/policy/ on sprint/05-policy-engine branch",
+      "condition": "Antigravity validation and Product Owner acceptance required first",
+      "changes_capability_decision": true,
+      "capability_decision_impact": "Confirms Command approval/safety controls = REBUILD_IN_MAGNA"
+    },
+    "enso_0005_light_curve": {
+      "path": "trace/evidence/ENSO-0005_LIGHT_CURVE.md",
+      "description": "Sprint 5 implementation and validation evidence; status IN_REVIEW; Antigravity validation pending",
+      "curate_to_github": true,
+      "recommended_destination": "trace/evidence/ENSO-0005_LIGHT_CURVE.md on sprint/05-policy-engine branch",
+      "condition": "Same as policy engine — Antigravity validation and Product Owner acceptance first"
+    }
+  },
+
+  "capability_classification_corrections": [
+    {
+      "capability": "messaging_gateway",
+      "seed_decision": "WRAP_WITH_GOVERNANCE",
+      "corrected_decision": "WRAP_WITH_GOVERNANCE_requires_new_activation_decision",
+      "severity": "HIGH",
+      "reason": "Sprint 3 governance matrix: messaging gateways DISABLED/REMOVE (T1 — highest tier). Currently DISABLED in Sprint 4 baseline. Re-enabling requires new explicit Product Owner decision and activation gate."
+    },
+    {
+      "capability": "memory",
+      "seed_decision": "ADAPT",
+      "corrected_decision": "WRAP_WITH_GOVERNANCE",
+      "severity": "MEDIUM",
+      "reason": "Sprint 3 governance: memory writes are draft_only (staged, non-bypassable, human acceptance required). ADAPT understates the constraint."
+    },
+    {
+      "capability": "command_approval_safety_controls",
+      "seed_decision": "REBUILD_IN_MAGNA or WRAP_WITH_GOVERNANCE",
+      "corrected_decision": "REBUILD_IN_MAGNA",
+      "severity": "MEDIUM",
+      "reason": "Sprint 5 local candidate implementation confirms REBUILD_IN_MAGNA path. Ambiguity removed."
+    },
+    {
+      "capability": "terminal_execution",
+      "seed_decision": "WRAP_WITH_GOVERNANCE",
+      "corrected_decision": "WRAP_WITH_GOVERNANCE (confirmed)",
+      "severity": "LOW",
+      "note": "Correct in direction but must add: disabled by default per Sprint 3/4; requires separate activation gate; policy engine must be verified before activation."
+    },
+    {
+      "capability": "pr33_identity_logo",
+      "seed_decision": "ADOPT_IN_MAGNA",
+      "corrected_decision": "ADOPT",
+      "severity": "LOW",
+      "note": "ADOPT_IN_MAGNA is non-standard decision class. Use ADOPT; note PR #33 as prerequisite branding dependency, not a Hermes capability decision."
+    }
+  ],
+
+  "epic_1_must_adopt": [
+    "Magna identity wrapper (ADOPT via PR #33 direction)",
+    "Remote command intake — Telegram only (WRAP_WITH_GOVERNANCE, requires activation decision)",
+    "Known instruction matching (REBUILD_IN_MAGNA)",
+    "Safety classification / policy engine (REBUILD_IN_MAGNA — Sprint 5 candidate)",
+    "CLI worker dispatch via approved wrappers (WRAP_WITH_GOVERNANCE)",
+    "Worker result capture and normalization (ADAPT)",
+    "GitHub evidence/assessment update (REBUILD_IN_MAGNA)",
+    "User notification via approved channel (ADAPT)",
+    "TRACE forward/backward traceability (REBUILD_IN_MAGNA)",
+    "Approval/continuation/closure loop (ADAPT)"
+  ],
+
+  "epic_1_defer": [
+    "WhatsApp support (DEFER)",
+    "Scheduler/cron auto-execution (DEFER)",
+    "Skills/self-improvement/background review (DEFER — Sprint 3: DISABLED/REMOVE)",
+    "Full memory write automation (DEFER — draft_only staging only)",
+    "Multi-level delegation/subagents (DEFER — Sprint 3: DISABLED/REMOVE)",
+    "MCP/tool integrations dynamic loading (DEFER — Sprint 3: DISABLED pending signed allowlist)",
+    "Browser actions (DEFER)",
+    "Remote execution backends (DEFER — Sprint 3: REMOVED)",
+    "Multi-channel notification fanout (DEFER)",
+    "Cloud provider activation (DEFER — Sprint 3: DISABLED)"
+  ],
+
+  "open_risks": [
+    {"id": "R-01", "description": "GOV-005 not yet merged to main", "status": "OPEN"},
+    {"id": "R-02", "description": "GOV-006 not yet merged to main", "status": "OPEN"},
+    {"id": "R-03", "description": "HERMES-ADOPT-001 (PR #34) not yet accepted by Product Owner", "status": "OPEN"},
+    {"id": "R-04", "description": "No formal product user stories exist (trace/product/ absent)", "status": "OPEN — critical"},
+    {"id": "R-05", "description": "Messaging gateway surfaces currently DISABLED per Sprint 3/4; re-enabling requires new decision", "status": "OPEN — new decision required"},
+    {"id": "R-06", "description": "Runtime policy chokepoint not verified (carried from Sprint 4/5)", "status": "OPEN — recurring"},
+    {"id": "R-07", "description": "Sprint 5 policy engine local-only; Antigravity review pending", "status": "OPEN"},
+    {"id": "R-08", "description": "Local model/provider for Hermes runtime not selected (OD-HRM.1)", "status": "OPEN"},
+    {"id": "R-09", "description": "SGN-01 remains blocked", "status": "OPEN"},
+    {"id": "R-10", "description": "ARCH-001 architecture baseline blocked", "status": "OPEN"},
+    {"id": "R-11", "description": "PR #33 Magna identity status not confirmed from local evidence", "status": "OPEN"},
+    {"id": "R-12", "description": "OD-HRM.3: authenticated approval channel for activation not designed", "status": "OPEN"}
+  ],
+
+  "recommended_seed_corrections": [
+    "Add evidence recovery section citing Sprint 2/3/4 archive assessments and their key decisions",
+    "Correct messaging gateway classification to note current DISABLED status and re-authorization requirement",
+    "Correct memory classification from ADAPT to WRAP_WITH_GOVERNANCE (draft_only staging)",
+    "Correct command approval/safety controls to REBUILD_IN_MAGNA (Sprint 5 local candidate)",
+    "Add prerequisite checklist before sprint planning (GOV-005/006 merge, PR #34 acceptance, user stories, Sprint 5 acceptance, messaging re-authorization, R-06)",
+    "Note that trace/product/ does not exist and formal stories are a prerequisite",
+    "Fix PR #33 classification from ADOPT_IN_MAGNA to ADOPT with note as branding dependency",
+    "Carry R-06 explicitly as an open risk in the assessment"
+  ],
+
+  "traceability": {
+    "backward": [
+      "HERMES-TECH-001 task packet (trace/tasks/HERMES-TECH-001.md)",
+      "Issue #36",
+      "PR #37 (target branch chatgpt/HERMES-TECH-001-assessment)",
+      "HERMES-ADOPT-001 planning brief (trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md)",
+      "Sprint 2/3/4 archive assessments (noncanonical)",
+      "vendor/hermes/ baseline (Sprint 4 accepted)",
+      "HERMES-001 sandbox readiness"
+    ],
+    "forward": [
+      "Product Owner review of this report and seed corrections",
+      "Formal product user story creation",
+      "Story correctness review",
+      "Reconciliation of stories with corrected assessment",
+      "Final approved/design-ready stories",
+      "Four-sprint planning"
+    ]
+  },
+
+  "compliance": {
+    "hermes_not_activated": true,
+    "runtime_code_not_modified": true,
+    "sprint_plan_not_created": true,
+    "stories_not_finalized": true,
+    "merge_not_attempted": true,
+    "product_owner_authority_preserved": true,
+    "trace_respected": true
+  },
+
+  "timestamp": "2026-06-30"
+}
