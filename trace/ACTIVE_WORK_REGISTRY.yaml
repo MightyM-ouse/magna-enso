@@ -1,6 +1,6 @@
 version: 1
 canonical_repository: MightyM-ouse/magna-enso
-updated_at: "2026-06-29T23:40:00+02:00"
+updated_at: "2026-06-30T00:15:00+02:00"
 
 # CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
 # `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
@@ -187,6 +187,43 @@ active_tasks:
     blocked_on:
       - product_owner_review
     handoff: trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md
+
+  - task_id: HERMES-TECH-001
+    agent: chatgpt
+    role: system_architect_sme
+    status: PUSHED_FOR_REVIEW
+    branch: chatgpt/HERMES-TECH-001-assessment
+    worktree: connected_github_isolated_branch
+    starting_commit: f1248c3ba814d5b172e79e23e8f84e933ac1bd73
+    latest_known_commit: 36e5e468a3e450d03283d34b8fbb5a7fd508df94
+    latest_known_commit_note: "Point-in-time pointer; live branch head remains authoritative. Local evidence amendment added after Product Owner clarified Claude must inspect the local Magna workspace as well as GitHub."
+    issue: 36
+    pull_request: 37
+    writable_paths:
+      - trace/tasks/HERMES-TECH-001.md
+      - trace/tasks/HERMES-TECH-001-CLAUDE-REVIEW.md
+      - trace/tasks/HERMES-TECH-001-LOCAL-EVIDENCE-AMENDMENT.md
+      - trace/assessments/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SEED.md
+    read_only_dependencies:
+      - AGENTS.md
+      - CLAUDE.md
+      - HERMES.md
+      - CHATGPT.md
+      - trace/STAR_MAP.md
+      - trace/CELESTIAL_INDEX.json
+      - trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md
+      - trace/planning/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SCOPE.md
+      - vendor/hermes/
+      - trace/evidence/
+      - trace/reviews/
+      - docs/architecture/
+      - docs/technical-specifications/
+    shared_paths: []
+    integration_order: after_HERMES_ADOPT_001_before_final_technical_specification_and_sprint_planning
+    blocked_on:
+      - claude_independent_review
+      - product_user_story_correctness_review
+    handoff: trace/assessments/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SEED.md
 
   - task_id: GOV-005-CLAUDE
     agent: claude
