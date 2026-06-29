@@ -1,6 +1,6 @@
 version: 1
 canonical_repository: MightyM-ouse/magna-enso
-updated_at: "2026-06-29T20:56:00+02:00"
+updated_at: "2026-06-29T20:58:00+02:00"
 
 # CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
 # `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
@@ -142,7 +142,7 @@ active_tasks:
     branch: chatgpt/GOV-006-clean-main
     worktree: connected_github_isolated_branch
     starting_commit: cbbca5d02565b2180ee3f63dd0754b985448fdd2
-    latest_known_commit: e0da5d6195554919c3ffad228aa5c5d11ecfe2b7
+    latest_known_commit: 3e99fbb5fabe786fb7f3dc52a619fb5267edda4b
     latest_known_commit_note: "Point-in-time pointer; live branch head remains authoritative. Clean branch recreated from main after GOV-005 merged."
     issue: 14
     pull_request: 32
@@ -154,7 +154,6 @@ active_tasks:
       - trace/AGENT_ROUTING_MATRIX.yaml
       - trace/evidence/GOV-006_LIGHT_CURVE.md
       - trace/tasks/GOV-006.md
-      - trace/ACTIVE_WORK_REGISTRY.yaml
     read_only_dependencies:
       - docs/governance/MULTI_AGENT_EXECUTION_POLICY.md
     shared_paths: []
