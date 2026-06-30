@@ -76,6 +76,58 @@ Required TRACE events (minimum):
 - [ ] GitHub evidence links back to the Magna TRACE task ID.
 - [ ] Chat and Telegram summaries reference the TRACE/evidence ID.
 - [ ] TRACE supports future recall and debugging: what triggered a change, why it was done, which worker did it, which approval allowed it, and what evidence explains later behavior or defects.
+- [ ] The minimum TRACE envelope view is available and exposes all required fields (trace_id, task_id, user_request, created_at, current_status, instruction_source, matched_instruction_id or unmatched_reason, action_classification, selected_worker, wrapper_id, branch/worktree context, files_changed, evidence_path, github_pr_or_issue_reference, worker_claims, verified_evidence, magna_verdict, next_recommended_actions, approval_status, approved_by or pending_user_decision, stop_condition, continuation_state, full event timeline).
+- [ ] Forward and backward traceability is visible in both Magna Command Center UI (live) and GitHub (durable).
+- [ ] Chat and Telegram surfaces show short summaries with TRACE/evidence references only — they do not show the full TRACE view.
+
+## Minimum TRACE Envelope View
+
+The minimum required TRACE envelope view for Product Owner review must expose the following fields:
+
+| Field | Description |
+|---|---|
+| `trace_id` | Unique identifier for this TRACE instance |
+| `task_id` | Associated Magna task ID |
+| `user_request` | Original user instruction or remote command |
+| `created_at` | Timestamp when TRACE envelope was created |
+| `current_status` | Current result state of the task |
+| `instruction_source` | Local Magna / chat, or remote channel (Telegram) |
+| `matched_instruction_id` | Known instruction matched, or `unmatched_reason` if not matched |
+| `action_classification` | SAFE_KNOWN / GOVERNED_KNOWN / APPROVAL_REQUIRED / BLOCKED_OR_UNKNOWN |
+| `selected_worker` | Worker selected (Claude / Codex / other) |
+| `wrapper_id` | Approved command wrapper used |
+| `branch_or_worktree_context` | Branch or worktree where work occurred (where applicable) |
+| `files_changed` | Files changed, verified independently from worker claims |
+| `evidence_path` | Path to GitHub evidence file(s) |
+| `github_pr_or_issue_reference` | GitHub PR or issue number linked to this task |
+| `worker_claims` | What the worker reported as its output |
+| `verified_evidence` | What Magna independently verified |
+| `magna_verdict` | Magna's verdict on the task outcome |
+| `next_recommended_actions` | Next actions suggested by Magna |
+| `approval_status` | Approved / pending user decision / rejected |
+| `approved_by_or_pending` | Who approved, or indication of pending user decision |
+| `stop_condition` | Condition that caused or will cause Magna to stop and wait |
+| `continuation_state` | What next step is allowed, blocked, or requires approval |
+| `event_timeline` | Full ordered list of TRACE events from envelope creation to current state |
+
+The view must be able to answer:
+- What triggered this change?
+- Why was it done?
+- Who or which worker did it?
+- What files changed?
+- What evidence proves it?
+- What approval allowed continuation?
+- What next action is allowed or blocked?
+- What could explain a later bug or unexpected behavior?
+
+## Traceability Visibility
+
+TRACE forward and backward traceability must be visible in **both**:
+
+1. **Magna Command Center UI** — as a live task/TRACE view showing current state, event timeline, verdict, and next-action status.
+2. **GitHub** — as durable evidence linked to the Magna TRACE task ID.
+
+Chat and Telegram surfaces show **short summaries with TRACE/evidence references only**. They do not show the full TRACE view.
 
 ## Backward Traceability
 
@@ -120,8 +172,7 @@ Forward traceability must be able to answer:
 
 ## Open Questions
 
-- What is the minimum TRACE envelope view required for Product Owner review?
-- Should the user see forward/backward traceability in the Command Center UI, GitHub evidence, or both?
+None — all open questions resolved by Product Owner on 2026-06-30.
 
 ## Downstream Work
 

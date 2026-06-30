@@ -40,10 +40,20 @@ The user experiences Magna as the single product surface, even when selected Her
 - Creating technical subtasks.
 - Assessing Hermes code integration.
 
+## Branding Dependency — PR #33
+
+PR #33 is a branding dependency for this story. It must not be assumed merged or accepted unless GitHub confirms it.
+
+- If PR #33 is not merged, this story remains dependent on branding acceptance before animated identity or loading behavior can be specified.
+- Magna identity rules must be preserved regardless of PR #33 status.
+- Hermes must not replace Magna identity in any surface.
+- Any animated identity or loading behavior must follow approved Magna branding.
+- If animated identity behavior is included, a reduced-motion fallback is required where applicable.
+
 ## Dependencies
 
 - Product dependency: Magna Enso product identity and brand rules.
-- Product dependency: Animated Magna identity branding story / PR #33 dependency from the source brief.
+- Product dependency: PR #33 — Animated Magna identity branding. **Status: unresolved dependency until GitHub confirms merge.** Story 001 remains dependent on branding acceptance if PR #33 is not merged.
 - Architecture dependency: Not created yet.
 - Governance dependency: Not created yet.
 - Data/runtime dependency: Not created yet.

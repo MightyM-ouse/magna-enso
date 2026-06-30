@@ -38,6 +38,19 @@ The following capabilities are retained in the Magna capability model but are **
 - Cloud provider activation
 - Telegram-triggered remote execution (intake-only until authorization gates are met)
 
+## RETAIN_DISABLED_BY_DEFAULT — Command Center UI Behavior
+
+RETAIN_DISABLED_BY_DEFAULT capabilities appear in the Magna Command Center UI even when disabled. Required UI behavior:
+
+- Show capability name.
+- Show status: **Disabled by default**.
+- Show the reason and associated risk.
+- Show the required activation gates.
+- Show whether the user can request enablement.
+- Do not allow activation unless all required gates are satisfied.
+- Do not execute a disabled capability under any circumstances.
+- When a capability is later enabled, it must still pass Magna policy, audit, and TRACE requirements.
+
 ## Primary Flow (Epic 1 — Local Magna-Controlled Orchestration First)
 
 Epic 1 prioritizes local Magna-controlled orchestration:
@@ -58,7 +71,7 @@ Epic 1 prioritizes local Magna-controlled orchestration:
 13. Magna summarizes recommended next actions and waits for user approval, redirection, or stop.
 ```
 
-Telegram remote-triggered execution is activation-gated and requires R-06 fix, messaging re-authorization, sender boundary, and authenticated approval-channel design before real execution can proceed.
+Telegram remote-triggered execution is activation-gated and requires R-06 fix, messaging re-authorization, Telegram User ID allowlist sender boundary (unknown user IDs are rejected or paused), and authenticated approval-channel design before real execution can proceed.
 
 ## Strong Internal TRACE Requirement
 
@@ -183,3 +196,5 @@ A full governed Magna task can run from user instruction to worker execution, ev
 - Downstream design, architecture, frontend, backend, agent, validation, and governance work must be created only after Product Owner approval.
 - PR #33 remains a branding dependency referenced by the source brief.
 - Stories corrected per Product Owner CHANGES_REQUIRED comments on PR #35 (2026-06-30): RETAIN_DISABLED_BY_DEFAULT model applied, Telegram activation-gated, Epic 1 local-first flow added, strong internal TRACE requirement applied, verdict and next-action output split applied.
+- Open question resolutions applied (2026-06-30): Telegram User ID allowlist sender boundary (OQ-1); approved Epic 1 demo scenario added to story 010 (OQ-2); both local-chat and remote-channel continuation supported, local first (OQ-3); minimum TRACE envelope view specified in story 009 (OQ-4); TRACE traceability in both Command Center UI and GitHub (OQ-5); RETAIN_DISABLED_BY_DEFAULT UI behavior specified (OQ-6); PR #33 treated as unresolved branding dependency in story 001 (OQ-7).
+- PR #33: Unresolved branding dependency. Story 001 remains dependent on PR #33 acceptance. Do not assume merged until GitHub confirms.

@@ -81,6 +81,10 @@ The user can give an instruction, watch Magna handle the governed workflow end-t
 - [ ] Magna stops when the next requested action is unknown, blocked, or outside approval.
 - [ ] Full lifecycle from instruction to closure remains TRACE-compliant.
 - [ ] Chat verdict summary is concise and references the TRACE/evidence ID; it does not replace the GitHub evidence record.
+- [ ] Full forward and backward traceability is visible in both Magna Command Center UI (live task/TRACE view) and GitHub (durable evidence).
+- [ ] Chat and Telegram surfaces show short summaries with TRACE/evidence references only.
+- [ ] Task continuation is supported from both local Magna/chat (Epic 1 default) and remote Telegram channel (once activation-gated).
+- [ ] RETAIN_DISABLED_BY_DEFAULT capabilities are visible in the Magna Command Center UI with status, reason, activation gates, and enablement eligibility — and are not executed while disabled.
 
 ## Non-Default Capabilities (RETAIN_DISABLED_BY_DEFAULT)
 
@@ -96,6 +100,55 @@ The following capabilities are part of the Magna capability model but disabled b
 - **Remote execution backends** — cloud or SSH execution is disabled by default.
 - **Multi-channel notification fanout** — notifications beyond the primary chat session are disabled by default.
 - **Cloud provider activation** — remote model providers are disabled by default.
+
+## Approved Demo Scenario (Epic 1)
+
+The first approved end-to-end demonstration scenario for Product Owner review is:
+
+> **Instruction:** "Review PR status for Magna Enso and prepare assessment."
+
+Expected demo flow:
+
+```
+1.  User gives instruction in Magna local command/chat.
+2.  Magna creates TRACE envelope.
+3.  Magna parses instruction.
+4.  Magna checks known instruction match.
+5.  Magna classifies the action.
+6.  Magna selects Claude or Codex based on approved worker policy.
+7.  Worker performs the task.
+8.  Worker output/evidence is written or proposed in GitHub.
+9.  Magna reviews worker changes and evidence.
+10. Magna verifies task outcome.
+11. Magna records verdict in TRACE.
+12. Magna provides short verdict summary in chat.
+13. Magna writes/proposes complete verdict and next-action suggestions in GitHub.
+14. Magna waits for user approval, redirection, or stop.
+```
+
+Telegram-triggered real execution remains blocked until R-06 is fixed and all messaging activation gates are complete. This demo scenario runs through the local Magna flow only.
+
+## Task Continuation Channels
+
+Task continuation is supported through both:
+
+- **Local Magna / chat** (Epic 1 default): The primary continuation channel. Continuation occurs in the active Magna chat session.
+- **Remote channel (Telegram)**: Allowed after all activation gates are satisfied (R-06, messaging re-authorization, Telegram User ID allowlist sender boundary, approved approval-channel design, TRACE/audit verified). This is not the Epic 1 default flow.
+
+Epic 1 always prioritizes local Magna / chat continuation first. Remote continuation requires all authorization gates to be satisfied first.
+
+## RETAIN_DISABLED_BY_DEFAULT Capability UI
+
+RETAIN_DISABLED_BY_DEFAULT capabilities appear in the Magna Command Center UI even when disabled. The UI must:
+
+- Show capability name.
+- Show status: **Disabled by default**.
+- Show the reason and associated risk.
+- Show the required activation gates.
+- Show whether the user can request enablement.
+- Not allow activation unless all required gates are satisfied.
+- Not execute a disabled capability.
+- When a capability is later enabled, it must still pass Magna policy, audit, and TRACE requirements.
 
 ## Out of Scope
 
@@ -115,8 +168,7 @@ The following capabilities are part of the Magna capability model but disabled b
 
 ## Open Questions
 
-- What is the first approved end-to-end demonstration scenario for Product Owner review?
-- Should task continuation be available from both remote channel and ChatGPT, or one first?
+None — all open questions resolved by Product Owner on 2026-06-30.
 
 ## Downstream Work
 

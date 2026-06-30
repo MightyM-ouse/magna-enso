@@ -20,15 +20,33 @@ Real remote-triggered execution remains blocked until all of the following autho
 
 1. R-06 runtime policy chokepoint is fixed and verified.
 2. Messaging gateway surface is explicitly re-authorized by Product Owner.
-3. An approved sender boundary exists.
+3. An approved sender boundary exists (Telegram User ID allowlist — see Sender Boundary below).
 4. An authenticated approval-channel design is accepted.
 5. TRACE evidence and audit for the messaging surface are verified.
 
 Until those gates are satisfied, Telegram may only be used for intake reporting (receiving and acknowledging commands) and short status notifications. It does not trigger actual worker execution.
 
+## Sender Boundary
+
+The approved sender boundary mechanism for Telegram is a **Telegram User ID allowlist**.
+
+- Magna accepts remote commands only from Telegram user IDs that appear on the approved allowlist.
+- Commands from unknown or unlisted Telegram user IDs must be **rejected or paused**; they are never executed.
+- Token-only authentication is not the primary sender boundary and must not be used as a substitute for the User ID allowlist.
+- The allowlist is managed through Magna UI; it does not modify itself automatically.
+
 ## User Value
 
-The user can initiate governed Magna work remotely from an approved channel. The value is convenience with control: remote intake creates a task request and acknowledgement, but execution does not begin until Magna's local classification, instruction matching, and policy gates are satisfied. Telegram is the candidate first channel; it is activation-gated and intake-only until the authorization gates above are complete.
+The user can initiate governed Magna work remotely from an approved channel. The value is convenience with control: remote intake creates a task request and acknowledgement, but execution does not begin until Magna's local classification, instruction matching, and policy gates are satisfied. Telegram is the candidate first channel; it is activation-gated and intake-only until the authorization gates above are complete. Only approved Telegram user IDs may submit commands.
+
+## Task Continuation Channels
+
+Task continuation is supported through both:
+
+- **Local Magna / chat** (Epic 1 default): Continuation through the active Magna chat session. This is the primary flow.
+- **Remote channel (Telegram)**: Continuation from Telegram once all activation gates are satisfied (R-06 fixed, messaging re-authorized, sender boundary active, approval-channel design accepted, TRACE/audit verified). Remote continuation is not part of the Epic 1 default flow.
+
+Epic 1 always prioritizes local Magna / chat continuation first. Remote continuation is allowed only after all authorization gates are satisfied.
 
 ## User Flow
 
@@ -53,6 +71,10 @@ The user can initiate governed Magna work remotely from an approved channel. The
 - [ ] The user can see whether the remote command was received, rejected, or needs clarification.
 - [ ] Remote intake does not trigger worker execution until all authorization gates are satisfied (R-06 fixed, messaging re-authorized, sender boundary exists, approval-channel design accepted, TRACE/audit verified).
 - [ ] The intake channel cannot be used to bypass Magna instruction matching, classification, or approval requirements.
+- [ ] Commands are accepted only from approved Telegram user IDs (User ID allowlist).
+- [ ] Commands from unknown or unlisted Telegram user IDs are rejected or paused immediately; they are not executed.
+- [ ] Token-only authentication is not used as the primary sender boundary.
+- [ ] Task continuation from both local Magna/chat and remote channel is supported; local chat is the Epic 1 default continuation path.
 
 ## Non-Default Capabilities (RETAIN_DISABLED_BY_DEFAULT)
 
@@ -85,7 +107,6 @@ The following related capabilities are part of the Magna capability model but di
 
 - Which channel is approved first: Telegram only, or Telegram plus another channel?
 - What message wording should Magna use for intake acknowledgement, unsupported request, and clarification?
-- What sender boundary mechanism is approved for Telegram? (user-ID allow list, token, or other)
 
 ## Downstream Work
 
