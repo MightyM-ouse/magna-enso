@@ -14,24 +14,30 @@ As a Magna user, I want Magna to write task assessment and evidence to GitHub, s
 
 ## User Value
 
-The user can rely on GitHub as the durable project record for remote Magna work. Evidence captures what was requested, what instruction was used, what worker ran, what happened, what risks exist, and what decision is required next.
+The user can rely on GitHub as the durable project record for Magna work. GitHub evidence is generated from the Magna internal TRACE envelope and captures the complete task story: what was requested, what instruction was used, what worker ran, what happened, what the verdict is, what risks exist, and what the recommended next actions are. GitHub is the canonical durable record; it does not replace Magna's live internal TRACE state — both are required.
 
 ## User Flow
 
-1. A remote or worker-backed Magna task reaches a result, pause, failure, or approval point.
-2. Magna prepares a task assessment and evidence record.
-3. Magna writes or proposes the evidence in GitHub.
-4. Magna links the GitHub update to the task lifecycle.
-5. User can review durable evidence before deciding the next step.
+1. A Magna task reaches a result, pause, failure, or approval point. The Magna TRACE envelope already records this state internally.
+2. Magna prepares a task assessment and evidence record generated from or linked to the Magna TRACE envelope.
+3. Evidence includes the detailed verdict and next-action suggestions (not only a status flag).
+4. Magna writes or proposes the evidence in GitHub.
+5. Magna links the GitHub evidence to the TRACE task ID.
+6. User can review durable evidence before deciding the next step.
+7. GitHub evidence serves as the canonical durable record; Magna live TRACE state remains the authoritative in-session state.
 
 ## Acceptance Criteria
 
 - [ ] Magna writes or proposes a task evidence file.
-- [ ] Evidence includes task ID, user request, instruction source, worker, action taken, result, risks, and next decision.
-- [ ] GitHub update is linked to the task lifecycle.
+- [ ] Evidence is generated from or explicitly linked to the Magna internal TRACE envelope.
+- [ ] Evidence includes task ID, user request, instruction source, worker, action taken, result state, changed files, risks, and next decision.
+- [ ] Evidence includes a detailed verdict explaining what was verified, what was not verified, and what requires further action.
+- [ ] Evidence includes next-action suggestions: what the user or Product Owner may do next, what is allowed, what requires approval, and what is blocked.
+- [ ] GitHub update is linked to the TRACE task ID so the evidence can be matched to the live task.
 - [ ] Unknown or risky cases include an assessment explaining why approval is needed.
 - [ ] Evidence format supports later review package generation.
-- [ ] The user can understand what happened and what decision is required from the evidence.
+- [ ] GitHub evidence is the durable record; it does not replace Magna's live internal TRACE state.
+- [ ] The user can understand what happened, what the verdict is, and what decision is required from the evidence.
 
 ## Out of Scope
 

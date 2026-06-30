@@ -10,7 +10,7 @@ Source: `trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md`
 
 ### EPIC: Magna-Hermes Runtime Adoption
 
-As a Magna user, I want selected Hermes runtime capabilities to operate behind the Magna Enso experience, so that I can remotely initiate, monitor, approve, and continue governed agent work while preserving TRACE-based forward and backward traceability.
+As a Magna user, I want Magna to orchestrate governed agent work from my instruction through worker execution, evidence, verdict, and next-action suggestion — with selected Hermes runtime capabilities operating behind the Magna Enso experience — so that I can initiate, monitor, approve, and continue governed work while preserving full TRACE-based traceability inside Magna and in GitHub.
 
 ## Product Value
 
@@ -20,9 +20,56 @@ Hermes may provide runtime strengths such as terminal access, messaging gateway,
 
 Magna provides the governed user experience, safety boundaries, traceability, approval model, GitHub evidence, ChatGPT system-architect workflow, and Product Owner control.
 
-## Core User Outcome
+Advanced Hermes-derived capabilities that are not part of the default Epic 1 flow are **RETAIN_DISABLED_BY_DEFAULT** — they remain in the Magna capability model but are disabled by default and may be enabled later through explicit Magna UI action, subject to Magna permissions, policy gates, audit, and TRACE requirements.
 
-The user can start a governed task from Telegram or another approved remote channel. Magna receives it, checks whether the task matches known instructions, dispatches the correct CLI worker when allowed, captures the result, writes evidence or assessment to GitHub, notifies the user, and waits for approval when required.
+## Capability Model: RETAIN_DISABLED_BY_DEFAULT
+
+The following capabilities are retained in the Magna capability model but are **disabled by default** in Magna version enso. They are not part of default Epic 1 automatic execution. They may be enabled later only by explicit Product Owner or user action from Magna UI:
+
+- WhatsApp messaging channel
+- Scheduler/cron auto-execution
+- Skills/self-improvement (background review, curator)
+- Full memory write automation
+- Multi-level subagent delegation
+- MCP/tool dynamic loading
+- Browser actions
+- Remote execution backends (cloud, SSH)
+- Multi-channel notification fanout
+- Cloud provider activation
+- Telegram-triggered remote execution (intake-only until authorization gates are met)
+
+## Primary Flow (Epic 1 — Local Magna-Controlled Orchestration First)
+
+Epic 1 prioritizes local Magna-controlled orchestration:
+
+```
+1.  User starts Magna.
+2.  User gives instruction to Magna.
+3.  Magna understands and routes the instruction.
+4.  Magna checks for a known instruction match.
+5.  Magna classifies the action.
+6.  Magna calls Claude or Codex according to approved worker policy.
+7.  Claude or Codex performs the task.
+8.  Worker output and evidence are written or proposed in GitHub.
+9.  Magna reviews worker changes and evidence.
+10. Magna verifies the task outcome.
+11. Magna provides a short verdict summary in chat (later, activation-gated, also in Telegram).
+12. Magna writes or proposes the complete verdict and next-action suggestions in GitHub.
+13. Magna summarizes recommended next actions and waits for user approval, redirection, or stop.
+```
+
+Telegram remote-triggered execution is activation-gated and requires R-06 fix, messaging re-authorization, sender boundary, and authenticated approval-channel design before real execution can proceed.
+
+## Strong Internal TRACE Requirement
+
+TRACE is enforced inside Magna itself (live internal state) as well as in GitHub (durable evidence record).
+
+```
+If it happened in Magna, it must be traceable in Magna.
+If it matters for project history, it must also be durable in GitHub.
+```
+
+Every meaningful Magna action must create or update a TRACE event before the action can proceed. No worker dispatch, evidence write, verdict, next-action suggestion, continuation, or closure can occur without an active TRACE envelope. GitHub evidence links to the Magna TRACE task ID. Chat and Telegram summaries reference the TRACE/evidence ID.
 
 ## Non-Goals
 
@@ -33,17 +80,21 @@ The user can start a governed task from Telegram or another approved remote chan
 - Do not merge PRs, delete branches, force push, install software, or expose remote access automatically.
 - Do not start with full self-improving autonomy.
 - Do not treat Hermes profiles as security sandboxes.
+- Do not allow RETAIN_DISABLED_BY_DEFAULT capabilities to activate without explicit Product Owner or user action.
 
 ## Success Criteria
 
-- Magna-branded Hermes runtime can receive a remote command.
-- Commands are classified as known-safe, governed, unknown, approval-required, or blocked.
+- User can give a local instruction; Magna orchestrates the full governed workflow.
+- Magna checks known instruction match and classifies every action before proceeding.
 - Approved CLI workers can be launched only through predefined wrappers.
-- Worker output is captured and linked to a TRACE task ID.
-- GitHub receives assessment/evidence updates.
-- User receives notification and can approve or redirect next steps.
+- Worker output is captured and assigned a TRACE-linked result state.
+- Magna reviews worker changes and verifies task outcome.
+- Magna provides a short verdict summary in chat and writes the complete verdict and next-action suggestions to GitHub.
+- User receives the next-action suggestions and approves, redirects, or stops.
 - Unknown/risky actions pause automatically.
-- Every action can be traced backward to the user request and forward to the next allowed action.
+- Every action is traceable inside Magna (live) and in GitHub (durable).
+- Telegram intake is available activation-gated; it does not trigger execution until authorization gates are satisfied.
+- RETAIN_DISABLED_BY_DEFAULT capabilities are not activated by default.
 
 ---
 
@@ -81,7 +132,7 @@ Stories:
 
 Expected outcome:
 
-Remote command intake works in a controlled mode. Magna can respond accepted, needs approval, unknown, or blocked. Risky execution is not allowed.
+Local Magna instruction intake and remote command intake (Telegram, activation-gated) work in a controlled mode. Magna can respond accepted, needs approval, unknown, or blocked. Risky execution is not allowed. Telegram intake is intake-only until authorization gates are satisfied.
 
 ### Sprint 2 — Worker Dispatch
 
@@ -120,14 +171,15 @@ Stories:
 
 Expected outcome:
 
-A full remote-controlled Magna task can run from user request to worker execution, evidence, notification, approval, continuation, and closure while preserving TRACE.
+A full governed Magna task can run from user instruction to worker execution, evidence, Magna review, verdict, next-action suggestion, user approval, continuation, and closure while preserving TRACE inside Magna and in GitHub. Magna provides a short chat verdict summary and writes the complete verdict and next-action suggestions to GitHub. Remote Telegram continuation is activation-gated and not part of the default Epic 1 flow. RETAIN_DISABLED_BY_DEFAULT capabilities are not activated.
 
 ---
 
 ## Product Owner Review Notes
 
-- These are formal product stories only.
+- These are formal product stories only. Status: READY_FOR_REFINEMENT.
 - Sprint implementation tasks are not created yet.
 - Technical subtasks are not created yet.
 - Downstream design, architecture, frontend, backend, agent, validation, and governance work must be created only after Product Owner approval.
 - PR #33 remains a branding dependency referenced by the source brief.
+- Stories corrected per Product Owner CHANGES_REQUIRED comments on PR #35 (2026-06-30): RETAIN_DISABLED_BY_DEFAULT model applied, Telegram activation-gated, Epic 1 local-first flow added, strong internal TRACE requirement applied, verdict and next-action output split applied.

@@ -1,0 +1,184 @@
+{
+  "task_id": "HERMES-STORIES-001",
+  "agent": "claude",
+  "role": "product_story_correction_reviewer",
+  "correction_branch": "claude/HERMES-STORIES-001-corrections",
+  "target_branch": "product/hermes-runtime-adoption-stories",
+  "target_pr": 35,
+  "date": "2026-06-30",
+  "sync_verdict": "SYNC_PASS",
+  "final_verdict": "ACCEPT_WITH_CORRECTIONS",
+  "story_status": "READY_FOR_REFINEMENT",
+  "hermes_activated": false,
+  "runtime_code_modified": false,
+  "sprint_tasks_created": false,
+  "stories_marked_final": false,
+  "product_owner_decisions_applied": [
+    {
+      "id": "PO-1",
+      "name": "RETAIN_DISABLED_BY_DEFAULT",
+      "description": "Advanced non-default capabilities are retained in the Magna capability model but disabled by default. May be enabled by explicit Product Owner or user action from Magna UI, subject to Magna permissions, policy gates, audit, and TRACE.",
+      "stories_corrected": ["MAG-US-HERMES-002", "MAG-US-HERMES-010", "PRODUCT_STORY_INDEX"]
+    },
+    {
+      "id": "PO-2",
+      "name": "Verdict and next-action output split",
+      "description": "Chat/Telegram: short summary only, references TRACE/evidence ID. GitHub: complete verdict, evidence, next-action suggestions — canonical durable record.",
+      "stories_corrected": ["MAG-US-HERMES-007", "MAG-US-HERMES-008", "MAG-US-HERMES-010", "PRODUCT_STORY_INDEX"]
+    },
+    {
+      "id": "PO-3",
+      "name": "Strong internal TRACE",
+      "description": "TRACE enforced inside Magna (live internal state) and GitHub (durable). Every action must create/update TRACE event before proceeding. No dispatch, write, verdict, or closure without active TRACE envelope.",
+      "stories_corrected": ["MAG-US-HERMES-006", "MAG-US-HERMES-007", "MAG-US-HERMES-008", "MAG-US-HERMES-009", "MAG-US-HERMES-010", "PRODUCT_STORY_INDEX"]
+    },
+    {
+      "id": "PO-4",
+      "name": "Epic 1 local-first primary flow",
+      "description": "13-step local Magna-controlled orchestration is the primary flow. Telegram continuation is activation-gated.",
+      "stories_corrected": ["MAG-US-HERMES-010", "PRODUCT_STORY_INDEX"]
+    }
+  ],
+  "files_changed": [
+    {
+      "path": "trace/ACTIVE_WORK_REGISTRY.yaml",
+      "change_type": "modified",
+      "description": "Added HERMES-US-001 entry (fixes PR #35 governance CI) and HERMES-STORIES-001 entry (this correction branch)"
+    },
+    {
+      "path": "trace/product/PRODUCT_STORY_INDEX.md",
+      "change_type": "major_update",
+      "corrections": ["RETAIN_DISABLED_BY_DEFAULT capability model", "Epic 1 primary flow (13-step)", "Strong Internal TRACE section", "Non-Goals updated", "Success Criteria updated", "Sprint 1 and Sprint 4 expected outcomes updated", "PO review notes updated"]
+    },
+    {
+      "path": "trace/product/user-stories/MAG-US-HERMES-002-remote-command-intake-from-approved-channel.md",
+      "change_type": "medium_update",
+      "corrections": ["Telegram activation-gated capability classification", "Five authorization gates listed", "WhatsApp classified as RETAIN_DISABLED_BY_DEFAULT", "Non-Default Capabilities section added", "Intake-only restriction until gates satisfied"]
+    },
+    {
+      "path": "trace/product/user-stories/MAG-US-HERMES-006-worker-result-capture.md",
+      "change_type": "medium_update",
+      "corrections": ["TRACE-linked result state in user flow", "Result States section added (COMPLETED, FAILED, PAUSED_FOR_APPROVAL, BLOCKED, NEEDS_REVIEW, TIMED_OUT)", "Changed files vs. claimed changes separated", "No continuation without valid result state in TRACE"]
+    },
+    {
+      "path": "trace/product/user-stories/MAG-US-HERMES-007-github-assessment-and-evidence-update.md",
+      "change_type": "medium_update",
+      "corrections": ["Evidence generated from/linked to TRACE envelope", "Includes detailed verdict and next-action suggestions", "GitHub is canonical durable record — does not replace Magna TRACE", "Acceptance criteria updated"]
+    },
+    {
+      "path": "trace/product/user-stories/MAG-US-HERMES-008-user-notification-and-approval-loop.md",
+      "change_type": "medium_update",
+      "corrections": ["Notification Surface Rule section added", "TRACE/evidence ID reference required in notification", "Does not replace GitHub durable verdict record", "User can review full verdict in GitHub before deciding", "User response recorded in TRACE"]
+    },
+    {
+      "path": "trace/product/user-stories/MAG-US-HERMES-009-trace-forward-and-backward-traceability-enforcement.md",
+      "change_type": "major_rewrite",
+      "corrections": ["User story rewritten: inside Magna itself and in GitHub", "TRACE Rule block added (verbatim rule)", "TRACE Event Requirement section: 17 required events", "Blocking requirement: no action without TRACE envelope", "Chat/Telegram must reference TRACE/evidence ID", "Backward traceability questions expanded", "Forward traceability questions expanded"]
+    },
+    {
+      "path": "trace/product/user-stories/MAG-US-HERMES-010-end-to-end-governed-task-continuation.md",
+      "change_type": "major_expansion",
+      "corrections": ["User story rewritten: local Magna-controlled orchestration", "Primary Flow (Epic 1) section added (13 steps)", "User flow expanded to 18 steps", "Magna review, verify, verdict, next-actions steps added", "Short chat verdict summary + complete GitHub verdict/next-actions", "Acceptance criteria expanded (20 items)", "Non-Default Capabilities (RETAIN_DISABLED_BY_DEFAULT) section added (10 capabilities)"]
+    },
+    {
+      "path": "trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md",
+      "change_type": "created",
+      "description": "Full correction review report"
+    },
+    {
+      "path": "trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md",
+      "change_type": "created",
+      "description": "Evidence light curve handoff"
+    },
+    {
+      "path": "trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json",
+      "change_type": "created",
+      "description": "Machine-readable handoff (this file)"
+    }
+  ],
+  "stories_not_changed": ["MAG-US-HERMES-001", "MAG-US-HERMES-003", "MAG-US-HERMES-004", "MAG-US-HERMES-005"],
+  "pr_35_governance_ci": {
+    "status_before": "FAILING",
+    "cause": "product/hermes-runtime-adoption-stories branch had no registered task in ACTIVE_WORK_REGISTRY.yaml",
+    "fix": "Added HERMES-US-001 entry to registry on this correction branch",
+    "merge_order_note": "Product Owner must decide whether to merge this correction branch to main first (providing registry entry on main) or apply registry entry directly to the product branch"
+  },
+  "retain_disabled_by_default_capabilities": [
+    "WhatsApp messaging channel",
+    "Scheduler/cron auto-execution",
+    "Skills/self-improvement (background review, curator)",
+    "Full memory write automation",
+    "Multi-level subagent delegation",
+    "MCP/tool dynamic loading",
+    "Browser actions",
+    "Remote execution backends (cloud, SSH)",
+    "Multi-channel notification fanout",
+    "Cloud provider activation",
+    "Telegram-triggered remote execution (intake-only until authorization gates are met)"
+  ],
+  "telegram_authorization_gates": [
+    "R-06 (runtime policy chokepoint) fixed",
+    "Messaging gateway re-authorized by Product Owner",
+    "Sender boundary mechanism in place",
+    "Authenticated approval-channel design accepted",
+    "TRACE/audit verified end-to-end"
+  ],
+  "epic_1_primary_flow": [
+    "1. User starts Magna.",
+    "2. User gives instruction to Magna.",
+    "3. Magna understands and routes the instruction.",
+    "4. Magna checks for a known instruction match.",
+    "5. Magna classifies the action.",
+    "6. Magna calls Claude or Codex according to approved worker policy.",
+    "7. Claude or Codex performs the task.",
+    "8. Worker output and evidence are written or proposed in GitHub.",
+    "9. Magna reviews worker changes and evidence.",
+    "10. Magna verifies the task outcome.",
+    "11. Magna provides a short verdict summary in chat (later, activation-gated, also in Telegram).",
+    "12. Magna writes or proposes the complete verdict and next-action suggestions in GitHub.",
+    "13. Magna summarizes recommended next actions and waits for user approval, redirection, or stop."
+  ],
+  "trace_rule": "If it happened in Magna, it must be traceable in Magna. If it matters for project history, it must also be durable in GitHub.",
+  "trace_required_events": [
+    "User instruction received",
+    "Instruction parsed",
+    "Known instruction matched or not matched",
+    "Action classified",
+    "Worker selected",
+    "Wrapper selected",
+    "Worker execution started",
+    "Worker output captured",
+    "Changed files detected (verified, not only claimed)",
+    "Evidence prepared",
+    "GitHub evidence written or proposed",
+    "Magna verification started",
+    "Magna verdict generated",
+    "Next actions suggested",
+    "User approval, redirection, or stop captured",
+    "Continuation allowed or blocked",
+    "Task closed"
+  ],
+  "result_states": ["COMPLETED", "FAILED", "PAUSED_FOR_APPROVAL", "BLOCKED", "NEEDS_REVIEW", "TIMED_OUT"],
+  "open_questions": [
+    {"id": "OQ-1", "question": "Which sender boundary mechanism is approved for Telegram?", "story": "MAG-US-HERMES-002"},
+    {"id": "OQ-2", "question": "What is the first approved demonstration scenario for end-to-end flow?", "story": "MAG-US-HERMES-010"},
+    {"id": "OQ-3", "question": "Task continuation from both remote channel and ChatGPT, or one first?", "story": "MAG-US-HERMES-010"},
+    {"id": "OQ-4", "question": "Minimum TRACE envelope view required for Product Owner review?", "story": "MAG-US-HERMES-009"},
+    {"id": "OQ-5", "question": "Forward/backward traceability in Command Center UI, GitHub evidence, or both?", "story": "MAG-US-HERMES-009"},
+    {"id": "OQ-6", "question": "Should RETAIN_DISABLED_BY_DEFAULT capabilities be visible in Command Center UI when disabled?", "story": "General"},
+    {"id": "OQ-7", "question": "PR #33 status — branding dependency for story 001", "story": "MAG-US-HERMES-001"}
+  ],
+  "traceability": {
+    "backward": [
+      "PR #35 Product Owner CHANGES_REQUIRED comments",
+      "trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md",
+      "trace/reviews/HERMES-TECH-001-CLAUDE-REVIEW.md"
+    ],
+    "forward": [
+      "Product Owner review of claude/HERMES-STORIES-001-corrections",
+      "Open questions resolution",
+      "Final story approval",
+      "Sprint planning (after Product Owner approval only)"
+    ]
+  }
+}

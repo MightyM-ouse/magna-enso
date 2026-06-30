@@ -1,6 +1,6 @@
 version: 1
 canonical_repository: MightyM-ouse/magna-enso
-updated_at: "2026-06-29T23:40:00+02:00"
+updated_at: "2026-06-30T12:00:00+02:00"
 
 # CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
 # `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
@@ -271,3 +271,63 @@ active_tasks:
     integration_order: corrects_codex/GOV-005-multi-agent-governance_do_not_merge_independent_validator_antigravity
     blocked_on: []
     handoff: trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+
+  - task_id: HERMES-US-001
+    agent: chatgpt
+    role: product_story_generation
+    status: PUSHED_FOR_REVIEW
+    status_note: "Product Owner returned CHANGES_REQUIRED via PR #35 comments. Claude correction review in progress on claude/HERMES-STORIES-001-corrections."
+    branch: product/hermes-runtime-adoption-stories
+    worktree: connected_github_isolated_branch
+    starting_commit: f1248c3ba814d5b172e79e23e8f84e933ac1bd73
+    latest_known_commit: e79475b
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
+    issue: null
+    pull_request: 35
+    writable_paths:
+      - trace/product/
+    read_only_dependencies:
+      - trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md
+      - trace/planning/PRODUCT_USER_STORY_SYSTEM.md
+      - trace/planning/PRODUCT_USER_STORY_TEMPLATE.md
+      - trace/planning/PRODUCT_BACKLOG_ID_RULES.md
+    shared_paths: []
+    integration_order: after_HERMES_ADOPT_001_accepted_before_sprint_planning
+    blocked_on:
+      - product_owner_changes_required_review
+      - claude_story_correction_review
+    handoff: trace/product/PRODUCT_STORY_INDEX.md
+
+  - task_id: HERMES-STORIES-001
+    agent: claude
+    role: story_correction_reviewer
+    corrects: HERMES-US-001
+    status: IN_PROGRESS
+    branch: claude/HERMES-STORIES-001-corrections
+    worktree: connected_github_isolated_branch
+    starting_commit: e79475b
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
+    issue: null
+    pull_request: 35
+    writable_paths:
+      - trace/product/PRODUCT_STORY_INDEX.md
+      - trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md
+      - trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md
+      - trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json
+    correction_phase_modifies:
+      note: "Authorized Claude correction phase over the HERMES-US-001 product story branch. Applies Product Owner CHANGES_REQUIRED decisions from PR #35 comments. Explicit file-level allowances for individual story corrections only."
+      files:
+        - trace/product/user-stories/MAG-US-HERMES-002-remote-command-intake-from-approved-channel.md
+        - trace/product/user-stories/MAG-US-HERMES-006-worker-result-capture.md
+        - trace/product/user-stories/MAG-US-HERMES-007-github-assessment-and-evidence-update.md
+        - trace/product/user-stories/MAG-US-HERMES-008-user-notification-and-approval-loop.md
+        - trace/product/user-stories/MAG-US-HERMES-009-trace-forward-and-backward-traceability-enforcement.md
+        - trace/product/user-stories/MAG-US-HERMES-010-end-to-end-governed-task-continuation.md
+    read_only_dependencies:
+      - trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md
+      - trace/reviews/HERMES-TECH-001-CLAUDE-REVIEW.md
+      - trace/product/user-stories/
+    shared_paths: []
+    integration_order: corrections_target_product_hermes-runtime-adoption-stories_do_not_merge_without_product_owner_review
+    blocked_on: []
+    handoff: trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json

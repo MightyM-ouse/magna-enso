@@ -10,34 +10,92 @@ Source: `trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md`
 
 ## User Story
 
-As a Magna user, I want Magna to continue a task after my approval or redirection, so that multi-step work can progress without losing context or traceability.
+As a Magna user, I want Magna to orchestrate a full governed task from my instruction to worker execution, evidence, verdict, next-action suggestion, and continuation, so that multi-step work can progress with full traceability and without losing context or requiring me to track state manually.
+
+## Primary Flow (Epic 1)
+
+Epic 1 prioritizes **local Magna-controlled orchestration first**. Remote Telegram continuation is a later activation-gated addition to the same flow.
+
+The Epic 1 primary flow is:
+
+```
+1.  User starts Magna.
+2.  User gives instruction to Magna.
+3.  Magna understands and routes the instruction.
+4.  Magna checks for a known instruction match.
+5.  Magna classifies the action.
+6.  Magna calls Claude or Codex according to approved worker policy.
+7.  Claude or Codex performs the task.
+8.  Worker output and evidence are written or proposed in GitHub.
+9.  Magna reviews worker changes and evidence.
+10. Magna verifies the task outcome.
+11. Magna provides a short verdict summary in chat (later, activation-gated, also in Telegram).
+12. Magna writes or proposes the complete verdict and next-action suggestions in GitHub.
+13. Magna summarizes recommended next actions and waits for user approval, redirection, or stop.
+```
 
 ## User Value
 
-The user can move from remote request to governed worker execution, evidence, notification, approval, continuation, and closure while remaining in control. Multi-step work can continue, but only inside the approved next envelope.
+The user can give an instruction, watch Magna handle the governed workflow end-to-end, receive a verdict, see the recommended next actions, and decide what happens next. Multi-step work continues only inside the approved next envelope. The user never needs to manually track what the worker did, what changed, or what comes next — Magna manages, records, and reports all of that.
 
 ## User Flow
 
-1. User starts a task remotely.
-2. Magna classifies the request and dispatches a known worker task when allowed.
-3. Magna captures the worker result.
-4. Magna writes or proposes evidence in GitHub.
-5. Magna notifies the user of the status and required decision.
-6. User approves, rejects, clarifies, or redirects.
-7. Magna continues only within the approved next envelope.
-8. Full lifecycle remains TRACE-compliant.
+1. User starts Magna locally and gives an instruction.
+2. Magna creates a TRACE envelope for the task.
+3. Magna understands and routes the instruction to instruction matching.
+4. Magna checks whether the instruction matches a known governed instruction.
+5. Magna classifies the action (SAFE_KNOWN, GOVERNED_KNOWN, APPROVAL_REQUIRED, or BLOCKED_OR_UNKNOWN).
+6. Magna selects the appropriate worker (Claude or Codex) according to approved worker policy.
+7. Magna launches the worker through an approved wrapper with bounded scope.
+8. Worker performs the task; output and evidence are captured by Magna.
+9. Magna reviews worker changes and evidence against the task scope.
+10. Magna verifies the task outcome (what was claimed vs. what is verified).
+11. Magna records the verdict in the TRACE envelope.
+12. Magna provides a short verdict summary in chat (the active session; later also Telegram when activation-gated).
+13. Magna writes or proposes the complete verdict and next-action suggestions in GitHub evidence.
+14. Magna records the next-action suggestions in the TRACE envelope.
+15. Magna presents recommended next actions to the user and waits for approval, redirection, or stop.
+16. User approves, rejects, clarifies, or redirects.
+17. Magna continues only within the approved next envelope, or closes the task.
+18. Full lifecycle remains TRACE-compliant from step 1 to step 17.
 
 ## Acceptance Criteria
 
-- [ ] User can start a task remotely.
-- [ ] Magna can classify and dispatch a known worker task.
-- [ ] Worker result is captured.
-- [ ] Evidence is written to GitHub.
-- [ ] User is notified.
-- [ ] User can approve or redirect.
+- [ ] User can start a Magna task from a local instruction.
+- [ ] Magna creates a TRACE envelope before any action proceeds.
+- [ ] Magna matches the instruction against a known governed instruction.
+- [ ] Magna classifies the action and records the classification in the TRACE envelope.
+- [ ] Magna selects the appropriate worker according to approved worker policy.
+- [ ] Worker is launched through an approved wrapper with bounded scope.
+- [ ] Worker result is captured and a TRACE-linked result state is assigned.
+- [ ] Magna reviews worker changes and evidence and records the review in the TRACE envelope.
+- [ ] Magna verifies the task outcome (claimed vs. verified changes and evidence).
+- [ ] Magna records the verdict in the TRACE envelope.
+- [ ] Magna provides a short verdict summary in chat (the active session).
+- [ ] Magna writes or proposes the complete verdict and next-action suggestions in GitHub evidence.
+- [ ] GitHub evidence links back to the Magna TRACE task ID.
+- [ ] Magna records next-action suggestions in the TRACE envelope.
+- [ ] Magna presents recommended next actions to the user and waits for approval, redirection, or stop.
+- [ ] User can approve, redirect, or stop.
 - [ ] Magna continues only within the approved next envelope.
-- [ ] Full lifecycle remains TRACE-compliant.
 - [ ] Magna stops when the next requested action is unknown, blocked, or outside approval.
+- [ ] Full lifecycle from instruction to closure remains TRACE-compliant.
+- [ ] Chat verdict summary is concise and references the TRACE/evidence ID; it does not replace the GitHub evidence record.
+
+## Non-Default Capabilities (RETAIN_DISABLED_BY_DEFAULT)
+
+The following capabilities are part of the Magna capability model but disabled by default in Magna version enso. They may be enabled later by explicit Product Owner or user action through Magna UI, subject to Magna permissions, policy gates, audit, and TRACE requirements:
+
+- **Telegram-triggered task continuation** — remote continuation from Telegram is activation-gated; not part of Epic 1 default flow.
+- **Scheduler/cron auto-execution** — automated continuation without user instruction is disabled by default.
+- **Skills/self-improvement** — worker self-directed skill updates are disabled by default.
+- **Memory write automation** — automatic memory writes without user approval are disabled by default.
+- **Multi-level subagent delegation** — worker spawning sub-workers is disabled by default.
+- **MCP/tool dynamic loading** — dynamic tool registration at runtime is disabled by default.
+- **Browser actions** — automated browser control is disabled by default.
+- **Remote execution backends** — cloud or SSH execution is disabled by default.
+- **Multi-channel notification fanout** — notifications beyond the primary chat session are disabled by default.
+- **Cloud provider activation** — remote model providers are disabled by default.
 
 ## Out of Scope
 
