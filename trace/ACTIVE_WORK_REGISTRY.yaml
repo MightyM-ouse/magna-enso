@@ -131,6 +131,7 @@ active_tasks:
       - docs/governance/EVIDENCE_AND_ARTIFACT_POLICY.md
     shared_paths:
       - trace/STAR_MAP.md
+      - CHATGPT.md
     integration_order: before_ARCH-001_resumes
     blocked_on: []
     handoff: trace/evidence/GOV-005_HANDOFF.json
@@ -352,3 +353,28 @@ active_tasks:
     shared_paths: []
     blocked_on: []
     handoff: null
+
+  - task_id: TRACE-OPS-001
+    agent: chatgpt
+    role: system_architect_sme
+    status: PUSHED_FOR_REVIEW
+    status_note: "Adds durable worker-instruction routing and parent/sub-PR continuity rules after Product Owner clarification. No runtime code, implementation task, sprint plan, or Hermes activation."
+    branch: chatgpt/trace-ops-durable-instructions
+    worktree: connected_github_isolated_branch
+    starting_commit: 15329a996bfc24f9a392881b92ba8069aa8a2e99
+    latest_known_commit: 09fbacec3a9842512f3dfd2a4e6e07786d76873a
+    latest_known_commit_note: "Point-in-time pointer; live branch head remains authoritative. Registry entry added after changed-path ownership failure on PR #45."
+    issue: null
+    pull_request: 45
+    writable_paths:
+      - CHATGPT.md
+      - docs/governance/chatgpt-project-source/TRACE_WORKER_ROUTING.md
+    read_only_dependencies:
+      - AGENTS.md
+      - docs/governance/chatgpt-project-source/PROJECT_BOOTSTRAP.md
+      - docs/governance/chatgpt-project-source/RESPONSE_CONTRACT.md
+    shared_paths:
+      - CHATGPT.md
+    integration_order: after_HERMES_TECH_001_correction_flow_rule_clarification
+    blocked_on: []
+    handoff: docs/governance/chatgpt-project-source/TRACE_WORKER_ROUTING.md
