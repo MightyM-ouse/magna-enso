@@ -336,3 +336,19 @@ active_tasks:
     integration_order: corrections_target_product_hermes-runtime-adoption-stories_do_not_merge_without_product_owner_review
     blocked_on: []
     handoff: trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json
+
+  - task_id: HERMES-US-001-REGISTRY-CLEANUP
+    agent: claude
+    role: post_merge_registry_cleanup
+    status: IN_PROGRESS
+    branch: claude/HERMES-US-001-post-merge-registry-cleanup
+    worktree: connected_github_isolated_branch
+    starting_commit: 454c91950b22106d9d88faa7e567a0ba3330d8b2
+    issue: null
+    pull_request: 43
+    writable_paths:
+      - trace/evidence/HERMES-US-001-REGISTRY-CLEANUP.md
+    registry_note: "Post-merge status update only. trace/ACTIVE_WORK_REGISTRY.yaml is covered by the self-registration allowance (always permitted); it is intentionally omitted from writable_paths to avoid overlap with GOV-005 ownership."
+    shared_paths: []
+    blocked_on: []
+    handoff: null
