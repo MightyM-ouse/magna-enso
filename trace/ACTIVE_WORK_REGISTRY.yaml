@@ -305,7 +305,7 @@ active_tasks:
     status: IN_PROGRESS
     branch: claude/HERMES-STORIES-001-corrections
     worktree: connected_github_isolated_branch
-    starting_commit: e79475b
+    starting_commit: e79475b9c096bbadbedc78fb8708262fe75abba0
     latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
     issue: null
     pull_request: 35
