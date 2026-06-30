@@ -280,12 +280,17 @@ active_tasks:
     branch: product/hermes-runtime-adoption-stories
     worktree: connected_github_isolated_branch
     starting_commit: f1248c3ba814d5b172e79e23e8f84e933ac1bd73
-    latest_known_commit: e79475b
-    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
+    latest_known_commit: a91c5d4b635cda38dc2993a2dcaea2cc750249f5
+    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative. Updated after PR #38 and PR #39 correction merges."
     issue: null
     pull_request: 35
     writable_paths:
       - trace/product/
+    correction_phase_modifies:
+      note: "Claude HERMES-STORIES-001 correction phase applied Product Owner CHANGES_REQUIRED decisions and OQ resolutions. Review report and handoff evidence were merged onto this branch as part of the correction; they are declared here as authorized correction-phase artifacts."
+      files:
+        - trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md
+        - trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md
     read_only_dependencies:
       - trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md
       - trace/planning/PRODUCT_USER_STORY_SYSTEM.md
@@ -293,9 +298,7 @@ active_tasks:
       - trace/planning/PRODUCT_BACKLOG_ID_RULES.md
     shared_paths: []
     integration_order: after_HERMES_ADOPT_001_accepted_before_sprint_planning
-    blocked_on:
-      - product_owner_changes_required_review
-      - claude_story_correction_review
+    blocked_on: []
     handoff: trace/product/PRODUCT_STORY_INDEX.md
 
   - task_id: HERMES-STORIES-001
