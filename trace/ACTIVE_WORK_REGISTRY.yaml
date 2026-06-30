@@ -308,3 +308,30 @@ active_tasks:
     integration_order: corrects_codex/GOV-005-multi-agent-governance_do_not_merge_independent_validator_antigravity
     blocked_on: []
     handoff: trace/evidence/GOV-005-CLAUDE-CORRECTIONS-HANDOFF.json
+
+  - task_id: HERMES-TECH-001-CORRECTIONS
+    agent: claude
+    role: correction_implementer
+    corrects: HERMES-TECH-001
+    status: IN_PROGRESS
+    branch: claude/HERMES-TECH-001-corrections
+    worktree: connected_github_isolated_branch
+    starting_commit: 44e7d83baa5e56a32beddce529e0198d7c9a0af7
+    issue: 36
+    pull_request: null
+    writable_paths:
+      - trace/reviews/HERMES-TECH-001-CLAUDE-CORRECTIONS.md
+      - trace/evidence/HERMES-TECH-001-CLAUDE-CORRECTIONS-HANDOFF.md
+    correction_phase_modifies:
+      note: "Authorized correction phase over the HERMES-TECH-001 assessment branch. Applies Claude ACCEPT_WITH_CORRECTIONS findings from trace/reviews/HERMES-TECH-001-CLAUDE-REVIEW.md and reconciles assessment seed with merged PR #35 product story baseline. These explicit file-level allowances apply only to the correction branch and do not reintroduce broad assessment directory permissions."
+      files:
+        - trace/assessments/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SEED.md
+        - trace/tasks/HERMES-TECH-001.md
+    read_only_dependencies:
+      - trace/reviews/HERMES-TECH-001-CLAUDE-REVIEW.md
+      - trace/product/PRODUCT_STORY_INDEX.md
+      - trace/product/user-stories/
+    shared_paths: []
+    integration_order: corrects_chatgpt/HERMES-TECH-001-assessment
+    blocked_on: []
+    handoff: trace/evidence/HERMES-TECH-001-CLAUDE-CORRECTIONS-HANDOFF.md

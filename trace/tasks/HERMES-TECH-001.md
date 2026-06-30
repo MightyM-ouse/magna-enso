@@ -25,7 +25,7 @@ Workers must treat the following as the source hierarchy for this task:
 3. `trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md`.
 4. `trace/planning/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SCOPE.md`.
 5. Existing repository evidence for prior Hermes capability review, including `vendor/hermes/`, `trace/evidence/`, `trace/reviews/`, `trace/tasks/`, and governed archives when routed.
-6. Product user stories under `trace/product/` once available.
+6. Product user stories under `trace/product/` — PR #35 merged to main (2026-06-30); formal product story baseline is now available and must be reconciled with assessment findings.
 
 Chat memory may guide search terms, but it is not canonical evidence.
 
@@ -110,7 +110,7 @@ Claude will use the review packet to provide independent corrections and improve
 - The assessment seed maps current scope to Epic 1 readiness.
 - Claude receives a precise review instruction with bounded authority.
 - The task remains planning/assessment only and does not activate runtime behavior.
-- The next step is clear: after formal product user stories are reviewed, reconcile stories with assessment findings and prepare final design-ready stories plus sprint planning.
+- The next step is clear: formal product user stories were reviewed and merged in PR #35 (2026-06-30); reconcile stories with assessment findings, then prepare final design-ready stories and sprint planning.
 
 ---
 
