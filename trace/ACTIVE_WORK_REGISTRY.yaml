@@ -275,13 +275,13 @@ active_tasks:
   - task_id: HERMES-US-001
     agent: chatgpt
     role: product_story_generation
-    status: PUSHED_FOR_REVIEW
-    status_note: "Product Owner returned CHANGES_REQUIRED via PR #35 comments. Claude correction review in progress on claude/HERMES-STORIES-001-corrections."
+    status: MERGED
+    status_note: "PR #35 squash-merged to main on 2026-06-30 (merge commit 454c91950b22106d9d88faa7e567a0ba3330d8b2). Corrections applied via HERMES-STORIES-001; all OQ-1 through OQ-7 resolved."
     branch: product/hermes-runtime-adoption-stories
     worktree: connected_github_isolated_branch
     starting_commit: f1248c3ba814d5b172e79e23e8f84e933ac1bd73
-    latest_known_commit: a91c5d4b635cda38dc2993a2dcaea2cc750249f5
-    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative. Updated after PR #38 and PR #39 correction merges."
+    latest_known_commit: 454c91950b22106d9d88faa7e567a0ba3330d8b2
+    latest_known_commit_note: "Squash merge commit to main (PR #35, 2026-06-30). CF-2: live branch head is authoritative."
     issue: null
     pull_request: 35
     writable_paths:
@@ -305,11 +305,13 @@ active_tasks:
     agent: claude
     role: story_correction_reviewer
     corrects: HERMES-US-001
-    status: IN_PROGRESS
+    status: MERGED
+    status_note: "Correction work integrated into product/hermes-runtime-adoption-stories via PR #38, #39, #40, #41; PR #35 squash-merged to main on 2026-06-30 (merge commit 454c91950b22106d9d88faa7e567a0ba3330d8b2)."
     branch: claude/HERMES-STORIES-001-corrections
     worktree: connected_github_isolated_branch
     starting_commit: e79475b9c096bbadbedc78fb8708262fe75abba0
-    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative."
+    latest_known_commit: 8dc59a9a28cf63ec72fea1a8b70c97e7b3ae0d7a
+    latest_known_commit_note: "Last commit on correction branch before post-merge cleanup. CF-2: live branch head is authoritative."
     issue: null
     pull_request: 35
     writable_paths:
@@ -334,3 +336,19 @@ active_tasks:
     integration_order: corrections_target_product_hermes-runtime-adoption-stories_do_not_merge_without_product_owner_review
     blocked_on: []
     handoff: trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json
+
+  - task_id: HERMES-US-001-REGISTRY-CLEANUP
+    agent: claude
+    role: post_merge_registry_cleanup
+    status: IN_PROGRESS
+    branch: claude/HERMES-US-001-post-merge-registry-cleanup
+    worktree: connected_github_isolated_branch
+    starting_commit: 454c91950b22106d9d88faa7e567a0ba3330d8b2
+    issue: null
+    pull_request: 43
+    writable_paths:
+      - trace/evidence/HERMES-US-001-REGISTRY-CLEANUP.md
+    registry_note: "Post-merge status update only. trace/ACTIVE_WORK_REGISTRY.yaml is covered by the self-registration allowance (always permitted); it is intentionally omitted from writable_paths to avoid overlap with GOV-005 ownership."
+    shared_paths: []
+    blocked_on: []
+    handoff: null
