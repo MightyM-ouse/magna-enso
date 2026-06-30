@@ -275,13 +275,13 @@ active_tasks:
   - task_id: HERMES-US-001
     agent: chatgpt
     role: product_story_generation
-    status: PUSHED_FOR_REVIEW
-    status_note: "Product Owner returned CHANGES_REQUIRED via PR #35 comments. Claude correction review in progress on claude/HERMES-STORIES-001-corrections."
+    status: MERGED
+    status_note: "PR #35 squash-merged to main on 2026-06-30 (commit 454c91950b22106d9d88faa7e567a0ba3330d8b2). Corrections applied via HERMES-STORIES-001; all OQ-1 through OQ-7 resolved."
     branch: product/hermes-runtime-adoption-stories
     worktree: connected_github_isolated_branch
     starting_commit: f1248c3ba814d5b172e79e23e8f84e933ac1bd73
-    latest_known_commit: a91c5d4b635cda38dc2993a2dcaea2cc750249f5
-    latest_known_commit_note: "Point-in-time pointer (CF-2); the live branch head is authoritative. Updated after PR #38 and PR #39 correction merges."
+    latest_known_commit: 454c91950b22106d9d88faa7e567a0ba3330d8b2
+    latest_known_commit_note: "Squash merge commit to main (PR #35). CF-2: live branch head is authoritative."
     issue: null
     pull_request: 35
     writable_paths:
