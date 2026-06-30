@@ -14,24 +14,39 @@ As a Magna user, I want Magna to notify me when a task completes, pauses, or nee
 
 ## User Value
 
-The user stays in control of remote and worker-backed work. Magna can report status and ask for decisions, but it does not continue approval-required work without the user’s explicit response.
+The user stays in control of remote and worker-backed work. Magna reports task status through a concise notification and waits for the user’s decision. The notification is a short summary surface only — it references the TRACE/evidence ID so the user can review the full durable record in GitHub before deciding. Magna does not continue approval-required work without the user’s explicit response.
+
+## Notification Surface Rule
+
+Notifications (in chat, and later Telegram) are a **short summary surface only**. They must:
+
+- Be concise and decision-oriented.
+- Include the TRACE/evidence ID or a direct reference to the GitHub evidence so the user knows where to find the full record.
+- Not replace the detailed verdict or next-action suggestions, which belong in GitHub evidence (see MAG-US-HERMES-007).
+
+The detailed verdict, evidence, changed-file summary, risk notes, and recommended next actions are written to GitHub. The chat or Telegram notification provides a short summary and a reference to that GitHub record.
 
 ## User Flow
 
 1. A task completes, pauses, fails, or reaches an approval-required point.
-2. Magna sends a clear notification to the user.
-3. Notification includes short status, evidence reference, and required decision.
-4. User approves, rejects, requests clarification, or redirects the next step.
-5. Magna continues only when the next step is allowed and approved where required.
+2. Magna sends a concise notification to the user (in chat session first; later via Telegram when activation-gated).
+3. Notification includes: short task status, TRACE/evidence ID or GitHub evidence reference, and the decision required.
+4. User can review the full verdict and next-action suggestions in GitHub evidence before deciding.
+5. User approves, rejects, requests clarification, or redirects the next step.
+6. Magna records the user response in the TRACE envelope.
+7. Magna continues only when the next step is allowed and approved where required.
 
 ## Acceptance Criteria
 
-- [ ] Magna sends a clear notification after task completion, pause, failure, or approval requirement.
-- [ ] Notification includes short status, evidence link/reference, and decision needed.
+- [ ] Magna sends a concise notification after task completion, pause, failure, or approval requirement.
+- [ ] Notification is a short summary only — it does not contain the full verdict or evidence.
+- [ ] Notification includes TRACE/evidence ID or GitHub evidence reference so the user can access the full record.
+- [ ] Notification includes the decision required.
 - [ ] User can approve, reject, request clarification, or redirect next step.
 - [ ] Magna does not continue approval-required work until approval is received.
-- [ ] The user can understand the current task state from the notification.
-- [ ] Approval, rejection, clarification, or redirection is recorded as part of the task lifecycle.
+- [ ] The user can understand the current task state from the notification and find the full evidence in GitHub.
+- [ ] Approval, rejection, clarification, or redirection is recorded in the Magna TRACE envelope as part of the task lifecycle.
+- [ ] Notification does not replace durable GitHub verdict and evidence (see MAG-US-HERMES-007).
 
 ## Out of Scope
 
