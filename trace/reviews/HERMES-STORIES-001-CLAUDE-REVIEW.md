@@ -169,33 +169,43 @@ MAG-US-HERMES-001, 003, 004, and 005 were not changed because no Product Owner c
 
 ---
 
-## 7. Remaining Open Questions
+## 7. Resolved Product Owner Questions
 
-| # | Question | Story |
-|---|---|---|
-| OQ-1 | Which sender boundary mechanism is approved for Telegram? (user-ID allow list, token, other) | 002 |
-| OQ-2 | What is the first approved demonstration scenario for the end-to-end flow? | 010 |
-| OQ-3 | Should task continuation be available from both remote channel and ChatGPT, or one first? | 010 |
-| OQ-4 | What is the minimum TRACE envelope view required for Product Owner review? | 009 |
-| OQ-5 | Should the user see forward/backward traceability in Command Center UI, GitHub evidence, or both? | 009 |
-| OQ-6 | Should RETAIN_DISABLED_BY_DEFAULT capabilities be listed in the Command Center UI even when disabled? | General |
-| OQ-7 | PR #33 status — needed for MAG-US-HERMES-001 branding dependency | 001 |
+All open questions were answered by the Product Owner on 2026-06-30 and are applied in the story files. No open questions remain.
+
+| # | Question | Resolution | Story |
+|---|---|---|---|
+| OQ-1 | Telegram sender boundary mechanism | **Telegram User ID allowlist.** Unknown or unlisted Telegram user IDs are rejected or paused. Token-only authentication is not the primary sender boundary. | 002 |
+| OQ-2 | First approved end-to-end demonstration scenario | **"Review PR status for Magna Enso and prepare assessment."** 14-step demo flow added to story 010. Telegram-triggered real execution remains blocked until activation gates are complete. | 010 |
+| OQ-3 | Task continuation: both channels or one first? | **Both**, with local Magna/chat as the Epic 1 default. Remote Telegram continuation is allowed only after all authorization gates are satisfied (R-06, messaging re-authorization, User ID allowlist, approval-channel design, TRACE/audit). | 002, 010 |
+| OQ-4 | Minimum TRACE envelope view for Product Owner review | **Specified in story 009.** 23 required fields (trace_id, task_id, user_request, created_at, current_status, instruction_source, matched_instruction_id or unmatched_reason, action_classification, selected_worker, wrapper_id, branch/worktree context, files_changed, evidence_path, github_pr_or_issue_reference, worker_claims, verified_evidence, magna_verdict, next_recommended_actions, approval_status, approved_by or pending_user_decision, stop_condition, continuation_state, full event timeline). 8 audit questions specified. | 009 |
+| OQ-5 | Forward/backward traceability visibility | **Both:** Magna Command Center UI (live task/TRACE view) and GitHub (durable evidence). Chat and Telegram show short summaries with TRACE/evidence references only. | 009, 010, index |
+| OQ-6 | RETAIN_DISABLED_BY_DEFAULT capabilities in Command Center UI | **Yes — visible when disabled.** UI must show capability name, status (Disabled by default), reason/risk, required activation gates, and enablement eligibility. Capability must not execute while disabled. When later enabled, must still pass Magna policy, audit, and TRACE. | 010, index |
+| OQ-7 | PR #33 branding dependency status | **Unresolved dependency until GitHub confirms merge.** Story 001 remains dependent on PR #33 branding acceptance. Magna identity rules preserved regardless. Any animated identity behavior requires reduced-motion fallback. | 001, index |
 
 ---
 
 ## 8. Final Verdict
 
-**ACCEPT_WITH_CORRECTIONS — ready for Product Owner review**
+**ACCEPT_WITH_CORRECTIONS — ready for Product Owner merge decision**
 
 All Product Owner CHANGES_REQUIRED corrections from PR #35 comments have been applied:
 - RETAIN_DISABLED_BY_DEFAULT model applied across story 002, story 010, and the story index.
 - Telegram activation-gated with five explicit authorization gates.
+- Telegram User ID allowlist specified as the approved sender boundary mechanism.
 - Epic 1 local-first 13-step primary flow added to story 010 and index.
+- Approved Epic 1 demo scenario added to story 010.
+- Both local/chat and remote-channel task continuation specified; local first.
 - Strong Internal TRACE requirement applied to story 009 (major rewrite), story 006, 007, 008, 010, and index.
+- Minimum TRACE envelope view (23 fields, 8 audit questions) specified in story 009.
+- TRACE traceability visible in both Magna Command Center UI and GitHub.
+- RETAIN_DISABLED_BY_DEFAULT UI behavior specified in story 010 and index.
 - Verdict and next-action output split applied to stories 007, 008, 010, and index.
-- PR #35 governance validation fix included (HERMES-US-001 registry entry).
+- PR #33 declared as unresolved branding dependency in story 001 and index.
+- All Product Owner open questions (OQ-1 through OQ-7) resolved in story files.
+- PR #35 governance validation: **SUCCESS** on current head.
 
-Status of all stories remains `READY_FOR_REFINEMENT`. No stories are marked final or design-ready. No sprint implementation tasks are created. No merge performed. Product Owner review and decision required.
+Status of all stories remains `READY_FOR_REFINEMENT`. No stories are marked final or design-ready. No sprint implementation tasks are created. No merge performed. Product Owner review and merge decision required.
 
 ---
 
@@ -204,6 +214,6 @@ Status of all stories remains `READY_FOR_REFINEMENT`. No stories are marked fina
 | Direction | Links |
 |---|---|
 | Backward | PR #35 Product Owner CHANGES_REQUIRED comments; `trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md`; `trace/reviews/HERMES-TECH-001-CLAUDE-REVIEW.md` (Telegram activation-gated finding, RETAIN_DISABLED_BY_DEFAULT alignment) |
-| Forward | Product Owner review of this correction branch; merging corrections into product story branch; remaining open questions resolved; final Product Owner approval of stories; downstream sprint planning |
+| Forward | Product Owner merge decision on PR #35; final Product Owner approval of stories; downstream sprint planning (only after Product Owner approval) |
 
-**Handoff:** `trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md`, `trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json`
+**Handoff:** `trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md`

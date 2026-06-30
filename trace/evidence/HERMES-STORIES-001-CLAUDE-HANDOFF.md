@@ -38,7 +38,6 @@ Apply Product Owner CHANGES_REQUIRED corrections from PR #35 comments to Magna-H
 | `trace/product/user-stories/MAG-US-HERMES-010-*.md` | Major expansion: 13-step primary flow, local-first, Magna review/verify/verdict/next-actions, RETAIN_DISABLED_BY_DEFAULT list |
 | `trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md` | Full correction review report |
 | `trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md` | This file |
-| `trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json` | Machine-readable handoff |
 
 ---
 
@@ -56,33 +55,33 @@ Apply Product Owner CHANGES_REQUIRED corrections from PR #35 comments to Magna-H
 
 ## PR #35 Governance CI
 
-**Before:** FAILING — `product/hermes-runtime-adoption-stories` had no registered task.
+**Before corrections:** FAILING — `product/hermes-runtime-adoption-stories` had no registered task in the registry.
 
-**After (on this correction branch):** Registry now contains `HERMES-US-001` entry for the product branch and `HERMES-STORIES-001` entry for this correction branch.
-
-**Merge order:** Product Owner must decide whether to merge this correction branch to main first (providing registry entry on main), then rebase the product branch, or apply the registry entry directly to the product branch.
+**After corrections:** **SUCCESS.** All corrections merged into `product/hermes-runtime-adoption-stories` via PR #38, PR #39, and PR #40. Registry now contains `HERMES-US-001` (product branch task) with `correction_phase_modifies` authorizing the review and handoff MD files. Governance validator passes on the current PR #35 head.
 
 ---
 
-## Open Questions
+## Resolved Product Owner Questions
 
-| # | Question | Story |
+All open questions were answered by the Product Owner on 2026-06-30 and applied to the story files. No open questions remain.
+
+| # | Resolution | Story |
 |---|---|---|
-| OQ-1 | Which sender boundary mechanism is approved for Telegram? | 002 |
-| OQ-2 | What is the first approved demonstration scenario for end-to-end flow? | 010 |
-| OQ-3 | Task continuation: both remote channel and ChatGPT, or one first? | 010 |
-| OQ-4 | Minimum TRACE envelope view required for Product Owner review? | 009 |
-| OQ-5 | Forward/backward traceability visible in Command Center UI, GitHub evidence, or both? | 009 |
-| OQ-6 | Should RETAIN_DISABLED_BY_DEFAULT capabilities be listed in Command Center UI when disabled? | General |
-| OQ-7 | PR #33 status — branding dependency for story 001 | 001 |
+| OQ-1 | Telegram sender boundary: **Telegram User ID allowlist**. Unknown IDs rejected or paused. Token-only not primary boundary. | 002 |
+| OQ-2 | First approved demo scenario: **"Review PR status for Magna Enso and prepare assessment."** 14-step demo flow in story 010. | 010 |
+| OQ-3 | Task continuation: **both local/chat (Epic 1 default) and remote Telegram (activation-gated)**. Local first. | 002, 010 |
+| OQ-4 | Minimum TRACE envelope view: **specified in story 009** — 23 required fields, 8 audit questions. | 009 |
+| OQ-5 | TRACE traceability visibility: **both** Magna Command Center UI (live) and GitHub (durable). Chat/Telegram summaries only. | 009, 010, index |
+| OQ-6 | RETAIN_DISABLED_BY_DEFAULT in UI: **yes, visible when disabled** — shows name, status, reason, gates, enablement eligibility. | 010, index |
+| OQ-7 | PR #33 branding: **unresolved dependency until GitHub confirms merge**. Story 001 remains dependent on acceptance. Reduced-motion fallback required. | 001, index |
 
 ---
 
 ## Final Verdict
 
-**ACCEPT_WITH_CORRECTIONS — ready for Product Owner review**
+**ACCEPT_WITH_CORRECTIONS — ready for Product Owner merge decision**
 
-All Product Owner CHANGES_REQUIRED corrections applied. Stories remain `READY_FOR_REFINEMENT`. Product Owner review and decision required before any stories move to `DESIGN_READY` or `APPROVED`.
+All Product Owner CHANGES_REQUIRED corrections applied. All open questions (OQ-1 through OQ-7) resolved and applied to story files. Governance validation: **SUCCESS** on current PR #35 head. Stories remain `READY_FOR_REFINEMENT`. No implementation tasks created. No stories marked final or design-ready. Product Owner merge decision required.
 
 ---
 
@@ -91,7 +90,6 @@ All Product Owner CHANGES_REQUIRED corrections applied. Stories remain `READY_FO
 | Direction | Links |
 |---|---|
 | Backward | PR #35 Product Owner comments; `trace/reviews/HERMES-TECH-001-CLAUDE-REVIEW.md`; `trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md` |
-| Forward | Product Owner review of `claude/HERMES-STORIES-001-corrections`; open questions resolution; final story approval; sprint planning |
+| Forward | Product Owner merge decision on PR #35; final Product Owner approval of stories; downstream sprint planning (only after Product Owner approval) |
 
-**Review report:** `trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md`  
-**Machine-readable:** `trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json`
+**Review report:** `trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md`
