@@ -503,7 +503,8 @@ active_tasks:
     starting_commit: 92d9363a099379417fc3f0bf2d89778ad9239acc
     issue: 36
     pull_request: null
-    writable_paths: []
+    writable_paths:
+      - trace/evidence/HERMES-TECH-001-POST-MERGE-CLEANUP.md
     registry_note: "Post-merge status update only. trace/ACTIVE_WORK_REGISTRY.yaml is covered by the self-registration allowance (always permitted); it is intentionally omitted from writable_paths to avoid overlap with GOV-005 ownership."
     shared_paths: []
     blocked_on: []
