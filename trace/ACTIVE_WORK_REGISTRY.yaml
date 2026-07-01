@@ -343,6 +343,7 @@ active_tasks:
     blocked_on: []
     handoff: trace/evidence/HERMES-TECH-001-CLAUDE-CORRECTIONS-HANDOFF.md
 
+
   - task_id: HERMES-US-001
     agent: chatgpt
     role: product_story_generation
