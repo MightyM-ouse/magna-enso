@@ -1,6 +1,6 @@
 version: 1
 canonical_repository: MightyM-ouse/magna-enso
-updated_at: "2026-06-30T00:15:00+02:00"
+updated_at: "2026-06-30T14:00:00+02:00"
 
 # CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
 # `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
@@ -131,6 +131,7 @@ active_tasks:
       - docs/governance/EVIDENCE_AND_ARTIFACT_POLICY.md
     shared_paths:
       - trace/STAR_MAP.md
+      - CHATGPT.md
     integration_order: before_ARCH-001_resumes
     blocked_on: []
     handoff: trace/evidence/GOV-005_HANDOFF.json
@@ -220,9 +221,8 @@ active_tasks:
       - docs/technical-specifications/
     shared_paths: []
     integration_order: after_HERMES_ADOPT_001_before_final_technical_specification_and_sprint_planning
-    blocked_on:
-      - claude_independent_review
-      - product_user_story_correctness_review
+    status_note: "Claude independent review completed (PR #44 merged into this branch 2026-06-30). Product story baseline merged in PR #35 (2026-06-30) and reconciled in corrected assessment seed. PR #37 awaiting final Product Owner merge decision after PR-37.2 sync validation."
+    blocked_on: []
     handoff: trace/assessments/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SEED.md
 
   - task_id: GOV-005-CLAUDE
@@ -313,12 +313,13 @@ active_tasks:
     agent: claude
     role: correction_implementer
     corrects: HERMES-TECH-001
-    status: IN_PROGRESS
+    status: MERGED
+    status_note: "Correction work merged into chatgpt/HERMES-TECH-001-assessment via PR #44 (2026-06-30). All 12 Claude review findings applied; assessment seed reconciled with PR #35 product story baseline."
     branch: claude/HERMES-TECH-001-corrections
     worktree: connected_github_isolated_branch
     starting_commit: 44e7d83baa5e56a32beddce529e0198d7c9a0af7
     issue: 36
-    pull_request: null
+    pull_request: 44
     writable_paths:
       - trace/reviews/HERMES-TECH-001-CLAUDE-CORRECTIONS.md
       - trace/evidence/HERMES-TECH-001-CLAUDE-CORRECTIONS-HANDOFF.md
@@ -335,3 +336,127 @@ active_tasks:
     integration_order: corrects_chatgpt/HERMES-TECH-001-assessment
     blocked_on: []
     handoff: trace/evidence/HERMES-TECH-001-CLAUDE-CORRECTIONS-HANDOFF.md
+
+  - task_id: HERMES-US-001
+    agent: chatgpt
+    role: product_story_generation
+    status: MERGED
+    status_note: "PR #35 squash-merged to main on 2026-06-30 (merge commit 454c91950b22106d9d88faa7e567a0ba3330d8b2). Corrections applied via HERMES-STORIES-001; all OQ-1 through OQ-7 resolved."
+    branch: product/hermes-runtime-adoption-stories
+    worktree: connected_github_isolated_branch
+    starting_commit: f1248c3ba814d5b172e79e23e8f84e933ac1bd73
+    latest_known_commit: 454c91950b22106d9d88faa7e567a0ba3330d8b2
+    latest_known_commit_note: "Squash merge commit to main (PR #35, 2026-06-30). CF-2: live branch head is authoritative."
+    issue: null
+    pull_request: 35
+    writable_paths:
+      - trace/product/
+    correction_phase_modifies:
+      note: "Claude HERMES-STORIES-001 correction phase applied Product Owner CHANGES_REQUIRED decisions and OQ resolutions. Review report and handoff evidence were merged onto this branch as part of the correction; they are declared here as authorized correction-phase artifacts."
+      files:
+        - trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md
+        - trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md
+    read_only_dependencies:
+      - trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md
+      - trace/planning/PRODUCT_USER_STORY_SYSTEM.md
+      - trace/planning/PRODUCT_USER_STORY_TEMPLATE.md
+      - trace/planning/PRODUCT_BACKLOG_ID_RULES.md
+    shared_paths: []
+    integration_order: after_HERMES_ADOPT_001_accepted_before_sprint_planning
+    blocked_on: []
+    handoff: trace/product/PRODUCT_STORY_INDEX.md
+
+  - task_id: HERMES-STORIES-001
+    agent: claude
+    role: story_correction_reviewer
+    corrects: HERMES-US-001
+    status: MERGED
+    status_note: "Correction work integrated into product/hermes-runtime-adoption-stories via PR #38, #39, #40, #41; PR #35 squash-merged to main on 2026-06-30 (merge commit 454c91950b22106d9d88faa7e567a0ba3330d8b2)."
+    branch: claude/HERMES-STORIES-001-corrections
+    worktree: connected_github_isolated_branch
+    starting_commit: e79475b9c096bbadbedc78fb8708262fe75abba0
+    latest_known_commit: 8dc59a9a28cf63ec72fea1a8b70c97e7b3ae0d7a
+    latest_known_commit_note: "Last commit on correction branch before post-merge cleanup. CF-2: live branch head is authoritative."
+    issue: null
+    pull_request: 35
+    writable_paths:
+      - trace/product/PRODUCT_STORY_INDEX.md
+      - trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md
+      - trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md
+      - trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json
+    correction_phase_modifies:
+      note: "Authorized Claude correction phase over the HERMES-US-001 product story branch. Applies Product Owner CHANGES_REQUIRED decisions from PR #35 comments. Explicit file-level allowances for individual story corrections only."
+      files:
+        - trace/product/user-stories/MAG-US-HERMES-002-remote-command-intake-from-approved-channel.md
+        - trace/product/user-stories/MAG-US-HERMES-006-worker-result-capture.md
+        - trace/product/user-stories/MAG-US-HERMES-007-github-assessment-and-evidence-update.md
+        - trace/product/user-stories/MAG-US-HERMES-008-user-notification-and-approval-loop.md
+        - trace/product/user-stories/MAG-US-HERMES-009-trace-forward-and-backward-traceability-enforcement.md
+        - trace/product/user-stories/MAG-US-HERMES-010-end-to-end-governed-task-continuation.md
+    read_only_dependencies:
+      - trace/planning/MAGNA_HERMES_RUNTIME_ADOPTION_BRIEF.md
+      - trace/reviews/HERMES-TECH-001-CLAUDE-REVIEW.md
+      - trace/product/user-stories/
+    shared_paths: []
+    integration_order: corrections_target_product_hermes-runtime-adoption-stories_do_not_merge_without_product_owner_review
+    blocked_on: []
+    handoff: trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.json
+
+  - task_id: HERMES-US-001-REGISTRY-CLEANUP
+    agent: claude
+    role: post_merge_registry_cleanup
+    status: IN_PROGRESS
+    branch: claude/HERMES-US-001-post-merge-registry-cleanup
+    worktree: connected_github_isolated_branch
+    starting_commit: 454c91950b22106d9d88faa7e567a0ba3330d8b2
+    issue: null
+    pull_request: 43
+    writable_paths:
+      - trace/evidence/HERMES-US-001-REGISTRY-CLEANUP.md
+    registry_note: "Post-merge status update only. trace/ACTIVE_WORK_REGISTRY.yaml is covered by the self-registration allowance (always permitted); it is intentionally omitted from writable_paths to avoid overlap with GOV-005 ownership."
+    shared_paths: []
+    blocked_on: []
+    handoff: null
+
+  - task_id: TRACE-OPS-001
+    agent: chatgpt
+    role: system_architect_sme
+    status: PUSHED_FOR_REVIEW
+    status_note: "Adds durable worker-instruction routing and parent/sub-PR continuity rules after Product Owner clarification. No runtime code, implementation task, sprint plan, or Hermes activation."
+    branch: chatgpt/trace-ops-durable-instructions
+    worktree: connected_github_isolated_branch
+    starting_commit: 15329a996bfc24f9a392881b92ba8069aa8a2e99
+    latest_known_commit: 09fbacec3a9842512f3dfd2a4e6e07786d76873a
+    latest_known_commit_note: "Point-in-time pointer; live branch head remains authoritative. Registry entry added after changed-path ownership failure on PR #45."
+    issue: null
+    pull_request: 45
+    writable_paths:
+      - CHATGPT.md
+      - docs/governance/chatgpt-project-source/TRACE_WORKER_ROUTING.md
+    read_only_dependencies:
+      - AGENTS.md
+      - docs/governance/chatgpt-project-source/PROJECT_BOOTSTRAP.md
+      - docs/governance/chatgpt-project-source/RESPONSE_CONTRACT.md
+    shared_paths:
+      - CHATGPT.md
+    integration_order: after_HERMES_TECH_001_correction_flow_rule_clarification
+    blocked_on: []
+    handoff: docs/governance/chatgpt-project-source/TRACE_WORKER_ROUTING.md
+
+  - task_id: HERMES-TECH-001-POST-CORRECTION-SYNC
+    agent: claude
+    role: sync_and_registry_finalization
+    status: IN_PROGRESS
+    status_note: "PR-37.2 sync activity. Brings current-main registry state into chatgpt/HERMES-TECH-001-assessment: adds HERMES-US-001/HERMES-STORIES-001/HERMES-US-001-REGISTRY-CLEANUP/TRACE-OPS-001 entries and GOV-005 CHATGPT.md shared-path update from PR #45; updates HERMES-TECH-001-CORRECTIONS to MERGED (PR #44); clears HERMES-TECH-001 blocked_on."
+    branch: claude/HERMES-TECH-001-post-correction-sync
+    worktree: connected_github_isolated_branch
+    starting_commit: 8b8a951a2095fb8a94d4ce31d4dbb3fae839fd4a
+    issue: 36
+    pull_request: null
+    writable_paths:
+      - trace/evidence/HERMES-TECH-001-POST-CORRECTION-SYNC.md
+    registry_note: "Registry-only sync task. trace/ACTIVE_WORK_REGISTRY.yaml is covered by the self-registration allowance (always permitted); it is intentionally omitted from writable_paths to avoid overlap with GOV-005 ownership."
+    shared_paths: []
+    integration_order: pr_37_2_sync_into_chatgpt/HERMES-TECH-001-assessment
+    blocked_on: []
+    handoff: null
