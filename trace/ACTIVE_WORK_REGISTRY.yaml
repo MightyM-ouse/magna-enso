@@ -1,6 +1,6 @@
 version: 1
 canonical_repository: MightyM-ouse/magna-enso
-updated_at: "2026-06-30T14:00:00+02:00"
+updated_at: "2026-07-01T12:00:00+02:00"
 
 # CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
 # `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
@@ -205,6 +205,12 @@ active_tasks:
       - trace/tasks/HERMES-TECH-001-CLAUDE-REVIEW.md
       - trace/tasks/HERMES-TECH-001-LOCAL-EVIDENCE-AMENDMENT.md
       - trace/assessments/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SEED.md
+    correction_phase_modifies:
+      note: "PR #37 carries assessment artifacts plus sub-PR merged artifacts (corrections via PR #44, final sync via PR-37.3). These files are authorized for the parent assessment branch envelope: correction evidence from HERMES-TECH-001-CORRECTIONS (PR #44) and STAR_MAP.md updated in PR-37.3 final sync."
+      files:
+        - trace/reviews/HERMES-TECH-001-CLAUDE-CORRECTIONS.md
+        - trace/evidence/HERMES-TECH-001-CLAUDE-CORRECTIONS-HANDOFF.md
+        - trace/STAR_MAP.md
     read_only_dependencies:
       - AGENTS.md
       - CLAUDE.md
@@ -221,7 +227,7 @@ active_tasks:
       - docs/technical-specifications/
     shared_paths: []
     integration_order: after_HERMES_ADOPT_001_before_final_technical_specification_and_sprint_planning
-    status_note: "Claude independent review completed (PR #44 merged into this branch 2026-06-30). Product story baseline merged in PR #35 (2026-06-30) and reconciled in corrected assessment seed. PR #37 awaiting final Product Owner merge decision after PR-37.2 sync validation."
+    status_note: "Claude independent review completed (PR #44 merged into this branch 2026-06-30). Product story baseline merged in PR #35 (2026-06-30) and reconciled in corrected assessment seed. PR #37 awaiting final Product Owner merge decision after PR-37.2 (PR #46) and PR-37.3 final sync."
     blocked_on: []
     handoff: trace/assessments/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SEED.md
 
@@ -446,17 +452,43 @@ active_tasks:
   - task_id: HERMES-TECH-001-POST-CORRECTION-SYNC
     agent: claude
     role: sync_and_registry_finalization
-    status: IN_PROGRESS
-    status_note: "PR-37.2 sync activity. Brings current-main registry state into chatgpt/HERMES-TECH-001-assessment: adds HERMES-US-001/HERMES-STORIES-001/HERMES-US-001-REGISTRY-CLEANUP/TRACE-OPS-001 entries and GOV-005 CHATGPT.md shared-path update from PR #45; updates HERMES-TECH-001-CORRECTIONS to MERGED (PR #44); clears HERMES-TECH-001 blocked_on."
+    status: MERGED
+    status_note: "PR-37.2 sync merged into chatgpt/HERMES-TECH-001-assessment via PR #46 (2026-07-01). Registry synchronized with current main state after PR #44 and PR #45 merged."
     branch: claude/HERMES-TECH-001-post-correction-sync
     worktree: connected_github_isolated_branch
     starting_commit: 8b8a951a2095fb8a94d4ce31d4dbb3fae839fd4a
     issue: 36
-    pull_request: null
+    pull_request: 46
     writable_paths:
       - trace/evidence/HERMES-TECH-001-POST-CORRECTION-SYNC.md
     registry_note: "Registry-only sync task. trace/ACTIVE_WORK_REGISTRY.yaml is covered by the self-registration allowance (always permitted); it is intentionally omitted from writable_paths to avoid overlap with GOV-005 ownership."
     shared_paths: []
     integration_order: pr_37_2_sync_into_chatgpt/HERMES-TECH-001-assessment
+    blocked_on: []
+    handoff: null
+
+  - task_id: HERMES-TECH-001-FINAL-MAIN-SYNC
+    agent: claude
+    role: sync_and_registry_finalization
+    status: IN_PROGRESS
+    status_note: "PR-37.3 final sync activity. Full merge of origin/main to resolve PR #37 merge conflict and update STAR_MAP.md to current project state."
+    branch: claude/HERMES-TECH-001-final-main-sync
+    starting_commit: 9e4d8d4549cb6ea8ffa8bc282c716043bce770a5
+    issue: 36
+    pull_request: null
+    writable_paths:
+      - trace/STAR_MAP.md
+      - trace/evidence/HERMES-TECH-001-FINAL-MAIN-SYNC.md
+    correction_phase_modifies:
+      note: "Full merge of origin/main into claude/HERMES-TECH-001-final-main-sync to resolve PR #37 merge conflict. Files below are merge-from-main artifacts (PR #35, PR #43, PR #45) incorporated by the merge operation to make PR #37 cleanly mergeable. They are not substantively edited by this sync task beyond what the merge introduces."
+      files:
+        - CHATGPT.md
+        - docs/governance/chatgpt-project-source/TRACE_WORKER_ROUTING.md
+        - trace/product/
+        - trace/evidence/HERMES-STORIES-001-CLAUDE-HANDOFF.md
+        - trace/reviews/HERMES-STORIES-001-CLAUDE-REVIEW.md
+    shared_paths:
+      - trace/STAR_MAP.md
+    integration_order: pr_37_3_final_sync_into_chatgpt/HERMES-TECH-001-assessment
     blocked_on: []
     handoff: null
