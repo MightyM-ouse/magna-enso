@@ -1,6 +1,6 @@
 version: 1
 canonical_repository: MightyM-ouse/magna-enso
-updated_at: "2026-07-01T12:00:00+02:00"
+updated_at: "2026-07-01T19:35:47Z"
 
 # CF-2 (AC #4): the live GitHub branch head is the synchronization authority. Per-task
 # `latest_known_commit` is a point-in-time pointer recorded when an entry was last written;
@@ -192,12 +192,13 @@ active_tasks:
   - task_id: HERMES-TECH-001
     agent: chatgpt
     role: system_architect_sme
-    status: PUSHED_FOR_REVIEW
+    status: MERGED
+    status_note: "PR #37 merged into main on 2026-07-01T19:35:47Z using Create a merge commit. Merge commit: 92d9363a099379417fc3f0bf2d89778ad9239acc. Assessment and planning artifacts only. No runtime code, no Hermes activation, no sprint plan. Sub-PR evidence: corrections via PR #44 (2026-06-30), registry sync via PR #46 (2026-07-01), real merge-parent fix via PR-37.4 (2026-07-01, pushed as 8899bff, included in merge commit 92d9363)."
     branch: chatgpt/HERMES-TECH-001-assessment
     worktree: connected_github_isolated_branch
     starting_commit: f1248c3ba814d5b172e79e23e8f84e933ac1bd73
-    latest_known_commit: 36e5e468a3e450d03283d34b8fbb5a7fd508df94
-    latest_known_commit_note: "Point-in-time pointer; live branch head remains authoritative. Local evidence amendment added after Product Owner clarified Claude must inspect the local Magna workspace as well as GitHub."
+    latest_known_commit: 92d9363a099379417fc3f0bf2d89778ad9239acc
+    latest_known_commit_note: "Merge commit to main (PR #37, 2026-07-01T19:35:47Z, Create a merge commit). CF-2: live branch head is authoritative."
     issue: 36
     pull_request: 37
     writable_paths:
@@ -227,7 +228,6 @@ active_tasks:
       - docs/technical-specifications/
     shared_paths: []
     integration_order: after_HERMES_ADOPT_001_before_final_technical_specification_and_sprint_planning
-    status_note: "Claude independent review completed (PR #44 merged into this branch 2026-06-30). Product story baseline merged in PR #35 (2026-06-30) and reconciled in corrected assessment seed. PR #37 awaiting final Product Owner merge decision after PR-37.2 (PR #46) and PR-37.3 final sync."
     blocked_on: []
     handoff: trace/assessments/MAGNA_VERSION_ENSO_TECHNICAL_ASSESSMENT_SEED.md
 
@@ -471,8 +471,8 @@ active_tasks:
   - task_id: HERMES-TECH-001-FINAL-MAIN-SYNC
     agent: claude
     role: sync_and_registry_finalization
-    status: IN_PROGRESS
-    status_note: "PR-37.3 final sync activity. Full merge of origin/main to resolve PR #37 merge conflict and update STAR_MAP.md to current project state."
+    status: MERGED
+    status_note: "PR-37.3 real merge-parent fix complete. Merge commit 8899bff pushed to chatgpt/HERMES-TECH-001-assessment on 2026-07-01; PR #37 then merged to main (92d9363, Create a merge commit, 2026-07-01T19:35:47Z). Branch claude/HERMES-TECH-001-final-main-sync was a staging branch only; its work was squash-included in the chatgpt branch PR #47 and then resolved as a real merge via PR-37.4."
     branch: claude/HERMES-TECH-001-final-main-sync
     starting_commit: 9e4d8d4549cb6ea8ffa8bc282c716043bce770a5
     issue: 36
@@ -491,5 +491,20 @@ active_tasks:
     shared_paths:
       - trace/STAR_MAP.md
     integration_order: pr_37_3_final_sync_into_chatgpt/HERMES-TECH-001-assessment
+    blocked_on: []
+    handoff: null
+
+  - task_id: HERMES-TECH-001-POST-MERGE-CLEANUP
+    agent: claude
+    role: post_merge_registry_cleanup
+    status: IN_PROGRESS
+    branch: claude/HERMES-TECH-001-post-merge-cleanup
+    worktree: connected_github_isolated_branch
+    starting_commit: 92d9363a099379417fc3f0bf2d89778ad9239acc
+    issue: 36
+    pull_request: null
+    writable_paths: []
+    registry_note: "Post-merge status update only. trace/ACTIVE_WORK_REGISTRY.yaml is covered by the self-registration allowance (always permitted); it is intentionally omitted from writable_paths to avoid overlap with GOV-005 ownership."
+    shared_paths: []
     blocked_on: []
     handoff: null
